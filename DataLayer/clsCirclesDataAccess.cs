@@ -1,0 +1,177 @@
+﻿using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using EntityLayer;
+
+namespace DataAccessLayer
+{
+    public class clsCirclesDataAccess
+    {
+        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+        static public int AddCircle(clsEntityCircle EntityCircle)
+        {
+            int result = default(Int32);
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_InsertCircle", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleName", EntityCircle.CircleName);
+                    cmd.Parameters.AddWithValue("@TeacherID", EntityCircle.TeacherID);
+                    cmd.Parameters.AddWithValue("@MaxCapacity", EntityCircle.MaxCapacity);
+
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToInt32(obj);
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
+
+        static public bool UpdateCircle(clsEntityCircle EntityCircle)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_UpdateCircle", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", EntityCircle.CircleID);
+                    cmd.Parameters.AddWithValue("@CircleName", EntityCircle.CircleName);
+                    cmd.Parameters.AddWithValue("@TeacherID", EntityCircle.TeacherID);
+                    cmd.Parameters.AddWithValue("@MaxCapacity", EntityCircle.MaxCapacity);
+
+                    try
+                    {
+                        conn.Open();
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result > 0;
+        }
+
+        static public bool DeleteCircle(int circleID)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_DeleteCircle", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", circleID);
+
+                    try
+                    {
+                        conn.Open();
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result > 0;
+        }
+
+        static public DataTable SelectAllCircles()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllCircles", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
+
+        static public DataTable SelectCircleBy(int circleID)
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectCircleBy", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", circleID);
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
+
+        static public bool IsCircleExist(int circleID)
+        {
+            bool result = default(Boolean);
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_IsCircleExist", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", circleID);
+
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToBoolean(obj);
+                    }
+                    catch (Exception)
+                    {
+                        // ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
+    }
+}
