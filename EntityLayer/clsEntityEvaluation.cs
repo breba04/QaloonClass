@@ -4,10 +4,10 @@ namespace EntityLayer
 {
     public class clsEntityEvaluation
     {
-        public int EvaluationID { get; set; }
-        public int StudentID { get; set; }
-        public short FromAyahID { get; set; }
-        public int ToAyahID { get; set; }
-        public DateTime EvalDate { get; set; }
+        public int EvaluationID { get; set; } = -1;
+        public int StudentID { get; set; } = -1;
+        public short FromAyahID { get; set; } = -1;
+        public int ToAyahID { get; set; } = -1;
+        public DateTime EvalDate { get; set; } = DateTime.MinValue;
     }
 }
