@@ -53,9 +53,15 @@ namespace UI.BasedUserControl
             set
             {
                 if (value)
-                    this.BackColor = Color.FromArgb(38, 130, 57);
+                {
+                    btnIsActive.BackColor = Color.FromArgb(38, 130, 57);
+
+                }
                 else
-                    this.BackColor = Color.Red;
+                {
+
+                    btnIsActive.BackColor = Color.Red;
+                }
             }
         }
 

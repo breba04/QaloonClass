@@ -35,7 +35,7 @@
             this.btnIsActive = new System.Windows.Forms.Button();
             this.pnLine = new System.Windows.Forms.Panel();
             this.pnFullName = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbFullName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnContecnt = new System.Windows.Forms.Panel();
             this.pnLeftContent = new System.Windows.Forms.Panel();
@@ -144,25 +144,25 @@
             // pnFullName
             // 
             this.pnFullName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(199)))), ((int)(((byte)(149)))));
-            this.pnFullName.Controls.Add(this.label1);
+            this.pnFullName.Controls.Add(this.lbFullName);
             this.pnFullName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnFullName.Location = new System.Drawing.Point(184, 0);
             this.pnFullName.Name = "pnFullName";
             this.pnFullName.Size = new System.Drawing.Size(700, 71);
             this.pnFullName.TabIndex = 3;
             // 
-            // label1
+            // lbFullName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(65)))), ((int)(((byte)(38)))));
-            this.label1.Location = new System.Drawing.Point(222, 21);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 28);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "إبراهيم عبدالكريم عبدالحميد";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbFullName.AutoSize = true;
+            this.lbFullName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(65)))), ((int)(((byte)(38)))));
+            this.lbFullName.Location = new System.Drawing.Point(222, 21);
+            this.lbFullName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbFullName.Name = "lbFullName";
+            this.lbFullName.Size = new System.Drawing.Size(241, 28);
+            this.lbFullName.TabIndex = 3;
+            this.lbFullName.Text = "إبراهيم عبدالكريم عبدالحميد";
+            this.lbFullName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -348,23 +348,23 @@
         private System.Windows.Forms.Button btnIsActive;
         private System.Windows.Forms.Panel pnLine;
         private System.Windows.Forms.Panel pnFullName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbFullName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnContecnt;
-        private System.Windows.Forms.Panel pnLeftContent;
-        private System.Windows.Forms.Panel pnRightContent;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnButtom;
         private System.Windows.Forms.Panel pnButtomContentRight;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
+        protected System.Windows.Forms.Panel pnLeftContent;
+        protected System.Windows.Forms.Panel pnRightContent;
+        protected System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.Panel panel2;
+        protected System.Windows.Forms.Panel panel7;
+        protected System.Windows.Forms.Panel panel8;
+        protected System.Windows.Forms.Panel panel9;
+        protected System.Windows.Forms.Panel panel5;
+        protected System.Windows.Forms.Panel panel4;
+        protected System.Windows.Forms.Panel panel3;
     }
 }
