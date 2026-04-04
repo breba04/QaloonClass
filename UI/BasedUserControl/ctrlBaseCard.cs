@@ -37,6 +37,20 @@ namespace UI.BasedUserControl
             }
 
         }
+        bool IsActive
+        {
+            get
+            {
+                return this.BackColor == Color.FromArgb(38 ,130, 57);
+            }
+            set
+            {
+                if (value)
+                    this.BackColor = Color.FromArgb(38, 130, 57);
+                else
+                    this.BackColor = Color.Red;
+            }
+        }
 
         protected virtual void LoadData(int ID)
         {
