@@ -2,9 +2,9 @@
 {
     public class clsEntityCircle
     {
-        public int CircleID { get; set; }
-        public string CircleName { get; set; }
-        public int TeacherID { get; set; }
-        public int MaxCapacity { get; set; }
+        public int CircleID { get; set; } = -1;
+        public string CircleName { get; set; } = string.Empty;
+        public int TeacherID { get; set; } = -1;
+        public int MaxCapacity { get; set; } = 0;
     }
 }

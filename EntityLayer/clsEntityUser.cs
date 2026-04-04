@@ -8,10 +8,10 @@ namespace EntityLayer
 {
     public class clsEntityUser
     {
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string FullName { get; set; }
-        public int UserRole { get; set; }
+        public int UserID { get; set; } = -1;
+        public string UserName { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
+        public int UserRole { get; set; } = -1;
     }
 }

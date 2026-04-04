@@ -4,14 +4,14 @@ namespace EntityLayer
 {
     public class clsEntityStudent
     {
-        public int StudentID { get; set; }
-        public string FullName { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string ParentPhone { get; set; }
-        public string Address { get; set; }
-        public DateTime JoinDate { get; set; }
-        public bool IsActive { get; set; }
-        public int CircleID { get; set; }
-        public clsEntityCircle CircleInfo { get; set; }
+        public int StudentID { get; set; } = -1;
+        public string FullName { get; set; } = string.Empty;
+        public DateTime BirthDate { get; set; } = DateTime.MinValue;
+        public string ParentPhone { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public DateTime JoinDate { get; set; } = DateTime.MinValue;
+        public bool IsActive { get; set; } = false;
+        public int CircleID { get; set; } = -1;
+        public clsEntityCircle CircleInfo { get; set; } = new clsEntityCircle();
     }
 }
