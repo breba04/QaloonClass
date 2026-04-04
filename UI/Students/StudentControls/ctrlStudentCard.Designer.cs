@@ -148,6 +148,7 @@
             this.panel10.Padding = new System.Windows.Forms.Padding(10);
             this.panel10.Size = new System.Drawing.Size(365, 146);
             this.panel10.TabIndex = 3;
+            this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel10_Paint);
             // 
             // panel11
             // 
@@ -488,15 +489,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel pnTotalProgressRate;
-        private System.Windows.Forms.Label lbProgressRate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbSurrahName;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel pnProgressRate;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label lblate;
         private System.Windows.Forms.Label label11;
@@ -512,5 +508,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel pnTotalProgressRate;
+        private System.Windows.Forms.Panel pnProgressRate;
+        private System.Windows.Forms.Label lbProgressRate;
+        private System.Windows.Forms.Label lbSurrahName;
     }
 }

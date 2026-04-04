@@ -68,6 +68,12 @@
     <Compile Include="Students\StudentControls\ctrlStudentCard.Designer.cs">
       <DependentUpon>ctrlStudentCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Teachers\TeacherControl\ctrlTeacherCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Teachers\TeacherControl\ctrlTeacherCard.Designer.cs">
+      <DependentUpon>ctrlTeacherCard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BasedUserControl\ctrlBaseCard.resx">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="Students\StudentControls\ctrlStudentCard.resx">
       <DependentUpon>ctrlStudentCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teachers\TeacherControl\ctrlTeacherCard.resx">
+      <DependentUpon>ctrlTeacherCard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -113,7 +122,6 @@
   <ItemGroup>
     <Folder Include="Attendance\" />
     <Folder Include="StudentProgress\UserControl\" />
-    <Folder Include="Teachers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\study.png" />

@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.BasedUserControl;
 
-namespace UI.Students.StudentControls
+namespace UI.Teachers.TeacherControl
 {
-    public partial class ctrlStudentCard : ctrlBaseCard
+    public partial class ctrlTeacherCard : ctrlBaseCard
     {
-        public ctrlStudentCard()
+        public ctrlTeacherCard()
         {
             InitializeComponent();
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
