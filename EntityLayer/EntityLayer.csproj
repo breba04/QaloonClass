@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsEntityEvaluation.cs" />
+    <Compile Include="clsEntitySettings.cs" />
     <Compile Include="clsEntityStudentProgress.cs" />
     <Compile Include="clsEntityWaitlist.cs" />
     <Compile Include="clsEntityStudent.cs" />
     <Compile Include="clsEntityCircle.cs" />
     <Compile Include="clsEntityAttendance.cs" />
     <Compile Include="clsEntityUser.cs" />
+    <Compile Include="clsLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

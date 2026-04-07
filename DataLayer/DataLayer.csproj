@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="clsCirclesDataAccess.cs" />
     <Compile Include="clsEvaluationsDataAccess.cs" />
+    <Compile Include="clsSettingsDataAccess.cs" />
     <Compile Include="clsStudentProgressDataAccess.cs" />
     <Compile Include="clsWaitlistDataAccess.cs" />
     <Compile Include="clsStudentsDataAccess.cs" />

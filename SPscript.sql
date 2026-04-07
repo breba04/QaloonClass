@@ -696,3 +696,68 @@
 --END
 --GO
 
+--CREATE PROCEDURE SP_IsAttendanceExistsToday
+--@CircleID INT 
+--AS
+--BEGIN
+--    IF EXISTS (
+--        SELECT 1 FROM Attendance a
+--		JOIN Students s ON s.StudentID = a.StudentID
+--        WHERE AttendanceDate = CAST(GETDATE() AS DATE) AND CircleID = @CircleID
+--    )
+--        RETURN 1;
+--    ELSE
+--        RETURN 0;
+--END
+
+
+
+
+--CREATE PROCEDURE SP_GetStudentsAttendanceForToday
+--@CircleID INT
+--AS
+----BEGIN
+--	SELECT DISTINCT a.AttendanceID,
+--	(
+--		SELECT MAX(a.CreatedAt) FROM Students WHERE StudentID = s.StudentID
+--	)
+--	, s.StudentID,FullName,ats.StatusID,ats.StatusName, a.AttendanceDate  FROM Attendance a
+--	JOIN Students s ON  s.StudentID = a.StudentID
+--	JOIN AttendanceStatus ats ON ats.StatusID = a.Status
+--	WHERE AttendanceDate = CAST('2026-04-03' AS date) AND CircleID = 1
+--	ORDER BY a.CreatedAt,a.AttendanceID,a.AttendanceDate DESC,s.FullName,ats.StatusID 
+--END
+
+--CREATE PROCEDURE SP_GetAttendanceStudentHistoryInMonth
+--@StudentID INT,
+--@Year SMALLINT,
+--@Month TINYINT
+--AS
+--BEGIN
+--	SELECT s.StudentID,FullName,ats.StatusName,a.AttendanceDate FROM Attendance a
+--	JOIN Students s ON  s.StudentID = a.StudentID
+--	JOIN AttendanceStatus ats ON ats.StatusID = a.Status
+--	WHERE s.StudentID = @StudentID AND MONTH(AttendanceDate) = @Month  AND YEAR(AttendanceDate) = @Year
+--	ORDER BY a.AttendanceDate DESC,s.FullName,ats.StatusID 
+--END
+
+--ALTER PROCEDURE SP_GetAbsentCount
+--@StudentID INT,
+--@FromDate Date,
+--@ToDate Date,
+--@CountAbsent INT OUTPUT
+--AS
+--BEGIN
+--	SELECT @CountAbsent = COUNT(*) FROM Attendance
+--	WHERE StudentID =@StudentID AND AttendanceDate BETWEEN @FromDate AND @ToDate AND Status = 3
+
+--END
+
+
+
+
+
+
+
+
+
