@@ -60,6 +60,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,11 +86,20 @@
     <Compile Include="Teachers\TeacherControl\ctrlTeacherCard.Designer.cs">
       <DependentUpon>ctrlTeacherCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Dashboard.cs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Dashboard.cs.Designer.cs">
+      <DependentUpon>UC_Dashboard.cs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BasedUserControl\ctrlBaseCard.resx">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -104,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Teachers\TeacherControl\ctrlTeacherCard.resx">
       <DependentUpon>ctrlTeacherCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Dashboard.cs.resx">
+      <DependentUpon>UC_Dashboard.cs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -551,6 +569,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mosque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Student.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\students1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MemorizationCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\presence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TotalStudents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NumberOfRings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trending-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trending-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trending_Flat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_alert_urgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ic_Circles.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
