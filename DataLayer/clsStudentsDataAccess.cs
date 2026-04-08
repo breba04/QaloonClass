@@ -34,9 +34,9 @@ namespace DataAccessLayer
                     if (obj != null)
                         result = Convert.ToInt32(obj);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -65,7 +65,7 @@ namespace DataAccessLayer
                     conn.Open();
                     result = cmd.ExecuteNonQuery();
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
                                             clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
@@ -116,7 +116,7 @@ namespace DataAccessLayer
                     if (obj != null)
                         result = Convert.ToBoolean(obj);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
                                             clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
@@ -153,7 +153,7 @@ namespace DataAccessLayer
                         result = Convert.ToBoolean(obj);
                     }
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
                                             clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
@@ -177,7 +177,7 @@ namespace DataAccessLayer
                         result.Load(reader);
                     }
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
                                             clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }

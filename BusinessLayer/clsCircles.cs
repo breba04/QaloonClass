@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,10 @@ namespace BusinessLayer
         static public DataTable SelectAllCircles()
         {
             return clsCirclesDataAccess.SelectAllCircles();
+        }
+        static public DataTable GetAllCircleView()
+        {
+            return clsCirclesDataAccess.GetAllCircleView();
         }
     }
 }

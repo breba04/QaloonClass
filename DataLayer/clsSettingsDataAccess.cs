@@ -34,9 +34,9 @@ namespace DataLayer
                         if (obj != null)
                             result = Convert.ToInt32(obj);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                         clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -61,9 +61,9 @@ namespace DataLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace DataLayer
                         if (obj != null)
                             settingValue = obj.ToString();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                                                 clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
@@ -111,7 +111,7 @@ namespace DataLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                                                 clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }

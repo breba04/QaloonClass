@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -97,9 +98,7 @@ namespace UI.UserControls
 
 
             return dt;
-        }
-
-       
+        }   
         private void _FormatDataGridView()
         {
             dgv_Listreports.EnableHeadersVisualStyles = false;
@@ -122,7 +121,7 @@ namespace UI.UserControls
 
             dgv_Listreports.GridColor = Color.LightGray;
 
-            dgv_Listreports.Columns["معدل الحفظ"].DefaultCellStyle.Format = "0'%'";
+            //dgv_Listreports.Columns["معدل الحفظ"].DefaultCellStyle.Format = "0'%'";
         }
         private void UpdateStudentsStyle(int NumberOfStudentLastMonth ,string ForeColor,Bitmap ResourcesImage,string prefix = "")
         {
@@ -233,7 +232,8 @@ namespace UI.UserControls
 
         private void InitializeDashboard()
         {
-            _allData = GetHalaqatDemoData();
+            //_allData = GetHalaqatDemoData();
+            _allData = clsCircles.GetAllCircleView();
             _currentPage = 1;
             LoadPage(); 
             _FormatDataGridView(); 

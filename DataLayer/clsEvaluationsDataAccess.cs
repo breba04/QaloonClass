@@ -34,7 +34,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddEvaluation", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -63,7 +63,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateEvaluation", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -88,7 +88,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteEvaluation", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -115,7 +115,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllEvaluations", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -143,7 +143,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectEvaluationBy", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsEvaluationExist", DateTime.Now, null);
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }

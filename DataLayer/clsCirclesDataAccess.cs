@@ -173,5 +173,31 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable GetAllCircleView()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetAllCircleView", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAllCircleView", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

@@ -33,12 +33,14 @@ namespace UI.Login
                 MessageBox.Show("Invalid username or password.");
                 return;
             }
+
             clsCurrentUser.Login(User,ckb_RememberMe.Checked);
             if(!ckb_RememberMe.Checked)
             {
                 txt_UserName.Text = "";
                 txt_PassWord.Text = "";
             }
+
             frmMain frm = new frmMain();
             frm.Show();
 
