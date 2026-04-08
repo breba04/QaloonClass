@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.UserControls;
+using UI.Users;
 
 namespace UI
 {
@@ -69,6 +70,7 @@ namespace UI
 
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
+            clsCurrentUser.LogOut();
             this.Close();
         }
     }

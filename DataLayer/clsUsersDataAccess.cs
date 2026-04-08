@@ -188,5 +188,88 @@ namespace DataAccessLayer
             }
             return result;
         }
+
+        static public bool Login(clsEntityUser user)
+        {
+            bool IsLogin = false;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("SP_Login", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.Add("@FullName", SqlDbType.NVarChar,10).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@UserRole", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                    SqlParameter ReturnValue = new SqlParameter();
+                    ReturnValue.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(ReturnValue);
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        int Result = Convert.ToInt32(ReturnValue.Value);
+
+                        if (Result == 1)
+                        {
+                            IsLogin = true;
+                            user.FullName = cmd.Parameters["@FullName"].Value.ToString();
+                            user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
+                            user.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
+                        }
+                        
+                    }
+                    catch (Exception Ex)
+                    {
+                        clsLogger.AddLogToDB(Ex.Message,-1,clsLogger.enLogType.Error,clsLogger.enLogLevel.DataLayer, " Login(clsEntityUser user)", DateTime.Now,null);
+                    }
+                }
+                return IsLogin;
+            }
+        }
+        static public bool FindByUserID(clsEntityUser user)
+        {
+            bool IsLogin = false;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("SP_FindByUserID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                    cmd.Parameters.Add("@UserName" , SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@FullName", SqlDbType.NVarChar,100).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@UserRole", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                    SqlParameter ReturnValue = new SqlParameter();
+                    ReturnValue.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(ReturnValue);
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        int Result = Convert.ToInt32(ReturnValue.Value);
+
+                        if (Result == 1)
+                        {
+                            IsLogin = true;
+                            user.UserName = cmd.Parameters["@UserName"].Value.ToString();
+                            user.Password = cmd.Parameters["@Password"].Value.ToString();
+                            user.FullName = cmd.Parameters["@FullName"].Value.ToString();
+                            user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
+                            user.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
+                        }
+                        
+                    }
+                    catch (Exception Ex)
+                    {
+                        clsLogger.AddLogToDB(Ex.Message,-1,clsLogger.enLogType.Error,clsLogger.enLogLevel.DataLayer, " Login(clsEntityUser user)", DateTime.Now,null);
+                    }
+                }
+                return IsLogin;
+            }
+        }
     }
 }

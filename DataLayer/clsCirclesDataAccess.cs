@@ -30,9 +30,9 @@ namespace DataAccessLayer
                         if (obj != null)
                             result = Convert.ToInt32(obj);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -58,9 +58,9 @@ namespace DataAccessLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -83,9 +83,9 @@ namespace DataAccessLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -110,9 +110,9 @@ namespace DataAccessLayer
                             result.Load(reader);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
                     }
                 }
             }
@@ -138,9 +138,9 @@ namespace DataAccessLayer
                             result.Load(reader);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectCircleBy", DateTime.Now, null);
                     }
                 }
             }
@@ -165,9 +165,9 @@ namespace DataAccessLayer
                         if (obj != null)
                             result = Convert.ToBoolean(obj);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsCircleExist", DateTime.Now, null);
                     }
                 }
             }

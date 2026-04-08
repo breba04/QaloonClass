@@ -16,29 +16,29 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        clsEntityUser EntityUser = new clsEntityUser();
+        public clsEntityUser UserData = new clsEntityUser();
         public clsUsers()
         {
-            EntityUser.UserID = -1;
-            EntityUser.UserName = "";
-            EntityUser.Password = "";
-            EntityUser.FullName = "";
-            EntityUser.UserRole = -1;
+            UserData.UserID = -1;
+            UserData.UserName = "";
+            UserData.Password = "";
+            UserData.FullName = "";
+            UserData.UserRole = -1;
             _Mode = enMode.Add;
         }
         private clsUsers(clsEntityUser EntityUser)
         {
-            this.EntityUser = EntityUser;
+            this.UserData = EntityUser;
             _Mode = enMode.Update;
         }
         private bool AddUsers()
         {
-            EntityUser.UserID = clsUsersDataAccess.AddUsers(EntityUser);
-            return EntityUser.UserID != default(int);
+            UserData.UserID = clsUsersDataAccess.AddUsers(UserData);
+            return UserData.UserID != default(int);
         }
-        public bool UpdateUsers(clsEntityUser EntityUser)
+        public bool UpdateUsers()
         {
-            return clsUsersDataAccess.UpdateUsers(EntityUser);
+            return clsUsersDataAccess.UpdateUsers(UserData);
         }
         public bool Save()
         {
@@ -48,7 +48,7 @@ namespace BusinessLayer
             }
             else if (_Mode == enMode.Update)
             {
-                return UpdateUsers(EntityUser);
+                return UpdateUsers();
             }
             else
             {
@@ -57,7 +57,7 @@ namespace BusinessLayer
         }
         public bool DeleteUsers()
         {
-            return clsUsersDataAccess.DeleteUsers(EntityUser.UserID);
+            return clsUsersDataAccess.DeleteUsers(UserData.UserID);
         }
         public DataTable SelectAllUserss()
         {
@@ -66,6 +66,30 @@ namespace BusinessLayer
         static public bool IsUsersExist(int UserID)
         {
             return clsUsersDataAccess.IsUsersExist(UserID);
+        }
+        static public clsUsers Login(string userName,string password)
+        {
+            clsEntityUser EntityUser = new clsEntityUser() {UserName = userName ,Password = password};
+            if (clsUsersDataAccess.Login(EntityUser))
+            {
+                return new clsUsers(EntityUser);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        static public clsUsers Find(int UserID)
+        {
+            clsEntityUser EntityUser = new clsEntityUser() { UserID = UserID };
+            if (clsUsersDataAccess.FindByUserID(EntityUser))
+            {
+                return new clsUsers(EntityUser);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

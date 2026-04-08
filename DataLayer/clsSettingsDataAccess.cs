@@ -36,7 +36,7 @@ namespace DataLayer
                     }
                     catch (Exception)
                     {
-                        // ErrorHandler
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -63,7 +63,7 @@ namespace DataLayer
                     }
                     catch (Exception)
                     {
-                        // ErrorHandler
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace DataLayer
                     }
                     catch (Exception)
                     {
-                        // ErrorHandler
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -113,7 +113,7 @@ namespace DataLayer
                     }
                     catch (Exception)
                     {
-                        // ErrorHandler
+                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }

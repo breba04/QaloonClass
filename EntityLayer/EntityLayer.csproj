@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsEntityclsLoginDetails.cs" />
     <Compile Include="clsEntityEvaluation.cs" />
     <Compile Include="clsEntitySettings.cs" />
     <Compile Include="clsEntityStudentProgress.cs" />

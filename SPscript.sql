@@ -755,6 +755,16 @@
 
 
 
+CREATE PROCEDURE SP_Login
+@UserID INT OUTPUT,
+@UserName varchar(20),
+@Password varchar(10),
+@FullName varchar(10) OUTPUT,
+@UserRole tinyint OUTPUT
+AS
+BEGIN
+	
+END
 
 
 

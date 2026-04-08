@@ -86,6 +86,7 @@
     <Compile Include="UserControls\UC_Dashboard.cs.Designer.cs">
       <DependentUpon>UC_Dashboard.cs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users\clsCurrentUser.cs" />
     <EmbeddedResource Include="BasedUserControl\ctrlBaseCard.resx">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </EmbeddedResource>

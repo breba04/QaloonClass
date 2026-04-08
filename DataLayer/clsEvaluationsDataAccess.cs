@@ -32,9 +32,9 @@ namespace DataAccessLayer
                         if (obj != null)
                             result = Convert.ToInt32(obj);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddEvaluation", DateTime.Now, null);
                     }
                 }
             }
@@ -61,9 +61,9 @@ namespace DataAccessLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateEvaluation", DateTime.Now, null);
                     }
                 }
             }
@@ -86,9 +86,9 @@ namespace DataAccessLayer
                         conn.Open();
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteEvaluation", DateTime.Now, null);
                     }
                 }
             }
@@ -113,9 +113,9 @@ namespace DataAccessLayer
                             result.Load(reader);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllEvaluations", DateTime.Now, null);
                     }
                 }
             }
@@ -141,9 +141,9 @@ namespace DataAccessLayer
                             result.Load(reader);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectEvaluationBy", DateTime.Now, null);
                     }
                 }
             }
@@ -168,9 +168,9 @@ namespace DataAccessLayer
                         if (obj != null)
                             result = Convert.ToBoolean(obj);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // ErrorHandler
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsEvaluationExist", DateTime.Now, null);
                     }
                 }
             }

@@ -21,7 +21,7 @@ namespace EntityLayer
             UI = 3
         }
 
-        bool AddLogToDB(string LogMessage,int UserID,enLogType type,enLogLevel level,string OparationName,DateTime LogDate ,string Notes )
+        static public bool AddLogToDB(string LogMessage,int UserID,enLogType type,enLogLevel level,string OparationName,DateTime LogDate ,string Notes = null )
         {
             try
             {
@@ -32,7 +32,7 @@ namespace EntityLayer
                 return AddLogToFile(Ex,LogMessage, UserID, type, level, OparationName, LogDate, Notes);
             }
         }
-        bool AddLogToFile(Exception Ex,string LogMessage,int UserID,enLogType type,enLogLevel level,string OparationName,DateTime LogDate ,string Notes)
+        static public bool AddLogToFile(Exception Ex,string LogMessage,int UserID,enLogType type,enLogLevel level,string OparationName,DateTime LogDate ,string Notes)
         {
             try
             {

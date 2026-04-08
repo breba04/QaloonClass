@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsLoginDetailsDataAccess.cs" />
     <Compile Include="clsCirclesDataAccess.cs" />
     <Compile Include="clsEvaluationsDataAccess.cs" />
     <Compile Include="clsSettingsDataAccess.cs" />
