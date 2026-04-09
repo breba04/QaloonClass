@@ -19,9 +19,13 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        void LoadMainData()
+        {
+            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.UserName;
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            LoadMainData();
             UC_Dashboard Dashboard = new UC_Dashboard();
             ShowControl(Dashboard);
         }

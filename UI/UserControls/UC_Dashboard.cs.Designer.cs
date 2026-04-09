@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_SectionStats = new System.Windows.Forms.Panel();
             this.pnl_TotalCircles = new System.Windows.Forms.Panel();
             this.ptb_TotalCircles_TrendingIcon = new System.Windows.Forms.PictureBox();
@@ -351,6 +351,7 @@
             this.pnl_SectionGreeting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_SectionGreeting.Location = new System.Drawing.Point(0, 0);
             this.pnl_SectionGreeting.Name = "pnl_SectionGreeting";
+            this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionGreeting.Size = new System.Drawing.Size(1571, 153);
             this.pnl_SectionGreeting.TabIndex = 1;
             // 
@@ -515,14 +516,14 @@
             this.dgv_Listreports.AllowUserToAddRows = false;
             this.dgv_Listreports.AllowUserToDeleteRows = false;
             this.dgv_Listreports.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Listreports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Listreports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Listreports.Location = new System.Drawing.Point(0, 0);

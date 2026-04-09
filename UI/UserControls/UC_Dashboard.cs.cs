@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using UI.Users;
 
 namespace UI.UserControls
 {
@@ -17,6 +18,25 @@ namespace UI.UserControls
         public UC_Dashboard()
         {
             InitializeComponent();
+        }
+        int _GetTotalNumberStudent()
+        {
+            int TotalStudents = 0;
+            foreach (DataGridViewRow item in dgv_Listreports.Rows)
+            {
+                if (item.Cells[2].Value != null)
+                    if(int.TryParse(item.Cells[2].Value.ToString(),out int result))
+                    {
+                        TotalStudents += result;
+                    }
+            }
+            return TotalStudents;
+        }
+        void LoadMainData()
+        {
+            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.FullName;
+            lbl_TotalCircles.Text = dgv_Listreports.RowCount.ToString();
+            lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
         }
         private void LoadPage()
         {
@@ -210,7 +230,6 @@ namespace UI.UserControls
             ApplyCirclesStyle(2);
             InitializeDashboard();
         }
-
         private void btn_Next_Click(object sender, EventArgs e)
         {
             if (_currentPage < _totalPages)
@@ -220,7 +239,6 @@ namespace UI.UserControls
             }
 
         }
-
         private void btn_Previous_Click(object sender, EventArgs e)
         {
             if (_currentPage > 1)
@@ -229,14 +247,14 @@ namespace UI.UserControls
                 LoadPage();
             }
         }
-
         private void InitializeDashboard()
         {
-            //_allData = GetHalaqatDemoData();
             _allData = clsCircles.GetAllCircleView();
+            //_allData = GetHalaqatDemoData();
             _currentPage = 1;
             LoadPage(); 
-            _FormatDataGridView(); 
+            _FormatDataGridView();
+            LoadMainData();
         }
     }
     }
