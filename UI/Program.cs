@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Login;
+using UI.Login;
+using UI.Students;
 
 namespace UI
 {
@@ -18,6 +20,10 @@ namespace UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
+           // Application.Run(new frmTest());
+            Application.Run(new frmMain());
+            //Application.Run(new frmAddAndUpdateStudent());
+            //Application.Run(new BaseForm());
         }
     }
 }
