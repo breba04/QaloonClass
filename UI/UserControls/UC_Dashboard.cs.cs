@@ -34,7 +34,7 @@ namespace UI.UserControls
         }
         void LoadMainData()
         {
-            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.FullName;
+            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.PersonInfo.FullName;
             lbl_TotalCircles.Text = dgv_Listreports.RowCount.ToString();
             lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
         }

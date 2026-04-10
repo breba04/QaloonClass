@@ -16,14 +16,11 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        public clsEntityUser UserData = new clsEntityUser();
+        public clsEntityUser UserData ;
+        
         public clsUsers()
         {
-            UserData.UserID = -1;
-            UserData.UserName = "";
-            UserData.Password = "";
-            UserData.FullName = "";
-            UserData.UserRole = -1;
+            this.UserData = new clsEntityUser();
             _Mode = enMode.Add;
         }
         private clsUsers(clsEntityUser EntityUser)

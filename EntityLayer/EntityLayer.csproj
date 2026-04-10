@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsEntityclsLoginDetails.cs" />
     <Compile Include="clsEntityEvaluation.cs" />
+    <Compile Include="clsEntityPerson.cs" />
     <Compile Include="clsEntitySettings.cs" />
     <Compile Include="clsEntityStudentProgress.cs" />
     <Compile Include="clsEntityWaitlist.cs" />

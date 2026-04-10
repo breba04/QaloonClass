@@ -4,23 +4,27 @@
 --/***************Users****************/
 
 --CREATE PROCEDURE SP_InsertUsers 
-
---  @UserName VARCHAR(20),  @Password VARCHAR(10),  @FullName VARCHAR(100),  @UserRole TINYINT
+--  @FirstName NVARCHAR(15),@SecondName NVARCHAR(15),@ThirdName NVARCHAR(15),@LastName NVARCHAR(15),@BirthDate NVARCHAR(20),@Address NVARCHAR(20)
+--  ,@IsActive BIT,@UserName NVARCHAR(20),  @Password NVARCHAR(10), @UserRole TINYINT
 --AS
 --BEGIN
---INSERT INTO [Users]
+--INSERT INTO vw_UserView
 --(
+-- [FirstName],
+-- [SecondName],
+-- [ThirdName],
+-- [LastName],
+-- [BirthDate],
+-- [Address],
+-- [IsActive],
 -- [UserName],
 -- [Password],
--- [FullName],
 -- [UserRole]
 --)
 --VALUES
 --(
---@UserName,
---@Password,
---@FullName,
---@UserRole
+--@FirstName,@SecondName ,@ThirdName,@LastName,@BirthDate ,@Address
+--  ,@IsActive ,@UserName ,  @Password , @UserRole 
 --)
 --;
 --SELECT SCOPE_IDENTITY() AS NewID; 
@@ -28,21 +32,28 @@
 --END
 --GO
 
---CREATE PROCEDURE SP_UpdateUsers 
+ALTER PROCEDURE SP_UpdateUsers 
 
---  @UserID INT,  @UserName VARCHAR(20),  @Password VARCHAR(10),  @FullName VARCHAR(100),  @UserRole TINYINT
---AS
---BEGIN
---Update [Users] SET 
--- [UserName] = @UserName,
--- [Password] = @Password,
--- [FullName] = @FullName,
--- [UserRole] = @UserRole
--- WHERE 
---[UserID] = @UserID
+  @UserID INT,  @FirstName NVARCHAR(15),@SecondName NVARCHAR(15),@ThirdName NVARCHAR(15),@LastName NVARCHAR(15),@BirthDate NVARCHAR(20),@Address NVARCHAR(20)
+  ,@IsActive BIT,@UserName NVARCHAR(20),  @Password NVARCHAR(10), @UserRole TINYINT
+AS
+BEGIN
+Update [vw_UserView] SET 
+ [FirstName] = @FirstName,
+ [SecondName] = @SecondName,
+ [ThirdName] = @ThirdName,
+ [LastName] = @LastName,
+ [BirthDate] = @BirthDate,
+ [Address] = @Address,
+ [IsActive] = @IsActive,
+ [UserName] = @UserName,
+ [Password] = @Password,
+ [UserRole] = @UserRole
+ WHERE 
+[UserID] = @UserID
 
---END
---GO
+END
+GO
 
 --CREATE PROCEDURE SP_DeleteUsers 
 
@@ -755,19 +766,122 @@
 
 
 
-CREATE PROCEDURE SP_Login
-@UserID INT OUTPUT,
-@UserName varchar(20),
-@Password varchar(10),
-@FullName varchar(10) OUTPUT,
-@UserRole tinyint OUTPUT
-AS
-BEGIN
+--CREATE PROCEDURE SP_Login
+--@UserID INT OUTPUT,
+--@UserName varchar(20),
+--@Password varchar(10),
+--@FullName varchar(10) OUTPUT,
+--@UserRole tinyint OUTPUT
+--AS
+--BEGIN
 	
-END
+--END
+		
+--ALTER TRIGGER tg_InsteadOfInsertUser ON vw_UserView
+--INSTEAD OF INSERT 
+--AS
+--BEGIN
+--BEGIN TRANSACTION 
+--	BEGIN TRY 
+--	   DECLARE @PersonID INT;
+--	   INSERT INTO People (FirstName,SecondName,ThirdName,LastName,BirthDate,Address,IsActive)
+--	   SELECT FirstName,SecondName ,ThirdName ,LastName ,BirthDate ,Address ,IsActive FROM inserted
+--	   SELECT @PersonID = SCOPE_IDENTITY()
+   
+--	   INSERT INTO Users(UserName,Password,PersonID,UserRole)
+--	   SELECT UserName,Password,@PersonID,UserRole FROM inserted
+--	   COMMIT	
+--	END TRY
+--	BEGIN CATCH
+--	ROLLBACK TRANSACTION
+
+--	END CATCH
+--END
+
+--CREATE TRIGGER tg_InsteadOfUpdateUser ON vw_UserView
+--INSTEAD OF UPDATE 
+--AS
+--BEGIN
+--BEGIN TRANSACTION 
+--	BEGIN TRY 
+--	   DECLARE @PersonID INT;
+--UPDATE P
+--SET 
+--    P.FirstName = I.FirstName,
+--    P.SecondName = I.SecondName,
+--    P.ThirdName = I.ThirdName,
+--    P.LastName = I.LastName,
+--    P.BirthDate = I.BirthDate,
+--    P.Address = I.Address,
+--    P.IsActive = I.IsActive
+--FROM People P
+--INNER JOIN inserted I ON P.PersonID = I.PersonID;
+   
+--	   UPDATE U
+--	   SET U.UserName= I.UserName,
+--	   U.Password = I.Password,
+--	   U.UserRole = I.UserRole
+--	   FROM Users U 
+--	   INNER JOIN inserted I ON U.PersonID = I.PersonID
+--	   COMMIT	
+--	END TRY
+--	BEGIN CATCH
+--	ROLLBACK TRANSACTION
+
+--	END CATCH
+--END
+
+--CREATE TRIGGER tg_InsteadOfInsertStudent ON vw_StudentView
+--INSTEAD OF INSERT 
+--AS
+--BEGIN
+--BEGIN TRANSACTION 
+--	BEGIN TRY 
+--	   DECLARE @PersonID INT;
+--	   INSERT INTO People (FirstName,SecondName,ThirdName,LastName,BirthDate,Address,IsActive)
+--	   SELECT FirstName,SecondName ,ThirdName ,LastName ,BirthDate ,Address ,IsActive FROM inserted
+--	   SELECT @PersonID = SCOPE_IDENTITY()
+   
+--	   INSERT INTO Students(PersonID,ParentPhone,JoinDate,CircleID)
+--	   SELECT @PersonID,ParentPhone,JoinDate,CircleID FROM inserted
+--	   COMMIT	
+--	END TRY
+--	BEGIN CATCH
+--	ROLLBACK TRANSACTION
+
+--	END CATCH
+--END
 
 
+--CREATE TRIGGER tg_InsteadOfUpdateStudent ON vw_StudentView
+--INSTEAD OF UPDATE 
+--AS
+--BEGIN
+--BEGIN TRANSACTION 
+--	BEGIN TRY 
+--	   DECLARE @PersonID INT;
+--UPDATE P
+--SET 
+--    P.FirstName = I.FirstName,
+--    P.SecondName = I.SecondName,
+--    P.ThirdName = I.ThirdName,
+--    P.LastName = I.LastName,
+--    P.BirthDate = I.BirthDate,
+--    P.Address = I.Address,
+--    P.IsActive = I.IsActive
+--FROM People P
+--INNER JOIN inserted I ON P.PersonID = I.PersonID;
+   
+--	   UPDATE s
+--	   SET s.ParentPhone= I.ParentPhone,
+--	   s.JoinDate = I.JoinDate,
+--	   s.CircleID = I.CircleID
+--	   FROM Students s
+--	   INNER JOIN inserted I ON s.PersonID = I.PersonID
+--	   COMMIT	
+--	END TRY
+--	BEGIN CATCH
+--	ROLLBACK TRANSACTION
 
-
-
-
+--	END CATCH
+--END

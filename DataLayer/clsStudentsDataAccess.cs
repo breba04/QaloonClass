@@ -19,12 +19,16 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FullName", entity.FullName);
-                cmd.Parameters.AddWithValue("@BirthDate", entity.BirthDate);
+                cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
+                cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
+                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
+                cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
+                cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
+                cmd.Parameters.AddWithValue("@IsActive", entity.PersonInfo.IsActive);
+
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
-                cmd.Parameters.AddWithValue("@Address", entity.Address);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
-                cmd.Parameters.AddWithValue("@IsActive", entity.IsActive);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
 
                 try
@@ -36,12 +40,11 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddStudent", DateTime.Now, null);
                 }
             }
             return result;
         }
-
         static public bool UpdateStudent(clsEntityStudent entity)
         {
             int result = 0;
@@ -52,12 +55,17 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@StudentID", entity.StudentID);
-                cmd.Parameters.AddWithValue("@FullName", entity.FullName);
-                cmd.Parameters.AddWithValue("@@BirthDate", entity.BirthDate);
+
+                cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
+                cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
+                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
+                cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
+                cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
+                cmd.Parameters.AddWithValue("@IsActive", entity.PersonInfo.IsActive);
+
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
-                cmd.Parameters.AddWithValue("@Address", entity.Address);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
-                cmd.Parameters.AddWithValue("@IsActive", entity.IsActive);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
 
                 try
@@ -67,7 +75,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateStudent", DateTime.Now, null);
                 }
             }
             return result > 0;
@@ -126,38 +134,59 @@ namespace DataAccessLayer
         static public bool FindStudentByID(clsEntityStudent student)
         {
             bool result = false;
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
             using (SqlCommand cmd = new SqlCommand("SP_FindStudentByID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@StudentID", student.StudentID);
-                cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@Age", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@ParentPhone", SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@SecondName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ThirdName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@BirthDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar, 200).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add("@ParentPhone", SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
+
                 try
                 {
                     conn.Open();
                     object obj = cmd.ExecuteScalar();
+
                     if (obj != null)
                     {
-                        student.FullName = cmd.Parameters["@FullName"].Value.ToString();
-                        student.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
+                        student.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
+                        student.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
+
+                        student.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
+                        student.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
+                        student.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
+
                         student.ParentPhone = cmd.Parameters["@ParentPhone"].Value.ToString();
-                        student.Address = cmd.Parameters["@Address"].Value.ToString();
                         student.JoinDate = Convert.ToDateTime(cmd.Parameters["@JoinDate"].Value);
                         student.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
-                        result = Convert.ToBoolean(obj);
+
+                        if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
+                            student.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString(); 
+                        if (cmd.Parameters["@Address"].Value != DBNull.Value)
+                            student.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+
+
+                        result = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
                 }
             }
+
             return result;
         }
         static public DataTable SelectAllStudents()

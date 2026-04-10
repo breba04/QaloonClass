@@ -12,21 +12,9 @@ namespace BusinessLayer
     public class clsStudents
     {
         enum enMode { Add, Update }
-        enMode _Mode;
+        enMode _Mode = enMode.Add;
         public clsEntityStudent EntityStudent = new clsEntityStudent();
 
-        public clsStudents()
-        {
-            EntityStudent.StudentID = -1;
-            EntityStudent.FullName = "";
-            EntityStudent.BirthDate = DateTime.MaxValue;
-            EntityStudent.ParentPhone = "";
-            EntityStudent.Address = "";
-            EntityStudent.JoinDate = DateTime.Now;
-            EntityStudent.IsActive = true;
-            EntityStudent.CircleID = -1;
-            _Mode = enMode.Add;
-        }
 
         private clsStudents(clsEntityStudent EntityStudent)
         {
