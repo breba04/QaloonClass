@@ -5,11 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-<<<<<<< Updated upstream
 using UI.Users;
-=======
 using UI.GlobalClasses;
->>>>>>> Stashed changes
 
 namespace UI.UserControls
 {
@@ -38,7 +35,7 @@ namespace UI.UserControls
         }
         void LoadMainData()
         {
-            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.FullName;
+            lbl_FirstName.Text = clsCurrentUser.CurrentUser.UserData.FullName;
             lbl_TotalCircles.Text = dgv_Listreports.RowCount.ToString();
             lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
         }
@@ -259,11 +256,8 @@ namespace UI.UserControls
             _currentPage = 1;
             LoadPage(); 
             _FormatDataGridView();
-<<<<<<< Updated upstream
             LoadMainData();
-=======
             lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
->>>>>>> Stashed changes
         }
     }
     }

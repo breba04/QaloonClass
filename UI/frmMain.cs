@@ -22,7 +22,7 @@ namespace UI
         }
         void LoadMainData()
         {
-            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.UserName;
+            lbl_FirstAndLastName.Text = clsCurrentUser.CurrentUser.UserData.UserName;
         }
         private void frmMain_Load(object sender, EventArgs e)
         {

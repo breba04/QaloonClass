@@ -549,6 +549,7 @@
             // 
             // dgv_Listreports
             // 
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_Listreports.AllowUserToAddRows = false;
             this.dgv_Listreports.AllowUserToDeleteRows = false;
             this.dgv_Listreports.BackgroundColor = System.Drawing.Color.White;
