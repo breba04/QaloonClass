@@ -64,6 +64,7 @@
             this.lbl_CompleteTheRemainingLoop = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.pnl_SectionFotter = new System.Windows.Forms.Panel();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Clean = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
@@ -519,19 +520,43 @@
             // pnl_SectionFotter
             // 
             this.pnl_SectionFotter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(245)))), ((int)(((byte)(214)))));
+            this.pnl_SectionFotter.Controls.Add(this.btn_Cancel);
             this.pnl_SectionFotter.Controls.Add(this.btn_Clean);
             this.pnl_SectionFotter.Controls.Add(this.btn_Save);
             this.pnl_SectionFotter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_SectionFotter.Location = new System.Drawing.Point(0, 858);
+            this.pnl_SectionFotter.Location = new System.Drawing.Point(0, 825);
             this.pnl_SectionFotter.Name = "pnl_SectionFotter";
             this.pnl_SectionFotter.Size = new System.Drawing.Size(1152, 96);
             this.pnl_SectionFotter.TabIndex = 36;
-            this.pnl_SectionFotter.Controls.SetChildIndex(this.btn_Save, 0);
-            this.pnl_SectionFotter.Controls.SetChildIndex(this.btn_Clean, 0);
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Cancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Cancel.ImageIndex = 4;
+            this.btn_Cancel.ImageList = this.imageList1;
+            this.btn_Cancel.Location = new System.Drawing.Point(869, 20);
+            this.btn_Cancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_Cancel.Size = new System.Drawing.Size(230, 55);
+            this.btn_Cancel.TabIndex = 10;
+            this.btn_Cancel.Text = "إلغاء العملية";
+            this.btn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
             // 
             // btn_Clean
             // 
-            this.btn_Clean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Clean.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_Clean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
             this.btn_Clean.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Clean.FlatAppearance.BorderSize = 0;
@@ -608,7 +633,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(1152, 954);
+            this.ClientSize = new System.Drawing.Size(1152, 921);
             this.Controls.Add(this.pnl_SectionFotter);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gb_CircuitData);
@@ -678,5 +703,6 @@
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Clean;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Button btn_Cancel;
     }
 }
