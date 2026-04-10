@@ -38,29 +38,29 @@
             this.lbFullName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnContecnt = new System.Windows.Forms.Panel();
-            this.pnLeftContent = new System.Windows.Forms.Panel();
             this.pnRightContent = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnLeftContent = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnButtom = new System.Windows.Forms.Panel();
-            this.pnButtomContentRight = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.pnButtomContentRight = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pnTop.SuspendLayout();
             this.pnBaseInfo.SuspendLayout();
             this.pnFullName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnContecnt.SuspendLayout();
-            this.pnLeftContent.SuspendLayout();
             this.pnRightContent.SuspendLayout();
+            this.pnLeftContent.SuspendLayout();
             this.pnButtom.SuspendLayout();
-            this.pnButtomContentRight.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.pnButtomContentRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnTop
@@ -187,15 +187,6 @@
             this.pnContecnt.Size = new System.Drawing.Size(884, 300);
             this.pnContecnt.TabIndex = 1;
             // 
-            // pnLeftContent
-            // 
-            this.pnLeftContent.Controls.Add(this.panel2);
-            this.pnLeftContent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLeftContent.Location = new System.Drawing.Point(50, 50);
-            this.pnLeftContent.Name = "pnLeftContent";
-            this.pnLeftContent.Size = new System.Drawing.Size(365, 200);
-            this.pnLeftContent.TabIndex = 0;
-            // 
             // pnRightContent
             // 
             this.pnRightContent.Controls.Add(this.panel1);
@@ -214,6 +205,15 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(365, 54);
             this.panel1.TabIndex = 2;
+            // 
+            // pnLeftContent
+            // 
+            this.pnLeftContent.Controls.Add(this.panel2);
+            this.pnLeftContent.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnLeftContent.Location = new System.Drawing.Point(50, 50);
+            this.pnLeftContent.Name = "pnLeftContent";
+            this.pnLeftContent.Size = new System.Drawing.Size(365, 200);
+            this.pnLeftContent.TabIndex = 0;
             // 
             // panel2
             // 
@@ -235,44 +235,6 @@
             this.pnButtom.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.pnButtom.Size = new System.Drawing.Size(884, 147);
             this.pnButtom.TabIndex = 2;
-            // 
-            // pnButtomContentRight
-            // 
-            this.pnButtomContentRight.Controls.Add(this.panel5);
-            this.pnButtomContentRight.Controls.Add(this.panel4);
-            this.pnButtomContentRight.Controls.Add(this.panel3);
-            this.pnButtomContentRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnButtomContentRight.Location = new System.Drawing.Point(469, 10);
-            this.pnButtomContentRight.Name = "pnButtomContentRight";
-            this.pnButtomContentRight.Size = new System.Drawing.Size(365, 127);
-            this.pnButtomContentRight.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(365, 42);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 42);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(365, 42);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 84);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(365, 42);
-            this.panel5.TabIndex = 2;
             // 
             // panel6
             // 
@@ -312,6 +274,44 @@
             this.panel9.Size = new System.Drawing.Size(365, 42);
             this.panel9.TabIndex = 0;
             // 
+            // pnButtomContentRight
+            // 
+            this.pnButtomContentRight.Controls.Add(this.panel5);
+            this.pnButtomContentRight.Controls.Add(this.panel4);
+            this.pnButtomContentRight.Controls.Add(this.panel3);
+            this.pnButtomContentRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnButtomContentRight.Location = new System.Drawing.Point(469, 10);
+            this.pnButtomContentRight.Name = "pnButtomContentRight";
+            this.pnButtomContentRight.Size = new System.Drawing.Size(365, 127);
+            this.pnButtomContentRight.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 84);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(365, 42);
+            this.panel5.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 42);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(365, 42);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(175)))), ((int)(((byte)(128)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(365, 42);
+            this.panel3.TabIndex = 0;
+            // 
             // ctrlBaseCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -332,11 +332,11 @@
             this.pnFullName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnContecnt.ResumeLayout(false);
-            this.pnLeftContent.ResumeLayout(false);
             this.pnRightContent.ResumeLayout(false);
+            this.pnLeftContent.ResumeLayout(false);
             this.pnButtom.ResumeLayout(false);
-            this.pnButtomContentRight.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.pnButtomContentRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -5,7 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+<<<<<<< Updated upstream
 using UI.Users;
+=======
+using UI.GlobalClasses;
+>>>>>>> Stashed changes
 
 namespace UI.UserControls
 {
@@ -56,7 +60,7 @@ namespace UI.UserControls
             }
 
             _totalPages = (int)Math.Ceiling((double)_allData.Rows.Count / _pageSize);
-            lbl_PageInfo.Text = $"صفحة {_currentPage} من {_totalPages}";
+            lbl_PageNumbering.Text = $"صفحة {_currentPage} من {_totalPages}";
 
             UpdatePaginationStatus();
         }
@@ -225,9 +229,10 @@ namespace UI.UserControls
         }
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
-            ApplyStudentsStyle(10);
-            ApplyAbsenceStatusStyle(100);
-            ApplyCirclesStyle(2);
+
+            ApplyStudentsStyle(0);
+            ApplyAbsenceStatusStyle(0);
+            ApplyCirclesStyle(0);
             InitializeDashboard();
         }
         private void btn_Next_Click(object sender, EventArgs e)
@@ -254,7 +259,11 @@ namespace UI.UserControls
             _currentPage = 1;
             LoadPage(); 
             _FormatDataGridView();
+<<<<<<< Updated upstream
             LoadMainData();
+=======
+            lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
+>>>>>>> Stashed changes
         }
     }
     }

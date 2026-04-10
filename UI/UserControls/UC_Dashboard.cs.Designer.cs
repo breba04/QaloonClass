@@ -50,19 +50,22 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnl_SectionGreeting = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.pnl_SectionMainTitle = new System.Windows.Forms.Panel();
+            this.lbl_SubTitle = new System.Windows.Forms.Label();
+            this.lbl_FirstName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lbl_UserName = new System.Windows.Forms.Label();
             this.pnl_SectionSubTitale = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.pnl_SectionListreports = new System.Windows.Forms.Panel();
+            this.pnl_SectionBottomBar = new System.Windows.Forms.Panel();
+            this.pnl_SectionPageNumbering = new System.Windows.Forms.Panel();
+            this.lbl_PageNumbering = new System.Windows.Forms.Label();
             this.pnl_SectionButton = new System.Windows.Forms.Panel();
-            this.lbl_PageInfo = new System.Windows.Forms.Label();
-            this.btn_Next = new System.Windows.Forms.Button();
             this.btn_Previous = new System.Windows.Forms.Button();
+            this.btn_Next = new System.Windows.Forms.Button();
             this.dgv_Listreports = new System.Windows.Forms.DataGridView();
             this.pnl_SectionStats.SuspendLayout();
             this.pnl_TotalCircles.SuspendLayout();
@@ -76,8 +79,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnl_SectionGreeting.SuspendLayout();
+            this.pnl_SectionMainTitle.SuspendLayout();
             this.pnl_SectionSubTitale.SuspendLayout();
             this.pnl_SectionListreports.SuspendLayout();
+            this.pnl_SectionBottomBar.SuspendLayout();
+            this.pnl_SectionPageNumbering.SuspendLayout();
             this.pnl_SectionButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +101,7 @@
             // 
             // pnl_TotalCircles
             // 
-            this.pnl_TotalCircles.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pnl_TotalCircles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnl_TotalCircles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
             this.pnl_TotalCircles.Controls.Add(this.ptb_TotalCircles_TrendingIcon);
             this.pnl_TotalCircles.Controls.Add(this.lbl_TotalCircles);
@@ -345,9 +351,7 @@
             // pnl_SectionGreeting
             // 
             this.pnl_SectionGreeting.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_SectionGreeting.Controls.Add(this.label9);
-            this.pnl_SectionGreeting.Controls.Add(this.label5);
-            this.pnl_SectionGreeting.Controls.Add(this.lbl_UserName);
+            this.pnl_SectionGreeting.Controls.Add(this.pnl_SectionMainTitle);
             this.pnl_SectionGreeting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_SectionGreeting.Location = new System.Drawing.Point(0, 0);
             this.pnl_SectionGreeting.Name = "pnl_SectionGreeting";
@@ -355,22 +359,46 @@
             this.pnl_SectionGreeting.Size = new System.Drawing.Size(1571, 153);
             this.pnl_SectionGreeting.TabIndex = 1;
             // 
-            // label9
+            // pnl_SectionMainTitle
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label9.AutoSize = true;
-            this.label9.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
-            this.label9.Location = new System.Drawing.Point(577, 77);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label9.Size = new System.Drawing.Size(923, 31);
-            this.label9.TabIndex = 31;
-            this.label9.Text = ".مرحباً بك في لوحة تحكم نور. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا ال" +
+            this.pnl_SectionMainTitle.Controls.Add(this.lbl_SubTitle);
+            this.pnl_SectionMainTitle.Controls.Add(this.lbl_FirstName);
+            this.pnl_SectionMainTitle.Controls.Add(this.label5);
+            this.pnl_SectionMainTitle.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_SectionMainTitle.Location = new System.Drawing.Point(367, 0);
+            this.pnl_SectionMainTitle.Name = "pnl_SectionMainTitle";
+            this.pnl_SectionMainTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnl_SectionMainTitle.Size = new System.Drawing.Size(1204, 153);
+            this.pnl_SectionMainTitle.TabIndex = 40;
+            // 
+            // lbl_SubTitle
+            // 
+            this.lbl_SubTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_SubTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_SubTitle.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
+            this.lbl_SubTitle.Location = new System.Drawing.Point(23, 77);
+            this.lbl_SubTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_SubTitle.Name = "lbl_SubTitle";
+            this.lbl_SubTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_SubTitle.Size = new System.Drawing.Size(1120, 31);
+            this.lbl_SubTitle.TabIndex = 31;
+            this.lbl_SubTitle.Text = ".مرحباً بك في لوحة تحكم نور. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا ال" +
     "يوم المبارك";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_SubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_FirstName
+            // 
+            this.lbl_FirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_FirstName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_FirstName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_FirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.lbl_FirstName.Location = new System.Drawing.Point(13, 18);
+            this.lbl_FirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_FirstName.Name = "lbl_FirstName";
+            this.lbl_FirstName.Size = new System.Drawing.Size(767, 59);
+            this.lbl_FirstName.TabIndex = 30;
+            this.lbl_FirstName.Text = "عبدالباسط ";
             // 
             // label5
             // 
@@ -379,26 +407,12 @@
             this.label5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label5.Location = new System.Drawing.Point(1163, 18);
+            this.label5.Location = new System.Drawing.Point(770, 18);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(383, 59);
             this.label5.TabIndex = 29;
             this.label5.Text = "السلام عليكم، يا شيخ";
-            // 
-            // lbl_UserName
-            // 
-            this.lbl_UserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbl_UserName.AutoSize = true;
-            this.lbl_UserName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_UserName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_UserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lbl_UserName.Location = new System.Drawing.Point(1056, 18);
-            this.lbl_UserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_UserName.Name = "lbl_UserName";
-            this.lbl_UserName.Size = new System.Drawing.Size(108, 59);
-            this.lbl_UserName.TabIndex = 30;
-            this.lbl_UserName.Text = "أحمد";
             // 
             // pnl_SectionSubTitale
             // 
@@ -443,7 +457,7 @@
             // 
             // pnl_SectionListreports
             // 
-            this.pnl_SectionListreports.Controls.Add(this.pnl_SectionButton);
+            this.pnl_SectionListreports.Controls.Add(this.pnl_SectionBottomBar);
             this.pnl_SectionListreports.Controls.Add(this.dgv_Listreports);
             this.pnl_SectionListreports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_SectionListreports.Location = new System.Drawing.Point(0, 479);
@@ -451,59 +465,63 @@
             this.pnl_SectionListreports.Size = new System.Drawing.Size(1571, 840);
             this.pnl_SectionListreports.TabIndex = 38;
             // 
+            // pnl_SectionBottomBar
+            // 
+            this.pnl_SectionBottomBar.Controls.Add(this.pnl_SectionPageNumbering);
+            this.pnl_SectionBottomBar.Controls.Add(this.pnl_SectionButton);
+            this.pnl_SectionBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_SectionBottomBar.Location = new System.Drawing.Point(0, 764);
+            this.pnl_SectionBottomBar.Name = "pnl_SectionBottomBar";
+            this.pnl_SectionBottomBar.Size = new System.Drawing.Size(1571, 76);
+            this.pnl_SectionBottomBar.TabIndex = 39;
+            // 
+            // pnl_SectionPageNumbering
+            // 
+            this.pnl_SectionPageNumbering.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_SectionPageNumbering.Controls.Add(this.lbl_PageNumbering);
+            this.pnl_SectionPageNumbering.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnl_SectionPageNumbering.Location = new System.Drawing.Point(0, 0);
+            this.pnl_SectionPageNumbering.Name = "pnl_SectionPageNumbering";
+            this.pnl_SectionPageNumbering.Size = new System.Drawing.Size(282, 76);
+            this.pnl_SectionPageNumbering.TabIndex = 41;
+            // 
+            // lbl_PageNumbering
+            // 
+            this.lbl_PageNumbering.AutoSize = true;
+            this.lbl_PageNumbering.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_PageNumbering.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_PageNumbering.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_PageNumbering.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
+            this.lbl_PageNumbering.Location = new System.Drawing.Point(39, 23);
+            this.lbl_PageNumbering.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PageNumbering.Name = "lbl_PageNumbering";
+            this.lbl_PageNumbering.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_PageNumbering.Size = new System.Drawing.Size(110, 28);
+            this.lbl_PageNumbering.TabIndex = 43;
+            this.lbl_PageNumbering.Text = "رقم الصفحة";
+            this.lbl_PageNumbering.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pnl_SectionButton
             // 
-            this.pnl_SectionButton.Controls.Add(this.lbl_PageInfo);
-            this.pnl_SectionButton.Controls.Add(this.btn_Next);
+            this.pnl_SectionButton.BackColor = System.Drawing.Color.Transparent;
             this.pnl_SectionButton.Controls.Add(this.btn_Previous);
-            this.pnl_SectionButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_SectionButton.Location = new System.Drawing.Point(0, 764);
+            this.pnl_SectionButton.Controls.Add(this.btn_Next);
+            this.pnl_SectionButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_SectionButton.Location = new System.Drawing.Point(1289, 0);
             this.pnl_SectionButton.Name = "pnl_SectionButton";
-            this.pnl_SectionButton.Size = new System.Drawing.Size(1571, 76);
-            this.pnl_SectionButton.TabIndex = 39;
-            // 
-            // lbl_PageInfo
-            // 
-            this.lbl_PageInfo.AutoSize = true;
-            this.lbl_PageInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_PageInfo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_PageInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_PageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lbl_PageInfo.Location = new System.Drawing.Point(30, 13);
-            this.lbl_PageInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_PageInfo.Name = "lbl_PageInfo";
-            this.lbl_PageInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_PageInfo.Size = new System.Drawing.Size(110, 28);
-            this.lbl_PageInfo.TabIndex = 43;
-            this.lbl_PageInfo.Text = "رقم الصفحة";
-            this.lbl_PageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_Next
-            // 
-            this.btn_Next.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.btn_Next.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(202)))));
-            this.btn_Next.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_Next.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Next.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Next.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(202)))));
-            this.btn_Next.Location = new System.Drawing.Point(1439, 13);
-            this.btn_Next.Name = "btn_Next";
-            this.btn_Next.Size = new System.Drawing.Size(98, 49);
-            this.btn_Next.TabIndex = 1;
-            this.btn_Next.Text = "التالي";
-            this.btn_Next.UseVisualStyleBackColor = false;
-            this.btn_Next.Click += new System.EventHandler(this.btn_Next_Click);
+            this.pnl_SectionButton.Size = new System.Drawing.Size(282, 76);
+            this.pnl_SectionButton.TabIndex = 40;
             // 
             // btn_Previous
             // 
+            this.btn_Previous.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Previous.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(190)))));
             this.btn_Previous.FlatAppearance.BorderSize = 0;
             this.btn_Previous.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(160)))));
             this.btn_Previous.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(160)))));
             this.btn_Previous.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Previous.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Previous.Location = new System.Drawing.Point(1335, 13);
+            this.btn_Previous.Location = new System.Drawing.Point(31, 13);
             this.btn_Previous.Name = "btn_Previous";
             this.btn_Previous.Size = new System.Drawing.Size(98, 49);
             this.btn_Previous.TabIndex = 0;
@@ -511,19 +529,37 @@
             this.btn_Previous.UseVisualStyleBackColor = false;
             this.btn_Previous.Click += new System.EventHandler(this.btn_Previous_Click);
             // 
+            // btn_Next
+            // 
+            this.btn_Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Next.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.btn_Next.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(202)))));
+            this.btn_Next.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Next.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Next.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Next.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(202)))));
+            this.btn_Next.Location = new System.Drawing.Point(149, 13);
+            this.btn_Next.Name = "btn_Next";
+            this.btn_Next.Size = new System.Drawing.Size(98, 49);
+            this.btn_Next.TabIndex = 1;
+            this.btn_Next.Text = "التالي";
+            this.btn_Next.UseVisualStyleBackColor = false;
+            this.btn_Next.Click += new System.EventHandler(this.btn_Next_Click);
+            // 
             // dgv_Listreports
             // 
             this.dgv_Listreports.AllowUserToAddRows = false;
             this.dgv_Listreports.AllowUserToDeleteRows = false;
             this.dgv_Listreports.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_Listreports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Listreports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Listreports.Location = new System.Drawing.Point(0, 0);
@@ -558,12 +594,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.pnl_SectionGreeting.ResumeLayout(false);
-            this.pnl_SectionGreeting.PerformLayout();
+            this.pnl_SectionMainTitle.ResumeLayout(false);
+            this.pnl_SectionMainTitle.PerformLayout();
             this.pnl_SectionSubTitale.ResumeLayout(false);
             this.pnl_SectionSubTitale.PerformLayout();
             this.pnl_SectionListreports.ResumeLayout(false);
+            this.pnl_SectionBottomBar.ResumeLayout(false);
+            this.pnl_SectionPageNumbering.ResumeLayout(false);
+            this.pnl_SectionPageNumbering.PerformLayout();
             this.pnl_SectionButton.ResumeLayout(false);
-            this.pnl_SectionButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).EndInit();
             this.ResumeLayout(false);
 
@@ -572,9 +611,9 @@
         #endregion
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnl_SectionGreeting;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lbl_SubTitle;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbl_UserName;
+        private System.Windows.Forms.Label lbl_FirstName;
         private System.Windows.Forms.Panel pnl_SectionStats;
         private System.Windows.Forms.Panel pnl_SectionSubTitale;
         private System.Windows.Forms.Label label1;
@@ -601,9 +640,12 @@
         private System.Windows.Forms.Label lbl_NumberOfCirclesLastMonth;
         private System.Windows.Forms.Panel pnl_SectionListreports;
         private System.Windows.Forms.DataGridView dgv_Listreports;
-        private System.Windows.Forms.Panel pnl_SectionButton;
+        private System.Windows.Forms.Panel pnl_SectionBottomBar;
         private System.Windows.Forms.Button btn_Previous;
         private System.Windows.Forms.Button btn_Next;
-        private System.Windows.Forms.Label lbl_PageInfo;
+        private System.Windows.Forms.Label lbl_PageNumbering;
+        private System.Windows.Forms.Panel pnl_SectionButton;
+        private System.Windows.Forms.Panel pnl_SectionPageNumbering;
+        private System.Windows.Forms.Panel pnl_SectionMainTitle;
     }
 }
