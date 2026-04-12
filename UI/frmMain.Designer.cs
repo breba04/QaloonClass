@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnl_Header = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pnl_SectionFixedTitle = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnl_SectionUserInfo = new System.Windows.Forms.Panel();
+            this.lbl_FirstAndLastName = new System.Windows.Forms.Label();
             this.lbl_UserAuthority = new System.Windows.Forms.Label();
-            this.lbl_UserName = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pnl_Side = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -60,6 +61,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pnl_Content = new System.Windows.Forms.Panel();
             this.pnl_Header.SuspendLayout();
+            this.pnl_SectionFixedTitle.SuspendLayout();
+            this.pnl_SectionUserInfo.SuspendLayout();
             this.pnl_Side.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -75,71 +78,75 @@
             // 
             this.pnl_Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.pnl_Header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnl_Header.Controls.Add(this.label3);
-            this.pnl_Header.Controls.Add(this.label1);
-            this.pnl_Header.Controls.Add(this.lbl_UserAuthority);
-            this.pnl_Header.Controls.Add(this.lbl_UserName);
-            this.pnl_Header.Controls.Add(this.label6);
+            this.pnl_Header.Controls.Add(this.pnl_SectionFixedTitle);
+            this.pnl_Header.Controls.Add(this.pnl_SectionUserInfo);
             this.pnl_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Header.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Header.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Header.Location = new System.Drawing.Point(0, 60);
             this.pnl_Header.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Header.Name = "pnl_Header";
             this.pnl_Header.Size = new System.Drawing.Size(1371, 88);
             this.pnl_Header.TabIndex = 27;
             // 
-            // label3
+            // pnl_SectionFixedTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(175, 13);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 28);
-            this.label3.TabIndex = 18;
-            this.label3.Text = ".ش";
+            this.pnl_SectionFixedTitle.Controls.Add(this.label1);
+            this.pnl_SectionFixedTitle.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_SectionFixedTitle.Location = new System.Drawing.Point(1039, 0);
+            this.pnl_SectionFixedTitle.Name = "pnl_SectionFixedTitle";
+            this.pnl_SectionFixedTitle.Size = new System.Drawing.Size(332, 88);
+            this.pnl_SectionFixedTitle.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1133, 26);
+            this.label1.Location = new System.Drawing.Point(63, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(216, 28);
             this.label1.TabIndex = 17;
             this.label1.Text = "مركز تحفيظ القرآن الكريم";
             // 
+            // pnl_SectionUserInfo
+            // 
+            this.pnl_SectionUserInfo.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_SectionUserInfo.Controls.Add(this.lbl_FirstAndLastName);
+            this.pnl_SectionUserInfo.Controls.Add(this.lbl_UserAuthority);
+            this.pnl_SectionUserInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnl_SectionUserInfo.Location = new System.Drawing.Point(0, 0);
+            this.pnl_SectionUserInfo.Name = "pnl_SectionUserInfo";
+            this.pnl_SectionUserInfo.Size = new System.Drawing.Size(253, 88);
+            this.pnl_SectionUserInfo.TabIndex = 0;
+            // 
+            // lbl_FirstAndLastName
+            // 
+            this.lbl_FirstAndLastName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_FirstAndLastName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_FirstAndLastName.ForeColor = System.Drawing.Color.White;
+            this.lbl_FirstAndLastName.Location = new System.Drawing.Point(16, 8);
+            this.lbl_FirstAndLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_FirstAndLastName.Name = "lbl_FirstAndLastName";
+            this.lbl_FirstAndLastName.Size = new System.Drawing.Size(191, 28);
+            this.lbl_FirstAndLastName.TabIndex = 11;
+            this.lbl_FirstAndLastName.Text = "ش .أحمد المعداني ";
+            this.lbl_FirstAndLastName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lbl_UserAuthority
             // 
             this.lbl_UserAuthority.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbl_UserAuthority.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_UserAuthority.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(165)))), ((int)(((byte)(155)))));
-            this.lbl_UserAuthority.Location = new System.Drawing.Point(9, 41);
+            this.lbl_UserAuthority.Location = new System.Drawing.Point(12, 36);
             this.lbl_UserAuthority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_UserAuthority.Name = "lbl_UserAuthority";
-            this.lbl_UserAuthority.Size = new System.Drawing.Size(205, 30);
+            this.lbl_UserAuthority.Size = new System.Drawing.Size(200, 30);
             this.lbl_UserAuthority.TabIndex = 12;
             this.lbl_UserAuthority.Text = "مشرف عام الحلقات";
-            this.lbl_UserAuthority.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_UserName
-            // 
-            this.lbl_UserName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_UserName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_UserName.ForeColor = System.Drawing.Color.White;
-            this.lbl_UserName.Location = new System.Drawing.Point(4, 13);
-            this.lbl_UserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_UserName.Name = "lbl_UserName";
-            this.lbl_UserName.Size = new System.Drawing.Size(176, 28);
-            this.lbl_UserName.TabIndex = 11;
-            this.lbl_UserName.Text = "أحمد المعداني ";
-            this.lbl_UserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_UserAuthority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -178,10 +185,10 @@
             this.pnl_Side.Controls.Add(this.button1);
             this.pnl_Side.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl_Side.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Side.Location = new System.Drawing.Point(1371, 0);
+            this.pnl_Side.Location = new System.Drawing.Point(1371, 60);
             this.pnl_Side.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Side.Name = "pnl_Side";
-            this.pnl_Side.Size = new System.Drawing.Size(335, 874);
+            this.pnl_Side.Size = new System.Drawing.Size(335, 814);
             this.pnl_Side.TabIndex = 28;
             // 
             // panel3
@@ -189,7 +196,7 @@
             this.panel3.Controls.Add(this.btn_LogOut);
             this.panel3.Controls.Add(this.btn_AddNewStudent);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 616);
+            this.panel3.Location = new System.Drawing.Point(0, 556);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(335, 258);
             this.panel3.TabIndex = 29;
@@ -443,7 +450,7 @@
             this.label4.Size = new System.Drawing.Size(239, 30);
             this.label4.TabIndex = 32;
             this.label4.Text = "إدارة التحفيظ";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_Dashboard
             // 
@@ -532,9 +539,9 @@
             // 
             this.pnl_Content.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.pnl_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Content.Location = new System.Drawing.Point(0, 88);
+            this.pnl_Content.Location = new System.Drawing.Point(0, 148);
             this.pnl_Content.Name = "pnl_Content";
-            this.pnl_Content.Size = new System.Drawing.Size(1371, 786);
+            this.pnl_Content.Size = new System.Drawing.Size(1371, 726);
             this.pnl_Content.TabIndex = 29;
             // 
             // frmMain
@@ -547,12 +554,17 @@
             this.Controls.Add(this.pnl_Header);
             this.Controls.Add(this.pnl_Side);
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
+            this.RightToLeftLayout = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Controls.SetChildIndex(this.pnl_Side, 0);
+            this.Controls.SetChildIndex(this.pnl_Header, 0);
+            this.Controls.SetChildIndex(this.pnl_Content, 0);
             this.pnl_Header.ResumeLayout(false);
-            this.pnl_Header.PerformLayout();
+            this.pnl_SectionFixedTitle.ResumeLayout(false);
+            this.pnl_SectionFixedTitle.PerformLayout();
+            this.pnl_SectionUserInfo.ResumeLayout(false);
             this.pnl_Side.ResumeLayout(false);
             this.pnl_Side.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -572,12 +584,11 @@
         private System.Windows.Forms.Panel pnl_Header;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_UserAuthority;
-        private System.Windows.Forms.Label lbl_UserName;
+        private System.Windows.Forms.Label lbl_FirstAndLastName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel pnl_Side;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btn_Dashboard;
@@ -598,6 +609,8 @@
         private System.Windows.Forms.Button btn_LogOut;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel pnl_Content;
+        private System.Windows.Forms.Panel pnl_SectionUserInfo;
+        private System.Windows.Forms.Panel pnl_SectionFixedTitle;
     }
 }
 

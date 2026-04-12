@@ -54,12 +54,19 @@
     <Compile Include="BasedUserControl\ctrlBaseCard.Designer.cs">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalClasses\Global.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +75,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Students\frmAddAndUpdateStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Students\frmAddAndUpdateStudent.Designer.cs">
+      <DependentUpon>frmAddAndUpdateStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Students\StudentControls\ctrlStudentCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +103,9 @@
     <EmbeddedResource Include="BasedUserControl\ctrlBaseCard.resx">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +122,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Students\frmAddAndUpdateStudent.resx">
+      <DependentUpon>frmAddAndUpdateStudent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Students\StudentControls\ctrlStudentCard.resx">
       <DependentUpon>ctrlStudentCard.cs</DependentUpon>
     </EmbeddedResource>
@@ -624,6 +643,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ic_Circles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ic_PersonalPhoto.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

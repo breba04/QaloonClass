@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.GlobalClasses;
 using UI.UserControls;
 using UI.Users;
 
 namespace UI
 {
-    public partial class frmMain : Form
+    public partial class frmMain : BaseForm
     {
         public frmMain()
         {
@@ -21,11 +22,12 @@ namespace UI
         }
         void LoadMainData()
         {
-            lbl_UserName.Text = clsCurrentUser.CurrentUser.UserData.UserName;
+            lbl_FirstAndLastName.Text = clsCurrentUser.CurrentUser.UserData.UserName;
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadMainData();
+            this.HeaderTitle = $"مركز {clsGlobal.CenterName}";
             UC_Dashboard Dashboard = new UC_Dashboard();
             ShowControl(Dashboard);
         }
