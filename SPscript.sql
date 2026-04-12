@@ -3,68 +3,140 @@
 
 --/***************Users****************/
 
---CREATE PROCEDURE SP_InsertUsers 
---  @FirstName NVARCHAR(15),@SecondName NVARCHAR(15),@ThirdName NVARCHAR(15),@LastName NVARCHAR(15),@BirthDate NVARCHAR(20),@Address NVARCHAR(20)
+--ALTER PROCEDURE SP_InsertUsers 
+--    @FirstName NVARCHAR(15),
+--    @SecondName NVARCHAR(15),
+--    @ThirdName NVARCHAR(15),
+--    @LastName NVARCHAR(15),
+--    @BirthDate NVARCHAR(20),
+--    @Address NVARCHAR(20),
+--    @IsActive BIT,
+--    @UserName NVARCHAR(20),
+--    @Password NVARCHAR(10),
+--    @UserRole TINYINT
+--AS
+--BEGIN
+--    SET NOCOUNT ON;--REMOVE (1 row affected)
+
+--    DECLARE @PersonID INT;
+--    DECLARE @UserID INT;
+
+--    BEGIN TRY
+
+--        BEGIN TRANSACTION;
+
+--        -- 🔹 1. إدخال في People
+--        INSERT INTO People
+--        (
+--            FirstName,
+--            SecondName,
+--            ThirdName,
+--            LastName,
+--            BirthDate,
+--            Address,
+--            IsActive
+--        )
+--        VALUES
+--        (
+--            @FirstName,
+--            @SecondName,
+--            @ThirdName,
+--            @LastName,
+--            @BirthDate,
+--            @Address,
+--            @IsActive
+--        );
+
+--        SET @PersonID = SCOPE_IDENTITY();
+
+--        INSERT INTO Users
+--        (
+--            UserName,
+--            Password,
+--            UserRole,
+--            PersonID
+--        )
+--        VALUES
+--        (
+--            @UserName,
+--            @Password,
+--            @UserRole,
+--            @PersonID
+--        );
+
+--        SET @UserID = SCOPE_IDENTITY();
+
+--        COMMIT TRANSACTION;
+
+--        SELECT @UserID AS NewUserID;
+
+--    END TRY
+--    BEGIN CATCH
+
+--        IF @@TRANCOUNT > 0
+--            ROLLBACK TRANSACTION;
+
+--        SELECT 
+--            ERROR_MESSAGE() AS ErrorMessage,
+--            ERROR_NUMBER() AS ErrorNumber;
+
+--    END CATCH
+
+--END
+--GO
+--END
+--GO
+
+--CREATE PROCEDURE SP_UpdateUsers 
+
+--  @UserID INT,  @FirstName NVARCHAR(15),@SecondName NVARCHAR(15),@ThirdName NVARCHAR(15),@LastName NVARCHAR(15),@BirthDate NVARCHAR(20),@Address NVARCHAR(20)
 --  ,@IsActive BIT,@UserName NVARCHAR(20),  @Password NVARCHAR(10), @UserRole TINYINT
 --AS
 --BEGIN
---INSERT INTO vw_UserView
---(
--- [FirstName],
--- [SecondName],
--- [ThirdName],
--- [LastName],
--- [BirthDate],
--- [Address],
--- [IsActive],
--- [UserName],
--- [Password],
--- [UserRole]
---)
---VALUES
---(
---@FirstName,@SecondName ,@ThirdName,@LastName,@BirthDate ,@Address
---  ,@IsActive ,@UserName ,  @Password , @UserRole 
---)
---;
---SELECT SCOPE_IDENTITY() AS NewID; 
+--Update [vw_UserView] SET 
+-- [FirstName] = @FirstName,
+-- [SecondName] = @SecondName,
+-- [ThirdName] = @ThirdName,
+-- [LastName] = @LastName,
+-- [BirthDate] = @BirthDate,
+-- [Address] = @Address,
+-- [IsActive] = @IsActive,
+-- [UserName] = @UserName,
+-- [Password] = @Password,
+-- [UserRole] = @UserRole
+-- WHERE 
+--[UserID] = @UserID
 
 --END
 --GO
 
-ALTER PROCEDURE SP_UpdateUsers 
-
-  @UserID INT,  @FirstName NVARCHAR(15),@SecondName NVARCHAR(15),@ThirdName NVARCHAR(15),@LastName NVARCHAR(15),@BirthDate NVARCHAR(20),@Address NVARCHAR(20)
-  ,@IsActive BIT,@UserName NVARCHAR(20),  @Password NVARCHAR(10), @UserRole TINYINT
-AS
-BEGIN
-Update [vw_UserView] SET 
- [FirstName] = @FirstName,
- [SecondName] = @SecondName,
- [ThirdName] = @ThirdName,
- [LastName] = @LastName,
- [BirthDate] = @BirthDate,
- [Address] = @Address,
- [IsActive] = @IsActive,
- [UserName] = @UserName,
- [Password] = @Password,
- [UserRole] = @UserRole
- WHERE 
-[UserID] = @UserID
-
-END
-GO
-
---CREATE PROCEDURE SP_DeleteUsers 
-
---  @UserID INT
+--ALTER PROCEDURE SP_DeleteUsers 
+--    @UserID INT
 --AS
 --BEGIN
---DELETE FROM [Users]  
--- WHERE 
---[UserID] = @UserID
---; 
+--    SET NOCOUNT ON;
 
+--    BEGIN TRY
+--        BEGIN TRANSACTION;
+
+--        DECLARE @PersonID INT;
+
+--        SELECT @PersonID = PersonID FROM Users WHERE UserID = @UserID;
+
+--        DELETE FROM Users WHERE UserID = @UserID;
+
+--        DELETE FROM People WHERE PersonID = @PersonID;
+
+--        COMMIT TRANSACTION;
+
+--        SELECT 1 AS Result;
+
+--    END TRY
+--    BEGIN CATCH
+--        IF @@TRANCOUNT > 0 ROLLBACK;
+
+--        SELECT ERROR_MESSAGE() AS ErrorMessage;
+--    END CATCH
 --END
 --GO
 
@@ -478,71 +550,154 @@ GO
 --GO
 
 
-
 --/***************Students****************/
 
---CREATE PROCEDURE SP_InsertStudents 
-
---  @FullName VARCHAR(150),  @Age INT,  @ParentPhone VARCHAR(100),  @Address VARCHAR(50),  @JoinDate DATETIME,  @IsActive BIT,  @CircleID INT
+--ALTER PROCEDURE SP_InsertStudents 
+--    @FirstName NVARCHAR(15),
+--    @SecondName NVARCHAR(15),
+--    @ThirdName NVARCHAR(15),
+--    @LastName NVARCHAR(15),
+--    @BirthDate NVARCHAR(20),
+--    @Address NVARCHAR(20),
+--    @IsActive BIT,
+--    @ParentPhone VARCHAR(100),
+--    @JoinDate DATETIME,
+--    @CircleID INT
 --AS
 --BEGIN
---INSERT INTO [Students]
---(
--- [FullName],
--- [Age],
--- [ParentPhone],
--- [Address],
--- [JoinDate],
--- [IsActive],
--- [CircleID]
---)
---VALUES
---(
---@FullName,
---@Age,
---@ParentPhone,
---@Address,
---@JoinDate,
---@IsActive,
---@CircleID
---)
---;
---SELECT SCOPE_IDENTITY() AS NewID; 
+--    SET NOCOUNT ON;
 
+--    DECLARE @PersonID INT;
+--    DECLARE @StudentID INT;
+
+--    BEGIN TRY
+--        BEGIN TRANSACTION;
+
+--        -- People
+--        INSERT INTO People
+--        (
+--            FirstName, SecondName, ThirdName, LastName,
+--            BirthDate, Address, IsActive
+--        )
+--        VALUES
+--        (
+--            @FirstName, @SecondName, @ThirdName, @LastName,
+--            @BirthDate, @Address, @IsActive
+--        );
+
+--        SET @PersonID = SCOPE_IDENTITY();
+
+--        -- Students
+--        INSERT INTO Students
+--        (
+--            PersonID, ParentPhone, JoinDate, CircleID
+--        )
+--        VALUES
+--        (
+--            @PersonID, @ParentPhone, @JoinDate, @CircleID
+--        );
+
+--        SET @StudentID = SCOPE_IDENTITY();
+
+--        COMMIT TRANSACTION;
+
+--        SELECT @StudentID AS NewStudentID;
+
+--    END TRY
+--    BEGIN CATCH
+--        IF @@TRANCOUNT > 0 ROLLBACK;
+
+--        SELECT ERROR_MESSAGE() AS ErrorMessage;
+--    END CATCH
 --END
 --GO
 
---CREATE PROCEDURE SP_UpdateStudents 
 
---  @StudentID INT,  @FullName VARCHAR(150),  @Age INT,  @ParentPhone VARCHAR(100),  @Address VARCHAR(50),  @JoinDate DATETIME,  @IsActive BIT,  @CircleID INT
+
+--  ALTER PROCEDURE SP_UpdateStudents 
+--    @StudentID INT,
+--    @FirstName NVARCHAR(15),
+--    @SecondName NVARCHAR(15),
+--    @ThirdName NVARCHAR(15),
+--    @LastName NVARCHAR(15),
+--    @BirthDate NVARCHAR(20),
+--    @Address NVARCHAR(20),
+--    @IsActive BIT,
+--    @ParentPhone VARCHAR(100),
+--    @JoinDate DATETIME,
+--    @CircleID INT
 --AS
 --BEGIN
---Update [Students] SET 
--- [FullName] = @FullName,
--- [Age] = @Age,
--- [ParentPhone] = @ParentPhone,
--- [Address] = @Address,
--- [JoinDate] = @JoinDate,
--- [IsActive] = @IsActive,
--- [CircleID] = @CircleID
--- WHERE 
---[StudentID] = @StudentID
+--    SET NOCOUNT ON;
 
+--    BEGIN TRY
+--        BEGIN TRANSACTION;
+
+--        DECLARE @PersonID INT;
+
+--        SELECT @PersonID = PersonID FROM Students WHERE StudentID = @StudentID;
+
+--        -- تحديث People
+--        UPDATE People SET
+--            FirstName = @FirstName,
+--            SecondName = @SecondName,
+--            ThirdName = @ThirdName,
+--            LastName = @LastName,
+--            BirthDate = @BirthDate,
+--            Address = @Address,
+--            IsActive = @IsActive
+--        WHERE PersonID = @PersonID;
+
+--        -- تحديث Students
+--        UPDATE Students SET
+--            ParentPhone = @ParentPhone,
+--            JoinDate = @JoinDate,
+--            CircleID = @CircleID
+--        WHERE StudentID = @StudentID;
+
+--        COMMIT TRANSACTION;
+
+--        SELECT 1 AS Result;
+
+--    END TRY
+--    BEGIN CATCH
+--        IF @@TRANCOUNT > 0 ROLLBACK;
+
+--        SELECT ERROR_MESSAGE() AS ErrorMessage;
+--    END CATCH
 --END
 --GO
 
---CREATE PROCEDURE SP_DeleteStudents 
-
---  @StudentID INT
+--ALTER PROCEDURE SP_DeleteStudents 
+--    @StudentID INT
 --AS
 --BEGIN
---DELETE FROM [Students]  
--- WHERE 
---[StudentID] = @StudentID
---; 
+--    SET NOCOUNT ON;
 
+--    BEGIN TRY
+--        BEGIN TRANSACTION;
+
+--        DECLARE @PersonID INT;
+
+--        SELECT @PersonID = PersonID FROM Students WHERE StudentID = @StudentID;
+
+--        DELETE FROM Students WHERE StudentID = @StudentID;
+
+--        DELETE FROM People WHERE PersonID = @PersonID;
+
+--        COMMIT TRANSACTION;
+
+--        SELECT 1 AS Result;
+
+--    END TRY
+--    BEGIN CATCH
+--        IF @@TRANCOUNT > 0 ROLLBACK;
+
+--        SELECT ERROR_MESSAGE() AS ErrorMessage;
+--    END CATCH
 --END
 --GO
+
 
 --CREATE PROCEDURE SP_SelectAllStudentss 
 
@@ -580,29 +735,42 @@ GO
 --END
 --GO
 
---CREATE PROCEDURE SP_FindStudentByID 
---@StudentID INT,
---@FullName NVARCHAR(150) OUTPUT,
---@Age INT OUTPUT,
---@ParentPhone VARCHAR(100) OUTPUT,
---@Address VARCHAR(50) OUTPUT,
---@JoinDate DATETIME OUTPUT,
---@IsActive BIT OUTPUT,
---@CircleID INT OUTPUT
+--ALTER PROCEDURE SP_FindStudentByID 
+--    @StudentID INT,
+--    @FirstName NVARCHAR(50) OUTPUT,
+--    @SecondName NVARCHAR(50) OUTPUT,
+--    @ThirdName NVARCHAR(50) OUTPUT,
+--    @LastName NVARCHAR(50) OUTPUT,
+--    @BirthDate DATETIME OUTPUT,
+--    @ParentPhone VARCHAR(100) OUTPUT,
+--    @Address NVARCHAR(100) OUTPUT,
+--    @JoinDate DATETIME OUTPUT,
+--    @IsActive BIT OUTPUT,
+--    @CircleID INT OUTPUT
 --AS
 --BEGIN
---	IF EXISTS (SELECT 1 FROM Students WHERE StudentID = @StudentID)
---	BEGIN
---		SELECT @FullName = FullName, @Age = Age,@ParentPhone = ParentPhone,
---		@Address = Address, @JoinDate = JoinDate,@IsActive =IsActive, @CircleID = CircleID 
---		FROM Students
---		RETURN 1
---	END
---	ELSE
---		RETURN 0
+--    SELECT 
+--        @FirstName = P.FirstName,
+--        @SecondName = P.SecondName,
+--        @ThirdName = P.ThirdName,
+--        @LastName = P.LastName,
+--        @BirthDate = P.BirthDate,
+--        @Address = P.Address,
+--        @IsActive = P.IsActive,
 
+--        @ParentPhone = S.ParentPhone,
+--        @JoinDate = S.JoinDate,
+--        @CircleID = S.CircleID
+
+--    FROM Students S
+--    INNER JOIN People P ON S.PersonID = P.PersonID
+--    WHERE S.StudentID = @StudentID
+
+--    IF @@ROWCOUNT > 0
+--        RETURN 1
+--    ELSE
+--        RETURN 0
 --END
-
 
 
 
@@ -766,15 +934,41 @@ GO
 
 
 
---CREATE PROCEDURE SP_Login
---@UserID INT OUTPUT,
---@UserName varchar(20),
---@Password varchar(10),
---@FullName varchar(10) OUTPUT,
---@UserRole tinyint OUTPUT
+--ALTER PROCEDURE SP_Login
+--    @UserName NVARCHAR(50),
+--    @Password NVARCHAR(50),
+
+--    @UserID INT OUTPUT,
+--    @UserRole INT OUTPUT,
+
+--    @FirstName NVARCHAR(50) OUTPUT,
+--    @SecondName NVARCHAR(50) OUTPUT,
+--    @ThirdName NVARCHAR(50) OUTPUT,
+--    @LastName NVARCHAR(50) OUTPUT,
+--    @Address NVARCHAR(100) OUTPUT,
+--    @IsActive BIT OUTPUT
 --AS
 --BEGIN
-	
+--    SELECT
+--        @UserID = U.UserID,
+--        @UserRole = U.UserRole,
+
+--        @FirstName = P.FirstName,
+--        @SecondName = P.SecondName,
+--        @ThirdName = P.ThirdName,
+--        @LastName = P.LastName,
+--        @Address = P.Address,
+--        @IsActive = P.IsActive
+
+--    FROM Users U
+--    INNER JOIN People P ON U.PersonID = P.PersonID
+--    WHERE U.UserName = @UserName 
+--      AND U.Password = @Password
+
+--    IF @@ROWCOUNT > 0
+--        RETURN 1
+--    ELSE
+--        RETURN 0
 --END
 		
 --ALTER TRIGGER tg_InsteadOfInsertUser ON vw_UserView
@@ -884,4 +1078,68 @@ GO
 --	ROLLBACK TRANSACTION
 
 --	END CATCH
+--END
+
+--ALTER PROCEDURE SP_GetMonthlyNewCirclesCount
+--    @Month TINYINT, 
+--    @Year SMALLINT,
+--	@Result SMALLINT OUTPUT
+--AS
+--BEGIN
+
+
+    
+--    DECLARE @CurrentMonthStart DATE = DATEFROMPARTS(@Year, @Month, 1);
+--    DECLARE @NextMonthStart DATE = DATEADD(MONTH,+1,@CurrentMonthStart);
+
+--    SELECT  COUNT(*) 
+--	AS TotalMonths
+
+--    FROM Circles 
+--    WHERE CreatedAt >= @CurrentMonthStart
+--      AND CreatedAt <= @NextMonthStart
+
+--END
+
+--CREATE PROCEDURE SP_GetNewCirclesStatsLastMonth
+--AS
+--BEGIN
+--    DECLARE @CurrentMonth TINYINT = MONTH(GETDATE());
+--    DECLARE @CurrentYear SMALLINT = YEAR(GETDATE());
+--    DECLARE @FinalResult INT;
+
+--    EXEC SP_GetMonthlyNewCirclesCount @CurrentMonth, @CurrentYear, @Result = @FinalResult OUTPUT;
+
+--    SELECT @FinalResult AS GrowthStats;
+--END
+
+
+--ALTER PROCEDURE SP_GetMonthlyNewStudentsCount
+--    @Month TINYINT, 
+--    @Year SMALLINT,
+--	@Result SMALLINT OUTPUT 
+--AS
+--BEGIN
+--    DECLARE @CurrentMonthStart DATE = DATEFROMPARTS(@Year, @Month, 1);
+--    DECLARE @NextMonthStart DATE = DATEADD(MONTH,+1,@CurrentMonthStart);    
+--    DECLARE @CountThisMonth INT;
+
+--    SELECT  COUNT(*) 
+--	AS TotalMonths
+--    FROM Students 
+--    WHERE JoinDate >= @CurrentMonthStart
+--    AND JoinDate <= @NextMonthStart
+
+--END
+
+--CREATE PROCEDURE SP_GetNewStudentsStatsLastMonth
+--AS
+--BEGIN
+--    DECLARE @CurrentMonth TINYINT = MONTH(GETDATE());
+--    DECLARE @CurrentYear SMALLINT = YEAR(GETDATE());
+--    DECLARE @FinalResult INT; 
+
+--    EXEC SP_GetMonthlyNewStudentsCount @CurrentMonth, @CurrentYear, @Result = @FinalResult OUTPUT;
+
+--    SELECT @FinalResult AS GrowthStats;
 --END

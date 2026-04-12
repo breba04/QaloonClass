@@ -199,5 +199,29 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public short GetNewCirclesStatsLastMonth()
+        {
+            short result = 0;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetNewCirclesStatsLastMonth", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToInt16(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

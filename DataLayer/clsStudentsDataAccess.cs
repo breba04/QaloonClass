@@ -213,5 +213,58 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public short GetNewStudentsStatsLastMonth()
+        {
+            short result = 0;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetNewStudentsStatsLastMonth", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToInt16(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewStudentsStatsLastMonth", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+
+        static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
+        {
+            short result = 0;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetTotalStudentAbsent", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                    cmd.Parameters.Add("@CountAbsent",SqlDbType.Int).Direction = ParameterDirection.Output;
+                    SqlParameter parameter = new SqlParameter();
+                    parameter.Direction = ParameterDirection.Output;
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        if (cmd.Parameters["@CountAbsent"].Value != null)
+                            result = Convert.ToInt16(cmd.Parameters["@CountAbsent"].Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

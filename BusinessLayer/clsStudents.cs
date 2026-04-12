@@ -70,5 +70,18 @@ namespace BusinessLayer
         {
             return clsStudentsDataAccess.SelectAllStudents();
         }
+        static public short GetNewStudentsStatsLastMonth()
+        {
+            return clsStudentsDataAccess.GetNewStudentsStatsLastMonth();
+        }
+        static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
+        {
+            return clsStudentsDataAccess.GetTotalStudentAbsent(FromDate, ToDate);
+        }
+        static public short GetTotalStudentAbsentLastMonth()
+        {
+            DateTime Now = DateTime.Now;
+            return GetTotalStudentAbsent(new DateTime(Now.Year, Now.Month, 1), new DateTime(Now.Year, Now.Month, DateTime.DaysInMonth(Now.Year,Now.Month)));
+        }
     }
 }

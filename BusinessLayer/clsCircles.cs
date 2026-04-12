@@ -71,5 +71,9 @@ namespace BusinessLayer
         {
             return clsCirclesDataAccess.GetAllCircleView();
         }
+        static public short GetNewCirclesStatsLastMonth()
+        {
+            return clsCirclesDataAccess.GetNewCirclesStatsLastMonth();
+        }
     }
 }

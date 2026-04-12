@@ -40,9 +40,8 @@ namespace UI.Login
                 txt_UserName.Text = "";
                 txt_PassWord.Text = "";
             }
-
             frmMain frm = new frmMain();
-            frm.Show();
+            frm.ShowDialog();
 
         }
 
