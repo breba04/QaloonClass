@@ -13,15 +13,15 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        public clsEntityStudentProgress EntityProgress = new clsEntityStudentProgress();
-
+        public clsEntityStudentProgress EntityProgress ;
+        public int ProgressID { get{ return EntityProgress.ProgressID; } } 
+        public int StudentID { get { return EntityProgress.StudentID; } } 
+        public short AyahID { get { return EntityProgress.AyahID; } } 
+        public DateTime UpdateDate { get { return EntityProgress.UpdateDate; } } 
+        public int TeacherID { get { return EntityProgress.TeacherID; } } 
         public clsStudentProgress()
         {
-            EntityProgress.ProgressID = -1;
-            EntityProgress.StudentID = -1;
-            EntityProgress.AyahID = 0;
-            EntityProgress.UpdateDate = DateTime.Now;
-            EntityProgress.TeacherID = -1;
+            EntityProgress = new clsEntityStudentProgress();
             _Mode = enMode.Add;
         }
 

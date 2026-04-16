@@ -14,14 +14,14 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        clsEntityCircle EntityCircle = new clsEntityCircle();
-
+        clsEntityCircle EntityCircle;
+        public int CircleID { get { return EntityCircle.CircleID; }  } 
+        public string CircleName { get { return EntityCircle.CircleName; } }
+        public int TeacherID { get { return EntityCircle.TeacherID; } } 
+        public sbyte MaxCapacity { get { return EntityCircle.MaxCapacity; } } 
         public clsCircles()
         {
-            EntityCircle.CircleID = -1;
-            EntityCircle.CircleName = "";
-            EntityCircle.TeacherID = -1;
-            EntityCircle.MaxCapacity = 0;
+            EntityCircle = new clsEntityCircle();
             _Mode = enMode.Add;
         }
 

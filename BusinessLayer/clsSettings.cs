@@ -10,7 +10,11 @@ namespace BusinessLayer
 {
     public class clsSettings
     {
-        clsEntitySettings EntitySettings = new clsEntitySettings();
+        clsEntitySettings EntitySettings;
+        public int SettingID { get{ return EntitySettings.SettingID; } } 
+        public string SettingKey { get{ return SettingKey; }  } 
+        public string SettingValue { get { return SettingValue; } }
+        public string Notes { get { return Notes; } } 
         enum enMode
         {
             Add = 1,
@@ -20,18 +24,12 @@ namespace BusinessLayer
 
         public clsSettings()
         {
-            EntitySettings.SettingID = -1;
-            EntitySettings.SettingKey = string.Empty;
-            EntitySettings.SettingValue = string.Empty;
-            EntitySettings.Notes = string.Empty;
+            EntitySettings = new clsEntitySettings();
             _Mode = enMode.Add;
         }
         clsSettings(clsEntitySettings EntitySettings)
         {
-            this.EntitySettings.SettingID = EntitySettings.SettingID;
-            this.EntitySettings.SettingKey = EntitySettings.SettingKey;
-            this.EntitySettings.SettingValue = EntitySettings.SettingValue;
-            this.EntitySettings.Notes = EntitySettings.Notes;
+            this.EntitySettings = EntitySettings;
             _Mode = enMode.Update;
         }
         bool AddSettings()

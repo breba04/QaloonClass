@@ -13,8 +13,28 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode = enMode.Add;
-        public clsEntityStudent EntityStudent = new clsEntityStudent();
+        public clsEntityStudent EntityStudent;
+        public int StudentID { get { return EntityStudent.StudentID; } } 
+        public string ParentPhone { get { return EntityStudent.ParentPhone; } }
+        public DateTime JoinDate { get { return EntityStudent.JoinDate; }} 
+        public clsEntityPerson PersonInfo { get { return EntityStudent.PersonInfo; } }
+        public int PersonID { get { return EntityStudent.PersonInfo.PersonID; }  } 
+        public DateTime BirthDate { get { return EntityStudent.PersonInfo.BirthDate; } } 
+        public string FirstName { get { return EntityStudent.PersonInfo.FirstName; } } 
+        public string SecodName { get { return EntityStudent.PersonInfo.SecodName; } } 
+        public string ThirdName { get { return EntityStudent.PersonInfo.ThirdName; } } 
+        public string LastName { get { return EntityStudent.PersonInfo.LastName; } } 
+        public string FullName { get { return EntityStudent.PersonInfo.FullName; } }
+        public string Address { get { return EntityStudent.PersonInfo.Address; } }
+        public bool IsActive { get { return EntityStudent.PersonInfo.IsActive; } } 
 
+        public int CircleID { get { return EntityStudent.CircleID; } } 
+        public clsEntityCircle CircleInfo { get { return EntityStudent.CircleInfo; } } 
+        public clsStudents()
+        {
+            this.EntityStudent = new clsEntityStudent();
+            _Mode = enMode.Update;
+        }
 
         private clsStudents(clsEntityStudent EntityStudent)
         {

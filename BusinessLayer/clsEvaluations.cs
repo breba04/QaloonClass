@@ -13,15 +13,15 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        clsEntityEvaluation EntityEvaluation = new clsEntityEvaluation();
-
+        clsEntityEvaluation EntityEvaluation ;
+        public int EvaluationID { get{ return EntityEvaluation.EvaluationID; }  } 
+        public int StudentID { get { return EntityEvaluation.StudentID; } }
+        public short FromAyahID { get { return EntityEvaluation.FromAyahID; } } 
+        public int ToAyahID { get { return EntityEvaluation.ToAyahID; } } 
+        public DateTime EvalDate { get { return EntityEvaluation.EvalDate; } } 
         public clsEvaluations()
         {
-            EntityEvaluation.EvaluationID = -1;
-            EntityEvaluation.StudentID = -1;
-            EntityEvaluation.FromAyahID = 0; // smallint
-            EntityEvaluation.ToAyahID = 0;
-            EntityEvaluation.EvalDate = DateTime.Now;
+            EntityEvaluation = new clsEntityEvaluation();
             _Mode = enMode.Add;
         }
 

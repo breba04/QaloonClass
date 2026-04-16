@@ -13,18 +13,18 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        clsEntityWaitlist EntityWaitlist = new clsEntityWaitlist();
-
+        clsEntityWaitlist EntityWaitlist;
+        public int WaitlistID { get { return EntityWaitlist.WaitlistID; } }
+        public string FullName { get { return EntityWaitlist.FullName; } } 
+        public int Age { get { return EntityWaitlist.Age; } }
+        public string ParentPhone { get { return EntityWaitlist.ParentPhone; } } 
+        public string Address { get { return EntityWaitlist.Address; } }
+        public DateTime RegistrationDate { get { return EntityWaitlist.RegistrationDate; } }
+        public string Notes { get { return EntityWaitlist.Notes; } }
+        public bool IsAdded { get { return EntityWaitlist.IsAdded; } }
         public clsWaitlist()
         {
-            EntityWaitlist.WaitlistID = -1;
-            EntityWaitlist.FullName = "";
-            EntityWaitlist.Age = 0;
-            EntityWaitlist.ParentPhone = "";
-            EntityWaitlist.Address = "";
-            EntityWaitlist.RegistrationDate = DateTime.Now;
-            EntityWaitlist.Notes = "";
-            EntityWaitlist.IsAdded = false;
+            EntityWaitlist = new clsEntityWaitlist();
             _Mode = enMode.Add;
         }
 

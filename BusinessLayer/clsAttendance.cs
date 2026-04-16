@@ -13,14 +13,14 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         enMode _Mode;
-        public clsEntityAttendance EntityAttendance = new clsEntityAttendance();
-
+        clsEntityAttendance EntityAttendance;
+        public int AttendanceID { get { return EntityAttendance.AttendanceID; }  } 
+        public int StudentID { get { return EntityAttendance.StudentID; } }
+        public DateTime AttendanceDate { get { return EntityAttendance.AttendanceDate; } }
+        public byte Status { get { return EntityAttendance.Status; } }
         public clsAttendance()
         {
-            EntityAttendance.AttendanceID = -1;
-            EntityAttendance.StudentID = -1;
-            EntityAttendance.AttendanceDate = DateTime.Now;
-            EntityAttendance.Status = 0; // tinyint
+            EntityAttendance = new clsEntityAttendance();
             _Mode = enMode.Add;
         }
 

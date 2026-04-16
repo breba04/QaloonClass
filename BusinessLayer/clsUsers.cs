@@ -17,7 +17,21 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         public clsEntityUser UserData ;
-        
+        public int UserID { get { return UserData.UserID; } }
+        public string UserName { get { return UserData.UserName; } }
+        public string Password { get { return UserData.Password; } }
+        public clsEntityPerson PersonInfo { get { return UserData.PersonInfo; } }
+
+        public int PersonID { get { return UserData.PersonInfo.PersonID; } }
+        public DateTime BirthDate { get { return UserData.PersonInfo.BirthDate; } }
+        public string FirstName { get { return UserData.PersonInfo.FirstName; } }
+        public string SecodName { get { return UserData.PersonInfo.SecodName; } }
+        public string ThirdName { get { return UserData.PersonInfo.ThirdName; } }
+        public string LastName { get { return UserData.PersonInfo.LastName; } }
+        public string FullName { get { return UserData.PersonInfo.FullName; } }
+        public string Address { get { return UserData.PersonInfo.Address; } }
+        public bool IsActive { get { return UserData.PersonInfo.IsActive; } }
+        public int UserRole { get { return UserData.UserRole; } }
         public clsUsers()
         {
             this.UserData = new clsEntityUser();
