@@ -63,6 +63,7 @@
     <Compile Include="clsLoginDetailsDataAccess.cs" />
     <Compile Include="clsCirclesDataAccess.cs" />
     <Compile Include="clsEvaluationsDataAccess.cs" />
+    <Compile Include="clsMoshafQaloonDataAccess.cs" />
     <Compile Include="clsSettingsDataAccess.cs" />
     <Compile Include="clsStudentProgressDataAccess.cs" />
     <Compile Include="clsWaitlistDataAccess.cs" />
