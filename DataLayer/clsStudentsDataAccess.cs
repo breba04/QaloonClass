@@ -30,6 +30,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
+                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
 
                 try
                 {
@@ -67,6 +68,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
+                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
 
                 try
                 {
@@ -153,6 +155,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@ParentPhone", SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ImagePath", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 try
                 {
@@ -176,6 +179,8 @@ namespace DataAccessLayer
                             student.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString(); 
                         if (cmd.Parameters["@Address"].Value != DBNull.Value)
                             student.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                            student.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
 
 
                         result = true;
@@ -237,7 +242,6 @@ namespace DataAccessLayer
             }
             return result;
         }
-
         static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
         {
             short result = 0;

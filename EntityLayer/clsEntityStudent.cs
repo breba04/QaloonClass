@@ -11,5 +11,6 @@ namespace EntityLayer
 
         public int CircleID { get; set; } = -1;
         public clsEntityCircle CircleInfo { get; set; } = new clsEntityCircle();
+        public string ImagePath { get; set; } = string.Empty;
     }
 }

@@ -30,6 +30,7 @@ namespace BusinessLayer
 
         public int CircleID { get { return EntityStudent.CircleID; } } 
         public clsEntityCircle CircleInfo { get { return EntityStudent.CircleInfo; } } 
+        public string ImagePath { get { return EntityStudent.ImagePath; } }
         public clsStudents()
         {
             this.EntityStudent = new clsEntityStudent();

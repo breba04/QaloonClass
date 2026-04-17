@@ -14,9 +14,12 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         clsEntityWaitlist EntityWaitlist;
+        public DateTime BirthDate { get; set; } = DateTime.Now;
         public int WaitlistID { get { return EntityWaitlist.WaitlistID; } }
-        public string FullName { get { return EntityWaitlist.FullName; } } 
-        public int Age { get { return EntityWaitlist.Age; } }
+        public string FirstName { get { return EntityWaitlist.FirstName; } } 
+        public string SecondName { get { return EntityWaitlist.SecondName; } } 
+        public string ThirdName { get { return EntityWaitlist.ThirdName; } } 
+        public string LastName { get { return EntityWaitlist.LastName; } } 
         public string ParentPhone { get { return EntityWaitlist.ParentPhone; } } 
         public string Address { get { return EntityWaitlist.Address; } }
         public DateTime RegistrationDate { get { return EntityWaitlist.RegistrationDate; } }

@@ -19,8 +19,11 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FullName", entity.FullName);
-                cmd.Parameters.AddWithValue("@Age", entity.Age);
+                cmd.Parameters.AddWithValue("@FirstName", entity.FirstName);
+                cmd.Parameters.AddWithValue("@SecondName", entity.SecondName);
+                cmd.Parameters.AddWithValue("@ThirdName", entity.ThirdName);
+                cmd.Parameters.AddWithValue("@LastName", entity.LastName);
+                cmd.Parameters.AddWithValue("@BirthDate", entity.BirthDate);
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@Address", entity.Address);
                 cmd.Parameters.AddWithValue("@RegistrationDate", entity.RegistrationDate);
@@ -51,9 +54,11 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@WaitlistID", entity.WaitlistID);
-                cmd.Parameters.AddWithValue("@FullName", entity.FullName);
-                cmd.Parameters.AddWithValue("@Age", entity.Age);
+                cmd.Parameters.AddWithValue("@FirstName", entity.FirstName);
+                cmd.Parameters.AddWithValue("@SecondName", entity.SecondName);
+                cmd.Parameters.AddWithValue("@ThirdName", entity.ThirdName);
+                cmd.Parameters.AddWithValue("@LastName", entity.LastName);
+                cmd.Parameters.AddWithValue("@BirthDate", entity.BirthDate);
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@Address", entity.Address);
                 cmd.Parameters.AddWithValue("@RegistrationDate", entity.RegistrationDate);
@@ -72,7 +77,6 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-
         static public DataTable SelectAllWaitlist()
         {
             DataTable result = new DataTable();
