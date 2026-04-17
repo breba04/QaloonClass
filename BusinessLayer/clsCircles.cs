@@ -67,13 +67,17 @@ namespace BusinessLayer
         {
             return clsCirclesDataAccess.SelectAllCircles();
         }
-        static public DataTable GetAllCircleView()
+        static public DataTable GetAllCircleView(byte PageNo, byte RecordInPage)
         {
-            return clsCirclesDataAccess.GetAllCircleView();
+            return clsCirclesDataAccess.GetAllCircleView(PageNo, RecordInPage);
         }
         static public short GetNewCirclesStatsLastMonth()
         {
             return clsCirclesDataAccess.GetNewCirclesStatsLastMonth();
+        }
+        static public byte GetTotalPagesRecordsInCircleView(byte RecordInPage)
+        {
+            return clsCirclesDataAccess.GetTotalPagesRecordsInCircleView(RecordInPage);
         }
     }
 }

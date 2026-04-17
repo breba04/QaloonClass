@@ -14,8 +14,9 @@ namespace UI.UserControls
     {
         private DataTable _allData;
         private int _pageSize = 10; 
-        private int _currentPage = 1; 
+        private byte _currentPage = 1; 
         private int _totalPages = 1; 
+        private byte _RecordsInPage = 2; 
         public UC_Dashboard()
         {
             InitializeComponent();
@@ -41,24 +42,26 @@ namespace UI.UserControls
         }
         private void LoadPage()
         {
+            //if (_allData == null || _allData.Rows.Count == 0) return;
+
+            //IEnumerable<DataRow> pagedData = _allData.AsEnumerable()
+            //                       .Skip((_currentPage - 1) * _pageSize)
+            //                       .Take(_pageSize);
+
+            //if (pagedData.Any())
+                //{
+                //    dgv_Listreports.DataSource = pagedData.CopyToDataTable();
+                //}
+                //else
+                //{
+                //    dgv_Listreports.DataSource = null;
+                //}
+
+                //_totalPages = (int)Math.Ceiling((double)_allData.Rows.Count / _pageSize);
+                //lbl_PageNumbering.Text = $"صفحة {_currentPage} من {_totalPages}";
+                _allData = clsCircles.GetAllCircleView(_currentPage, _RecordsInPage);
             if (_allData == null || _allData.Rows.Count == 0) return;
-
-            IEnumerable<DataRow> pagedData = _allData.AsEnumerable()
-                                   .Skip((_currentPage - 1) * _pageSize)
-                                   .Take(_pageSize);
-
-            if (pagedData.Any())
-            {
-                dgv_Listreports.DataSource = pagedData.CopyToDataTable();
-            }
-            else
-            {
-                dgv_Listreports.DataSource = null;
-            }
-
-            _totalPages = (int)Math.Ceiling((double)_allData.Rows.Count / _pageSize);
-            lbl_PageNumbering.Text = $"صفحة {_currentPage} من {_totalPages}";
-
+            dgv_Listreports.DataSource = _allData;
             UpdatePaginationStatus();
         }
         private void UpdatePaginationStatus()
@@ -226,10 +229,10 @@ namespace UI.UserControls
         }
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
-
-            ApplyStudentsStyle(0);
-            ApplyAbsenceStatusStyle(0);
-            ApplyCirclesStyle(0);
+            _totalPages = clsCircles.GetTotalPagesRecordsInCircleView(_RecordsInPage);
+            ApplyStudentsStyle(clsStudents.GetNewStudentsStatsLastMonth());
+            ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
+            ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
             InitializeDashboard();
         }
         private void btn_Next_Click(object sender, EventArgs e)
@@ -238,6 +241,7 @@ namespace UI.UserControls
             {
                 _currentPage++;
                 LoadPage();
+
             }
 
         }
@@ -251,7 +255,6 @@ namespace UI.UserControls
         }
         private void InitializeDashboard()
         {
-            _allData = clsCircles.GetAllCircleView();
             //_allData = GetHalaqatDemoData();
             _currentPage = 1;
             LoadPage(); 

@@ -173,7 +173,7 @@ namespace DataAccessLayer
             }
             return result;
         }
-        static public DataTable GetAllCircleView()
+        static public DataTable GetAllCircleView(byte PageNo,byte RecordInPage)
         {
             DataTable result = new DataTable();
 
@@ -182,7 +182,8 @@ namespace DataAccessLayer
                 using (SqlCommand cmd = new SqlCommand("SP_GetAllCircleView", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.AddWithValue("@PageNo", PageNo);
+                    cmd.Parameters.AddWithValue("@RecordsInPage", RecordInPage);
                     try
                     {
                         conn.Open();
@@ -194,6 +195,30 @@ namespace DataAccessLayer
                     catch (Exception ex)
                     {
                         clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAllCircleView", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+        static public byte GetTotalPagesRecordsInCircleView(byte RecordInPage)
+        {
+            byte result = 0;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetTotalPagesRecordsInCircleView", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@RecordsInPage", RecordInPage);
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToByte(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
                     }
                 }
             }
