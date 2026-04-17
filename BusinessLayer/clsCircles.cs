@@ -79,5 +79,9 @@ namespace BusinessLayer
         {
             return clsCirclesDataAccess.GetTotalPagesRecordsInCircleView(RecordInPage);
         }
+        static public byte GetRemainingSeatsInClass(int CircleID)
+        {
+            return clsCirclesDataAccess.GetRemainingSeatsInClass(CircleID);
+        }
     }
 }

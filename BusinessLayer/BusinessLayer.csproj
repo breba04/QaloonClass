@@ -44,6 +44,7 @@
     <Compile Include="clsAttendance.cs" />
     <Compile Include="clsCircles.cs" />
     <Compile Include="clsLoginDetails.cs" />
+    <Compile Include="clsMushafQaloon.cs" />
     <Compile Include="clsSettings.cs" />
     <Compile Include="clsWaitlist.cs" />
     <Compile Include="clsStudents.cs" />

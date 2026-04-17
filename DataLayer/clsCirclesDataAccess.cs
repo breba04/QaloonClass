@@ -248,5 +248,29 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public byte GetRemainingSeatsInClass(int CircleID)
+        {
+            byte result = 0;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetRemainingSeatsInClass", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null)
+                            result = Convert.ToByte(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetRemainingSeatsInClass", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
