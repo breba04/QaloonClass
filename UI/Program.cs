@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.GlobalClasses;
 using UI.Login;
 using UI.Students;
+using UI.Users;
 
 namespace UI
 {
@@ -18,9 +20,33 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmLogin());
+
+
+
+            while (true)
+            {
+
+                frmLogin loginForm = new frmLogin();
+
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+
+                    Application.Run(new frmMain());
+
+                    if (clsCurrentUser.CurrentUser != null)
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             //Application.Run(new frmMain());
-            Application.Run(new frmAddAndUpdateStudent());
+            // Application.Run(new frmAddAndUpdateStudent());
             //Application.Run(new BaseForm());
         }
     }
