@@ -21,7 +21,7 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
                 cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
-                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ThirdName", string.IsNullOrEmpty(entity.PersonInfo.ThirdName) ? DBNull.Value : (object)entity.PersonInfo.ThirdName);
                 cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
@@ -30,8 +30,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
-
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
                 try
                 {
                     conn.Open();
@@ -59,7 +58,7 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
                 cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
-                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ThirdName", string.IsNullOrEmpty(entity.PersonInfo.ThirdName) ? DBNull.Value : (object)entity.PersonInfo.ThirdName);
                 cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
@@ -68,7 +67,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
+
 
                 try
                 {
@@ -156,13 +156,14 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ImagePath", SqlDbType.Int).Direction = ParameterDirection.Output;
-
+                cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
                     conn.Open();
-                    object obj = cmd.ExecuteScalar();
+                    cmd.ExecuteNonQuery();
+                    object obj = cmd.Parameters["@ReturnValue"].Value;
 
-                    if (obj != null)
+                    if (obj != null && int.TryParse(obj.ToString(),out int ReturnValue) && ReturnValue == 1)
                     {
                         student.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                         student.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();

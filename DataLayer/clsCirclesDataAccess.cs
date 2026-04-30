@@ -98,7 +98,7 @@ namespace DataAccessLayer
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SP_SelectAllCircles", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllCircless", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 

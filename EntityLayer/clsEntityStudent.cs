@@ -6,7 +6,7 @@ namespace EntityLayer
     {
         public int StudentID { get; set; } = -1;
         public string ParentPhone { get; set; } = string.Empty;
-        public DateTime JoinDate { get; set; } = DateTime.MinValue;
+        public DateTime JoinDate { get; set; } = DateTime.Now;
         public clsEntityPerson PersonInfo { get; set; } = new clsEntityPerson();
 
         public int CircleID { get; set; } = -1;
