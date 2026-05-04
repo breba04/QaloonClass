@@ -5,8 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using UI.Users;
 using UI.GlobalClasses;
+using EntityLayer;
 
 namespace UI.UserControls
 {
@@ -16,7 +16,7 @@ namespace UI.UserControls
         private int _pageSize = 10; 
         private byte _currentPage = 1; 
         private int _totalPages = 1; 
-        private byte _RecordsInPage = 2; 
+        private byte _RecordsInPage = 8; 
         public UC_Dashboard()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace UI.UserControls
         }
         void LoadMainData()
         {
-            lbl_FirstName.Text = clsCurrentUser.CurrentUser.UserData.PersonInfo.FirstName;
+            lbl_FirstName.Text = clsCurrentUser.CurrentUser.FirstName;
             lbl_TotalCircles.Text = dgv_Listreports.RowCount.ToString();
             lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
         }
@@ -230,7 +230,7 @@ namespace UI.UserControls
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
             _totalPages = clsCircles.GetTotalPagesRecordsInCircleView(_RecordsInPage);
-            ApplyStudentsStyle(clsStudents.GetNewStudentsStatsLastMonth());
+            ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
             ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
             ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
             InitializeDashboard();

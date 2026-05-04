@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,6 @@ using System.Windows.Forms;
 using UI.GlobalClasses;
 using UI.Login;
 using UI.Students;
-using UI.Users;
 
 namespace UI
 {
@@ -20,10 +20,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-
-            while (true)
+            while (clsCurrentUser.CurrentUser == null)
             {
 
                 frmLogin loginForm = new frmLogin();
@@ -32,12 +29,6 @@ namespace UI
                 {
 
                     Application.Run(new frmMain());
-
-                    if (clsCurrentUser.CurrentUser != null)
-                    {
-                        break;
-                    }
-
                 }
                 else
                 {

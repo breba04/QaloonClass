@@ -14,11 +14,11 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         clsEntityEvaluation EntityEvaluation ;
-        public int EvaluationID { get{ return EntityEvaluation.EvaluationID; }  } 
-        public int StudentID { get { return EntityEvaluation.StudentID; } }
-        public short FromAyahID { get { return EntityEvaluation.FromAyahID; } } 
-        public int ToAyahID { get { return EntityEvaluation.ToAyahID; } } 
-        public DateTime EvalDate { get { return EntityEvaluation.EvalDate; } } 
+        public int EvaluationID { get => EntityEvaluation.EvaluationID; }  
+        public int StudentID { get => EntityEvaluation.StudentID; set => EntityEvaluation.StudentID = value; } 
+        public short FromAyahID { get => EntityEvaluation.FromAyahID; set => EntityEvaluation.FromAyahID = value; } 
+        public int ToAyahID { get => EntityEvaluation.ToAyahID; set => EntityEvaluation.ToAyahID = value; } 
+        public DateTime EvalDate { get => EntityEvaluation.EvalDate; set => EntityEvaluation.EvalDate = value; } 
         public clsEvaluations()
         {
             EntityEvaluation = new clsEntityEvaluation();

@@ -15,10 +15,10 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         clsEntityCircle EntityCircle;
-        public int CircleID { get { return EntityCircle.CircleID; }  } 
-        public string CircleName { get { return EntityCircle.CircleName; } }
-        public int TeacherID { get { return EntityCircle.TeacherID; } } 
-        public sbyte MaxCapacity { get { return EntityCircle.MaxCapacity; } } 
+        public int CircleID { get => EntityCircle.CircleID; set => EntityCircle.CircleID = value; }  
+        public string CircleName { get => EntityCircle.CircleName; set => EntityCircle.CircleName = value; } 
+        public int TeacherID { get => EntityCircle.TeacherID; set => EntityCircle.TeacherID = value; } 
+        public sbyte MaxCapacity { get => EntityCircle.MaxCapacity; set => EntityCircle.MaxCapacity = value; } 
         public clsCircles()
         {
             EntityCircle = new clsEntityCircle();
@@ -30,18 +30,15 @@ namespace BusinessLayer
             this.EntityCircle = EntityCircle;
             _Mode = enMode.Update;
         }
-
         private bool AddCircle()
         {
             EntityCircle.CircleID = clsCirclesDataAccess.AddCircle(EntityCircle);
             return EntityCircle.CircleID != default(int);
         }
-
         public bool UpdateCircle(clsEntityCircle EntityCircle)
         {
             return clsCirclesDataAccess.UpdateCircle(EntityCircle);
         }
-
         public bool Save()
         {
             if (_Mode == enMode.Add)
@@ -57,12 +54,10 @@ namespace BusinessLayer
                 throw new Exception("Invalid mode");
             }
         }
-
         public bool DeleteCircle()
         {
             return clsCirclesDataAccess.DeleteCircle(EntityCircle.CircleID);
         }
-
         static public DataTable SelectAllCircles()
         {
             return clsCirclesDataAccess.SelectAllCircles();
@@ -82,6 +77,10 @@ namespace BusinessLayer
         static public byte GetRemainingSeatsInClass(int CircleID)
         {
             return clsCirclesDataAccess.GetRemainingSeatsInClass(CircleID);
+        }
+        static public int GetSupervisorByCircleID(int CircleID)
+        {
+            return clsCirclesDataAccess.GetSupervisorByCircleID(CircleID);
         }
     }
 }

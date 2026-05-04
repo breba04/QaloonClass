@@ -14,10 +14,10 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         clsEntityAttendance EntityAttendance;
-        public int AttendanceID { get { return EntityAttendance.AttendanceID; }  } 
-        public int StudentID { get { return EntityAttendance.StudentID; } }
-        public DateTime AttendanceDate { get { return EntityAttendance.AttendanceDate; } }
-        public byte Status { get { return EntityAttendance.Status; } }
+        public int AttendanceID { get => EntityAttendance.AttendanceID; }  
+        public int StudentID { get => EntityAttendance.StudentID; set => EntityAttendance.StudentID = value; } 
+        public DateTime AttendanceDate { get => EntityAttendance.AttendanceDate; set => EntityAttendance.AttendanceDate = value; } 
+        public byte Status { get => EntityAttendance.Status; set => EntityAttendance.Status = value; } 
         public clsAttendance()
         {
             EntityAttendance = new clsEntityAttendance();

@@ -14,46 +14,42 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode = enMode.Add;
         public clsEntityStudent EntityStudent;
-        public int StudentID { get { return EntityStudent.StudentID; } } 
-        public string ParentPhone { get { return EntityStudent.ParentPhone; } }
-        public DateTime JoinDate { get { return EntityStudent.JoinDate; }} 
-        public clsEntityPerson PersonInfo { get { return EntityStudent.PersonInfo; } }
-        public int PersonID { get { return EntityStudent.PersonInfo.PersonID; }  } 
-        public DateTime BirthDate { get { return EntityStudent.PersonInfo.BirthDate; } } 
-        public string FirstName { get { return EntityStudent.PersonInfo.FirstName; } } 
-        public string SecodName { get { return EntityStudent.PersonInfo.SecodName; } } 
-        public string ThirdName { get { return EntityStudent.PersonInfo.ThirdName; } } 
-        public string LastName { get { return EntityStudent.PersonInfo.LastName; } } 
-        public string FullName { get { return EntityStudent.PersonInfo.FullName; } }
-        public string Address { get { return EntityStudent.PersonInfo.Address; } }
-        public bool IsActive { get { return EntityStudent.PersonInfo.IsActive; } } 
+        public int StudentID { get  => EntityStudent.StudentID;  } 
+        public string ParentPhone { get => EntityStudent.ParentPhone; set => EntityStudent.ParentPhone = value; }
+        public DateTime JoinDate { get => EntityStudent.JoinDate; set => EntityStudent.JoinDate = value; } 
+        public clsEntityPerson PersonInfo { get => EntityStudent.PersonInfo; set => EntityStudent.PersonInfo = value; }
+        public int PersonID { get => EntityStudent.PersonInfo.PersonID; set => EntityStudent.PersonInfo.PersonID = value; } 
+        public DateTime BirthDate { get => EntityStudent.PersonInfo.BirthDate; set => EntityStudent.PersonInfo.BirthDate = value; } 
+        public string FirstName { get => EntityStudent.PersonInfo.FirstName; set => EntityStudent.PersonInfo.FirstName = value; } 
+        public string SecodName { get => EntityStudent.PersonInfo.SecodName; set => EntityStudent.PersonInfo.SecodName = value; } 
+        public string ThirdName { get => EntityStudent.PersonInfo.ThirdName; set => EntityStudent.PersonInfo.ThirdName = value; } 
+        public string LastName { get => EntityStudent.PersonInfo.LastName; set => EntityStudent.PersonInfo.LastName = value; } 
+        public string FullName { get => EntityStudent.PersonInfo.FullName; } 
+        public string Address { get => EntityStudent.PersonInfo.Address; set => EntityStudent.PersonInfo.Address = value; } 
+        public bool IsActive { get =>EntityStudent.PersonInfo.IsActive; set => EntityStudent.PersonInfo.IsActive = value; } 
 
-        public int CircleID { get { return EntityStudent.CircleID; } } 
-        public clsEntityCircle CircleInfo { get { return EntityStudent.CircleInfo; } } 
-        public string ImagePath { get { return EntityStudent.ImagePath; } }
+        public int CircleID { get => EntityStudent.CircleID; } 
+        public clsEntityCircle CircleInfo { get => EntityStudent.CircleInfo; } 
+        public string ImagePath { get => EntityStudent.ImagePath; } 
         public clsStudents()
         {
             this.EntityStudent = new clsEntityStudent();
-            _Mode = enMode.Update;
+            _Mode = enMode.Add;
         }
-
         private clsStudents(clsEntityStudent EntityStudent)
         {
             this.EntityStudent = EntityStudent;
             _Mode = enMode.Update;
         }
-
         private bool AddStudent()
         {
             EntityStudent.StudentID = clsStudentsDataAccess.AddStudent(EntityStudent);
             return EntityStudent.StudentID != default(int);
         }
-
         public bool UpdateStudent(clsEntityStudent EntityStudent)
         {
             return clsStudentsDataAccess.UpdateStudent(EntityStudent);
         }
-
         public bool Save()
         {
             if (_Mode == enMode.Add)
@@ -89,11 +85,21 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllStudents()
         {
-            return clsStudentsDataAccess.SelectAllStudents();
+            if(clsCurrentUser.CurrentUser.UserRole == (int)clsEntityUser.enUserRole.Admin)
+                return clsStudentsDataAccess.SelectAllStudents();
+            else
+            {
+                int CircleID = clsCircles.GetSupervisorByCircleID(clsCurrentUser.CurrentUser.UserID);
+
+                if(CircleID != -1)
+                    return clsStudentsDataAccess.SelectAllStudents(CircleID);
+
+                return new DataTable();
+            }
         }
-        static public short GetNewStudentsStatsLastMonth()
+        static public short GetNewStudentsStatusLastMonth()
         {
-            return clsStudentsDataAccess.GetNewStudentsStatsLastMonth();
+            return clsStudentsDataAccess.GetNewStudentsStatusLastMonth();
         }
         static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
         {
@@ -104,5 +110,10 @@ namespace BusinessLayer
             DateTime Now = DateTime.Now;
             return GetTotalStudentAbsent(new DateTime(Now.Year, Now.Month, 1), new DateTime(Now.Year, Now.Month, DateTime.DaysInMonth(Now.Year,Now.Month)));
         }
+        static public bool ChangeStudentStatus(int StudentID, bool IsActive)
+        {
+            return clsStudentsDataAccess.ChangeStudentStatus(StudentID, IsActive);
+        }
+
     }
 }
