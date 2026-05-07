@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.GlobalClasses;
 using UI.UserControls;
-using UI.Users;
 
 namespace UI
 {
@@ -22,7 +22,7 @@ namespace UI
         }
         void LoadMainData()
         {
-            lbl_FirstAndLastName.Text = clsCurrentUser.CurrentUser.UserData.PersonInfo.FirstName + ' ' + clsCurrentUser.CurrentUser.UserData.PersonInfo.LastName;
+            lbl_FirstAndLastName.Text = clsCurrentUser.CurrentUser.FirstName + ' ' + clsCurrentUser.CurrentUser.LastName;
         }
         private void frmMain_Load(object sender, EventArgs e)
         {

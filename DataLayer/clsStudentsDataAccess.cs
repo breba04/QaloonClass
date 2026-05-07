@@ -21,7 +21,7 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
                 cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
-                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ThirdName", string.IsNullOrEmpty(entity.PersonInfo.ThirdName) ? DBNull.Value : (object)entity.PersonInfo.ThirdName);
                 cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
@@ -30,8 +30,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
-
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
                 try
                 {
                     conn.Open();
@@ -59,7 +58,7 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@FirstName", entity.PersonInfo.FirstName);
                 cmd.Parameters.AddWithValue("@SecondName", entity.PersonInfo.SecodName);
-                cmd.Parameters.AddWithValue("@ThirdName", (object)entity.PersonInfo.ThirdName ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ThirdName", string.IsNullOrEmpty(entity.PersonInfo.ThirdName) ? DBNull.Value : (object)entity.PersonInfo.ThirdName);
                 cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
@@ -68,7 +67,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", (object)entity.ImagePath ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
+
 
                 try
                 {
@@ -85,8 +85,6 @@ namespace DataAccessLayer
         static public bool DeleteStudent(int StudentID)
         {
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(_connectionString);
-
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteStudents", conn))
@@ -95,7 +93,7 @@ namespace DataAccessLayer
 
                     try
                     {
-                        connection.Open();
+                        conn.Open();
                         rowsAffected = cmd.ExecuteNonQuery();
                     }
                     catch (Exception)
@@ -156,13 +154,14 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ImagePath", SqlDbType.Int).Direction = ParameterDirection.Output;
-
+                cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
                     conn.Open();
-                    object obj = cmd.ExecuteScalar();
+                    cmd.ExecuteNonQuery();
+                    object obj = cmd.Parameters["@ReturnValue"].Value;
 
-                    if (obj != null)
+                    if (obj != null && int.TryParse(obj.ToString(),out int ReturnValue) && ReturnValue == 1)
                     {
                         student.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                         student.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
@@ -218,7 +217,31 @@ namespace DataAccessLayer
             }
             return result;
         }
-        static public short GetNewStudentsStatsLastMonth()
+        static public DataTable SelectAllStudents(int CircleID)
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsByCircleID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        result.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
+        static public short GetNewStudentsStatusLastMonth()
         {
             short result = 0;
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -241,6 +264,35 @@ namespace DataAccessLayer
                 }
             }
             return result;
+        }
+        static public bool ChangeStudentStatus(int StudentID,bool IsActive)
+        {
+            bool isChange = false;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_ChangeStudentStatus", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@StudentID", StudentID);
+                    cmd.Parameters.AddWithValue("@IsActive", IsActive);
+                    cmd.Parameters.Add("@Return",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.Parameters["@Return"].Value;
+                        if (obj != null && int.TryParse(obj.ToString(),out int result))
+                        {
+                            isChange = result == 1;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "ChangeStudentStatus", DateTime.Now, null);
+                    }
+                }
+            }
+            return isChange;
         }
         static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
         {

@@ -216,6 +216,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@ThirdName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@BirthDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
