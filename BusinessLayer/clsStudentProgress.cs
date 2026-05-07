@@ -14,11 +14,11 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode;
         public clsEntityStudentProgress EntityProgress ;
-        public int ProgressID { get{ return EntityProgress.ProgressID; } } 
-        public int StudentID { get { return EntityProgress.StudentID; } } 
-        public short AyahID { get { return EntityProgress.AyahID; } } 
-        public DateTime UpdateDate { get { return EntityProgress.UpdateDate; } } 
-        public int TeacherID { get { return EntityProgress.TeacherID; } } 
+        public int ProgressID { get => EntityProgress.ProgressID; set => EntityProgress.ProgressID = value; } 
+        public int StudentID { get => EntityProgress.StudentID; set => EntityProgress.StudentID = value; } 
+        public short AyahID { get => EntityProgress.AyahID; set => EntityProgress.AyahID = value; } 
+        public DateTime UpdateDate { get => EntityProgress.UpdateDate; set => EntityProgress.UpdateDate = value; } 
+        public int TeacherID { get => EntityProgress.TeacherID; set => EntityProgress.TeacherID = value; } 
         public clsStudentProgress()
         {
             EntityProgress = new clsEntityStudentProgress();

@@ -1,7 +1,9 @@
 ﻿using BusinessLayer;
+using EntityLayer;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using UI.GlobalClasses;
 using UI.GlobalClasses;
 using UI.Users;
 
@@ -42,7 +44,7 @@ namespace UI.Login
             {
                 if (_IsUserActive())
                 {
-                    clsCurrentUser.Login( ckb_RememberMe.Checked);
+                    //clsCurrentUser.Login( ckb_RememberMe.Checked);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -62,11 +64,11 @@ namespace UI.Login
                     MessageBoxIcon.Error);
             }
         }
-
-
         private void _RetrieveRememberedData()
         {
-            clsCurrentUser.CurrentUser = clsLoginDetails.GetLastLoginUser();
+            //clsCurrentUser.CurrentUser = clsLoginDetails.GetLastLoginUser();
+
+            clsUsers.LoadLastLogin();
             if (clsCurrentUser.CurrentUser != null)
             {
                 txt_UserName.Text = clsCurrentUser.CurrentUser.UserName;
@@ -80,10 +82,14 @@ namespace UI.Login
             this.HeaderTitle = $"مركز {clsGlobal.CenterName}";
         }
 
+        //private bool _IsUserLoginSuccessful()
+        //{
+        //    clsCurrentUser.CurrentUser  = clsUsers.Login(txt_UserName.Text, txt_PassWord.Text);
+        //    return clsCurrentUser.CurrentUser != null;
+        //}
         private bool _IsUserLoginSuccessful()
         {
-            clsCurrentUser.CurrentUser  = clsUsers.Login(txt_UserName.Text, txt_PassWord.Text);
-            return clsCurrentUser.CurrentUser != null;
+            return  clsUsers.Login(txt_UserName.Text, txt_PassWord.Text, ckb_RememberMe.Checked);
         }
         private bool _IsUserActive()
         {
@@ -104,8 +110,6 @@ namespace UI.Login
                     errorProvider1.SetError(txtBox, string.Empty);
                 }
             }
-
-
         }
     }
 }

@@ -11,10 +11,10 @@ namespace BusinessLayer
     public class clsSettings
     {
         clsEntitySettings EntitySettings;
-        public int SettingID { get{ return EntitySettings.SettingID; } } 
-        public string SettingKey { get{ return SettingKey; }  } 
-        public string SettingValue { get { return SettingValue; } }
-        public string Notes { get { return Notes; } } 
+        public int SettingID { get => EntitySettings.SettingID; } 
+        public string SettingKey { get => EntitySettings.SettingKey; set => EntitySettings.SettingKey = value; }  
+        public string SettingValue { get => EntitySettings.SettingValue; set => EntitySettings.SettingValue = value; }
+        public string Notes { get => EntitySettings.Notes; set => EntitySettings.Notes = value; } 
         enum enMode
         {
             Add = 1,

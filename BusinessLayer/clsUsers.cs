@@ -78,16 +78,50 @@ namespace BusinessLayer
         {
             return clsUsersDataAccess.IsUsersExist(UserID);
         }
-        static public clsUsers Login(string userName,string password)
+        static public bool Login(string userName,string password,bool isRemember)
         {
-            clsEntityUser EntityUser = new clsEntityUser() {UserName = userName ,Password = password};
-            if (clsUsersDataAccess.Login(EntityUser))
+            clsCurrentUser.CurrentUser  = new clsEntityUser() {UserName = userName ,Password = password};
+            if (clsUsersDataAccess.Login(clsCurrentUser.CurrentUser))
             {
-                return new clsUsers(EntityUser);
+                clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails()
+                {
+                    UserID = clsCurrentUser.CurrentUser.UserID,
+                    LoginDate = DateTime.Now,
+                    IsRemember = isRemember,
+                };
+                clsLoginDetails.AddLoginDetails(loginDetails);
+
+                //if (isRemember)
+                //    clsGlobal.StoreUserNameAndPassWordInRegistry(clsCurrentUser.CurrentUser.UserName, clsCurrentUser.CurrentUser.Password);
+
+                return true;
             }
             else
             {
-                return null;
+                clsCurrentUser.CurrentUser = null;
+                return false;
+            }
+        }
+        static public void LoadLastLogin()
+        {
+            clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails();
+            if (clsLoginDetailsDataAccess.FindLoginDetailsByID(loginDetails))
+            {
+                if (loginDetails.IsRemember)
+                {
+                    clsUsers user =  clsUsers.Find(loginDetails.UserID);
+                    if(user != null)
+                    {
+                        clsCurrentUser.CurrentUser = new clsEntityUser()
+                        {
+                            UserID = user.UserID,
+                            PersonInfo = user.PersonInfo,
+                            UserName = user.UserName,
+                            Password = user.Password,
+                            UserRole = user.UserRole
+                        }; 
+                    }
+                }
             }
         }
         static public clsUsers Find(int UserID)
