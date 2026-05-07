@@ -4,6 +4,14 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using UI.GlobalClasses;
+<<<<<<<<< Temporary merge branch 1
+=========
+using UI.Users;
+>>>>>>>>> Temporary merge branch 2
+using UI.Users;
+>>>>>>>>> Temporary merge branch 2
+using UI.Users;
+>>>>>>>>> Temporary merge branch 2
 
 
 namespace UI.Login
