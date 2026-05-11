@@ -38,7 +38,6 @@ namespace DataAccessLayer
             }
             return result;
         }
-
         static public bool UpdateCircle(clsEntityCircle EntityCircle)
         {
             int result = 0;
@@ -66,7 +65,6 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-
         static public bool DeleteCircle(int circleID)
         {
             int result = 0;
@@ -91,7 +89,6 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-
         static public DataTable SelectAllCircles()
         {
             DataTable result = new DataTable();
@@ -118,7 +115,6 @@ namespace DataAccessLayer
             }
             return result;
         }
-
         static public DataTable SelectCircleBy(int circleID)
         {
             DataTable result = new DataTable();
@@ -146,7 +142,52 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public bool FindCircleByID(clsEntityCircle Circle)
+        {
+            bool IsFound = false;
 
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_FindByCircleID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CircleID", Circle.CircleID);
+
+                cmd.Parameters.Add("@CircleName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@TeacherID", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@MaxCapacity", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@CurrentStudentNumbers", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                SqlParameter ReturnValue = new SqlParameter();
+                ReturnValue.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(ReturnValue);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    int Result = Convert.ToInt32(ReturnValue.Value);
+
+                    if (Result == 1)
+                    {
+                        IsFound = true;
+
+                        Circle.CircleName = cmd.Parameters["@CircleName"].Value.ToString();
+                        Circle.TeacherID = Convert.ToInt32(cmd.Parameters["@TeacherID"].Value);
+                        Circle.MaxCapacity = Convert.ToByte(cmd.Parameters["@MaxCapacity"].Value);
+                        Circle.CurrentStudentNumbers = Convert.ToByte(cmd.Parameters["@CurrentStudentNumbers"].Value);
+                        Circle.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    clsLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser==null?-1: clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FundCircleByID", DateTime.Now, null);
+                }
+            }
+
+            return IsFound;
+        }
         static public bool IsCircleExist(int circleID)
         {
             bool result = default(Boolean);
@@ -295,6 +336,31 @@ namespace DataAccessLayer
                 }
             }
             return TeacherID;
+        }
+        static public DataTable GetllEpisodesTeacher(int TeacherID)
+        {
+            DataTable Circles = new DataTable ();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetllEpisodesTeacher", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader Reader = cmd.ExecuteReader())
+                        {
+                            Circles.Load(Reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message,clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetllEpisodesTeacher", DateTime.Now, null);
+                    }
+                }
+            }
+            return Circles;
         }
     }
 }

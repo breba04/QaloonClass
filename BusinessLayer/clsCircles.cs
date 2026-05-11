@@ -18,7 +18,9 @@ namespace BusinessLayer
         public int CircleID { get => EntityCircle.CircleID; set => EntityCircle.CircleID = value; }  
         public string CircleName { get => EntityCircle.CircleName; set => EntityCircle.CircleName = value; } 
         public int TeacherID { get => EntityCircle.TeacherID; set => EntityCircle.TeacherID = value; } 
-        public sbyte MaxCapacity { get => EntityCircle.MaxCapacity; set => EntityCircle.MaxCapacity = value; } 
+        public byte MaxCapacity { get => EntityCircle.MaxCapacity; set => EntityCircle.MaxCapacity = value; } 
+        public byte CurrentStudentNumbers { get => EntityCircle.CurrentStudentNumbers; } 
+        public bool CannAdded { get => EntityCircle.CannAdded; } 
         public clsCircles()
         {
             EntityCircle = new clsEntityCircle();
@@ -60,7 +62,15 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllCircles()
         {
-            return clsCirclesDataAccess.SelectAllCircles();
+            if (clsCurrentUser.CurrentUser.IsAdmin)
+                return clsCirclesDataAccess.SelectAllCircles();
+            else
+                return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);
+
+        }
+        static public DataTable GetllEpisodesTeacher()
+        {
+            return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);
         }
         static public DataTable GetAllCircleView(byte PageNo, byte RecordInPage)
         {
@@ -81,6 +91,31 @@ namespace BusinessLayer
         static public int GetSupervisorByCircleID(int CircleID)
         {
             return clsCirclesDataAccess.GetSupervisorByCircleID(CircleID);
+        }
+        static public clsCircles FindCircleByID(int CircleID)
+        {
+            clsEntityCircle circle = new clsEntityCircle(); 
+            circle.CircleID = CircleID;
+
+            if(clsCirclesDataAccess.FindCircleByID(circle))
+                return new clsCircles(circle);
+
+            return null;
+        }
+        static public clsEntityCircle FindEntityCircleByID(int CircleID)
+        {
+            clsCircles circle = FindCircleByID(CircleID);
+            if (circle == null)
+                return null;
+
+            return new clsEntityCircle() 
+            { 
+                CircleID = CircleID ,
+                CircleName = circle.CircleName ,
+                MaxCapacity = circle.MaxCapacity , 
+                TeacherID = circle.TeacherID,
+                CurrentStudentNumbers = circle.CurrentStudentNumbers
+            };
         }
     }
 }
