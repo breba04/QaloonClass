@@ -82,7 +82,7 @@ namespace DataAccessLayer
             DataTable result = new DataTable();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SP_SelectAllWaitlist", conn))
+            using (SqlCommand cmd = new SqlCommand("SP_SelectAllWaitlists", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -96,7 +96,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -152,5 +152,31 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public int TransferFromWaitlistToStudent(int waitlistId,int CircleID, string ImagePath)
+        {
+            int StudentID = -1;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_TransferFromWaitlistToStudent", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@WaitlistID", waitlistId);
+                cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(ImagePath) ? DBNull.Value : (object)ImagePath);
+
+                try
+                {
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null && int.TryParse(obj.ToString(), out StudentID)) { }
+                }
+                catch (Exception ex)
+                {
+                    clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "TransferFromWaitlistToStudent", DateTime.Now, null);
+                }
+            }
+            return StudentID;
+        }
+
     }
 }
