@@ -280,6 +280,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@BirthDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@CircleID", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
@@ -299,6 +300,7 @@ namespace DataAccessLayer
                         user.UserName = cmd.Parameters["@UserName"].Value.ToString();
                         user.Password = cmd.Parameters["@Password"].Value.ToString();
                         user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
+                        user.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
                         user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                         user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
