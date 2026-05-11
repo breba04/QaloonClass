@@ -9,7 +9,6 @@ namespace DataAccessLayer
     public class clsAttendanceDataAccess
     {
         static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
         static public int AddAttendance(clsEntityAttendance EntityAttendance)
         {
             int result = default(Int32);
@@ -38,7 +37,6 @@ namespace DataAccessLayer
             }
             return result;
         }
-
         static public bool UpdateAttendance(clsEntityAttendance EntityAttendance)
         {
             int result = 0;
@@ -66,7 +64,6 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-
         static public bool DeleteAttendance(int attendanceID)
         {
             int result = 0;
@@ -92,14 +89,40 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-
-        static public DataTable SelectAllAttendances()
+        static public DataTable SelectAllAttendances(int CircleID,DateTime Date)
         {
             DataTable result = new DataTable();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllAttendances", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                    cmd.Parameters.AddWithValue("@Date", Date);
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllAttendances", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+        static public DataTable SelectAllAttendancesStatus()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllAttendancesStatus", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -113,7 +136,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllAttendances", DateTime.Now, null);
+                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllAttendancesStatus", DateTime.Now, null);
 
                     }
                 }
@@ -144,6 +167,71 @@ namespace DataAccessLayer
                     }
                 }
             }
+            return result;
+        }
+        static public bool IsAttendanceExistsToday(int CircleID)
+        {
+            bool isExist = default(Boolean);
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_IsAttendanceExistsToday", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                    cmd.Parameters.Add("@ReturnValue",SqlDbType.Bit).Direction = ParameterDirection.ReturnValue;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        object obj = cmd.Parameters["@ReturnValue"].Value;
+                        if (obj != null && int.TryParse(obj.ToString(),out int result))
+                            isExist = Convert.ToBoolean(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
+                    }
+                }
+            }
+            return isExist;
+        }
+
+        static public bool FindAttendanceByStudentID(clsEntityAttendance Attendance)
+        {
+            bool result = false;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_FindAttendanceByStudentID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@StudentID", Attendance.StudentID);
+                cmd.Parameters.Add("@AttendanceID", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@AttendanceDate", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    object obj = cmd.Parameters["@ReturnValue"].Value;
+
+                    if (obj != null && int.TryParse(obj.ToString(), out int ReturnValue) && ReturnValue == 1)
+                    {
+                        result = true;
+                        Attendance.AttendanceID = Convert.ToInt32(cmd.Parameters["@AttendanceID"].Value);
+                        Attendance.AttendanceDate = Convert.ToDateTime(cmd.Parameters["@AttendanceDate"].Value);
+                        Attendance.Status = Convert.ToByte(cmd.Parameters["@Status"].Value);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
+                }
+            }
+
             return result;
         }
     }

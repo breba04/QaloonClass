@@ -40,7 +40,16 @@ namespace BusinessLayer
         {
             return clsAttendanceDataAccess.UpdateAttendance(EntityAttendance);
         }
+        static public clsAttendance Find(int studentId)
+        {
+            clsEntityAttendance Entity = new clsEntityAttendance();
+            Entity.StudentID = studentId;
 
+            if (clsAttendanceDataAccess.FindAttendanceByStudentID(Entity))
+                return new clsAttendance(Entity);
+
+            return null;
+        }
         public bool Save()
         {
             if (_Mode == enMode.Add)
@@ -61,10 +70,22 @@ namespace BusinessLayer
         {
             return clsAttendanceDataAccess.DeleteAttendance(EntityAttendance.AttendanceID);
         }
-
-        public DataTable SelectAllAttendances()
+        static public DataTable SelectAllAttendancesToday(int CircleID)
         {
-            return clsAttendanceDataAccess.SelectAllAttendances();
+            if(clsCurrentUser.CurrentUser.IsAdmin 
+                || clsCircles.GetSupervisorByCircleID(CircleID) == clsCurrentUser.CurrentUser.UserID)
+            {
+                return clsAttendanceDataAccess.SelectAllAttendances(CircleID,DateTime.Now);
+            }
+            return null;
+        }
+        static public DataTable SelectAllAttendancesStatus()
+        {
+            return clsAttendanceDataAccess.SelectAllAttendancesStatus();
+        }
+        static public bool IsAttendanceExistsToday(int CircleID)
+        {
+            return clsAttendanceDataAccess.IsAttendanceExistsToday( CircleID);
         }
     }
 }

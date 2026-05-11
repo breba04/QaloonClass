@@ -241,6 +241,30 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllStudentsByTeacherID(int TeacherID)
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsByTeacherID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        result.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
         static public short GetNewStudentsStatusLastMonth()
         {
             short result = 0;

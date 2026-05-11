@@ -28,9 +28,9 @@ namespace BusinessLayer
         public string Address { get => EntityStudent.PersonInfo.Address; set => EntityStudent.PersonInfo.Address = value; } 
         public bool IsActive { get =>EntityStudent.PersonInfo.IsActive; set => EntityStudent.PersonInfo.IsActive = value; } 
 
-        public int CircleID { get => EntityStudent.CircleID; } 
+        public int CircleID { get => EntityStudent.CircleID; set => EntityStudent.CircleID = value; } 
         public clsEntityCircle CircleInfo { get => EntityStudent.CircleInfo; } 
-        public string ImagePath { get => EntityStudent.ImagePath; } 
+        public string ImagePath { get => EntityStudent.ImagePath; set => EntityStudent.ImagePath = value; } 
         public clsStudents()
         {
             this.EntityStudent = new clsEntityStudent();
@@ -89,13 +89,16 @@ namespace BusinessLayer
                 return clsStudentsDataAccess.SelectAllStudents();
             else
             {
-                int CircleID = clsCircles.GetSupervisorByCircleID(clsCurrentUser.CurrentUser.UserID);
-
-                if(CircleID != -1)
-                    return clsStudentsDataAccess.SelectAllStudents(CircleID);
-
-                return new DataTable();
+                return clsStudentsDataAccess.SelectAllStudentsByTeacherID(clsCurrentUser.CurrentUser.UserID);
             }
+        }
+        static public DataTable SelectAllStudents(int CircleID)
+        {
+            if(clsCurrentUser.CurrentUser.UserRole == (int) clsEntityUser.enUserRole.Admin 
+                ||clsCircles.GetSupervisorByCircleID(CircleID) == clsCurrentUser.CurrentUser.UserID)
+                return clsStudentsDataAccess.SelectAllStudents(CircleID);
+
+            return new DataTable();
         }
         static public short GetNewStudentsStatusLastMonth()
         {
