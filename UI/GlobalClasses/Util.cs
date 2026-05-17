@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,30 @@ namespace UI.GlobalClasses
                 column.HeaderText = headerText;
                 column.Width = width;
             }
+        }
+
+        static public bool ValidateTextBoxRequired(object sender, CancelEventArgs e, ErrorProvider errorProvider)
+        {
+            TextBox activeTextBox = sender as TextBox;
+
+            if (activeTextBox != null)
+            {
+                if (string.IsNullOrEmpty(activeTextBox.Text.Trim()))
+                {
+                    e.Cancel = true;
+                    string fieldName = activeTextBox.Tag != null ? activeTextBox.Tag.ToString() : "هذا الحقل";
+
+                    errorProvider.SetError(activeTextBox, $"{fieldName} مطلوب");
+                    return false; 
+                }
+                else
+                {
+                    errorProvider.SetError(activeTextBox, "");
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
