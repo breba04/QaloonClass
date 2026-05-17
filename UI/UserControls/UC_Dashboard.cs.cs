@@ -168,7 +168,6 @@ namespace UI.UserControls
         }
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
-            //_totalPages = clsCircles.GetTotalPagesRecordsInCircleView(_RecordsInPage);  مفيش داعي منها
             _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
             _ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
             _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
