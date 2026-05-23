@@ -91,9 +91,13 @@ namespace BusinessLayer
         {
             return clsUsersDataAccess.DeleteUsers(UserData.UserID);
         }
-        public DataTable SelectAllUserss()
+        static public DataTable SelectAllUsers()
         {
             return clsUsersDataAccess.SelectAllUserss();
+        }
+        static public DataTable SelectAllTeachers()
+        {
+            return clsUsersDataAccess.SelectAllTeachers();
         }
         static public bool IsUsersExist(int UserID)
         {

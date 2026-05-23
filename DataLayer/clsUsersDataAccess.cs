@@ -136,6 +136,35 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllTeachers
+        ()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllTeachers", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        //ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
         static public DataTable SelectUsersBy
         (int userid)
         {

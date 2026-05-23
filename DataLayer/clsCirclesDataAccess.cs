@@ -44,7 +44,7 @@ namespace DataAccessLayer
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SP_UpdateCircle", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_UpdateCircles", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", EntityCircle.CircleID);
@@ -209,6 +209,36 @@ namespace DataAccessLayer
                     catch (Exception ex)
                     {
                         clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsCircleExist", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+        static public bool AddingSeatsInCircle(int circleID,byte CountSeats)
+        {
+            bool result = default(Boolean);
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_AddingSeatsInCircle", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", circleID);
+                    cmd.Parameters.AddWithValue("@CountSeats", @CountSeats);
+                    cmd.Parameters.Add("@ReturnValue",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        if(cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"].Value.ToString(), out int returnValue))
+                        {
+                            result = Convert.ToBoolean(returnValue);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddingSeatsInCircle", DateTime.Now, null);
                     }
                 }
             }

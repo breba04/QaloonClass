@@ -82,30 +82,33 @@ namespace DataAccessLayer
             }
             return result > 0;
         }
-        static public bool DeleteStudent(int StudentID)
+        static public int DeleteStudent(int StudentID)
         {
             int rowsAffected = 0;
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteStudents", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StudentID", StudentID);
-
+                    cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                     try
                     {
                         conn.Open();
-                        rowsAffected = cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                        if (cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"]
+                            .Value.ToString(), out rowsAffected)) { }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        return false;
+                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteStudent", DateTime.Now, null);
                     }
 
                 }
 
             }
 
-            return (rowsAffected > 0);
+            return rowsAffected ;
         }
         static public bool IsStudentExist(int studentId)
         {
@@ -153,7 +156,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@ParentPhone", SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@ImagePath", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, 250).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
@@ -187,7 +190,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
+                    clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
                 }
             }
 

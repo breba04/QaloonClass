@@ -77,7 +77,11 @@ namespace BusinessLayer
         }
         public bool DeleteStudent()
         {
-            return clsStudentsDataAccess.DeleteStudent(EntityStudent.StudentID);
+            return clsStudentsDataAccess.DeleteStudent(EntityStudent.StudentID) >0;
+        }
+        static public int DeleteStudent(int studentID)
+        {
+            return clsStudentsDataAccess.DeleteStudent(studentID);
         }
         static public bool IsStudentExist(int studentId)
         {

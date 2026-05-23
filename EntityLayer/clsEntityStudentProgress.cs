@@ -7,6 +7,7 @@ namespace EntityLayer
         public int ProgressID { get; set; } = -1;
         public int StudentID { get; set; } = -1;
         public short AyahID { get; set; } = -1;
+        public byte SurrahID { get; set; } =0;
         public DateTime UpdateDate { get; set; } = DateTime.MinValue;
         public int TeacherID { get; set; } = -1;
     }

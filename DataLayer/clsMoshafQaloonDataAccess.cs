@@ -38,6 +38,30 @@ namespace DataLayer
             }
             return result;
         }
+        static public DataTable GetAlljazza()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetAlljazza", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        result.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAlljazza", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
         static public DataTable GetAllAyatFromSurrah(byte SurrahNo)
         {
             DataTable result = new DataTable();
@@ -46,7 +70,7 @@ namespace DataLayer
             using (SqlCommand cmd = new SqlCommand("SP_GetAllAyatFromSurrah", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SurrahNo", SurrahNo);
+                cmd.Parameters.AddWithValue("@SurraID", SurrahNo);
                 try
                 {
                     conn.Open();

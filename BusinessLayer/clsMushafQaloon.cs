@@ -16,6 +16,10 @@ namespace BusinessLayer
         {
             return clsMoshafQaloonDataAccess.GetAllSurrah();
         }
+        static public DataTable GetAlljazza()
+        {
+            return clsMoshafQaloonDataAccess.GetAlljazza();
+        }
         static public DataTable GetAllAyatFromSurrah(byte SurrahNo)
         {
             return clsMoshafQaloonDataAccess.GetAllAyatFromSurrah(SurrahNo);

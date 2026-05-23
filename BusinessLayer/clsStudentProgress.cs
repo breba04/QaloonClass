@@ -17,6 +17,7 @@ namespace BusinessLayer
         public int ProgressID { get => EntityProgress.ProgressID; set => EntityProgress.ProgressID = value; } 
         public int StudentID { get => EntityProgress.StudentID; set => EntityProgress.StudentID = value; } 
         public short AyahID { get => EntityProgress.AyahID; set => EntityProgress.AyahID = value; } 
+        public byte SurrahID { get => EntityProgress.SurrahID; set => EntityProgress.SurrahID = value; } 
         public DateTime UpdateDate { get => EntityProgress.UpdateDate; set => EntityProgress.UpdateDate = value; } 
         public int TeacherID { get => EntityProgress.TeacherID; set => EntityProgress.TeacherID = value; } 
         public clsStudentProgress()
@@ -66,6 +67,13 @@ namespace BusinessLayer
         public DataTable SelectAllProgress()
         {
             return clsStudentProgressDataAccess.SelectAllProgress();
+        }
+        static public clsStudentProgress Find(int StudentID)
+        {
+            clsEntityStudentProgress studentProgress = new clsEntityStudentProgress() { StudentID = StudentID };
+            if(clsStudentProgressDataAccess.FindProgressByStudentID(studentProgress))
+                return new clsStudentProgress(studentProgress);
+            return null;
         }
     }
 }

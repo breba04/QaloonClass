@@ -175,5 +175,51 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public bool FindProgressByStudentID (clsEntityStudentProgress progress)
+        {
+            bool IsFound = false;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_FindProgressByStudentID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@StudentID", progress.StudentID);
+
+                cmd.Parameters.Add("@UpdateDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@TeacherID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@SurrahID", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@AyahID", SqlDbType.SmallInt).Direction = ParameterDirection.Output;
+
+                SqlParameter ReturnValue = new SqlParameter();
+                ReturnValue.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(ReturnValue);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    int Result = Convert.ToInt32(ReturnValue.Value);
+
+                    if (Result == 1)
+                    {
+                        IsFound = true;
+
+                        progress.TeacherID = Convert.ToInt32(cmd.Parameters["@TeacherID"].Value);
+                        progress.SurrahID = Convert.ToByte(cmd.Parameters["@SurrahID"].Value);
+                        progress.AyahID = Convert.ToInt16(cmd.Parameters["@AyahID"].Value);
+                        progress.UpdateDate = Convert.ToDateTime(cmd.Parameters["@UpdateDate"].Value);
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    clsLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindProgressByStudentID", DateTime.Now, null);
+                }
+            }
+
+            return IsFound;
+        }
+
     }
 }

@@ -62,7 +62,10 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllCircles()
         {
-            if (clsCurrentUser.CurrentUser.IsAdmin)
+            if 
+                (
+                //true||
+                    clsCurrentUser.CurrentUser.IsAdmin)
                 return clsCirclesDataAccess.SelectAllCircles();
             else
                 return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);
@@ -116,6 +119,10 @@ namespace BusinessLayer
                 TeacherID = circle.TeacherID,
                 CurrentStudentNumbers = circle.CurrentStudentNumbers
             };
+        }
+        static public bool AddingSeatsInCircle(int circleID, byte CountSeats)
+        {
+            return clsCirclesDataAccess.AddingSeatsInCircle(circleID, CountSeats);
         }
     }
 }
