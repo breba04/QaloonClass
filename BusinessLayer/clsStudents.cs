@@ -30,7 +30,7 @@ namespace BusinessLayer
 
         public int CircleID { get => EntityStudent.CircleID; set => EntityStudent.CircleID = value; } 
         public clsEntityCircle CircleInfo { get => EntityStudent.CircleInfo; } 
-        public string ImagePath { get => EntityStudent.ImagePath; set => EntityStudent.ImagePath = value; } 
+        public string ImagePath { get => EntityStudent.PersonInfo.ImagePath; set => EntityStudent.PersonInfo.ImagePath = value; } 
         public clsStudents()
         {
             this.EntityStudent = new clsEntityStudent();

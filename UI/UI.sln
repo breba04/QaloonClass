@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "..\DataLayer\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityLayer", "..\EntityLayer\EntityLayer.csproj", "{82B63650-25DF-465A-A17C-F9832EBC9E68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thfize Center", "..\..\..\كلية\ادرة تطبيقات الانترنت\Thfize Center\Thfize Center.csproj", "{A54ED5A4-F430-49CF-8430-30CCDCA9B1B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{82B63650-25DF-465A-A17C-F9832EBC9E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82B63650-25DF-465A-A17C-F9832EBC9E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82B63650-25DF-465A-A17C-F9832EBC9E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54ED5A4-F430-49CF-8430-30CCDCA9B1B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54ED5A4-F430-49CF-8430-30CCDCA9B1B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54ED5A4-F430-49CF-8430-30CCDCA9B1B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54ED5A4-F430-49CF-8430-30CCDCA9B1B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,8 +31,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@LastName", EntityUser.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", EntityUser.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", (object)EntityUser.PersonInfo.Address ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ImagePath", (object)EntityUser.PersonInfo.ImagePath ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@IsActive", EntityUser.PersonInfo.IsActive);
-
                 try
                 {
                     conn.Open();
@@ -68,7 +68,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@BirthDate", EntityUser.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", (object)EntityUser.PersonInfo.Address ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@IsActive", EntityUser.PersonInfo.IsActive);
-
+                cmd.Parameters.AddWithValue("@ImagePath", (object)EntityUser.PersonInfo.ImagePath ?? DBNull.Value);
                 try
                 {
                     conn.Open();
@@ -247,6 +247,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@BirthDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, -1).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
@@ -277,6 +278,8 @@ namespace DataAccessLayer
                             user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
                         if (cmd.Parameters["@Address"].Value != DBNull.Value)
                             user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                            user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
                     }
                 }
                 catch (Exception Ex)
@@ -310,6 +313,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar,-1).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
@@ -341,12 +345,14 @@ namespace DataAccessLayer
                         if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
                             user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
                         if (cmd.Parameters["@Address"].Value != DBNull.Value)
-                            user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                            user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();;
+                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                            user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
                     }
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindByUserID", DateTime.Now, null);
+                    clsLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindByUserID", DateTime.Now, null);
                 }
             }
 

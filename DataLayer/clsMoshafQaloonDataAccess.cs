@@ -62,7 +62,7 @@ namespace DataLayer
             }
             return result;
         }
-        static public DataTable GetAllAyatFromSurrah(byte SurrahNo)
+        static public DataTable GetAllAyatFromSurrah(byte SurrahNo,byte NumberOfLetters)
         {
             DataTable result = new DataTable();
 
@@ -71,6 +71,7 @@ namespace DataLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SurraID", SurrahNo);
+                cmd.Parameters.AddWithValue("@NumberOfLetters", NumberOfLetters);
                 try
                 {
                     conn.Open();

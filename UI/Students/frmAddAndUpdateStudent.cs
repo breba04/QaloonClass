@@ -33,7 +33,7 @@ namespace UI.Students
         private void _Load_AyatFromSurrahData()
         {
             byte selectedSurrahID = Convert.ToByte(cmb_Surahs.SelectedValue);
-            _dtAyatFromSurrah = clsMushafQaloon.GetAllAyatFromSurrah(selectedSurrahID);
+            _dtAyatFromSurrah = clsMushafQaloon.GetAllAyatFromSurrah(selectedSurrahID,20);
         }
         private void frmAddAndUpdateStudent_Load(object sender, EventArgs e)
         {

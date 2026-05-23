@@ -26,11 +26,11 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
                 cmd.Parameters.AddWithValue("@IsActive", entity.PersonInfo.IsActive);
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.PersonInfo.ImagePath) ? DBNull.Value : (object)entity.PersonInfo.ImagePath);
 
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
                 try
                 {
                     conn.Open();
@@ -63,11 +63,11 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
                 cmd.Parameters.AddWithValue("@IsActive", entity.PersonInfo.IsActive);
+                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.PersonInfo.ImagePath) ? DBNull.Value : (object)entity.PersonInfo.ImagePath);
 
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
-                cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.ImagePath) ? DBNull.Value : (object)entity.ImagePath);
 
 
                 try
@@ -156,7 +156,7 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@ParentPhone", SqlDbType.NVarChar, 20).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, 250).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, -1).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
@@ -182,7 +182,7 @@ namespace DataAccessLayer
                         if (cmd.Parameters["@Address"].Value != DBNull.Value)
                             student.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
                         if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
-                            student.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
+                            student.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
 
 
                         result = true;

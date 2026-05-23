@@ -46,6 +46,8 @@ namespace BusinessLayer
         public bool IsActive { get => PersonInfo.IsActive; set => PersonInfo.IsActive = value; }
         public int UserRole { get => UserData.UserRole; set => UserData.UserRole = value; }
         public int CircleID { get => UserData.CircleID; set => UserData.CircleID = value; }
+        public string ImagePath { get => UserData.PersonInfo.ImagePath; set => UserData.PersonInfo.ImagePath = value; }
+
         public clsEntityCircle CircleInfo { get => UserData.CircleInfo; set => UserData.CircleInfo = value; }
         public bool HasCircle { get => UserData.HasCircle; }
         public string CircleName { get => UserData.CircleName; }
