@@ -33,8 +33,9 @@
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.gb_StudentPhoto = new System.Windows.Forms.GroupBox();
+            this.btn_RemoveImage = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_UploadTheImage = new System.Windows.Forms.Button();
+            this.btn_UploadImage = new System.Windows.Forms.Button();
             this.ptb_PersonalPhoto = new System.Windows.Forms.PictureBox();
             this.gb_PersonalData = new System.Windows.Forms.GroupBox();
             this.dtp_DateOfBirth = new System.Windows.Forms.DateTimePicker();
@@ -55,19 +56,23 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txt_Phone = new System.Windows.Forms.TextBox();
             this.gb_CircuitData = new System.Windows.Forms.GroupBox();
-            this.cmb_StartingPart = new System.Windows.Forms.ComboBox();
+            this.cmb_Aya = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmb_Surahs = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmb_Circles = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
-            this.lbl_CompleteTheRemainingLoop = new System.Windows.Forms.Label();
+            this.lbl_Capacity = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.pnl_SectionFotter = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Clean = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gb_StudentPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_PersonalPhoto)).BeginInit();
             this.gb_PersonalData.SuspendLayout();
@@ -75,6 +80,7 @@
             this.gb_CircuitData.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnl_SectionFotter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList2
@@ -95,8 +101,9 @@
             // 
             // gb_StudentPhoto
             // 
+            this.gb_StudentPhoto.Controls.Add(this.btn_RemoveImage);
             this.gb_StudentPhoto.Controls.Add(this.label1);
-            this.gb_StudentPhoto.Controls.Add(this.btn_UploadTheImage);
+            this.gb_StudentPhoto.Controls.Add(this.btn_UploadImage);
             this.gb_StudentPhoto.Controls.Add(this.ptb_PersonalPhoto);
             this.gb_StudentPhoto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_StudentPhoto.Location = new System.Drawing.Point(787, 101);
@@ -106,6 +113,29 @@
             this.gb_StudentPhoto.TabStop = false;
             this.gb_StudentPhoto.Text = "صورة الطالب";
             // 
+            // btn_RemoveImage
+            // 
+            this.btn_RemoveImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_RemoveImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_RemoveImage.FlatAppearance.BorderSize = 0;
+            this.btn_RemoveImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_RemoveImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_RemoveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RemoveImage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RemoveImage.ForeColor = System.Drawing.Color.White;
+            this.btn_RemoveImage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_RemoveImage.ImageList = this.imageList1;
+            this.btn_RemoveImage.Location = new System.Drawing.Point(58, 366);
+            this.btn_RemoveImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_RemoveImage.Name = "btn_RemoveImage";
+            this.btn_RemoveImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_RemoveImage.Size = new System.Drawing.Size(220, 55);
+            this.btn_RemoveImage.TabIndex = 13;
+            this.btn_RemoveImage.Text = "إزالة الصورة";
+            this.btn_RemoveImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_RemoveImage.UseVisualStyleBackColor = false;
+            this.btn_RemoveImage.Click += new System.EventHandler(this.btn_RemoveImage_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -113,46 +143,46 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(32, 419);
+            this.label1.Location = new System.Drawing.Point(30, 431);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(263, 46);
             this.label1.TabIndex = 29;
             this.label1.Text = "يفضل أن تكون الصورة بخلفية فاتحة\r\n وبدقة عالية (JPG, PNG)";
             // 
-            // btn_UploadTheImage
+            // btn_UploadImage
             // 
-            this.btn_UploadTheImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
-            this.btn_UploadTheImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_UploadTheImage.FlatAppearance.BorderSize = 0;
-            this.btn_UploadTheImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(190)))), ((int)(((byte)(70)))));
-            this.btn_UploadTheImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(190)))), ((int)(((byte)(70)))));
-            this.btn_UploadTheImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_UploadTheImage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_UploadTheImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(111)))), ((int)(((byte)(14)))));
-            this.btn_UploadTheImage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_UploadTheImage.ImageIndex = 0;
-            this.btn_UploadTheImage.ImageList = this.imageList1;
-            this.btn_UploadTheImage.Location = new System.Drawing.Point(58, 320);
-            this.btn_UploadTheImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_UploadTheImage.Name = "btn_UploadTheImage";
-            this.btn_UploadTheImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_UploadTheImage.Size = new System.Drawing.Size(220, 55);
-            this.btn_UploadTheImage.TabIndex = 30;
-            this.btn_UploadTheImage.Text = "رفع الصورة";
-            this.btn_UploadTheImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_UploadTheImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_UploadTheImage.UseVisualStyleBackColor = false;
+            this.btn_UploadImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
+            this.btn_UploadImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_UploadImage.FlatAppearance.BorderSize = 0;
+            this.btn_UploadImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(190)))), ((int)(((byte)(70)))));
+            this.btn_UploadImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(190)))), ((int)(((byte)(70)))));
+            this.btn_UploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_UploadImage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_UploadImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(111)))), ((int)(((byte)(14)))));
+            this.btn_UploadImage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_UploadImage.ImageIndex = 0;
+            this.btn_UploadImage.ImageList = this.imageList1;
+            this.btn_UploadImage.Location = new System.Drawing.Point(58, 297);
+            this.btn_UploadImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_UploadImage.Name = "btn_UploadImage";
+            this.btn_UploadImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_UploadImage.Size = new System.Drawing.Size(220, 55);
+            this.btn_UploadImage.TabIndex = 12;
+            this.btn_UploadImage.Text = "رفع الصورة";
+            this.btn_UploadImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_UploadImage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_UploadImage.UseVisualStyleBackColor = false;
+            this.btn_UploadImage.Click += new System.EventHandler(this.btn_UploadImage_Click);
             // 
             // ptb_PersonalPhoto
             // 
             this.ptb_PersonalPhoto.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_PersonalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ptb_PersonalPhoto.Image = global::UI.Properties.Resources.Ic_PersonalPhoto;
             this.ptb_PersonalPhoto.Location = new System.Drawing.Point(58, 55);
             this.ptb_PersonalPhoto.Name = "ptb_PersonalPhoto";
-            this.ptb_PersonalPhoto.Size = new System.Drawing.Size(220, 198);
-            this.ptb_PersonalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptb_PersonalPhoto.Size = new System.Drawing.Size(220, 234);
+            this.ptb_PersonalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb_PersonalPhoto.TabIndex = 29;
             this.ptb_PersonalPhoto.TabStop = false;
             // 
@@ -185,7 +215,7 @@
             this.dtp_DateOfBirth.Location = new System.Drawing.Point(476, 284);
             this.dtp_DateOfBirth.Name = "dtp_DateOfBirth";
             this.dtp_DateOfBirth.Size = new System.Drawing.Size(254, 34);
-            this.dtp_DateOfBirth.TabIndex = 19;
+            this.dtp_DateOfBirth.TabIndex = 5;
             // 
             // label7
             // 
@@ -209,8 +239,9 @@
             this.txt_SeatingID.Multiline = true;
             this.txt_SeatingID.Name = "txt_SeatingID";
             this.txt_SeatingID.Size = new System.Drawing.Size(262, 41);
-            this.txt_SeatingID.TabIndex = 18;
-            this.txt_SeatingID.Tag = "";
+            this.txt_SeatingID.TabIndex = 6;
+            this.txt_SeatingID.Tag = "رقم الجلوس";
+            this.txt_SeatingID.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label8
             // 
@@ -246,8 +277,9 @@
             this.txt_LastName.Multiline = true;
             this.txt_LastName.Name = "txt_LastName";
             this.txt_LastName.Size = new System.Drawing.Size(262, 41);
-            this.txt_LastName.TabIndex = 14;
-            this.txt_LastName.Tag = "";
+            this.txt_LastName.TabIndex = 4;
+            this.txt_LastName.Tag = "اسم الأخير";
+            this.txt_LastName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label5
             // 
@@ -271,8 +303,9 @@
             this.txt_SecondName.Multiline = true;
             this.txt_SecondName.Name = "txt_SecondName";
             this.txt_SecondName.Size = new System.Drawing.Size(262, 41);
-            this.txt_SecondName.TabIndex = 12;
-            this.txt_SecondName.Tag = "";
+            this.txt_SecondName.TabIndex = 2;
+            this.txt_SecondName.Tag = "اسم التاني";
+            this.txt_SecondName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label4
             // 
@@ -296,8 +329,9 @@
             this.txt_ThirdName.Multiline = true;
             this.txt_ThirdName.Name = "txt_ThirdName";
             this.txt_ThirdName.Size = new System.Drawing.Size(254, 41);
-            this.txt_ThirdName.TabIndex = 10;
-            this.txt_ThirdName.Tag = "";
+            this.txt_ThirdName.TabIndex = 3;
+            this.txt_ThirdName.Tag = "اسم الثالث";
+            this.txt_ThirdName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label3
             // 
@@ -321,8 +355,9 @@
             this.txt_FirstName.Multiline = true;
             this.txt_FirstName.Name = "txt_FirstName";
             this.txt_FirstName.Size = new System.Drawing.Size(254, 41);
-            this.txt_FirstName.TabIndex = 8;
-            this.txt_FirstName.Tag = "";
+            this.txt_FirstName.TabIndex = 1;
+            this.txt_FirstName.Tag = "اسم الأول";
+            this.txt_FirstName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // gb_ContactInformation
             // 
@@ -360,8 +395,9 @@
             this.txt_Address.Multiline = true;
             this.txt_Address.Name = "txt_Address";
             this.txt_Address.Size = new System.Drawing.Size(262, 41);
-            this.txt_Address.TabIndex = 12;
-            this.txt_Address.Tag = "";
+            this.txt_Address.TabIndex = 8;
+            this.txt_Address.Tag = "العنوان";
+            this.txt_Address.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label14
             // 
@@ -385,12 +421,16 @@
             this.txt_Phone.Multiline = true;
             this.txt_Phone.Name = "txt_Phone";
             this.txt_Phone.Size = new System.Drawing.Size(254, 41);
-            this.txt_Phone.TabIndex = 8;
-            this.txt_Phone.Tag = "";
+            this.txt_Phone.TabIndex = 7;
+            this.txt_Phone.Tag = "رقم ولي الأمر";
+            this.txt_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Phone_KeyPress);
+            this.txt_Phone.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // gb_CircuitData
             // 
-            this.gb_CircuitData.Controls.Add(this.cmb_StartingPart);
+            this.gb_CircuitData.Controls.Add(this.cmb_Aya);
+            this.gb_CircuitData.Controls.Add(this.label9);
+            this.gb_CircuitData.Controls.Add(this.cmb_Surahs);
             this.gb_CircuitData.Controls.Add(this.label11);
             this.gb_CircuitData.Controls.Add(this.cmb_Circles);
             this.gb_CircuitData.Controls.Add(this.label10);
@@ -402,55 +442,61 @@
             this.gb_CircuitData.TabStop = false;
             this.gb_CircuitData.Text = "بيانات الحلقة";
             // 
-            // cmb_StartingPart
+            // cmb_Aya
             // 
-            this.cmb_StartingPart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_StartingPart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_StartingPart.FormattingEnabled = true;
-            this.cmb_StartingPart.Items.AddRange(new object[] {
-            " جزء عمَّ",
-            "",
-            " جزء تبارك",
-            "",
-            " جزء قد سمع",
-            "",
-            " جزء الذاريات",
-            "",
-            " جزء حم (الأحقاف)",
-            "",
-            " جزء فُصلت",
-            ""});
-            this.cmb_StartingPart.Location = new System.Drawing.Point(335, 66);
-            this.cmb_StartingPart.Name = "cmb_StartingPart";
-            this.cmb_StartingPart.Size = new System.Drawing.Size(183, 36);
-            this.cmb_StartingPart.TabIndex = 36;
+            this.cmb_Aya.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Aya.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_Aya.FormattingEnabled = true;
+            this.cmb_Aya.Location = new System.Drawing.Point(6, 66);
+            this.cmb_Aya.Name = "cmb_Aya";
+            this.cmb_Aya.Size = new System.Drawing.Size(281, 36);
+            this.cmb_Aya.TabIndex = 11;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.label9.Location = new System.Drawing.Point(237, 34);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 28);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "الآية";
+            // 
+            // cmb_Surahs
+            // 
+            this.cmb_Surahs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Surahs.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_Surahs.FormattingEnabled = true;
+            this.cmb_Surahs.Location = new System.Drawing.Point(335, 66);
+            this.cmb_Surahs.Name = "cmb_Surahs";
+            this.cmb_Surahs.Size = new System.Drawing.Size(183, 36);
+            this.cmb_Surahs.TabIndex = 10;
+            this.cmb_Surahs.SelectedIndexChanged += new System.EventHandler(this.cmb_Surahs_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label11.Location = new System.Drawing.Point(429, 36);
+            this.label11.Location = new System.Drawing.Point(456, 34);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 28);
+            this.label11.Size = new System.Drawing.Size(67, 28);
             this.label11.TabIndex = 35;
-            this.label11.Text = "جزء البداية";
+            this.label11.Text = "السورة";
             // 
             // cmb_Circles
             // 
             this.cmb_Circles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Circles.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_Circles.FormattingEnabled = true;
-            this.cmb_Circles.Items.AddRange(new object[] {
-            "حلقة النصر",
-            "حلقة الكهف",
-            "حلقة الملك",
-            "حلقة الإحسان"});
             this.cmb_Circles.Location = new System.Drawing.Point(562, 66);
             this.cmb_Circles.Name = "cmb_Circles";
             this.cmb_Circles.Size = new System.Drawing.Size(183, 36);
-            this.cmb_Circles.TabIndex = 34;
+            this.cmb_Circles.TabIndex = 9;
+            this.cmb_Circles.SelectedIndexChanged += new System.EventHandler(this.cmb_Circles_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -468,7 +514,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.lbl_CompleteTheRemainingLoop);
+            this.panel1.Controls.Add(this.lbl_Capacity);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Location = new System.Drawing.Point(787, 620);
             this.panel1.Name = "panel1";
@@ -489,19 +535,19 @@
             this.label15.TabIndex = 31;
             this.label15.Text = "يتم تحديث البيانات تلقائياً عند حفظ\r\n الطالب الجديد";
             // 
-            // lbl_CompleteTheRemainingLoop
+            // lbl_Capacity
             // 
-            this.lbl_CompleteTheRemainingLoop.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_CompleteTheRemainingLoop.AutoSize = true;
-            this.lbl_CompleteTheRemainingLoop.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_CompleteTheRemainingLoop.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_CompleteTheRemainingLoop.ForeColor = System.Drawing.Color.White;
-            this.lbl_CompleteTheRemainingLoop.Location = new System.Drawing.Point(15, 22);
-            this.lbl_CompleteTheRemainingLoop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_CompleteTheRemainingLoop.Name = "lbl_CompleteTheRemainingLoop";
-            this.lbl_CompleteTheRemainingLoop.Size = new System.Drawing.Size(63, 31);
-            this.lbl_CompleteTheRemainingLoop.TabIndex = 30;
-            this.lbl_CompleteTheRemainingLoop.Text = "15/5";
+            this.lbl_Capacity.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_Capacity.AutoSize = true;
+            this.lbl_Capacity.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_Capacity.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Capacity.ForeColor = System.Drawing.Color.White;
+            this.lbl_Capacity.Location = new System.Drawing.Point(15, 22);
+            this.lbl_Capacity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Capacity.Name = "lbl_Capacity";
+            this.lbl_Capacity.Size = new System.Drawing.Size(63, 31);
+            this.lbl_Capacity.TabIndex = 30;
+            this.lbl_Capacity.Text = "15/5";
             // 
             // label13
             // 
@@ -534,6 +580,7 @@
             this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
             this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Cancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.btn_Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.btn_Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -543,16 +590,17 @@
             this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Cancel.ImageIndex = 4;
             this.btn_Cancel.ImageList = this.imageList1;
-            this.btn_Cancel.Location = new System.Drawing.Point(869, 20);
+            this.btn_Cancel.Location = new System.Drawing.Point(25, 20);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Cancel.Size = new System.Drawing.Size(230, 55);
-            this.btn_Cancel.TabIndex = 10;
+            this.btn_Cancel.TabIndex = 16;
             this.btn_Cancel.Text = "إلغاء العملية";
             this.btn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // btn_Clean
             // 
@@ -568,16 +616,17 @@
             this.btn_Clean.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Clean.ImageIndex = 3;
             this.btn_Clean.ImageList = this.imageList1;
-            this.btn_Clean.Location = new System.Drawing.Point(295, 20);
+            this.btn_Clean.Location = new System.Drawing.Point(660, 20);
             this.btn_Clean.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_Clean.Name = "btn_Clean";
             this.btn_Clean.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Clean.Size = new System.Drawing.Size(230, 55);
-            this.btn_Clean.TabIndex = 9;
+            this.btn_Clean.TabIndex = 15;
             this.btn_Clean.Text = "تنظيف الحقول";
             this.btn_Clean.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Clean.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Clean.UseVisualStyleBackColor = false;
+            this.btn_Clean.Click += new System.EventHandler(this.btn_Clean_Click);
             // 
             // btn_Save
             // 
@@ -593,16 +642,17 @@
             this.btn_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Save.ImageIndex = 2;
             this.btn_Save.ImageList = this.imageList1;
-            this.btn_Save.Location = new System.Drawing.Point(40, 20);
+            this.btn_Save.Location = new System.Drawing.Point(898, 20);
             this.btn_Save.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Save.Size = new System.Drawing.Size(230, 55);
-            this.btn_Save.TabIndex = 8;
+            this.btn_Save.TabIndex = 14;
             this.btn_Save.Text = "حفظ الطالب";
             this.btn_Save.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // btn_Close
             // 
@@ -628,11 +678,22 @@
             this.btn_Close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Close.UseVisualStyleBackColor = false;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmAddAndUpdateStudent
             // 
+            this.AcceptButton = this.btn_Save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(240)))));
+            this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(1152, 921);
             this.Controls.Add(this.pnl_SectionFotter);
             this.Controls.Add(this.panel1);
@@ -643,6 +704,7 @@
             this.Name = "frmAddAndUpdateStudent";
             this.Text = "frmAddAndUpdateStudent";
             this.Load += new System.EventHandler(this.frmAddAndUpdateStudent_Load);
+            this.Shown += new System.EventHandler(this.frmAddAndUpdateStudent_Shown);
             this.Controls.SetChildIndex(this.gb_StudentPhoto, 0);
             this.Controls.SetChildIndex(this.gb_PersonalData, 0);
             this.Controls.SetChildIndex(this.gb_ContactInformation, 0);
@@ -661,6 +723,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnl_SectionFotter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -669,7 +732,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.GroupBox gb_StudentPhoto;
         private System.Windows.Forms.PictureBox ptb_PersonalPhoto;
-        private System.Windows.Forms.Button btn_UploadTheImage;
+        private System.Windows.Forms.Button btn_UploadImage;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gb_PersonalData;
@@ -691,12 +754,12 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txt_Phone;
         private System.Windows.Forms.GroupBox gb_CircuitData;
-        private System.Windows.Forms.ComboBox cmb_StartingPart;
+        private System.Windows.Forms.ComboBox cmb_Surahs;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmb_Circles;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl_CompleteTheRemainingLoop;
+        private System.Windows.Forms.Label lbl_Capacity;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel pnl_SectionFotter;
@@ -704,5 +767,10 @@
         private System.Windows.Forms.Button btn_Clean;
         private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btn_RemoveImage;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox cmb_Aya;
+        private System.Windows.Forms.Label label9;
     }
 }
