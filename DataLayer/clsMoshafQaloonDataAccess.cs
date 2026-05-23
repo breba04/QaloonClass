@@ -46,7 +46,7 @@ namespace DataLayer
             using (SqlCommand cmd = new SqlCommand("SP_GetAllAyatFromSurrah", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SurrahNo", SurrahNo);
+                cmd.Parameters.AddWithValue("@SurraID", SurrahNo);
                 try
                 {
                     conn.Open();
