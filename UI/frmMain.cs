@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.GlobalClasses;
+using UI.Students;
 using UI.UserControls;
 
 namespace UI
@@ -71,7 +72,8 @@ namespace UI
 
         private void btn_AddNewStudent_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Add New Student");
+           frmAddAndUpdateStudent addStudentForm = new frmAddAndUpdateStudent();
+            addStudentForm.ShowDialog();
         }
 
         private void btn_LogOut_Click(object sender, EventArgs e)

@@ -240,6 +240,7 @@
             this.AcceptButton = this.btn_Login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btn_Close;
             this.ClientSize = new System.Drawing.Size(998, 544);
             this.Controls.Add(this.btn_Login);

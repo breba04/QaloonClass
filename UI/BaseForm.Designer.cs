@@ -61,7 +61,6 @@
             // 
             this.btn_Minimize.BackColor = System.Drawing.Color.Transparent;
             this.btn_Minimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Minimize.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Minimize.Dock = System.Windows.Forms.DockStyle.Left;
             this.btn_Minimize.FlatAppearance.BorderSize = 0;
             this.btn_Minimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))), ((int)(((byte)(229)))));
@@ -71,11 +70,11 @@
             this.btn_Minimize.ForeColor = System.Drawing.Color.White;
             this.btn_Minimize.ImageIndex = 1;
             this.btn_Minimize.ImageList = this.imageList1;
-            this.btn_Minimize.Location = new System.Drawing.Point(55, 0);
+            this.btn_Minimize.Location = new System.Drawing.Point(54, 0);
             this.btn_Minimize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_Minimize.Name = "btn_Minimize";
-            this.btn_Minimize.Size = new System.Drawing.Size(55, 54);
-            this.btn_Minimize.TabIndex = 32;
+            this.btn_Minimize.Size = new System.Drawing.Size(54, 54);
+            this.btn_Minimize.TabIndex = 33;
             this.btn_Minimize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Minimize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Minimize.UseVisualStyleBackColor = false;
@@ -105,7 +104,7 @@
             this.btn_Close.Location = new System.Drawing.Point(0, 0);
             this.btn_Close.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_Close.Name = "btn_Close";
-            this.btn_Close.Size = new System.Drawing.Size(55, 54);
+            this.btn_Close.Size = new System.Drawing.Size(54, 54);
             this.btn_Close.TabIndex = 30;
             this.btn_Close.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
