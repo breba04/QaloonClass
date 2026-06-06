@@ -1,6 +1,7 @@
 ﻿using EntityLayer;
 using System;
 using System.Windows.Forms;
+using UI.GlobalClasses;
 using UI.Login;
 
 namespace UI
@@ -22,7 +23,7 @@ namespace UI
 
                 if (loginForm.ShowDialog() == DialogResult.OK)
                 {
-
+                    AppBootstrap.Initialize();
                     Application.Run(new frmMain());
                 }
                 else

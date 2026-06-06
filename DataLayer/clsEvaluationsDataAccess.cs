@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using EntityLayer;
+using DataLayer;
 
 namespace DataAccessLayer
 {
     public class clsEvaluationsDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public int AddEvaluation(clsEntityEvaluation EntityEvaluation)
         {
-            int result = default(Int32);
+            int result = -1;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_InsertEvaluation", conn))
                 {
@@ -38,7 +39,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -49,7 +50,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_UpdateEvaluation", conn))
                 {
@@ -59,7 +60,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@FromAyahID", EntityEvaluation.FromAyahID);
                     cmd.Parameters.AddWithValue("@ToAyahID", EntityEvaluation.ToAyahID);
                     cmd.Parameters.AddWithValue("@EvalDate", EntityEvaluation.EvalDate);
-                    cmd.Parameters.AddWithValue("@EvalDate", EntityEvaluation.EvalType);
+                    cmd.Parameters.AddWithValue("@EvalType", EntityEvaluation.EvalType);
                     cmd.Parameters.AddWithValue("@IsEvaluationTaken", EntityEvaluation.IsEvaluationTaken);
                     cmd.Parameters.AddWithValue("@Rate", EntityEvaluation.Rate == null ? DBNull.Value : (object)EntityEvaluation.Rate);
                     cmd.Parameters.AddWithValue("@Notes", string.IsNullOrEmpty(EntityEvaluation.Notes) ? DBNull.Value : (object)EntityEvaluation.Notes);
@@ -70,7 +71,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateEvaluation", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateEvaluation", DateTime.Now, null);
                     }
                 }
             }
@@ -81,7 +82,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteEvaluation", conn))
                 {
@@ -95,20 +96,20 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
             return result > 0;
         }
 
-        static public DataTable SelectAllEvaluations(DateTime From,DateTime To)
+        static public DataTable SelectAllEvaluationsTaken(DateTime From,DateTime To)
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SP_SelectAllEvaluations", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllEvaluationsTaken", conn))
                 {
                     cmd.Parameters.AddWithValue("@FromDate",From);
                     cmd.Parameters.AddWithValue("@ToDate",To);
@@ -124,7 +125,34 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+        
+        static public DataTable SelectAllEvaluationsNotTaken()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllEvaluationsNotTaken", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllEvaluationsNotTaken", DateTime.Now, null);
                     }
                 }
             }
@@ -135,7 +163,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllTestType", conn))
                 {
@@ -151,7 +179,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -162,7 +190,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectEvaluationBy", conn))
                 {
@@ -179,7 +207,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -189,16 +217,20 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_FindEvaluationByID", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@StudentID", evaluation.StudentID);
-                    cmd.Parameters.Add("@FromAyahID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@ToAyahID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@EvalDate", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@EvalType", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.AddWithValue("@EvaluationID", evaluation.EvaluationID);
+                    cmd.Parameters.Add("@StudentID", SqlDbType.SmallInt).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@FromAyahID", SqlDbType.SmallInt).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@ToAyahID", SqlDbType.SmallInt).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@EvalDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@EvalType", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@IsEvaluationTaken", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Rate", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Notes", SqlDbType.NVarChar,-1).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 
                     try
@@ -211,13 +243,16 @@ namespace DataAccessLayer
                             evaluation.StudentID = Convert.ToInt32(cmd.Parameters["@StudentID"].Value);
                             evaluation.FromAyahID = Convert.ToInt16(cmd.Parameters["@FromAyahID"].Value);
                             evaluation.ToAyahID = Convert.ToInt16(cmd.Parameters["@ToAyahID"].Value);
+                            evaluation.IsEvaluationTaken = Convert.ToBoolean(cmd.Parameters["@IsEvaluationTaken"].Value);
                             evaluation.EvalDate = Convert.ToDateTime(cmd.Parameters["@EvalDate"].Value);
-                            evaluation.EvalType = Convert.ToByte(cmd.Parameters["@EvalDate"].Value);
+                            evaluation.EvalType = Convert.ToByte(cmd.Parameters["@EvalType"].Value);
+                            evaluation.Rate = Convert.ToByte(cmd.Parameters["@Rate"].Value);
+                            evaluation.Notes = Convert.ToString(cmd.Parameters["@Notes"].Value);
                         }
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindEvaluation", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindEvaluation", DateTime.Now, null);
                     }
                 }
             }
@@ -227,7 +262,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsEvaluationExist", conn))
                 {
@@ -243,11 +278,34 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                                                clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
             return result;
         }
+        static public int GetNumberOfStudentsNotTakeEvaluationInMonth()
+        {
+            int NumberOfStudents = 0;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetNumberOfStudentsNotTakeEvaluationInMonth", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@NumberOfStudentsNotTakeEvaluation", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    NumberOfStudents = Convert.ToInt32(cmd.Parameters["@NumberOfStudentsNotTakeEvaluation"].Value);
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNumberOfStudentsNotTakeEvaluationInMonth", DateTime.Now, null);
+                }
+            }
+            return NumberOfStudents;
+        }
+
     }
 }

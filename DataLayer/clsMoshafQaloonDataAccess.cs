@@ -12,13 +12,13 @@ namespace DataLayer
 {
     public class clsMoshafQaloonDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public DataTable GetAllSurrah()
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_GetAllSurrah", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -33,7 +33,7 @@ namespace DataLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAllSurrah", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllSurrah", DateTime.Now, null);
                 }
             }
             return result;
@@ -42,7 +42,7 @@ namespace DataLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_GetAlljazza", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -57,7 +57,7 @@ namespace DataLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAlljazza", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAlljazza", DateTime.Now, null);
                 }
             }
             return result;
@@ -66,7 +66,7 @@ namespace DataLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_GetAllAyatFromSurrah", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -82,7 +82,7 @@ namespace DataLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
                 }
             }
             return result;

@@ -2,18 +2,19 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 using EntityLayer;
 
 namespace DataAccessLayer
 {
     public class clsAttendanceDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
         static public int AddAttendance(clsEntityAttendance EntityAttendance)
         {
             int result = default(Int32);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_InsertAttendance", conn))
                 {
@@ -31,7 +32,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message ,-1,clsLogger.enLogType.Error,clsLogger.enLogLevel.DataLayer, "AddAttendance", DateTime.Now,null);
+                        clsErrorLogger.AddLogToDB(ex.Message ,-1,clsErrorLogger.enLogType.Error,clsErrorLogger.enLogLevel.DataLayer, "AddAttendance", DateTime.Now,null);
                     }
                 }
             }
@@ -41,7 +42,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_UpdateAttendance", conn))
                 {
@@ -58,7 +59,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateAttendance", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateAttendance", DateTime.Now, null);
                     }
                 }
             }
@@ -68,7 +69,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteAttendance", conn))
                 {
@@ -82,7 +83,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteAttendance", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteAttendance", DateTime.Now, null);
 
                     }
                 }
@@ -93,7 +94,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllAttendances", conn))
                 {
@@ -110,7 +111,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllAttendances", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllAttendances", DateTime.Now, null);
                     }
                 }
             }
@@ -120,7 +121,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllAttendancesStatus", conn))
                 {
@@ -136,7 +137,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllAttendancesStatus", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllAttendancesStatus", DateTime.Now, null);
 
                     }
                 }
@@ -147,7 +148,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsAttendanceExist", conn))
                 {
@@ -163,7 +164,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
                     }
                 }
             }
@@ -173,7 +174,7 @@ namespace DataAccessLayer
         {
             bool isExist = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsAttendanceExistsToday", conn))
                 {
@@ -191,7 +192,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
                     }
                 }
             }
@@ -202,7 +203,7 @@ namespace DataAccessLayer
         {
             bool result = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_FindAttendanceByStudentID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -228,7 +229,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
                 }
             }
 

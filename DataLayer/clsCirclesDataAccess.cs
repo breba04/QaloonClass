@@ -2,19 +2,20 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 using EntityLayer;
 
 namespace DataAccessLayer
 {
     public class clsCirclesDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public int AddCircle(clsEntityCircle EntityCircle)
         {
-            int result = default(Int32);
+            int result = -1;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_InsertCircle", conn))
                 {
@@ -32,7 +33,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -42,7 +43,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_UpdateCircles", conn))
                 {
@@ -59,7 +60,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -69,7 +70,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteCircle", conn))
                 {
@@ -83,7 +84,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -93,7 +94,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllCircless", conn))
                 {
@@ -109,7 +110,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
                     }
                 }
             }
@@ -119,7 +120,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectCircleBy", conn))
                 {
@@ -136,7 +137,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "SelectCircleBy", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectCircleBy", DateTime.Now, null);
                     }
                 }
             }
@@ -146,7 +147,7 @@ namespace DataAccessLayer
         {
             bool IsFound = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_FindByCircleID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -182,7 +183,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser==null?-1: clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FundCircleByID", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser==null?-1: clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FundCircleByID", DateTime.Now, null);
                 }
             }
 
@@ -192,7 +193,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsCircleExist", conn))
                 {
@@ -208,7 +209,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "IsCircleExist", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "IsCircleExist", DateTime.Now, null);
                     }
                 }
             }
@@ -218,7 +219,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_AddingSeatsInCircle", conn))
                 {
@@ -238,7 +239,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddingSeatsInCircle", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddingSeatsInCircle", DateTime.Now, null);
                     }
                 }
             }
@@ -248,7 +249,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetAllCircleView", conn))
                 {
@@ -265,7 +266,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetAllCircleView", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllCircleView", DateTime.Now, null);
                     }
                 }
             }
@@ -274,7 +275,7 @@ namespace DataAccessLayer
         static public byte GetTotalPagesRecordsInCircleView(byte RecordInPage)
         {
             byte result = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetTotalPagesRecordsInCircleView", conn))
                 {
@@ -289,7 +290,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
                     }
                 }
             }
@@ -298,7 +299,7 @@ namespace DataAccessLayer
         static public short GetNewCirclesStatsLastMonth()
         {
             short result = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetNewCirclesStatsLastMonth", conn))
                 {
@@ -313,7 +314,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
                     }
                 }
             }
@@ -322,7 +323,7 @@ namespace DataAccessLayer
         static public byte GetRemainingSeatsInClass(int CircleID)
         {
             byte result = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetRemainingSeatsInClass", conn))
                 {
@@ -337,7 +338,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetRemainingSeatsInClass", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetRemainingSeatsInClass", DateTime.Now, null);
                     }
                 }
             }
@@ -346,7 +347,7 @@ namespace DataAccessLayer
         static public int GetSupervisorByCircleID(int CircleID)
         {
             int TeacherID = -1;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetSupervisorByCircleID", conn))
                 {
@@ -361,7 +362,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetSupervisorByCircleID", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetSupervisorByCircleID", DateTime.Now, null);
                     }
                 }
             }
@@ -370,7 +371,7 @@ namespace DataAccessLayer
         static public DataTable GetllEpisodesTeacher(int TeacherID)
         {
             DataTable Circles = new DataTable ();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetllEpisodesTeacher", conn))
                 {
@@ -386,11 +387,34 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message,clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetllEpisodesTeacher", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message,clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetllEpisodesTeacher", DateTime.Now, null);
                     }
                 }
             }
             return Circles;
         }
+        static public byte GetNumberOfAvailableSeats()
+        {
+            byte NumberOfAvailableSeats = 0;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetNumberOfAvailableSeats", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@NumberOfAvailableSeats", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    NumberOfAvailableSeats = Convert.ToByte(cmd.Parameters["@NumberOfAvailableSeats"].Value);
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNumberOfAvailableSeats", DateTime.Now, null);
+                }
+            }
+            return NumberOfAvailableSeats;
+        }
+
     }
 }

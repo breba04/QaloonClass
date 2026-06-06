@@ -2,19 +2,20 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 using EntityLayer;
 
 namespace DataAccessLayer
 {
     public class clsStudentsDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public int AddStudent(clsEntityStudent entity)
         {
-            int result = 0;
+            int result = -1;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_InsertStudents", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -25,7 +26,6 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@LastName", entity.PersonInfo.LastName);
                 cmd.Parameters.AddWithValue("@BirthDate", entity.PersonInfo.BirthDate);
                 cmd.Parameters.AddWithValue("@Address", entity.PersonInfo.Address);
-                cmd.Parameters.AddWithValue("@IsActive", entity.PersonInfo.IsActive);
                 cmd.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(entity.PersonInfo.ImagePath) ? DBNull.Value : (object)entity.PersonInfo.ImagePath);
 
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddStudent", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddStudent", DateTime.Now, null);
                 }
             }
             return result;
@@ -49,7 +49,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_UpdateStudents", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -77,7 +77,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateStudent", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateStudent", DateTime.Now, null);
                 }
             }
             return result > 0;
@@ -85,7 +85,7 @@ namespace DataAccessLayer
         static public int DeleteStudent(int StudentID)
         {
             int rowsAffected = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteStudents", conn))
                 {
@@ -101,7 +101,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteStudent", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteStudent", DateTime.Now, null);
                     }
 
                 }
@@ -114,7 +114,7 @@ namespace DataAccessLayer
         {
             bool result = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_IsStudentExist", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -129,7 +129,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -138,7 +138,7 @@ namespace DataAccessLayer
         {
             bool result = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_FindStudentByID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -190,7 +190,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
                 }
             }
 
@@ -200,7 +200,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudents", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -215,7 +215,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -224,7 +224,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsByCircleID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -239,7 +239,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -248,7 +248,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsByTeacherID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -263,7 +263,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -271,7 +271,7 @@ namespace DataAccessLayer
         static public short GetNewStudentsStatusLastMonth()
         {
             short result = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetNewStudentsStatsLastMonth", conn))
                 {
@@ -286,7 +286,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetNewStudentsStatsLastMonth", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewStudentsStatsLastMonth", DateTime.Now, null);
                     }
                 }
             }
@@ -295,7 +295,7 @@ namespace DataAccessLayer
         static public bool ChangeStudentStatus(int StudentID,bool IsActive)
         {
             bool isChange = false;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_ChangeStudentStatus", conn))
                 {
@@ -315,7 +315,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "ChangeStudentStatus", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "ChangeStudentStatus", DateTime.Now, null);
                     }
                 }
             }
@@ -324,7 +324,7 @@ namespace DataAccessLayer
         static public short GetTotalStudentAbsent(DateTime FromDate,DateTime ToDate)
         {
             short result = 0;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_GetTotalStudentAbsent", conn))
                 {
@@ -343,7 +343,29 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
+        static public int GetTotalActiceStudents()
+        {
+            int result = 0;
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetTotalActiceStudents", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null && int.TryParse(obj.ToString(), out result)) { }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
                     }
                 }
             }

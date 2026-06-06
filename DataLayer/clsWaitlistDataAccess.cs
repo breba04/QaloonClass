@@ -2,19 +2,20 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 using EntityLayer;
 
 namespace DataAccessLayer
 {
     public class clsWaitlistDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public int AddWaitlist(clsEntityWaitlist entity)
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_InsertWaitlist", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -39,7 +40,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -49,7 +50,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_UpdateWaitlist", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -72,7 +73,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result > 0;
@@ -81,7 +82,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_SelectAllWaitlists", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -96,7 +97,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -104,7 +105,7 @@ namespace DataAccessLayer
         public static bool DeleteWaitlist(int WaitlistID)
         {
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlConnection connection = new SqlConnection(clsConnectionString.ConnectionString);
 
             string query = @"DELETE Waitlist 
                      WHERE WaitlistID = @WaitlistID";
@@ -132,7 +133,7 @@ namespace DataAccessLayer
         {
             bool result = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_IsWaitlistExist", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -147,7 +148,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                                            clsLogger.AddLogToDB(ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
                 }
             }
             return result;
@@ -156,7 +157,7 @@ namespace DataAccessLayer
         {
             int StudentID = -1;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_TransferFromWaitlistToStudent", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -172,11 +173,32 @@ namespace DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "TransferFromWaitlistToStudent", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "TransferFromWaitlistToStudent", DateTime.Now, null);
                 }
             }
             return StudentID;
         }
+        static public byte GetNumberStudentsWating()
+        {
+            byte NumberStudentsWating = 0;
 
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetNumberStudentsWating", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@NumberStudentsWating", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    NumberStudentsWating = Convert.ToByte(cmd.Parameters["@NumberStudentsWating"].Value);
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNumberStudentsWating", DateTime.Now, null);
+                }
+            }
+            return NumberStudentsWating;
+        }
     }
 }

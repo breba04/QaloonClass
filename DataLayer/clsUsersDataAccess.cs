@@ -7,16 +7,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using EntityLayer;
+using DataLayer;
 namespace DataAccessLayer
 {
     public class clsUsersDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
         static public int AddUsers(clsEntityUser EntityUser)
         {
             int result = default(Int32);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_InsertUsers", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -42,7 +43,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "AddUsers", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddUsers", DateTime.Now, null);
                 }
             }
             return result;
@@ -51,7 +52,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_UpdateUsers", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -76,7 +77,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "UpdateUsers", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateUsers", DateTime.Now, null);
                 }
             }
             return result > 0;
@@ -86,7 +87,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteUsers", conn))
                 {
@@ -112,7 +113,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllUserss", conn))
                 {
@@ -141,7 +142,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllTeachers", conn))
                 {
@@ -170,7 +171,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectUsersBy", conn))
                 {
@@ -200,7 +201,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsUsersExist", conn))
                 {
@@ -229,7 +230,7 @@ namespace DataAccessLayer
         {
             bool IsLogin = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_Login", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -284,7 +285,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "Login", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "Login", DateTime.Now, null);
                 }
             }
 
@@ -294,7 +295,7 @@ namespace DataAccessLayer
         {
             bool IsFound = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             using (SqlCommand cmd = new SqlCommand("SP_FindByUserID", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -352,7 +353,7 @@ namespace DataAccessLayer
                 }
                 catch (Exception Ex)
                 {
-                    clsLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, "FindByUserID", DateTime.Now, null);
+                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindByUserID", DateTime.Now, null);
                 }
             }
 

@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using EntityLayer;
+using DataLayer;
 
 namespace DataAccessLayer
 {
     public class clsLoginDetailsDataAccess
     {
-        static private string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
 
         static public bool AddLoginDetails
         (clsEntityclsLoginDetails LoginDetails)
         {
             bool isAdded = false;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_InsertLoginDetails", conn))
                 {
@@ -54,7 +55,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_UpdateLoginDetails", conn))
                 {
@@ -86,7 +87,7 @@ namespace DataAccessLayer
         {
             int result = 0;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_DeleteLoginDetails", conn))
                 {
@@ -114,7 +115,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllLoginDetailss", conn))
                 {
@@ -141,7 +142,7 @@ namespace DataAccessLayer
         static public bool FindLoginDetailsByID(clsEntityclsLoginDetails LoginDetailsData)
         {
             bool IsFound = false;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
 
                 using (SqlCommand cmd = new SqlCommand("SP_GetLastLoginDetails", conn))
@@ -172,7 +173,7 @@ namespace DataAccessLayer
                     }
                     catch (Exception Ex)
                     {
-                        clsLogger.AddLogToDB(Ex.Message, -1, clsLogger.enLogType.Error, clsLogger.enLogLevel.DataLayer, " Login(clsEntityUser user)", DateTime.Now, null);
+                        clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, " Login(clsEntityUser user)", DateTime.Now, null);
                     }
                 }
                 return IsFound;
@@ -184,7 +185,7 @@ namespace DataAccessLayer
         {
             DataTable result = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectLoginDetailsBy", conn))
                 {
@@ -216,7 +217,7 @@ namespace DataAccessLayer
         {
             bool result = default(Boolean);
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_IsLoginDetailsExist", conn))
                 {

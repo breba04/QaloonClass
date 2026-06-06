@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,13 @@ namespace UI.Students
        private DataTable _dtCircles ;
        private DataTable _dtSurrahs;
        private DataTable _dtAyatFromSurrah;
+        clsStudents _Student;
+        clsStudentProgress _StudentProgress;
         public frmAddAndUpdateStudent()
         {
             InitializeComponent();
+            _Student = new clsStudents();
+            _StudentProgress = new clsStudentProgress();
         }
         private void _LoadCirclesData()
         {
@@ -101,6 +106,7 @@ namespace UI.Students
             if (_dtAyatFromSurrah != null && _dtAyatFromSurrah.Rows.Count > 0)
             {
                cmb_Aya.DisplayMember = "AyahText";
+               cmb_Aya.ValueMember = "MushafQaloonID";
                cmb_Aya.DataSource = _dtAyatFromSurrah;
             }
         }
@@ -136,7 +142,33 @@ namespace UI.Students
 
         private void _SetStudentData()
         {
-            //هنا بكون بجيب بيانات الطالب من الحقول وبخزنها في كائن من نوع Student
+            _Student.FirstName = txt_FirstName.Text.Trim();
+            _Student.SecodName = txt_SecondName.Text.Trim();
+            _Student.ThirdName = txt_ThirdName.Text.Trim();
+            _Student.LastName = txt_LastName.Text.Trim();
+            _Student.BirthDate = dtp_DateOfBirth.Value;
+            _Student.ParentPhone = txt_Phone.Text.Trim();
+            _Student.Address = txt_Address.Text.Trim();
+            _Student.CircleID =Convert.ToInt32(cmb_Circles.SelectedValue);
+            _Student.ImagePath = ptb_PersonalPhoto.ImageLocation;
+        }
+        private void _SetStudentProgrees()
+        {
+            _StudentProgress.StudentID = _Student.StudentID;
+            _StudentProgress.SurrahID = Convert.ToByte(cmb_Surahs.SelectedValue);
+            _StudentProgress.AyahID = Convert.ToInt16(cmb_Aya.SelectedValue);
+            _StudentProgress.TeacherID = clsCurrentUser.CurrentUser.UserID;
+        }
+        private void _CircleValdation( byte currentStudents, byte maxCapacity)
+        {
+            if (maxCapacity <= currentStudents)
+            {
+                errorProvider1.SetError(cmb_Circles, "الحلقة ممتلئة");
+            }
+            else
+            {
+                errorProvider1.SetError(cmb_Circles, "");
+            }
         }
         private void _UpdateSelectedCircleCapacityLabel()
         {
@@ -148,8 +180,11 @@ namespace UI.Students
                 byte currentStudents = Convert.ToByte(selectedRow["CurrentStudentNumbers"]);
 
                 _UpdateCapacityLabel(currentStudents, maxCapacity);
+
+                _CircleValdation(currentStudents, maxCapacity);
             }
         }
+        
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
             _UpdateSelectedCircleCapacityLabel();
@@ -157,6 +192,20 @@ namespace UI.Students
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren()) return;
+            _SetStudentData();
+            if(!_Student.Save())
+            {
+                MessageBox.Show( "لم يتم تسجيل الطالب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            _SetStudentProgrees();
+            if (!_StudentProgress.Save())
+            {
+                MessageBox.Show("لم يتم تسجيل تقدم الطالب","خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("تم تسجيل الطالب بنجاح","نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -172,7 +221,6 @@ namespace UI.Students
         {
              clsUtil.ValidateTextBoxRequired(sender, e, errorProvider1);
         }
-
         private void frmAddAndUpdateStudent_Shown(object sender, EventArgs e)
         {
             txt_FirstName.Focus();

@@ -66,6 +66,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalClasses\AppBootstrap.cs" />
     <Compile Include="GlobalClasses\Util.cs" />
     <Compile Include="GlobalClasses\Global.cs" />
     <Compile Include="Login\frmLogin.cs">
