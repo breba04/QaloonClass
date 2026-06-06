@@ -30,24 +30,20 @@ namespace BusinessLayer
             EntityWaitlist = new clsEntityWaitlist();
             _Mode = enMode.Add;
         }
-
         private clsWaitlist(clsEntityWaitlist EntityWaitlist)
         {
             this.EntityWaitlist = EntityWaitlist;
             _Mode = enMode.Update;
         }
-
         private bool AddWaitlist()
         {
             EntityWaitlist.WaitlistID = clsWaitlistDataAccess.AddWaitlist(EntityWaitlist);
             return EntityWaitlist.WaitlistID != default(int);
         }
-
         public bool UpdateWaitlist()
         {
             return clsWaitlistDataAccess.UpdateWaitlist(EntityWaitlist);
         }
-
         public bool Save()
         {
             if (_Mode == enMode.Add)
@@ -68,7 +64,6 @@ namespace BusinessLayer
                 throw new Exception("Invalid mode");
             }
         }
-
         public bool DeleteWaitlist()
         {
             return clsWaitlistDataAccess.DeleteWaitlist(EntityWaitlist.WaitlistID);
@@ -79,7 +74,6 @@ namespace BusinessLayer
                 return clsWaitlistDataAccess.DeleteWaitlist(WaitlistID);
             return false; 
         }
-
         static public DataTable SelectAllWaitlist()
         {
             return clsWaitlistDataAccess.SelectAllWaitlist();
@@ -99,6 +93,10 @@ namespace BusinessLayer
                 return clsWaitlistDataAccess.TransferFromWaitlistToStudent(waitlistId, CircleID, ImagePath);
 
             return -1;
+        }
+        static public byte GetNumberStudentsWating()
+        {
+            return clsWaitlistDataAccess.GetNumberStudentsWating();
         }
     }
 }

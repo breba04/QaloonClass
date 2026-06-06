@@ -35,11 +35,38 @@ namespace BusinessLayer
         private bool AddCircle()
         {
             EntityCircle.CircleID = clsCirclesDataAccess.AddCircle(EntityCircle);
-            return EntityCircle.CircleID != default(int);
+            if(EntityCircle.CircleID != -1)
+            {
+                var Log = new clsEntityActivityLog()
+                {
+                    ActionType = "إضافة حلقة",
+                    EntityType = "حلقة",
+                    EntityID = EntityCircle.CircleID
+                    ,
+                    UserID = clsCurrentUser.CurrentUser.UserID
+                };
+
+                clsEventManager.OnActivityAdded(this, Log);
+                return true;
+            }
+            return false;
         }
-        public bool UpdateCircle(clsEntityCircle EntityCircle)
+        public bool UpdateCircle()
         {
-            return clsCirclesDataAccess.UpdateCircle(EntityCircle);
+            if(clsCirclesDataAccess.UpdateCircle(EntityCircle))
+            {
+                var Log = new clsEntityActivityLog()
+                {
+                    ActionType = "تعديل حلقة",
+                    EntityType = "حلقة",
+                    EntityID = EntityCircle.CircleID,
+                    UserID = clsCurrentUser.CurrentUser.UserID
+                };
+
+                clsEventManager.OnActivityAdded(this, Log);
+                return true;
+            }
+            return false;
         }
         public bool Save()
         {
@@ -49,7 +76,7 @@ namespace BusinessLayer
             }
             else if (_Mode == enMode.Update)
             {
-                return UpdateCircle(EntityCircle);
+                return UpdateCircle();
             }
             else
             {
@@ -124,5 +151,10 @@ namespace BusinessLayer
         {
             return clsCirclesDataAccess.AddingSeatsInCircle(circleID, CountSeats);
         }
+        static public byte GetNumberOfAvailableSeats()
+        {
+            return clsCirclesDataAccess.GetNumberOfAvailableSeats();
+        }
+
     }
 }

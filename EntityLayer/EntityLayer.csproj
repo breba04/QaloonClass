@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCurrentUser.cs" />
+    <Compile Include="clsEntityActivityLog.cs" />
     <Compile Include="clsEntityclsLoginDetails.cs" />
     <Compile Include="clsEntityEvaluation.cs" />
     <Compile Include="clsEntityPerson.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="clsEntityCircle.cs" />
     <Compile Include="clsEntityAttendance.cs" />
     <Compile Include="clsEntityUser.cs" />
-    <Compile Include="clsLogger.cs" />
+    <Compile Include="clsErrorLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

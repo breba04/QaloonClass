@@ -40,7 +40,12 @@ namespace BusinessLayer
         private bool AddEvaluation()
         {
             EntityEvaluation.EvaluationID = clsEvaluationsDataAccess.AddEvaluation(EntityEvaluation);
-            return EntityEvaluation.EvaluationID != default(int);
+            if(EntityEvaluation.EvaluationID != -1)
+            {
+                clsEventManager.OnEvaluationAdded(this, EntityEvaluation);
+                return true;
+            }
+            return false;
         }
 
         public bool UpdateEvaluation(clsEntityEvaluation EntityEvaluation)
@@ -69,9 +74,13 @@ namespace BusinessLayer
             return clsEvaluationsDataAccess.DeleteEvaluation(EntityEvaluation.EvaluationID);
         }
 
-        static public DataTable SelectAllEvaluations(DateTime From,DateTime To)
+        static public DataTable SelectAllEvaluationsTaken(DateTime From,DateTime To)
         {
-            return clsEvaluationsDataAccess.SelectAllEvaluations(From,To);
+            return clsEvaluationsDataAccess.SelectAllEvaluationsTaken(From,To);
+        }
+        static public DataTable SelectAllEvaluationsNotTaken()
+        {
+            return clsEvaluationsDataAccess.SelectAllEvaluationsNotTaken();
         }
         static public DataTable SelectAllTestType()
         {
@@ -84,6 +93,10 @@ namespace BusinessLayer
                 return new clsEvaluations(evaluation);
             return null;
 
+        }
+        static public int GetNumberOfStudentsNotTakeEvaluationInMonth()
+        {
+            return clsEvaluationsDataAccess.GetNumberOfStudentsNotTakeEvaluationInMonth();
         }
     }
 }

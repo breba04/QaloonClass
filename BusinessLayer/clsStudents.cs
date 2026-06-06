@@ -44,12 +44,35 @@ namespace BusinessLayer
         private bool AddStudent()
         {
             EntityStudent.StudentID = clsStudentsDataAccess.AddStudent(EntityStudent);
-            return EntityStudent.StudentID != default(int);
+            if(EntityStudent.StudentID != -1)
+            {
+                var Log = new clsEntityActivityLog()
+                { ActionType = "إضافة طالب", EntityType = "طالب", EntityID = EntityStudent.StudentID
+                , UserID = clsCurrentUser.CurrentUser.UserID };
+
+                clsEventManager.OnActivityAdded(this, Log);
+                return true;
+            }
+            return false;
         }
-        public bool UpdateStudent(clsEntityStudent EntityStudent)
+        public bool UpdateStudent()
         {
-            return clsStudentsDataAccess.UpdateStudent(EntityStudent);
-        }
+            if(clsStudentsDataAccess.UpdateStudent(EntityStudent))
+            {
+                var Log = new clsEntityActivityLog()
+                {
+                    ActionType = "تعديل طالب",
+                    EntityType = "طالب",
+                    EntityID = EntityStudent.StudentID
+                ,
+                    UserID = clsCurrentUser.CurrentUser.UserID
+                };
+
+                clsEventManager.OnActivityAdded(this, Log);
+                return true;
+            }
+            return false;
+        }      
         public bool Save()
         {
             if (_Mode == enMode.Add)
@@ -58,7 +81,7 @@ namespace BusinessLayer
             }
             else if (_Mode == enMode.Update)
             {
-                return UpdateStudent(EntityStudent);
+                return UpdateStudent();
             }
             else
             {
@@ -121,6 +144,9 @@ namespace BusinessLayer
         {
             return clsStudentsDataAccess.ChangeStudentStatus(StudentID, IsActive);
         }
-
+        static public int GetTotalActiceStudents()
+        {
+            return clsStudentsDataAccess.GetTotalActiceStudents();
+        }
     }
 }

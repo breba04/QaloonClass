@@ -24,7 +24,7 @@ namespace BusinessLayer
             }
             catch (Exception ex)
             {
-                clsLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsLogger.enLogType.Error, clsLogger.enLogLevel.Business,
+                clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.Business,
                     "StoreUserNameAndPassWordInRegistry", DateTime.Now);
             }
         }

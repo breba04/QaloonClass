@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 namespace EntityLayer
 {
-    public class clsLogger
+    public class clsErrorLogger
     {
         public enum enLogType
         {

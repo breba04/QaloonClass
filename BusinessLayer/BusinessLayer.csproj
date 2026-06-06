@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsActivityLogger.cs" />
     <Compile Include="clsAttendance.cs" />
     <Compile Include="clsCircles.cs" />
+    <Compile Include="clsEventManager.cs" />
     <Compile Include="clsLoginDetails.cs" />
     <Compile Include="clsMushafQaloon.cs" />
     <Compile Include="clsSettings.cs" />
