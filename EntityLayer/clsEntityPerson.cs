@@ -16,7 +16,7 @@ namespace EntityLayer
         public string LastName { get; set; } = string.Empty;
         public string FullName { get { return $"{FirstName} {SecodName}{(string.IsNullOrEmpty(ThirdName)?"": $" {ThirdName}" )} {LastName}"; } }
         public string Address { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
         public string ImagePath { get; set; } = string.Empty;
 
     }

@@ -14,7 +14,7 @@ namespace BusinessLayer
         enum enMode { Add, Update }
         enMode _Mode = enMode.Add;
         public clsEntityStudent EntityStudent;
-        public int StudentID { get  => EntityStudent.StudentID;  } 
+        public int StudentID { get  => EntityStudent.StudentID; set  => EntityStudent.StudentID = value;  } 
         public string ParentPhone { get => EntityStudent.ParentPhone; set => EntityStudent.ParentPhone = value; }
         public DateTime JoinDate { get => EntityStudent.JoinDate; set => EntityStudent.JoinDate = value; } 
         public clsEntityPerson PersonInfo { get => EntityStudent.PersonInfo; set => EntityStudent.PersonInfo = value; }
@@ -51,6 +51,7 @@ namespace BusinessLayer
                 , UserID = clsCurrentUser.CurrentUser.UserID };
 
                 clsEventManager.OnActivityAdded(this, Log);
+                _Mode = enMode.Update;
                 return true;
             }
             return false;

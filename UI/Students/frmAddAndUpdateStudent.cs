@@ -10,22 +10,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.GlobalClasses;
-
+using System.IO;
 namespace UI.Students
 {
     public partial class frmAddAndUpdateStudent : BaseForm
     {
-
-       private DataTable _dtCircles ;
-       private DataTable _dtSurrahs;
-       private DataTable _dtAyatFromSurrah;
+        enum enMode { Add = 1, Update = 2 }
+        private DataTable _dtCircles ;
+        private DataTable _dtSurrahs;
+        private DataTable _dtAyatFromSurrah;
         clsStudents _Student;
+        int _StudentID;
         clsStudentProgress _StudentProgress;
+        string ImageName;
+        enMode _Mode;
         public frmAddAndUpdateStudent()
         {
             InitializeComponent();
+            _InitializeDefautValue();
+        }
+        public frmAddAndUpdateStudent(int StudentID)
+        {
+            InitializeComponent();
+            _StudentID = StudentID;
+            _Mode = enMode.Update;
+        }
+        private void _InitializeDefautValue()
+        {
             _Student = new clsStudents();
+            _StudentID = -1;
             _StudentProgress = new clsStudentProgress();
+            _Mode = enMode.Add;
         }
         private void _LoadCirclesData()
         {
@@ -50,8 +65,30 @@ namespace UI.Students
             _FillCirclesInComoboBox();
             _Fill_SurahsInComoboBox();
             _UpdateSelectedCircleCapacityLabel();
+            if(_Mode == enMode.Add)
+            {
+                _SelectNoneFullCircle();
+            }
+            else
+            {
+                _Student = clsStudents.Find(_StudentID);
+                if (_Student == null)
+                {
+                    clsGlobal.ShowErrorMessgae($"لم يتم العثور على طالب بالمعرف {_StudentID}", "خطأ في معرف الطالب");
+                    ClearAll();
+                    return;
+                }
+                _StudentProgress = clsStudentProgress.Find(_StudentID);
+                if (_StudentProgress == null)
+                {
+                    clsGlobal.ShowErrorMessgae($"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}", "خطأ في معرف الطالب");
+                    ClearAll();
+                    return;
+                }
+                _LoadStudentData();
+                _LoadStudentProgressData();
+            }
         }
-
         private void _UpdateCapacityLabel(byte currentStudents, byte maxCapacity)
         {
             lbl_Capacity.Text = $"{maxCapacity}/{currentStudents}";
@@ -64,8 +101,7 @@ namespace UI.Students
             {
                 lbl_Capacity.ForeColor = Color.White;
             }
-        }
-      
+        }      
         private void _UploadPersonalPhoto()
         {
             openFileDialog1.Filter = "JPEG Files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp";
@@ -119,12 +155,13 @@ namespace UI.Students
             txt_SeatingID.Clear();
             txt_Phone.Clear();
             txt_Address.Clear();
+            ptb_PersonalPhoto.ImageLocation = null;
+            _InitializeDefautValue();
         }
         private void btn_Clean_Click(object sender, EventArgs e)
         {
             ClearAll();
         }
-
         private void btn_UploadImage_Click(object sender, EventArgs e)
         {
             _UploadPersonalPhoto();
@@ -139,7 +176,6 @@ namespace UI.Students
         {
             RemovePersonalPhoto();
         }
-
         private void _SetStudentData()
         {
             _Student.FirstName = txt_FirstName.Text.Trim();
@@ -150,7 +186,31 @@ namespace UI.Students
             _Student.ParentPhone = txt_Phone.Text.Trim();
             _Student.Address = txt_Address.Text.Trim();
             _Student.CircleID =Convert.ToInt32(cmb_Circles.SelectedValue);
-            _Student.ImagePath = ptb_PersonalPhoto.ImageLocation;
+        }
+        private void _LoadStudentData()
+        { 
+            txt_FirstName.Text = _Student.FirstName;
+            txt_SecondName.Text = _Student.SecodName;
+            txt_ThirdName.Text = _Student.ThirdName;
+            txt_LastName.Text = _Student.LastName;
+            dtp_DateOfBirth.Value = _Student.BirthDate;
+            txt_Phone.Text = _Student.ParentPhone;
+            txt_Address.Text = _Student.Address;
+            cmb_Circles.SelectedValue = _Student.CircleID;
+        }
+        private bool _HandleImage(out string ErrorMessage)
+        {
+            ErrorMessage = null;
+            string PersonalPhotoImageName = Path.GetFileName(ptb_PersonalPhoto.ImageLocation);
+            if (_Student.ImagePath == PersonalPhotoImageName) return true;
+            
+            if(clsImageManager.ReplaceImage(ptb_PersonalPhoto.ImageLocation, _Student.ImagePath,
+                out string NewImageName, out ErrorMessage))
+            {
+                _Student.ImagePath = NewImageName;
+                return true;
+            }
+            return false;
         }
         private void _SetStudentProgrees()
         {
@@ -158,6 +218,32 @@ namespace UI.Students
             _StudentProgress.SurrahID = Convert.ToByte(cmb_Surahs.SelectedValue);
             _StudentProgress.AyahID = Convert.ToInt16(cmb_Aya.SelectedValue);
             _StudentProgress.TeacherID = clsCurrentUser.CurrentUser.UserID;
+        }
+        private void _LoadStudentProgressData()
+        {
+            cmb_Surahs.SelectedValue = _StudentProgress.SurrahID;
+            cmb_Aya.SelectedValue = _StudentProgress.AyahID;
+        }
+        private void _HandleImage(string OldPath, string NewPath)
+        {
+            if (_Student != null && _Student.ImagePath != ptb_PersonalPhoto.ImageLocation)
+            {
+                if (!string.IsNullOrEmpty(OldPath) && File.Exists(OldPath)) 
+                {
+                    File.Delete(OldPath);
+                }
+                if(string.IsNullOrEmpty(NewPath))
+                {
+                    if(!File.Exists(NewPath))
+                    {
+                        MessageBox.Show($"لم يتم العثور على الصورة في المسار\n{NewPath}", "خطأ في مسار الصورة", 
+                            MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                }
+                _Student.ImagePath = NewPath;
+            }
         }
         private void _CircleValdation( byte currentStudents, byte maxCapacity)
         {
@@ -168,6 +254,14 @@ namespace UI.Students
             else
             {
                 errorProvider1.SetError(cmb_Circles, "");
+            }
+        }
+        private void _SelectNoneFullCircle()
+        {
+            while(!string.IsNullOrEmpty(errorProvider1.GetError(cmb_Circles)) 
+                && cmb_Circles.SelectedIndex != cmb_Circles.Items.Count -1)
+            {
+                cmb_Circles.SelectedIndex++;
             }
         }
         private void _UpdateSelectedCircleCapacityLabel()
@@ -183,32 +277,56 @@ namespace UI.Students
 
                 _CircleValdation(currentStudents, maxCapacity);
             }
-        }
-        
+        }      
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
             _UpdateSelectedCircleCapacityLabel();
         }
-
-        private void btn_Save_Click(object sender, EventArgs e)
+        private bool _SaveStudent(out string ErrorMessage)
         {
-            if (!ValidateChildren()) return;
             _SetStudentData();
-            if(!_Student.Save())
+            if (!_Student.Save())
             {
-                MessageBox.Show( "لم يتم تسجيل الطالب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                ErrorMessage = "لم يتم تسجيل الطالب";
+                return false;
             }
+            ErrorMessage = string.Empty;
+            return true;
+        }
+        private bool _SaveStudentProgress(out string ErrorMessage)
+        {
             _SetStudentProgrees();
             if (!_StudentProgress.Save())
             {
-                MessageBox.Show("لم يتم تسجيل تقدم الطالب","خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMessage = "لم يتم تسجيل الطالب";
+                return false;
+            }
+            ErrorMessage = string.Empty;
+            return true;
+        }
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            if (!ValidateChildren()) return;
+            if (!_HandleImage(out string ErrorMessage))
+            {
+                clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الصورة");
                 return;
             }
-            MessageBox.Show("تم تسجيل الطالب بنجاح","نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            if(!_SaveStudent(out ErrorMessage))
+            {
+            
+                clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الطالب");
+                return;
+            }
+            if(!_SaveStudentProgress(out ErrorMessage))
+            {
+                clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ تقدم الطالب");
+                return;
+            }
+            clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل":"تعديل")} الطالب بنجاح", "نجاح");
+            _StudentID = _Student.StudentID;
+            _Mode = enMode.Update;
         }
-
         private void txt_Phone_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
@@ -216,7 +334,6 @@ namespace UI.Students
                 e.Handled = true;
             }
         }
-
         private void TextBox_Validating(object sender, CancelEventArgs e)
         {
              clsUtil.ValidateTextBoxRequired(sender, e, errorProvider1);
@@ -229,7 +346,6 @@ namespace UI.Students
         {
             this.Close();
         }
-
         private void cmb_Surahs_SelectedIndexChanged(object sender, EventArgs e)
         {
             _Load_AyatFromSurrahData();
