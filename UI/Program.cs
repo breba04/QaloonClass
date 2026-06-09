@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using UI.GlobalClasses;
 using UI.Login;
+using UI.Students;
 
 namespace UI
 {
@@ -33,7 +34,7 @@ namespace UI
             }
 
             //Application.Run(new frmMain());
-            // Application.Run(new frmAddAndUpdateStudent());
+            //Application.Run(new frmAddAndUpdateStudent(118));
             //Application.Run(new BaseForm());
         }
     }

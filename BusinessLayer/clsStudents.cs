@@ -16,6 +16,7 @@ namespace BusinessLayer
         public clsEntityStudent EntityStudent;
         public int StudentID { get  => EntityStudent.StudentID; set  => EntityStudent.StudentID = value;  } 
         public string ParentPhone { get => EntityStudent.ParentPhone; set => EntityStudent.ParentPhone = value; }
+        public string SeatsNumber { get => EntityStudent.SeatsNumber; set => EntityStudent.SeatsNumber = value; }
         public DateTime JoinDate { get => EntityStudent.JoinDate; set => EntityStudent.JoinDate = value; } 
         public clsEntityPerson PersonInfo { get => EntityStudent.PersonInfo; set => EntityStudent.PersonInfo = value; }
         public int PersonID { get => EntityStudent.PersonInfo.PersonID; set => EntityStudent.PersonInfo.PersonID = value; } 

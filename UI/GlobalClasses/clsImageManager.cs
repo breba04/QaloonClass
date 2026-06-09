@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -9,8 +10,13 @@ namespace UI.GlobalClasses
     public class clsImageManager
     {
         public enum enImageFolder { Student =1 ,Users =2}
-        static public string StudentsImageFolder = Path.Combine(Application.StartupPath, "Student_Image");
-        static public string UsersImageFolder = Path.Combine(Application.StartupPath, "Users_Image");
+        static public string StudentsImageFolder = ConfigurationManager.AppSettings.Get("Student_Image");
+        static public string UsersImageFolder = ConfigurationManager.AppSettings.Get("Users_Image");
+        static public string GetImagePath(string ImageName,enImageFolder type)
+        {
+            string ImageFolder = (type == enImageFolder.Student ? StudentsImageFolder : UsersImageFolder);
+            return (string.IsNullOrEmpty(ImageFolder)||string.IsNullOrEmpty(ImageName) ? null : Path.Combine(ImageFolder, ImageName));
+        }
 
         static public bool ReplaceImage(string SourceFile, string OldImageName,out string NewImageName,out string ErroeMessage ,enImageFolder type = enImageFolder.Student)
         {

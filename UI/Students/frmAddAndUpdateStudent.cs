@@ -197,6 +197,15 @@ namespace UI.Students
             txt_Phone.Text = _Student.ParentPhone;
             txt_Address.Text = _Student.Address;
             cmb_Circles.SelectedValue = _Student.CircleID;
+            txt_SeatingID.Text = _Student.SeatsNumber;
+            string ImageLacation = clsImageManager.GetImagePath(_Student.ImagePath,clsImageManager.enImageFolder.Student);
+            if(string.IsNullOrEmpty(ImageLacation))
+            {
+                RemovePersonalPhoto();
+                return;
+            }
+            ptb_PersonalPhoto.ImageLocation = ImageLacation;
+            btn_RemoveImage.Visible = true;
         }
         private bool _HandleImage(out string ErrorMessage)
         {

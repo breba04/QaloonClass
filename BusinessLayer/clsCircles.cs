@@ -91,7 +91,7 @@ namespace BusinessLayer
         {
             if 
                 (
-                //true||
+                true||
                     clsCurrentUser.CurrentUser.IsAdmin)
                 return clsCirclesDataAccess.SelectAllCircles();
             else

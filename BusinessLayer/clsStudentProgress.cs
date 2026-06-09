@@ -38,32 +38,40 @@ namespace BusinessLayer
             return EntityProgress.ProgressID != default(int);
         }
 
-        public bool UpdateProgress(clsEntityStudentProgress EntityProgress)
+        public bool UpdateProgress()
         {
             return clsStudentProgressDataAccess.UpdateProgress(EntityProgress);
         }
 
         public bool Save()
         {
-            if (_Mode == enMode.Add)
+
+            clsStudentProgress LastProgress = clsStudentProgress.GetLastStudentProgress(StudentID);
+            if(LastProgress != null &&  AyahID < LastProgress.AyahID )
             {
-                return AddProgress();
+                throw new Exception("لا يمكن الرجوع للخلف");
             }
-            else if (_Mode == enMode.Update)
+            bool result = _Mode == enMode.Add? AddProgress()
+                : UpdateProgress();
+
+            if(!result)return false;
+            
+            clsEventManager.OnActivityAdded(this,new clsEntityActivityLog
             {
-                return UpdateProgress(EntityProgress);
-            }
-            else
-            {
-                throw new Exception("Invalid mode");
-            }
+                ActionType= "تحديث تقدم للطالب",
+                EntityType= "تقدم الطالب",
+                EntityID = ProgressID,
+                ActivityDate = DateTime.Now,
+                UserID = clsCurrentUser.CurrentUser.UserID
+            });
+
+            return true;
         }
 
         public bool DeleteProgress()
         {
             return clsStudentProgressDataAccess.DeleteProgress(EntityProgress.ProgressID);
         }
-
         public DataTable SelectAllProgress()
         {
             return clsStudentProgressDataAccess.SelectAllProgress();
@@ -72,6 +80,13 @@ namespace BusinessLayer
         {
             clsEntityStudentProgress studentProgress = new clsEntityStudentProgress() { StudentID = StudentID };
             if(clsStudentProgressDataAccess.FindProgressByStudentID(studentProgress))
+                return new clsStudentProgress(studentProgress);
+            return null;
+        }
+        static public clsStudentProgress GetLastStudentProgress (int StudentID)
+        {
+            clsEntityStudentProgress studentProgress = new clsEntityStudentProgress() { StudentID = StudentID };
+            if(clsStudentProgressDataAccess.GetLastStudentProgress(studentProgress))
                 return new clsStudentProgress(studentProgress);
             return null;
         }

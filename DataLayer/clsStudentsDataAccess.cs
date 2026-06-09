@@ -31,12 +31,19 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@ParentPhone", entity.ParentPhone);
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
+                cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add("@StudentID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@SeatsNumber", SqlDbType.NVarChar,10).Direction = ParameterDirection.Output;
                 try
                 {
                     conn.Open();
-                    object obj = cmd.ExecuteScalar();
-                    if (obj != null)
-                        result = Convert.ToInt32(obj);
+                    cmd.ExecuteNonQuery();
+                    var obj = cmd.Parameters["@ReturnValue"];
+                    if (obj != null && (int)obj.Value == 1)
+                    {
+                        result =Convert.ToInt32(cmd.Parameters["@StudentID"].Value);
+                        entity.SeatsNumber =cmd.Parameters["@SeatsNumber"].Value.ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +164,8 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@JoinDate", SqlDbType.DateTime).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, -1).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@SeatsNumber", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
@@ -174,6 +183,7 @@ namespace DataAccessLayer
                         student.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
 
                         student.ParentPhone = cmd.Parameters["@ParentPhone"].Value.ToString();
+                        student.SeatsNumber = cmd.Parameters["@SeatsNumber"].Value.ToString();
                         student.JoinDate = Convert.ToDateTime(cmd.Parameters["@JoinDate"].Value);
                         student.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
