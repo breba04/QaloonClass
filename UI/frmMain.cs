@@ -17,20 +17,21 @@ namespace UI
 {
     public partial class frmMain : BaseForm
     {
+       private UC_Dashboard _Dashboard = null;
         public frmMain()
         {
             InitializeComponent();
         }
         void LoadMainData()
         {
-            lbl_FirstAndLastName.Text = clsCurrentUser.CurrentUser.FirstName + ' ' + clsCurrentUser.CurrentUser.LastName;
+            lbl_FirstAndLastName.Text = $"{clsCurrentUser.CurrentUser.FirstName} {clsCurrentUser.CurrentUser.LastName}";
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            _Dashboard = new UC_Dashboard();
             LoadMainData();
             this.HeaderTitle = $"مركز {clsGlobal.CenterName}";
-            UC_Dashboard Dashboard = new UC_Dashboard();
-            ShowControl(Dashboard);
+            ShowControl(_Dashboard);
         }
 
         private void ShowControl(Control control)
@@ -42,7 +43,7 @@ namespace UI
 
         private void btn_Dashboard_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Dashboard");
+            ShowControl(_Dashboard);
         }
 
         private void btn_Student_Click(object sender, EventArgs e)
@@ -74,6 +75,12 @@ namespace UI
         {
            frmAddAndUpdateStudent addStudentForm = new frmAddAndUpdateStudent();
             addStudentForm.ShowDialog();
+
+            if (pnl_Content.Controls.Count > 0 && pnl_Content.Controls[0] == _Dashboard)
+            {
+                _Dashboard.RefreshDashboard();
+            }
+
         }
 
         private void btn_LogOut_Click(object sender, EventArgs e)

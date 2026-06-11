@@ -16,7 +16,8 @@ namespace UI.UserControls
         private int _pageSize = 10; 
         private byte _currentPage = 1; 
         private int _totalPages = 1; 
-        private byte _RecordsInPage = 8; 
+        private byte _RecordsInPage = 8;
+        private bool _IsDashboardInitialized = false;
         public UC_Dashboard()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace UI.UserControls
             foreach (DataGridViewRow item in dgv_Listreports.Rows)
             {
                 if (item.Cells[2].Value != null)
-                    if(int.TryParse(item.Cells[2].Value.ToString(),out int result))
+                    if(int.TryParse(item.Cells["Total Students"].Value.ToString(),out int result))
                     {
                         TotalStudents += result;
                     }
@@ -171,7 +172,7 @@ namespace UI.UserControls
             _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
             _ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
             _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
-            _InitializeDashboard();
+            RefreshDashboard();
         }
         private void btn_Next_Click(object sender, EventArgs e)
         {
@@ -191,14 +192,26 @@ namespace UI.UserControls
                 _LoadPage();
             }
         }
-        private void _InitializeDashboard()
+        public void RefreshDashboard()
         {
-            _allData = clsCircles.GetAllCircleView(_currentPage, _RecordsInPage);
-            _currentPage = 1;
-            _LoadPage(); 
-            _FormatDataGridView();
-            _LoadMainData();
-            lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
+            if(!_IsDashboardInitialized)
+            {
+              _allData = clsCircles.GetAllCircleView(_currentPage, _RecordsInPage);
+              _currentPage = 1;
+              _LoadPage(); 
+              _FormatDataGridView();
+              _LoadMainData();
+              lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
+              _IsDashboardInitialized = true;
+            }
+            else
+            {
+                _allData = clsCircles.GetAllCircleView(_currentPage, _RecordsInPage);
+                _LoadPage();
+                _LoadMainData();
+                _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
+                _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
+            }
         }
     }
     }
