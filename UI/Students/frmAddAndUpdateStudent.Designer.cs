@@ -238,10 +238,10 @@
             this.txt_SeatingID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SeatingID.Multiline = true;
             this.txt_SeatingID.Name = "txt_SeatingID";
+            this.txt_SeatingID.ReadOnly = true;
             this.txt_SeatingID.Size = new System.Drawing.Size(262, 41);
             this.txt_SeatingID.TabIndex = 6;
             this.txt_SeatingID.Tag = "رقم الجلوس";
-            this.txt_SeatingID.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label8
             // 
@@ -331,7 +331,6 @@
             this.txt_ThirdName.Size = new System.Drawing.Size(254, 41);
             this.txt_ThirdName.TabIndex = 3;
             this.txt_ThirdName.Tag = "اسم الثالث";
-            this.txt_ThirdName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label3
             // 

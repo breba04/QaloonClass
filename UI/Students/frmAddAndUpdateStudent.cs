@@ -24,6 +24,7 @@ namespace UI.Students
         clsStudentProgress _StudentProgress;
         string ImageName;
         enMode _Mode;
+        private bool _IsLoading = true;
         public frmAddAndUpdateStudent()
         {
             InitializeComponent();
@@ -55,16 +56,26 @@ namespace UI.Students
             byte selectedSurrahID = Convert.ToByte(cmb_Surahs.SelectedValue);
             _dtAyatFromSurrah = clsMushafQaloon.GetAllAyatFromSurrah(selectedSurrahID,20);
         }
+        private void _UpdateTitle()
+        {
+            this.HeaderTitle = _Mode == enMode.Add ? "إضافة طالب" : "تعديل بيانات الطالب";
+        }
         private void frmAddAndUpdateStudent_Load(object sender, EventArgs e)
         {
-            this.HeaderTitle = "إضافة وتعديل طالب";
+            _IsLoading = true; 
+            _UpdateTitle();
             btn_RemoveImage.Visible = false;
+
             _LoadCirclesData();
             _LoadSurrahsData();
             _ConfigureDateTimePicker();
+
+            _IsLoading = false; 
+
             _FillCirclesInComoboBox();
             _Fill_SurahsInComoboBox();
             _UpdateSelectedCircleCapacityLabel();
+
             if(_Mode == enMode.Add)
             {
                 _SelectNoneFullCircle();
@@ -75,14 +86,14 @@ namespace UI.Students
                 if (_Student == null)
                 {
                     clsGlobal.ShowErrorMessgae($"لم يتم العثور على طالب بالمعرف {_StudentID}", "خطأ في معرف الطالب");
-                    ClearAll();
+                    this.Close();
                     return;
                 }
                 _StudentProgress = clsStudentProgress.Find(_StudentID);
                 if (_StudentProgress == null)
                 {
                     clsGlobal.ShowErrorMessgae($"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}", "خطأ في معرف الطالب");
-                    ClearAll();
+                    this.Close();
                     return;
                 }
                 _LoadStudentData();
@@ -93,14 +104,7 @@ namespace UI.Students
         {
             lbl_Capacity.Text = $"{maxCapacity}/{currentStudents}";
 
-            if (currentStudents >= maxCapacity)
-            {
-                lbl_Capacity.ForeColor = Color.Orange; 
-            }
-            else
-            {
-                lbl_Capacity.ForeColor = Color.White;
-            }
+            lbl_Capacity.ForeColor = (currentStudents >= maxCapacity) ? Color.Orange : Color.White;
         }      
         private void _UploadPersonalPhoto()
         {
@@ -152,7 +156,7 @@ namespace UI.Students
             txt_SecondName.Clear();
             txt_ThirdName.Clear();
             txt_LastName.Clear();
-            txt_SeatingID.Clear();
+           if(_Mode == enMode.Add) txt_SeatingID.Clear();
             txt_Phone.Clear();
             txt_Address.Clear();
             ptb_PersonalPhoto.ImageLocation = null;
@@ -233,27 +237,7 @@ namespace UI.Students
             cmb_Surahs.SelectedValue = _StudentProgress.SurrahID;
             cmb_Aya.SelectedValue = _StudentProgress.AyahID;
         }
-        private void _HandleImage(string OldPath, string NewPath)
-        {
-            if (_Student != null && _Student.ImagePath != ptb_PersonalPhoto.ImageLocation)
-            {
-                if (!string.IsNullOrEmpty(OldPath) && File.Exists(OldPath)) 
-                {
-                    File.Delete(OldPath);
-                }
-                if(string.IsNullOrEmpty(NewPath))
-                {
-                    if(!File.Exists(NewPath))
-                    {
-                        MessageBox.Show($"لم يتم العثور على الصورة في المسار\n{NewPath}", "خطأ في مسار الصورة", 
-                            MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                }
-                _Student.ImagePath = NewPath;
-            }
-        }
+        
         private void _CircleValdation( byte currentStudents, byte maxCapacity)
         {
             if (maxCapacity <= currentStudents)
@@ -289,6 +273,7 @@ namespace UI.Students
         }      
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_IsLoading) return; 
             _UpdateSelectedCircleCapacityLabel();
         }
         private bool _SaveStudent(out string ErrorMessage)
@@ -316,25 +301,44 @@ namespace UI.Students
         private void btn_Save_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren()) return;
+
+            if (_Mode == enMode.Add && !string.IsNullOrEmpty(errorProvider1.GetError(cmb_Circles)))
+            {
+                clsGlobal.ShowErrorMessgae("!لا يمكن الحفظ، الحلقة المختارة ممتلئة حالياً", "خطأ في السعة");
+                return;
+            }
+
             if (!_HandleImage(out string ErrorMessage))
             {
                 clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الصورة");
                 return;
             }
-            if(!_SaveStudent(out ErrorMessage))
+            if (!_SaveStudent(out ErrorMessage))
             {
-            
+
                 clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الطالب");
                 return;
             }
-            if(!_SaveStudentProgress(out ErrorMessage))
+            if (!_SaveStudentProgress(out ErrorMessage))
             {
                 clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ تقدم الطالب");
                 return;
             }
-            clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل":"تعديل")} الطالب بنجاح", "نجاح");
+            clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل" : "تعديل")} الطالب بنجاح", "نجاح");
             _StudentID = _Student.StudentID;
+             txt_SeatingID.Text = _Student.SeatsNumber;
             _Mode = enMode.Update;
+            _UpdateTitle();
+            _UpdateSelectedCircleCapacityAfterSavingStudent();
+
+        }
+        private void _UpdateSelectedCircleCapacityAfterSavingStudent()
+        {
+            int currentSelectedCircleID = Convert.ToInt32(cmb_Circles.SelectedValue);
+            _LoadCirclesData();
+            _FillCirclesInComoboBox();
+            cmb_Circles.SelectedValue = currentSelectedCircleID; 
+            _UpdateSelectedCircleCapacityLabel();
         }
         private void txt_Phone_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -357,6 +361,7 @@ namespace UI.Students
         }
         private void cmb_Surahs_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_IsLoading) return; 
             _Load_AyatFromSurrahData();
             _Fill_AyatInComoboBox();
         }
