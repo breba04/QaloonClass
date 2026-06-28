@@ -17,24 +17,24 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            while (clsCurrentUser.CurrentUser == null)
-            {
+            //while (clsCurrentUser.CurrentUser == null)
+            //{
 
-                frmLogin loginForm = new frmLogin();
+            //    frmLogin loginForm = new frmLogin();
 
-                if (loginForm.ShowDialog() == DialogResult.OK)
-                {
-                    AppBootstrap.Initialize();
-                    Application.Run(new frmMain());
-                }
-                else
-                {
-                    break;
-                }
-            }
+            //    if (loginForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        AppBootstrap.Initialize();
+            //        Application.Run(new frmMain());
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
+            //}
 
             //Application.Run(new frmMain());
-            //Application.Run(new frmAddAndUpdateStudent(118));
+            Application.Run(new frmAddAndUpdateStudent(118));
             //Application.Run(new BaseForm());
         }
     }
