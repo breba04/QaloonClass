@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Attendance.UserControls;
 using UI.GlobalClasses;
 using UI.Students;
 using UI.UserControls;
@@ -24,7 +25,7 @@ namespace UI
         }
         void LoadMainData()
         {
-            lbl_FirstAndLastName.Text = $"{clsCurrentUser.CurrentUser.FirstName} {clsCurrentUser.CurrentUser.LastName}";
+            //lbl_FirstAndLastName.Text = $"{clsCurrentUser.CurrentUser.FirstName} {clsCurrentUser.CurrentUser.LastName}";
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -58,7 +59,7 @@ namespace UI
 
         private void btn_Presence_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Presence");
+            ShowControl(new US_AttendanceMangement());
         }
 
         private void btn_Reports_Click(object sender, EventArgs e)

@@ -131,6 +131,32 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllCirclesMiniData()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllCirclesMiniData", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
         static public DataTable SelectCircleBy(int circleID)
         {
             DataTable result = new DataTable();

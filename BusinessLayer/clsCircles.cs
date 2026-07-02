@@ -102,6 +102,12 @@ namespace BusinessLayer
                 return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);
 
         }
+        static public DataTable SelectAllCirclesMiniData()
+        {
+            
+            return clsCirclesDataAccess.SelectAllCirclesMiniData();
+
+        }
         static public DataTable GetllEpisodesTeacher()
         {
             return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);

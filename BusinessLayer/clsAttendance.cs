@@ -98,6 +98,10 @@ namespace BusinessLayer
         {
             return clsAttendanceDataAccess.SelectAllAttendancesStatus();
         }
+        static public DataTable SelectAllStudentsForAttendance(int CircleID)
+        {
+            return clsAttendanceDataAccess.SelectAllStudentsForAttendance(CircleID);
+        }
         static public bool IsAttendanceExistsToday(int CircleID)
         {
             return clsAttendanceDataAccess.IsAttendanceExistsToday( CircleID);

@@ -144,6 +144,33 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllStudentsForAttendance(int CircleID)
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsForAttendance", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllStudentsForAttendance", DateTime.Now, null);
+
+                    }
+                }
+            }
+            return result;
+        }
         static public bool IsAttendanceExist(int attendanceID)
         {
             bool result = default(Boolean);
