@@ -60,6 +60,7 @@
             this.MaxCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParentPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbTakenAttendanceToday = new System.Windows.Forms.Label();
             this.pnlTLTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -400,14 +401,15 @@
             this.tableLayoutPanel6.ColumnCount = 4;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62915F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37085F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 362F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 247F));
-            this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 1);
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 279F));
+            this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lbTakenAttendanceToday, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.58824F));
+            this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(10);
+            this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.41177F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1303, 68);
             this.tableLayoutPanel6.TabIndex = 0;
@@ -426,16 +428,17 @@
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.ImageIndex = 1;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(4, 17);
+            this.btnSave.Location = new System.Drawing.Point(14, 13);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnSave.Size = new System.Drawing.Size(329, 48);
+            this.btnSave.Size = new System.Drawing.Size(319, 42);
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "حفظ التغييرات";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // StudentID
             // 
@@ -497,6 +500,21 @@
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Status.Width = 125;
             // 
+            // lbTakenAttendanceToday
+            // 
+            this.lbTakenAttendanceToday.AutoSize = true;
+            this.lbTakenAttendanceToday.BackColor = System.Drawing.Color.Beige;
+            this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1017, 10);
+            this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
+            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(272, 48);
+            this.lbTakenAttendanceToday.TabIndex = 17;
+            this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
+            this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // US_AttendanceMangement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -525,6 +543,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttandenceList)).EndInit();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -561,5 +580,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxCapacity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParentPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.Label lbTakenAttendanceToday;
     }
 }

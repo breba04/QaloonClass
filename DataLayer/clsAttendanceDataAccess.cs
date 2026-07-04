@@ -225,7 +225,6 @@ namespace DataAccessLayer
             }
             return isExist;
         }
-
         static public bool FindAttendanceByStudentID(clsEntityAttendance Attendance)
         {
             bool result = false;

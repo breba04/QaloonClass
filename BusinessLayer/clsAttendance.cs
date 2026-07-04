@@ -35,7 +35,7 @@ namespace BusinessLayer
             EntityAttendance.AttendanceID = clsAttendanceDataAccess.AddAttendance(EntityAttendance);
             return EntityAttendance.AttendanceID != default(int);
         }
-        private void AddAttendance(List<clsAttendance> ListAttendanceStudents)
+        public static void AddAttendance(List<clsAttendance> ListAttendanceStudents)
         {
             ListAttendanceStudents.ForEach(e =>
             {
