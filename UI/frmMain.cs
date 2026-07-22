@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.GlobalClasses;
 using UI.Students;
+using UI.Students.StudentControls;
 using UI.UserControls;
 
 namespace UI
@@ -48,8 +49,10 @@ namespace UI
 
         private void btn_Student_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Student");
+            UC_Student Student = new UC_Student();
+            ShowControl(Student);
         }
+        
 
         private void btn_MemorizationCircle_Click(object sender, EventArgs e)
         {
@@ -82,7 +85,7 @@ namespace UI
             }
 
         }
-
+ 
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
             clsCurrentUser.LogOut();

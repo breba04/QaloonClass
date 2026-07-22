@@ -74,6 +74,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
+            // lbl_Title
+            // 
+            this.lbl_Title.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.lbl_Title.Size = new System.Drawing.Size(525, 30);
+            // 
             // pnl_Header
             // 
             this.pnl_Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
@@ -82,7 +87,7 @@
             this.pnl_Header.Controls.Add(this.pnl_SectionUserInfo);
             this.pnl_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Header.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Header.Location = new System.Drawing.Point(0, 60);
+            this.pnl_Header.Location = new System.Drawing.Point(0, 54);
             this.pnl_Header.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Header.Name = "pnl_Header";
             this.pnl_Header.Size = new System.Drawing.Size(1371, 88);
@@ -102,12 +107,12 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(63, 26);
+            this.label1.Location = new System.Drawing.Point(63, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 28);
+            this.label1.Size = new System.Drawing.Size(204, 25);
             this.label1.TabIndex = 17;
             this.label1.Text = "مركز تحفيظ القرآن الكريم";
             // 
@@ -127,13 +132,13 @@
             this.lbl_FirstAndLastName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbl_FirstAndLastName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_FirstAndLastName.ForeColor = System.Drawing.Color.White;
-            this.lbl_FirstAndLastName.Location = new System.Drawing.Point(16, 8);
+            this.lbl_FirstAndLastName.Location = new System.Drawing.Point(4, 8);
             this.lbl_FirstAndLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_FirstAndLastName.Name = "lbl_FirstAndLastName";
-            this.lbl_FirstAndLastName.Size = new System.Drawing.Size(191, 28);
+            this.lbl_FirstAndLastName.Size = new System.Drawing.Size(245, 28);
             this.lbl_FirstAndLastName.TabIndex = 11;
             this.lbl_FirstAndLastName.Text = "ش .أحمد المعداني ";
-            this.lbl_FirstAndLastName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_FirstAndLastName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_UserAuthority
             // 
@@ -143,10 +148,10 @@
             this.lbl_UserAuthority.Location = new System.Drawing.Point(12, 36);
             this.lbl_UserAuthority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_UserAuthority.Name = "lbl_UserAuthority";
-            this.lbl_UserAuthority.Size = new System.Drawing.Size(200, 30);
+            this.lbl_UserAuthority.Size = new System.Drawing.Size(225, 30);
             this.lbl_UserAuthority.TabIndex = 12;
             this.lbl_UserAuthority.Text = "مشرف عام الحلقات";
-            this.lbl_UserAuthority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_UserAuthority.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -185,10 +190,10 @@
             this.pnl_Side.Controls.Add(this.button1);
             this.pnl_Side.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl_Side.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Side.Location = new System.Drawing.Point(1371, 60);
+            this.pnl_Side.Location = new System.Drawing.Point(1371, 54);
             this.pnl_Side.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Side.Name = "pnl_Side";
-            this.pnl_Side.Size = new System.Drawing.Size(335, 814);
+            this.pnl_Side.Size = new System.Drawing.Size(335, 820);
             this.pnl_Side.TabIndex = 28;
             // 
             // panel3
@@ -196,7 +201,7 @@
             this.panel3.Controls.Add(this.btn_LogOut);
             this.panel3.Controls.Add(this.btn_AddNewStudent);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 556);
+            this.panel3.Location = new System.Drawing.Point(0, 562);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(335, 258);
             this.panel3.TabIndex = 29;
@@ -442,7 +447,7 @@
             // label4
             // 
             this.label4.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.label4.Location = new System.Drawing.Point(8, 26);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -479,15 +484,15 @@
             // label7
             // 
             this.label7.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(165)))), ((int)(((byte)(155)))));
             this.label7.Location = new System.Drawing.Point(8, 58);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(248, 30);
+            this.label7.Size = new System.Drawing.Size(241, 30);
             this.label7.TabIndex = 19;
             this.label7.Text = "نظام إدارة المخطوطات الرقمية";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
@@ -509,7 +514,7 @@
             this.label2.Location = new System.Drawing.Point(765, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(216, 28);
+            this.label2.Size = new System.Drawing.Size(169, 21);
             this.label2.TabIndex = 17;
             this.label2.Text = "مركز تحفيظ القرآن الكريم";
             // 
@@ -539,14 +544,14 @@
             // 
             this.pnl_Content.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.pnl_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Content.Location = new System.Drawing.Point(0, 148);
+            this.pnl_Content.Location = new System.Drawing.Point(0, 142);
             this.pnl_Content.Name = "pnl_Content";
-            this.pnl_Content.Size = new System.Drawing.Size(1371, 726);
+            this.pnl_Content.Size = new System.Drawing.Size(1371, 732);
             this.pnl_Content.TabIndex = 29;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(1706, 874);
