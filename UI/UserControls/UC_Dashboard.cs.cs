@@ -37,7 +37,7 @@ namespace UI.UserControls
         }
         private void _LoadMainData()
         {
-            lbl_FirstName.Text = clsCurrentUser.CurrentUser.FirstName;
+            lbl_Welcome.Text = $"السلام عليكم، يا شيخ {clsCurrentUser.CurrentUser.FirstName}" ;
             lbl_TotalCircles.Text = dgv_Listreports.RowCount.ToString();
             lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
         }
