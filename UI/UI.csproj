@@ -680,5 +680,32 @@
   <ItemGroup>
     <None Include="Resources\Icon_StudentProgressModification.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_LastName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_SeatNumber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Episode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Sora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Aya.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
