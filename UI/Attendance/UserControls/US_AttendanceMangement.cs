@@ -30,10 +30,9 @@ namespace UI.Attendance.UserControls
             _IsLoading = true;
             _ListStudent = new List<clsAttendance>();
         }
-
         void _AddToChangedStudentsHash(int StudentID)
         {
-            if (_IsTakenAttendanceToday && _ChangedStudents == null)
+            if (_ChangedStudents == null)
                 _ChangedStudents = new HashSet<int>();
             _ChangedStudents.Add(StudentID);
         }
@@ -146,13 +145,7 @@ namespace UI.Attendance.UserControls
         }
         void GetAttendanceData()
         {
-            if(!_IsTakenAttendanceToday)
-            {
-                LoadStudentsDataFromDB();
-                if(_dtStudentList != null && _dtStudentList.Rows.Count > 0)
-                    dgvAttandenceList.DataSource = _dtStudentList;
-            }
-            else
+            if(_IsTakenAttendanceToday)
             {
                 LoadAttendanceTodayDataFromDB();
                 if (_dtAttendanceListToday != null && _dtAttendanceListToday.Rows.Count > 0)
@@ -160,6 +153,13 @@ namespace UI.Attendance.UserControls
                     dgvAttandenceList.Columns["Status"].DataPropertyName = "Status";
                     dgvAttandenceList.DataSource = _dtAttendanceListToday;
                 }
+            }
+            else
+            {
+                LoadStudentsDataFromDB();
+                if(_dtStudentList != null && _dtStudentList.Rows.Count > 0)
+                    dgvAttandenceList.DataSource = _dtStudentList;
+                
             }
         }
         void LoadStudentsDataFromDB()
@@ -191,6 +191,7 @@ namespace UI.Attendance.UserControls
                 if (row.IsNewRow || row.Cells.Count == 0 
                     || (_IsTakenAttendanceToday &&!_ChangedStudents.Contains(Convert.ToInt32(row.Cells["StudentID"].Value)))) 
                     continue;
+
                 FillAttendanceObject(row);
                 _ListStudent.Add(_AttendanceStudent);
             }
@@ -231,17 +232,22 @@ namespace UI.Attendance.UserControls
         }
         private void dgvAttandenceList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex == -1 || e.ColumnIndex != dgvAttandenceList.ColumnCount - 1 
+            if (e.RowIndex == -1 || e.ColumnIndex != dgvAttandenceList.ColumnCount - 1
                 || (e.Button != MouseButtons.Left && e.Button != MouseButtons.Right)) return;
 
             DataGridViewCell cell = dgvAttandenceList.Rows[e.RowIndex].Cells[e.ColumnIndex];
             byte CurrentStatus = Convert.ToByte(cell.Value);
+
             byte NextStatus = (byte)(e.Button == MouseButtons.Right ? 3 :
                 CurrentStatus == 1 ? 2 : 1);
-                cell.Value = NextStatus;
 
-            int StudentID = Convert.ToInt32(dgvAttandenceList.Rows[e.RowIndex].Cells["StudentID"].Value);
-            _AddToChangedStudentsHash(StudentID);
+            cell.Value = NextStatus;
+
+            if (_IsTakenAttendanceToday)
+            {
+                int StudentID = Convert.ToInt32(dgvAttandenceList.Rows[e.RowIndex].Cells["StudentID"].Value);
+                _AddToChangedStudentsHash(StudentID);
+            }
 
             dgvAttandenceList.InvalidateCell(cell);
         }
