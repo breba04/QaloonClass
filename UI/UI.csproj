@@ -707,5 +707,32 @@
   <ItemGroup>
     <None Include="Resources\Icon_Aya.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Person1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Person2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_LastName1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Date1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_SeatNumber1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Phone1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Address1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Episode1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Sora1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

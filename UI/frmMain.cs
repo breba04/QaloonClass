@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Attendance.UserControls;
 using UI.GlobalClasses;
 using UI.Students;
 using UI.Students.StudentControls;
@@ -61,7 +62,7 @@ namespace UI
 
         private void btn_Presence_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Presence");
+            ShowControl(new US_AttendanceMangement());
         }
 
         private void btn_Reports_Click(object sender, EventArgs e)

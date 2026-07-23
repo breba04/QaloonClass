@@ -114,7 +114,10 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllStudents()
         {
-            if(clsCurrentUser.CurrentUser.UserRole == (int)clsEntityUser.enUserRole.Admin)
+            if(
+                true||
+                clsCurrentUser.CurrentUser.IsAdmin
+                )
                 return clsStudentsDataAccess.SelectAllStudents();
             else
             {

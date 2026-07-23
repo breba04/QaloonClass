@@ -293,7 +293,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::UI.Properties.Resources.Icon_Person;
+            this.pictureBox1.BackgroundImage = global::UI.Properties.Resources.Icon_Person1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(606, 27);
             this.pictureBox1.Name = "pictureBox1";

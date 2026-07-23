@@ -23,6 +23,13 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@CircleName", EntityCircle.CircleName);
                     cmd.Parameters.AddWithValue("@TeacherID", EntityCircle.TeacherID);
                     cmd.Parameters.AddWithValue("@MaxCapacity", EntityCircle.MaxCapacity);
+                    cmd.Parameters.AddWithValue("@ScheduleType", EntityCircle.ScheduleType);
+
+                    cmd.Parameters.AddWithValue("@StartTime", EntityCircle.StartTime.HasValue?
+                        (object)EntityCircle.StartTime.Value.TimeOfDay: DBNull.Value);
+                    
+                    cmd.Parameters.AddWithValue("@PrayerID", EntityCircle.PrayerID.HasValue? 
+                        (object)EntityCircle.PrayerID :DBNull.Value);
 
                     try
                     {
@@ -52,6 +59,14 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@CircleName", EntityCircle.CircleName);
                     cmd.Parameters.AddWithValue("@TeacherID", EntityCircle.TeacherID);
                     cmd.Parameters.AddWithValue("@MaxCapacity", EntityCircle.MaxCapacity);
+
+                    cmd.Parameters.AddWithValue("@ScheduleType", EntityCircle.ScheduleType);
+
+                    cmd.Parameters.AddWithValue("@StartTime", EntityCircle.StartTime.HasValue ?
+                       (object)EntityCircle.StartTime.Value.TimeOfDay : DBNull.Value);
+
+                    cmd.Parameters.AddWithValue("@PrayerID", EntityCircle.PrayerID.HasValue ?
+                        (object)EntityCircle.PrayerID : DBNull.Value);
 
                     try
                     {
@@ -116,6 +131,32 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllCirclesMiniData()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllCirclesMiniData", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
+                    }
+                }
+            }
+            return result;
+        }
         static public DataTable SelectCircleBy(int circleID)
         {
             DataTable result = new DataTable();
@@ -157,6 +198,9 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@CircleName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@TeacherID", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@MaxCapacity", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ScheduleType", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@StartTime", SqlDbType.Time).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@PrayerID", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@CurrentStudentNumbers", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
@@ -179,6 +223,16 @@ namespace DataAccessLayer
                         Circle.MaxCapacity = Convert.ToByte(cmd.Parameters["@MaxCapacity"].Value);
                         Circle.CurrentStudentNumbers = Convert.ToByte(cmd.Parameters["@CurrentStudentNumbers"].Value);
                         Circle.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
+
+                        Circle.ScheduleType = (clsEntityCircle.enScheduleType)Convert.ToByte(cmd.Parameters["@ScheduleType"].Value);
+
+                        Circle.PrayerID = cmd.Parameters["@PrayerID"].Value != DBNull.Value?
+                            Convert.ToByte(cmd.Parameters["@PrayerID"].Value)
+                            : (byte?)null;
+
+                        Circle.StartTime = cmd.Parameters["@StartTime"].Value != DBNull.Value?
+                            Convert.ToDateTime(cmd.Parameters["@StartTime"].Value)
+                            : (DateTime?)null;
                     }
                 }
                 catch (Exception Ex)

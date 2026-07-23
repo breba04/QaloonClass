@@ -476,7 +476,6 @@
             // 
             // StudentDetailsToolStripMenuItem
             // 
-            this.StudentDetailsToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_StudentDetails;
             this.StudentDetailsToolStripMenuItem.Name = "StudentDetailsToolStripMenuItem";
             this.StudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.StudentDetailsToolStripMenuItem.Text = "تفاصيل الطالب";
@@ -489,7 +488,6 @@
             // 
             // AddStudent_ToolStripMenuItem
             // 
-            this.AddStudent_ToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_AddStudent;
             this.AddStudent_ToolStripMenuItem.Name = "AddStudent_ToolStripMenuItem";
             this.AddStudent_ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.AddStudent_ToolStripMenuItem.Text = "إضافة طالب";
@@ -497,7 +495,6 @@
             // 
             // UpdateStudentToolStripMenuItem
             // 
-            this.UpdateStudentToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_EditStudent;
             this.UpdateStudentToolStripMenuItem.Name = "UpdateStudentToolStripMenuItem";
             this.UpdateStudentToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.UpdateStudentToolStripMenuItem.Text = "تعديل طالب";
@@ -510,7 +507,6 @@
             // 
             // StudentSuspendedToolStripMenuItem
             // 
-            this.StudentSuspendedToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_StudentSuspended;
             this.StudentSuspendedToolStripMenuItem.Name = "StudentSuspendedToolStripMenuItem";
             this.StudentSuspendedToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.StudentSuspendedToolStripMenuItem.Text = "إيقاف طالب";
@@ -518,7 +514,6 @@
             // 
             // ActivateStudentToolStripMenuItem
             // 
-            this.ActivateStudentToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_ActivateStudent;
             this.ActivateStudentToolStripMenuItem.Name = "ActivateStudentToolStripMenuItem";
             this.ActivateStudentToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.ActivateStudentToolStripMenuItem.Text = "تفعيل طالب";
@@ -531,7 +526,6 @@
             // 
             // UpdateStudentProgress_ToolStripMenuItem
             // 
-            this.UpdateStudentProgress_ToolStripMenuItem.Image = global::UI.Properties.Resources.Icon_StudentProgressModification;
             this.UpdateStudentProgress_ToolStripMenuItem.Name = "UpdateStudentProgress_ToolStripMenuItem";
             this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.UpdateStudentProgress_ToolStripMenuItem.Text = "تعديل تقدم طالب";

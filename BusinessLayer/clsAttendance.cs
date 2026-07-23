@@ -35,6 +35,21 @@ namespace BusinessLayer
             EntityAttendance.AttendanceID = clsAttendanceDataAccess.AddAttendance(EntityAttendance);
             return EntityAttendance.AttendanceID != default(int);
         }
+        public static void AddAttendance(List<clsAttendance> ListAttendanceStudents)
+        {
+            ListAttendanceStudents.ForEach(e =>
+            {
+                if(!e.Save())
+                {
+                    if (e.StudentID == -1)
+                        throw new ArgumentNullException("لم يتم تعيين معرف للطالب");
+
+                    throw new InvalidOperationException($"حدث خطأ اثناء محاولة حفظ حالة الحضور للطالب صاحب ID : {e.StudentID}");
+                }
+            }
+            );
+            
+        }
 
         public bool UpdateAttendance(clsEntityAttendance EntityAttendance)
         {
@@ -82,6 +97,10 @@ namespace BusinessLayer
         static public DataTable SelectAllAttendancesStatus()
         {
             return clsAttendanceDataAccess.SelectAllAttendancesStatus();
+        }
+        static public DataTable SelectAllStudentsForAttendance(int CircleID)
+        {
+            return clsAttendanceDataAccess.SelectAllStudentsForAttendance(CircleID);
         }
         static public bool IsAttendanceExistsToday(int CircleID)
         {

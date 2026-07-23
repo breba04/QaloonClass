@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using EntityLayer;
+using static EntityLayer.clsEntityCircle;
 
 namespace BusinessLayer
 {
@@ -19,7 +20,10 @@ namespace BusinessLayer
         public string CircleName { get => EntityCircle.CircleName; set => EntityCircle.CircleName = value; } 
         public int TeacherID { get => EntityCircle.TeacherID; set => EntityCircle.TeacherID = value; } 
         public byte MaxCapacity { get => EntityCircle.MaxCapacity; set => EntityCircle.MaxCapacity = value; } 
-        public byte CurrentStudentNumbers { get => EntityCircle.CurrentStudentNumbers; } 
+        public byte CurrentStudentNumbers { get => EntityCircle.CurrentStudentNumbers; set => EntityCircle.MaxCapacity = value; }
+        public enScheduleType ScheduleType { get => EntityCircle.ScheduleType; set => EntityCircle.ScheduleType = value; }
+        public DateTime? StartTime { get => EntityCircle.StartTime; set => EntityCircle.StartTime = value; }
+        public byte? PrayerID { get => EntityCircle.PrayerID; set => EntityCircle.PrayerID = value; }
         public bool CannAdded { get => EntityCircle.CannAdded; } 
         public clsCircles()
         {
@@ -96,6 +100,12 @@ namespace BusinessLayer
                 return clsCirclesDataAccess.SelectAllCircles();
             else
                 return clsCirclesDataAccess.GetllEpisodesTeacher(clsCurrentUser.CurrentUser.UserID);
+
+        }
+        static public DataTable SelectAllCirclesMiniData()
+        {
+            
+            return clsCirclesDataAccess.SelectAllCirclesMiniData();
 
         }
         static public DataTable GetllEpisodesTeacher()

@@ -425,7 +425,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::UI.Properties.Resources.students1;
+            this.pictureBox3.Image = global::UI.Properties.Resources.students;
             this.pictureBox3.Location = new System.Drawing.Point(242, 226);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(36, 38);

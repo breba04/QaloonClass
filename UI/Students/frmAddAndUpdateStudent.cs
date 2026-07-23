@@ -15,6 +15,7 @@ namespace UI.Students
 {
     public partial class frmAddAndUpdateStudent : BaseForm
     {
+        
         enum enMode { Add = 1, Update = 2 }
         private DataTable _dtCircles ;
         private DataTable _dtSurrahs;
@@ -36,12 +37,80 @@ namespace UI.Students
             _StudentID = StudentID;
             _Mode = enMode.Update;
         }
+        private bool _LoadStudentFromDB(out string ErrorMessage)
+        {
+            ErrorMessage = null;
+            _Student = clsStudents.Find(_StudentID);
+            if (_Student == null)
+            {
+                ErrorMessage = $"لم يتم العثور على طالب بالمعرف {_StudentID}";
+                return false;
+            }
+            return true;
+        }
+        private bool _LoadStudentProgressFromDB(out string ErrorMessage)
+        {
+            ErrorMessage = null;
+            _StudentProgress = clsStudentProgress.Find(_StudentID);
+            if (_StudentProgress == null)
+            {
+                ErrorMessage = $"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}";
+                return false;
+            }
+            return true;
+        }
+        private void _InitializeForm()
+        {
+            _IsLoading = true;
+            _UpdateTitle();
+            btn_RemoveImage.Visible = false;
+
+            _LoadCirclesData();
+            _LoadSurrahsData();
+            _ConfigureDateTimePicker();
+
+
+            _FillCirclesInComoboBox();
+            _Fill_SurahsInComoboBox();
+
+            _IsLoading = false;
+
+            _UpdateSelectedCircleCapacityLabel();
+
+        }
+        private void _LoadAddMode()
+        {
+            _SelectNoneFullCircle();
+        }
+        private void _HandleLoadError(string message)
+        {
+            clsGlobal.ShowErrorMessgae(message, "خطأ في معرف الطالب");
+            ClearAll();
+        }
+        private void _LoadUpdateMode()
+        {
+            if (!_LoadStudentFromDB(out string ErrorMessage))
+            {
+                _HandleLoadError(ErrorMessage);
+                return;
+            }
+
+            if (!_LoadStudentProgressFromDB(out ErrorMessage))
+            {
+                _HandleLoadError(ErrorMessage);
+                return;
+            }
+
+            _LoadStudentData();
+            _LoadStudentProgressData();
+        }
         private void _InitializeDefautValue()
         {
             _Student = new clsStudents();
             _StudentID = -1;
             _StudentProgress = new clsStudentProgress();
             _Mode = enMode.Add;
+            _UpdateTitle();
         }
         private void _LoadCirclesData()
         {
@@ -60,46 +129,60 @@ namespace UI.Students
         {
             this.HeaderTitle = _Mode == enMode.Add ? "إضافة طالب" : "تعديل بيانات الطالب";
         }
+
         private void frmAddAndUpdateStudent_Load(object sender, EventArgs e)
         {
-            _IsLoading = true; 
-            _UpdateTitle();
-            btn_RemoveImage.Visible = false;
-
-            _LoadCirclesData();
-            _LoadSurrahsData();
-            _ConfigureDateTimePicker();
-
-            _IsLoading = false; 
-
-            _FillCirclesInComoboBox();
-            _Fill_SurahsInComoboBox();
-            _UpdateSelectedCircleCapacityLabel();
-
-            if(_Mode == enMode.Add)
+            _InitializeForm();
+            if (_Mode == enMode.Add)
             {
-                _SelectNoneFullCircle();
+                _LoadAddMode();
             }
             else
             {
-                _Student = clsStudents.Find(_StudentID);
-                if (_Student == null)
-                {
-                    clsGlobal.ShowErrorMessgae($"لم يتم العثور على طالب بالمعرف {_StudentID}", "خطأ في معرف الطالب");
-                    this.Close();
-                    return;
-                }
-                _StudentProgress = clsStudentProgress.Find(_StudentID);
-                if (_StudentProgress == null)
-                {
-                    clsGlobal.ShowErrorMessgae($"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}", "خطأ في معرف الطالب");
-                    this.Close();
-                    return;
-                }
-                _LoadStudentData();
-                _LoadStudentProgressData();
+                _LoadUpdateMode();
             }
         }
+
+        //private void frmAddAndUpdateStudent_Load(object sender, EventArgs e)
+        //{
+        //    _IsLoading = true; 
+        //    _UpdateTitle();
+        //    btn_RemoveImage.Visible = false;
+
+        //    _LoadCirclesData();
+        //    _LoadSurrahsData();
+        //    _ConfigureDateTimePicker();
+
+        //    _IsLoading = false; 
+
+        //    _FillCirclesInComoboBox();
+        //    _Fill_SurahsInComoboBox();
+        //    _UpdateSelectedCircleCapacityLabel();
+
+        //    if(_Mode == enMode.Add)
+        //    {
+        //        _SelectNoneFullCircle();
+        //    }
+        //    else
+        //    {
+        //        _Student = clsStudents.Find(_StudentID);
+        //        if (_Student == null)
+        //        {
+        //            clsGlobal.ShowErrorMessgae($"لم يتم العثور على طالب بالمعرف {_StudentID}", "خطأ في معرف الطالب");
+        //            this.Close();
+        //            return;
+        //        }
+        //        _StudentProgress = clsStudentProgress.Find(_StudentID);
+        //        if (_StudentProgress == null)
+        //        {
+        //            clsGlobal.ShowErrorMessgae($"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}", "خطأ في معرف الطالب");
+        //            this.Close();
+        //            return;
+        //        }
+        //        _LoadStudentData();
+        //        _LoadStudentProgressData();
+        //    }
+        //}
         private void _UpdateCapacityLabel(byte currentStudents, byte maxCapacity)
         {
             lbl_Capacity.Text = $"{maxCapacity}/{currentStudents}";
@@ -156,7 +239,8 @@ namespace UI.Students
             txt_SecondName.Clear();
             txt_ThirdName.Clear();
             txt_LastName.Clear();
-           if(_Mode == enMode.Add) txt_SeatingID.Clear();
+           //if(_Mode == enMode.Add)
+                txt_SeatingID.Clear();
             txt_Phone.Clear();
             txt_Address.Clear();
             ptb_PersonalPhoto.ImageLocation = null;
@@ -238,16 +322,29 @@ namespace UI.Students
             cmb_Aya.SelectedValue = _StudentProgress.AyahID;
         }
         
-        private void _CircleValdation( byte currentStudents, byte maxCapacity)
+        private void _CircleValdation()
         {
-            if (maxCapacity <= currentStudents)
-            {
-                errorProvider1.SetError(cmb_Circles, "الحلقة ممتلئة");
-            }
-            else
+            DataRowView selectedRow = (DataRowView)cmb_Circles.SelectedItem;
+
+            byte maxCapacity = Convert.ToByte(selectedRow["MaxCapacity"]);
+            byte currentStudents = Convert.ToByte(selectedRow["CurrentStudentNumbers"]);
+
+            bool _IsFull = currentStudents >= maxCapacity;
+
+            bool _IsSameCircle = _Mode == enMode.Update && _Student != null
+                && _Student.CircleID == Convert.ToInt32(cmb_Circles.SelectedValue);
+            if (_IsSameCircle || !_IsFull)
             {
                 errorProvider1.SetError(cmb_Circles, "");
             }
+            else
+            {
+                errorProvider1.SetError(cmb_Circles, "الحلقة ممتلئة");
+            }
+        }
+        private bool _IsCircleValid()
+        {
+            return string.IsNullOrEmpty(errorProvider1.GetError(cmb_Circles));
         }
         private void _SelectNoneFullCircle()
         {
@@ -268,13 +365,14 @@ namespace UI.Students
 
                 _UpdateCapacityLabel(currentStudents, maxCapacity);
 
-                _CircleValdation(currentStudents, maxCapacity);
+
             }
         }      
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_IsLoading) return; 
             _UpdateSelectedCircleCapacityLabel();
+            _CircleValdation();
         }
         private bool _SaveStudent(out string ErrorMessage)
         {
@@ -302,7 +400,7 @@ namespace UI.Students
         {
             if (!ValidateChildren()) return;
 
-            if (_Mode == enMode.Add && !string.IsNullOrEmpty(errorProvider1.GetError(cmb_Circles)))
+            if (!_IsCircleValid())
             {
                 clsGlobal.ShowErrorMessgae("!لا يمكن الحفظ، الحلقة المختارة ممتلئة حالياً", "خطأ في السعة");
                 return;
@@ -361,7 +459,7 @@ namespace UI.Students
         }
         private void cmb_Surahs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_IsLoading) return; 
+            //if (_IsLoading) return; 
             _Load_AyatFromSurrahData();
             _Fill_AyatInComoboBox();
         }
