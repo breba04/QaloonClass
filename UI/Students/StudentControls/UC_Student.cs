@@ -103,7 +103,7 @@ namespace UI.Students.StudentControls
         private void _FilterResult()
         {
             if (_ListStudents == null) return;
-
+            
             string filterExpression = "";
             string filterValue = clsUtil.EscapeRowFilterValue(txt_Research.Text.Trim()); 
             bool hasText = txt_Research.Visible && !string.IsNullOrWhiteSpace(txt_Research.Text);
@@ -256,17 +256,40 @@ namespace UI.Students.StudentControls
             e.Handled = Array.IndexOf(restrictedChars, e.KeyChar) >= 0; 
        
         }
-       
-        private void AddStudent_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _ClearTextSearch()
         {
-            MessageBox.Show("Add Student");
+            txt_Research.Clear();
         }
 
-   
+        private void AddStudent_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             frmAddAndUpdateStudent frmAddAndUpdateStudent = new frmAddAndUpdateStudent();
+            frmAddAndUpdateStudent.ShowDialog();
+            _RefreshStudentList();
+            _DisplayCurrentPage();
+            _ClearTextSearch();
+        }
+
+
 
         private void UpdateStudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          MessageBox.Show("Update Student");
+            if (dgv_ListStudents.Rows.Count > 0 && dgv_ListStudents.CurrentRow != null)
+            {
+                int StudentID = Convert.ToInt32(dgv_ListStudents.CurrentRow.Cells["StudentID"].Value);
+
+                frmAddAndUpdateStudent frmAddAndUpdateStudent = new frmAddAndUpdateStudent(StudentID);
+                frmAddAndUpdateStudent.ShowDialog();
+                _RefreshStudentList();
+                _DisplayCurrentPage();
+                _ClearTextSearch();
+
+            }
+            else
+            {
+                clsGlobal.ShowErrorMessgae("Please select a Student first!", "No Data");
+
+            }
         }
 
         private void StudentDetailsToolStripMenuItem_Click(object sender, EventArgs e)
