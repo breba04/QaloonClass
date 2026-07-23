@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attendance\testForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attendance\testForm.Designer.cs">
+      <DependentUpon>testForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attendance\UserControls\US_AttendanceMangement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Attendance\UserControls\US_AttendanceMangement.Designer.cs">
+      <DependentUpon>US_AttendanceMangement.cs</DependentUpon>
+    </Compile>
     <Compile Include="BasedUserControl\ctrlBaseCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -59,6 +71,12 @@
     </Compile>
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Circles\UserControls\US_CirclesManagment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Circles\UserControls\US_CirclesManagment.Designer.cs">
+      <DependentUpon>US_CirclesManagment.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -102,11 +120,20 @@
     <Compile Include="UserControls\UC_Dashboard.cs.Designer.cs">
       <DependentUpon>UC_Dashboard.cs.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Attendance\testForm.resx">
+      <DependentUpon>testForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attendance\UserControls\US_AttendanceMangement.resx">
+      <DependentUpon>US_AttendanceMangement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BasedUserControl\ctrlBaseCard.resx">
       <DependentUpon>ctrlBaseCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Circles\UserControls\US_CirclesManagment.resx">
+      <DependentUpon>US_CirclesManagment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -160,7 +187,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Attendance\" />
     <Folder Include="StudentProgress\UserControl\" />
     <Folder Include="Users\" />
   </ItemGroup>
@@ -649,6 +675,99 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ic_PersonalPhoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Cheacked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Student1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student-pogressstudent_icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\students11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Test 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Test Type 641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestType 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestType 5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User 32 -21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vision 5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32 - 21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Application 641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Driving License 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notes 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Number 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NumberOfRings1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PassedTests 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Password 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\People 4001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\People 5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\People 641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release Detained License 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release Detained License 5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release Detained License 641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Renew Driving License 321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Male 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\students1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
