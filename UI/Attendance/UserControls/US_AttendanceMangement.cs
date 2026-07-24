@@ -263,6 +263,11 @@ namespace UI.Attendance.UserControls
         }
         private void txt_SearchByName_TextChanged(object sender, EventArgs e)
         {
+            DataTable dt = dgvAttandenceList.DataSource as DataTable;
+            if(dt == null) return;
+
+            dt.DefaultView.RowFilter = string.IsNullOrEmpty(txt_SearchByName.Text) ? string.Empty
+                : clsUtil.GetFilterExpression(dgvAttandenceList.Columns["FullName"].Name, clsUtil.enTypeOfFilter.String, txt_SearchByName.Text);
 
         }
         private void btn_SetAllAttendance_Click(object sender, EventArgs e)

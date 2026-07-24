@@ -53,14 +53,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lbTakenAttendanceToday = new System.Windows.Forms.Label();
             this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CircleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CircleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SeatsNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberAbsentThisMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CircleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParentPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbTakenAttendanceToday = new System.Windows.Forms.Label();
             this.pnlTLTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -308,7 +308,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.18919F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.81081F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel5.Controls.Add(this.label6, 1, 2);
             this.tableLayoutPanel5.Controls.Add(this.label4, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Right;
@@ -330,7 +330,7 @@
             this.label6.Location = new System.Drawing.Point(66, 44);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(255, 47);
+            this.label6.Size = new System.Drawing.Size(254, 47);
             this.label6.TabIndex = 11;
             this.label6.Text = "إدارة حضور الطلاب لحلقة ابن القيم لهذا اليوم";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -344,7 +344,7 @@
             this.label4.Location = new System.Drawing.Point(66, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(255, 36);
+            this.label4.Size = new System.Drawing.Size(254, 36);
             this.label4.TabIndex = 9;
             this.label4.Text = "قائمة الطلاب";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -365,10 +365,10 @@
             this.dgvAttandenceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttandenceList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentID,
-            this.CircleID,
-            this.CircleName,
+            this.SeatsNumber,
+            this.FullName,
             this.NumberAbsentThisMonth,
-            this.MaxCapacity,
+            this.CircleName,
             this.ParentPhone,
             this.Status});
             this.dgvAttandenceList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -402,7 +402,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62915F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37085F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 279F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
             this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.lbTakenAttendanceToday, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -440,6 +440,21 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lbTakenAttendanceToday
+            // 
+            this.lbTakenAttendanceToday.AutoSize = true;
+            this.lbTakenAttendanceToday.BackColor = System.Drawing.Color.Beige;
+            this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1016, 10);
+            this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
+            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(273, 48);
+            this.lbTakenAttendanceToday.TabIndex = 17;
+            this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
+            this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StudentID
             // 
             this.StudentID.DataPropertyName = "StudentID";
@@ -448,22 +463,22 @@
             this.StudentID.Name = "StudentID";
             this.StudentID.Width = 125;
             // 
-            // CircleID
+            // SeatsNumber
             // 
-            this.CircleID.DataPropertyName = "SeatsNumber";
-            this.CircleID.HeaderText = "رقم الجلوس";
-            this.CircleID.MinimumWidth = 6;
-            this.CircleID.Name = "CircleID";
-            this.CircleID.ReadOnly = true;
-            this.CircleID.Width = 125;
+            this.SeatsNumber.DataPropertyName = "SeatsNumber";
+            this.SeatsNumber.HeaderText = "رقم الجلوس";
+            this.SeatsNumber.MinimumWidth = 6;
+            this.SeatsNumber.Name = "SeatsNumber";
+            this.SeatsNumber.ReadOnly = true;
+            this.SeatsNumber.Width = 125;
             // 
-            // CircleName
+            // FullName
             // 
-            this.CircleName.DataPropertyName = "FullName";
-            this.CircleName.HeaderText = "اسم الطالب";
-            this.CircleName.MinimumWidth = 6;
-            this.CircleName.Name = "CircleName";
-            this.CircleName.Width = 125;
+            this.FullName.DataPropertyName = "FullName";
+            this.FullName.HeaderText = "اسم الطالب";
+            this.FullName.MinimumWidth = 6;
+            this.FullName.Name = "FullName";
+            this.FullName.Width = 125;
             // 
             // NumberAbsentThisMonth
             // 
@@ -474,13 +489,13 @@
             this.NumberAbsentThisMonth.ReadOnly = true;
             this.NumberAbsentThisMonth.Width = 125;
             // 
-            // MaxCapacity
+            // CircleName
             // 
-            this.MaxCapacity.DataPropertyName = "CircleName";
-            this.MaxCapacity.HeaderText = "اسم الحلقة";
-            this.MaxCapacity.MinimumWidth = 6;
-            this.MaxCapacity.Name = "MaxCapacity";
-            this.MaxCapacity.Width = 125;
+            this.CircleName.DataPropertyName = "CircleName";
+            this.CircleName.HeaderText = "اسم الحلقة";
+            this.CircleName.MinimumWidth = 6;
+            this.CircleName.Name = "CircleName";
+            this.CircleName.Width = 125;
             // 
             // ParentPhone
             // 
@@ -499,21 +514,6 @@
             this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Status.Width = 125;
-            // 
-            // lbTakenAttendanceToday
-            // 
-            this.lbTakenAttendanceToday.AutoSize = true;
-            this.lbTakenAttendanceToday.BackColor = System.Drawing.Color.Beige;
-            this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1017, 10);
-            this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
-            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(272, 48);
-            this.lbTakenAttendanceToday.TabIndex = 17;
-            this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
-            this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // US_AttendanceMangement
             // 
@@ -573,13 +573,13 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lbTakenAttendanceToday;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CircleID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CircleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SeatsNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberAbsentThisMonth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxCapacity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CircleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParentPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.Label lbTakenAttendanceToday;
     }
 }
