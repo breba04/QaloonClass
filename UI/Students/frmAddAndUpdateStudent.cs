@@ -23,6 +23,8 @@ namespace UI.Students
         clsStudents _Student;
         int _StudentID;
         clsStudentProgress _StudentProgress;
+        short _AyaID;
+        
         string ImageName;
         enMode _Mode;
         private bool _IsLoading = true;
@@ -57,6 +59,7 @@ namespace UI.Students
                 ErrorMessage = $"لم يتم العثور على تقدم الطالب صاحب المعرف {_StudentID}";
                 return false;
             }
+            _AyaID = _StudentProgress.AyahID;
             return true;
         }
         private void _InitializeForm()
@@ -107,8 +110,9 @@ namespace UI.Students
         private void _InitializeDefautValue()
         {
             _Student = new clsStudents();
-            _StudentID = -1;
             _StudentProgress = new clsStudentProgress();
+            _StudentID = -1;
+            _AyaID = -1;
             _Mode = enMode.Add;
             _UpdateTitle();
         }
@@ -321,7 +325,6 @@ namespace UI.Students
             cmb_Surahs.SelectedValue = _StudentProgress.SurrahID;
             cmb_Aya.SelectedValue = _StudentProgress.AyahID;
         }
-        
         private void _CircleValdation()
         {
             DataRowView selectedRow = (DataRowView)cmb_Circles.SelectedItem;
@@ -388,12 +391,16 @@ namespace UI.Students
         private bool _SaveStudentProgress(out string ErrorMessage)
         {
             _SetStudentProgrees();
-            if (!_StudentProgress.Save())
-            {
-                ErrorMessage = "لم يتم تسجيل الطالب";
-                return false;
-            }
+
             ErrorMessage = string.Empty;
+
+            if (_AyaID == Convert.ToInt16(cmb_Aya.SelectedValue))
+                    return true;
+
+            if (_StudentProgress.Save())
+                return true;
+
+            ErrorMessage = "لم يتم تسجيل الطالب";
             return true;
         }
         private void btn_Save_Click(object sender, EventArgs e)
@@ -426,6 +433,7 @@ namespace UI.Students
             _StudentID = _Student.StudentID;
              txt_SeatingID.Text = _Student.SeatsNumber;
             _Mode = enMode.Update;
+            _AyaID = _StudentProgress.AyahID;
             _UpdateTitle();
             _UpdateSelectedCircleCapacityAfterSavingStudent();
 
