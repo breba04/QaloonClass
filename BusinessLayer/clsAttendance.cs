@@ -16,6 +16,7 @@ namespace BusinessLayer
         clsEntityAttendance EntityAttendance;
         public int AttendanceID { get => EntityAttendance.AttendanceID; }  
         public int StudentID { get => EntityAttendance.StudentID; set => EntityAttendance.StudentID = value; } 
+        public int CircleID { get => EntityAttendance.CircleID; set => EntityAttendance.CircleID = value; } 
         public DateTime AttendanceDate { get => EntityAttendance.AttendanceDate; set => EntityAttendance.AttendanceDate = value; } 
         public byte Status { get => EntityAttendance.Status; set => EntityAttendance.Status = value; } 
         public clsAttendance()
@@ -55,10 +56,22 @@ namespace BusinessLayer
         {
             return clsAttendanceDataAccess.UpdateAttendance(EntityAttendance);
         }
+        static public clsAttendance Find(int studentId,DateTime date)
+        {
+            clsEntityAttendance Entity = new clsEntityAttendance();
+            Entity.StudentID = studentId;
+            Entity.AttendanceDate = date;
+
+            if (clsAttendanceDataAccess.FindAttendanceByStudentID(Entity))
+                return new clsAttendance(Entity);
+
+            return null;
+        }
         static public clsAttendance Find(int studentId)
         {
             clsEntityAttendance Entity = new clsEntityAttendance();
             Entity.StudentID = studentId;
+            Entity.AttendanceDate = DateTime.Now;
 
             if (clsAttendanceDataAccess.FindAttendanceByStudentID(Entity))
                 return new clsAttendance(Entity);
@@ -104,7 +117,14 @@ namespace BusinessLayer
         }
         static public bool IsAttendanceExistsToday(int CircleID)
         {
-            return clsAttendanceDataAccess.IsAttendanceExistsToday( CircleID);
+            if(CircleID == -1)  
+                return clsAttendanceDataAccess.IsAllCirclesAttendanceExistsToday();
+
+            return clsAttendanceDataAccess.IsAttendanceExistsToday(CircleID);
+        }
+        static public bool IsAllCirclesAttendanceExistsToday()
+        {
+            return clsAttendanceDataAccess.IsAllCirclesAttendanceExistsToday();
         }
     }
 }

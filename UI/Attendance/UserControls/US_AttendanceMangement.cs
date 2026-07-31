@@ -182,6 +182,7 @@ namespace UI.Attendance.UserControls
 
             _AttendanceStudent.StudentID = _StudentID;
             _AttendanceStudent.AttendanceDate = DateTime.Today;
+            _AttendanceStudent.CircleID = Convert.ToInt32(row.Cells["CircleID"].Value);
             _AttendanceStudent.Status = Convert.ToByte(row.Cells["Status"].Value);
         }
         void FillAttendanceList()
@@ -253,13 +254,15 @@ namespace UI.Attendance.UserControls
         }
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(_ListStudent != null)
+                _ListStudent.Clear();
+            if(_ChangedStudents != null)
+                _ChangedStudents.Clear();
             if (_IsLoading) return;
 
             _IsTakenAttendanceToday = clsAttendance.IsAttendanceExistsToday((int)cmb_Circles.SelectedValue);
             GetAttendanceData();
             DisplayTitleForTakenOrNotTakenAttendance();
-            if(_ChangedStudents != null)
-                _ChangedStudents.Clear();
         }
         private void txt_SearchByName_TextChanged(object sender, EventArgs e)
         {

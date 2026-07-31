@@ -59,6 +59,7 @@
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberAbsentThisMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CircleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CircleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParentPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlTLTop.SuspendLayout();
@@ -308,7 +309,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.18919F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.81081F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel5.Controls.Add(this.label6, 1, 2);
             this.tableLayoutPanel5.Controls.Add(this.label4, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Right;
@@ -330,7 +331,7 @@
             this.label6.Location = new System.Drawing.Point(66, 44);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(254, 47);
+            this.label6.Size = new System.Drawing.Size(253, 47);
             this.label6.TabIndex = 11;
             this.label6.Text = "إدارة حضور الطلاب لحلقة ابن القيم لهذا اليوم";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -344,7 +345,7 @@
             this.label4.Location = new System.Drawing.Point(66, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(254, 36);
+            this.label4.Size = new System.Drawing.Size(253, 36);
             this.label4.TabIndex = 9;
             this.label4.Text = "قائمة الطلاب";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -369,6 +370,7 @@
             this.FullName,
             this.NumberAbsentThisMonth,
             this.CircleName,
+            this.CircleID,
             this.ParentPhone,
             this.Status});
             this.dgvAttandenceList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -402,7 +404,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62915F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37085F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
             this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.lbTakenAttendanceToday, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -432,7 +434,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnSave.Size = new System.Drawing.Size(319, 42);
+            this.btnSave.Size = new System.Drawing.Size(318, 42);
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "حفظ التغييرات";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -447,10 +449,10 @@
             this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1016, 10);
+            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1015, 10);
             this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
-            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(273, 48);
+            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(274, 48);
             this.lbTakenAttendanceToday.TabIndex = 17;
             this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
             this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -496,6 +498,15 @@
             this.CircleName.MinimumWidth = 6;
             this.CircleName.Name = "CircleName";
             this.CircleName.Width = 125;
+            // 
+            // CircleID
+            // 
+            this.CircleID.DataPropertyName = "CircleID";
+            this.CircleID.HeaderText = "رقم الحلقة";
+            this.CircleID.MinimumWidth = 6;
+            this.CircleID.Name = "CircleID";
+            this.CircleID.Visible = false;
+            this.CircleID.Width = 125;
             // 
             // ParentPhone
             // 
@@ -579,6 +590,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberAbsentThisMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn CircleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CircleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParentPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }

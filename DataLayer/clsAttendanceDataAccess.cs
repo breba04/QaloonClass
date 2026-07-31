@@ -20,6 +20,7 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StudentID", EntityAttendance.StudentID);
+                    cmd.Parameters.AddWithValue("@CircleID", EntityAttendance.CircleID);
                     cmd.Parameters.AddWithValue("@AttendanceDate", EntityAttendance.AttendanceDate);
                     cmd.Parameters.AddWithValue("@Status", EntityAttendance.Status);
 
@@ -49,6 +50,7 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@AttendanceID", EntityAttendance.AttendanceID);
                     cmd.Parameters.AddWithValue("@StudentID", EntityAttendance.StudentID);
+                    cmd.Parameters.AddWithValue("@CircleID", EntityAttendance.CircleID);
                     cmd.Parameters.AddWithValue("@AttendanceDate", EntityAttendance.AttendanceDate);
                     cmd.Parameters.AddWithValue("@Status", EntityAttendance.Status);
 
@@ -225,6 +227,33 @@ namespace DataAccessLayer
             }
             return isExist;
         }
+        static public bool IsAllCirclesAttendanceExistsToday()
+        {
+            bool isExist = default(Boolean);
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_IsAllCirclesAttendanceExistsToday", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ReturnValue",SqlDbType.Bit).Direction = ParameterDirection.ReturnValue;
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        object obj = cmd.Parameters["@ReturnValue"].Value;
+                        if (obj != null && int.TryParse(obj.ToString(),out int result))
+                            isExist = Convert.ToBoolean(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "IsAttendanceExist", DateTime.Now, null);
+                    }
+                }
+            }
+            return isExist;
+        }
         static public bool FindAttendanceByStudentID(clsEntityAttendance Attendance)
         {
             bool result = false;
@@ -235,9 +264,10 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@StudentID", Attendance.StudentID);
-                cmd.Parameters.Add("@AttendanceID", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@AttendanceDate", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@AttendanceDate", Attendance.AttendanceDate);
+                cmd.Parameters.Add("@AttendanceID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@CircleID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@Status", SqlDbType.TinyInt, 50).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 try
                 {
