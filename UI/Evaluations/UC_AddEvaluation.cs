@@ -19,6 +19,8 @@ namespace UI.Evaluations
     {
         Dictionary<enRate, Color> _ListOfColor;
         enRate? _Rate;
+        public enum enMode { Add ,Update,TakeResult}
+        enMode _Mode;
         private DataTable _dtCircles;
         private DataTable _dtStudents;
         private DataTable _dtSurrahs;
@@ -26,8 +28,10 @@ namespace UI.Evaluations
         private DataTable _dtAyatSurrahTo;
         private bool _IsLoading;
         private clsEvaluations _Evaluation;
+        private clsStudents _Student;
         private bool _IsEvaluationTaken;
-        public UC_AddEvaluation()
+        private int _EvaluationID;
+        public UC_AddEvaluation(enMode Mode, int EvaluationID = -1)
         {
             InitializeComponent();
             _ListOfColor = new Dictionary<enRate, Color>()
@@ -39,7 +43,10 @@ namespace UI.Evaluations
             };
             _Rate = null;
             _Evaluation = new clsEvaluations();
+            _Student = new clsStudents();
             _IsEvaluationTaken = false;
+            _Mode = Mode;
+            _EvaluationID = EvaluationID;
         }
         Color _ChangeColorAlpha(Color color,int Alpha)
         {
@@ -128,15 +135,7 @@ namespace UI.Evaluations
         private void _FillEvaluationData()
         {
 
-            _Evaluation.StudentID = Convert.ToInt32(cmb_Students.SelectedValue);
 
-            var SelectedFromAyaID = rd_Suraah.Checked ? cmb_FromSurrah.SelectedValue : cmb_FromAya.SelectedValue;
-            var SelectedToAyaID = rd_Suraah.Checked ? cmb_ToSurrah.SelectedValue : cmb_ToAyah.SelectedValue;
-            _Evaluation.FromAyahID = Convert.ToInt16(SelectedFromAyaID);
-            _Evaluation.ToAyahID = Convert.ToInt16(SelectedToAyaID);
-
-            _Evaluation.EvalType = rd_Suraah.Checked? enEvaluationType.Surrah: enEvaluationType.Aya;
-            _Evaluation.EvalDate = dtp_DateOfEvaluation.Value;
             _Evaluation.IsEvaluationTaken = _IsEvaluationTaken;
             if (_IsEvaluationTaken)
             {
@@ -144,6 +143,19 @@ namespace UI.Evaluations
                 string Notes = txt_Notes.Text.Trim();
                 _Evaluation.Notes = Notes.Length > 0? Notes :null;
             }
+            
+            if (_Mode == enMode.TakeResult) return;
+
+            _Evaluation.EvalDate = dtp_DateOfEvaluation.Value;
+            _Evaluation.EvalType = rd_Suraah.Checked? enEvaluationType.Surrah: enEvaluationType.Aya;
+            var SelectedFromAyaID = rd_Suraah.Checked ? cmb_FromSurrah.SelectedValue : cmb_FromAya.SelectedValue;
+            var SelectedToAyaID = rd_Suraah.Checked ? cmb_ToSurrah.SelectedValue : cmb_ToAyah.SelectedValue;
+            _Evaluation.FromAyahID = Convert.ToInt16(SelectedFromAyaID);
+            _Evaluation.ToAyahID = Convert.ToInt16(SelectedToAyaID);
+            
+            if (_Mode == enMode.Update) return;
+
+            _Evaluation.StudentID = Convert.ToInt32(cmb_Students.SelectedValue);
         }
         private void _ConfigureDateTimePicker()
         {
@@ -208,7 +220,7 @@ namespace UI.Evaluations
             //
             
         }
-        private void _InitializeUC()
+        private void _InitializeAddMode()
         {
             _ConfigureDateTimePicker();
             _HandleAyaText(false);
@@ -227,14 +239,98 @@ namespace UI.Evaluations
             rd_Suraah.Checked = true;
 
         }
+        private void _InitializeUpdateOrTakeReultMode()
+        {
+            cmb_Circles.Items.Add(_Student.CircleInfo.CircleName);
+            cmb_Circles.SelectedIndex = 0;
+            tlpnl_Circles.Enabled = false;
+            
+            cmb_Students.Items.Add(_Student.FullName);
+            cmb_Students.SelectedIndex = 0;
+            cmb_Students.SelectedValue = _Student.StudentID;
+            tlpnl_Students.Enabled = false;
+
+            dtp_DateOfEvaluation.Value = _Evaluation.EvalDate;
+
+            rd_Suraah.Checked = _Evaluation.EvalType == enEvaluationType.Surrah;
+            rd_Ayah.Checked = _Evaluation.EvalType == enEvaluationType.Aya;
+
+            string FromSurrahName = _Evaluation.EvalType == enEvaluationType.Surrah
+                ? clsMushafQaloon.GetSurrahNameByFirstAyaID(_Evaluation.FromAyahID)
+                : clsMushafQaloon.GetSurrahNameByAyaID(_Evaluation.FromAyahID);
+
+            string ToSurrahName = _Evaluation.EvalType == enEvaluationType.Surrah
+                ? clsMushafQaloon.GetSurrahNameByFirstAyaID(_Evaluation.ToAyahID)
+                : clsMushafQaloon.GetSurrahNameByAyaID(_Evaluation.ToAyahID);
+
+            if (_Mode == enMode.Update)
+            {
+                _LoadSurrahsData();
+                _Fill_SurahsInComoboBox();
+                cmb_FromSurrah.Text = FromSurrahName;
+                cmb_ToSurrah.Text = ToSurrahName;
+                if(_Evaluation.EvalType == enEvaluationType.Aya)
+                {
+                    cmb_FromAya.SelectedValue = _Evaluation.FromAyahID;
+                    cmb_ToAyah.SelectedValue = _Evaluation.ToAyahID;
+                }
+                return;
+            }
+            tlpnl_EvaluationType.Enabled = false;
+
+            dtp_DateOfEvaluation.Enabled = false;
+
+            cmb_FromSurrah.Items.Add(FromSurrahName);
+            cmb_FromSurrah.SelectedIndex = 0;
+            cmb_ToSurrah.Items.Add(ToSurrahName);
+            cmb_ToSurrah.SelectedIndex = 0;
+            tlpnl_FromAyaAndSurrah.Enabled = false;
+            tlpnl_ToAyaAndSurrah.Enabled = false;
+            if(_Evaluation.EvalType == enEvaluationType.Aya)
+            {
+                string FromAyaText = clsMushafQaloon.GetAyaText(_Evaluation.FromAyahID,30);
+                string ToAyaText = clsMushafQaloon.GetAyaText(_Evaluation.ToAyahID, 30);
+
+
+                cmb_FromAya.Items.Add(FromAyaText);
+                cmb_FromAya.SelectedIndex = 0;
+
+                cmb_ToAyah.Items.Add(ToAyaText);
+                cmb_ToAyah.SelectedIndex = 0;
+            }
+            else
+            {
+                _HandleAyaText(false);
+            }
+        }
         private void UC_AddEvaluation_Load(object sender, EventArgs e)
         {
-            _InitializeUC();
+            if(_Mode == enMode.Add)
+                _InitializeAddMode();
+            else
+            {
+                _Evaluation = clsEvaluations.FindEvaluation(_EvaluationID);
+                if(_Evaluation == null)
+                {
+                    MessageBox.Show($"لم يتم العثور على الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _InitializeAddMode();
+                    return;
+                }
+                _Student = clsStudents.Find(_Evaluation.StudentID);
+                if(_Student == null)
+                {
+                    MessageBox.Show($"لم يتم العثور على الطالب صاحب الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _InitializeAddMode();
+                    return;
+                }
+                _InitializeUpdateOrTakeReultMode();
+            }
         }
         private void cmb_FromSurrah_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (
                 //_IsLoading ||
+                _Mode== enMode.TakeResult||
                 rd_Suraah.Checked) return;
 
             _Load_AyatSurrahFromData();
@@ -250,13 +346,15 @@ namespace UI.Evaluations
         {
             if (
                 //_IsLoading ||
-                rd_Suraah.Checked) return;
+            rd_Suraah.Checked||
+            _Mode == enMode.TakeResult) return;
             _Load_AyatSurrahToData();
             _Fill_AyatToInComoboBox();
 
         }
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_Mode != enMode.Add) return;
             _LoadStudentData();
             _FillStudentsInComoboBox();
         }
@@ -269,13 +367,14 @@ namespace UI.Evaluations
                     "تسجيل اختبار جديد",MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
                     return;
             }
+            string Message = _Mode == enMode.Add ? "تسجيل الاختبار" : _Mode == enMode.Update ? "تعديل الاختبار" : "رصد نتيجة الإختبار";
             if(_Evaluation.Save())
             {
-                MessageBox.Show("تم تسجيل الاختبار بنجاح", "تسجيل اختبار جديد", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"تم {Message} بنجاح",Message, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("حدث خطأ أثناء تسجيل الاختبار", "تسجيل اختبار جديد", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"حدث خطأ أثناء {Message}",Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

@@ -87,5 +87,75 @@ namespace DataLayer
             }
             return result;
         }
+        static public string GetSurrahNameByAyaID(short AyaID)
+        {
+            string result = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetSurrahNameByAyaID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
+                try
+                {
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = obj.ToString();
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
+        static public string GetSurrahNameByFirstAyaID(short AyaID)
+        {
+            string result = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetSurrahNameByFirstAyaID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
+                try
+                {
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = obj.ToString();
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
+        static public string GetAyaText(short AyaID, byte NumberOfLetters)
+        {
+            string result = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_GetAyaText", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
+                cmd.Parameters.AddWithValue("@NumberOfLetters", NumberOfLetters);
+                try
+                {
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = obj.ToString();
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
     }
 }

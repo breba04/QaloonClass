@@ -58,7 +58,7 @@ namespace UI
 
         private void btn_MemorizationCircle_Click(object sender, EventArgs e)
         {
-            ShowControl(new UC_AddEvaluation());
+            ShowControl(new UC_AddEvaluation(UC_AddEvaluation.enMode.Add));
         }
 
         private void btn_Presence_Click(object sender, EventArgs e)

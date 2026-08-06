@@ -96,7 +96,11 @@ namespace BusinessLayer
             EntityStudent.StudentID = studentId;
 
             if (clsStudentsDataAccess.FindStudentByID(EntityStudent))
+            {
+                clsEntityCircle entityCircle = new clsEntityCircle() { CircleID = EntityStudent.CircleID };
+                EntityStudent.CircleInfo = clsCircles.FindEntityCircleByID(entityCircle.CircleID);
                 return new clsStudents(EntityStudent);
+            }
                 
             return null;
         }

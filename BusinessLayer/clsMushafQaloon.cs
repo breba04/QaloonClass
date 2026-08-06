@@ -24,5 +24,17 @@ namespace BusinessLayer
         {
             return clsMoshafQaloonDataAccess.GetAllAyatFromSurrah(SurrahNo, NumberOfLetters);
         }
+        static public string GetSurrahNameByAyaID(short AyaID)
+        {
+            return clsMoshafQaloonDataAccess.GetSurrahNameByAyaID(AyaID);
+        }
+        static public string GetSurrahNameByFirstAyaID(short AyaID)
+        {
+            return clsMoshafQaloonDataAccess.GetSurrahNameByFirstAyaID(AyaID);
+        }
+        static public string GetAyaText(short AyaID, byte NumberOfLetters)
+        {
+            return clsMoshafQaloonDataAccess.GetAyaText(AyaID,NumberOfLetters);
+        }
     }
 }

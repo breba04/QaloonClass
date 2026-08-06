@@ -34,10 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpnl_Circles = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.cmb_Circles = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpnl_Students = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_Students = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,7 +63,7 @@
             this.pnl_Good = new System.Windows.Forms.TableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpnl_ToAyaAndSurrah = new System.Windows.Forms.TableLayoutPanel();
             this.cmb_ToSurrah = new System.Windows.Forms.ComboBox();
             this.cmb_ToAyah = new System.Windows.Forms.ComboBox();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -72,7 +72,7 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.lbToAya = new System.Windows.Forms.Label();
             this.pb_ToAya = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpnl_FromAyaAndSurrah = new System.Windows.Forms.TableLayoutPanel();
             this.cmb_FromSurrah = new System.Windows.Forms.ComboBox();
             this.cmb_FromAya = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -81,7 +81,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.lbFromAya = new System.Windows.Forms.Label();
             this.pb_FromAya = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpnl_EvaluationType = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rd_Ayah = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -99,8 +99,8 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.pnlTLTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tlpnl_Circles.SuspendLayout();
+            this.tlpnl_Students.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
@@ -115,17 +115,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnl_Good.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.tableLayoutPanel8.SuspendLayout();
+            this.tlpnl_ToAyaAndSurrah.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ToAya)).BeginInit();
-            this.tableLayoutPanel7.SuspendLayout();
+            this.tlpnl_FromAyaAndSurrah.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_FromAya)).BeginInit();
-            this.tableLayoutPanel6.SuspendLayout();
+            this.tlpnl_EvaluationType.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -187,8 +187,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.54313F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.54313F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.53674F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tlpnl_Circles, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tlpnl_Students, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 78);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
@@ -200,22 +200,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1273, 74);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // tableLayoutPanel2
+            // tlpnl_Circles
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.4269F));
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cmb_Circles, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(640, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(441, 70);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tlpnl_Circles.BackColor = System.Drawing.Color.White;
+            this.tlpnl_Circles.ColumnCount = 1;
+            this.tlpnl_Circles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.4269F));
+            this.tlpnl_Circles.Controls.Add(this.label3, 0, 0);
+            this.tlpnl_Circles.Controls.Add(this.cmb_Circles, 0, 1);
+            this.tlpnl_Circles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpnl_Circles.Location = new System.Drawing.Point(640, 2);
+            this.tlpnl_Circles.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpnl_Circles.Name = "tlpnl_Circles";
+            this.tlpnl_Circles.RowCount = 2;
+            this.tlpnl_Circles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
+            this.tlpnl_Circles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
+            this.tlpnl_Circles.Size = new System.Drawing.Size(441, 70);
+            this.tlpnl_Circles.TabIndex = 0;
             // 
             // label3
             // 
@@ -249,22 +249,22 @@
             this.cmb_Circles.ValueMember = "CircleID";
             this.cmb_Circles.SelectedIndexChanged += new System.EventHandler(this.cmb_Circles_SelectedIndexChanged);
             // 
-            // tableLayoutPanel3
+            // tlpnl_Students
             // 
-            this.tableLayoutPanel3.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.4269F));
-            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cmb_Students, 0, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(195, 2);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(441, 70);
-            this.tableLayoutPanel3.TabIndex = 2;
+            this.tlpnl_Students.BackColor = System.Drawing.Color.White;
+            this.tlpnl_Students.ColumnCount = 1;
+            this.tlpnl_Students.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.4269F));
+            this.tlpnl_Students.Controls.Add(this.label4, 0, 0);
+            this.tlpnl_Students.Controls.Add(this.cmb_Students, 0, 1);
+            this.tlpnl_Students.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpnl_Students.Location = new System.Drawing.Point(195, 2);
+            this.tlpnl_Students.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpnl_Students.Name = "tlpnl_Students";
+            this.tlpnl_Students.RowCount = 2;
+            this.tlpnl_Students.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
+            this.tlpnl_Students.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
+            this.tlpnl_Students.Size = new System.Drawing.Size(441, 70);
+            this.tlpnl_Students.TabIndex = 2;
             // 
             // label4
             // 
@@ -319,9 +319,9 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.tableLayoutPanel14);
             this.panel1.Controls.Add(this.tableLayoutPanel9);
-            this.panel1.Controls.Add(this.tableLayoutPanel8);
-            this.panel1.Controls.Add(this.tableLayoutPanel7);
-            this.panel1.Controls.Add(this.tableLayoutPanel6);
+            this.panel1.Controls.Add(this.tlpnl_ToAyaAndSurrah);
+            this.panel1.Controls.Add(this.tlpnl_FromAyaAndSurrah);
+            this.panel1.Controls.Add(this.tlpnl_EvaluationType);
             this.panel1.Controls.Add(this.tableLayoutPanel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(195, 3);
@@ -405,6 +405,7 @@
             // 
             this.txt_Notes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(194)))));
             this.txt_Notes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_Notes.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_Notes.Location = new System.Drawing.Point(271, 43);
             this.txt_Notes.Multiline = true;
             this.txt_Notes.Name = "txt_Notes";
@@ -657,26 +658,26 @@
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
-            // tableLayoutPanel8
+            // tlpnl_ToAyaAndSurrah
             // 
-            this.tableLayoutPanel8.ColumnCount = 4;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
-            this.tableLayoutPanel8.Controls.Add(this.cmb_ToSurrah, 0, 2);
-            this.tableLayoutPanel8.Controls.Add(this.cmb_ToAyah, 2, 2);
-            this.tableLayoutPanel8.Controls.Add(this.panel8, 0, 1);
-            this.tableLayoutPanel8.Controls.Add(this.panel9, 2, 1);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 152);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 3;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.62295F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.37705F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(885, 69);
-            this.tableLayoutPanel8.TabIndex = 3;
+            this.tlpnl_ToAyaAndSurrah.ColumnCount = 4;
+            this.tlpnl_ToAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
+            this.tlpnl_ToAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tlpnl_ToAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
+            this.tlpnl_ToAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
+            this.tlpnl_ToAyaAndSurrah.Controls.Add(this.cmb_ToSurrah, 0, 2);
+            this.tlpnl_ToAyaAndSurrah.Controls.Add(this.cmb_ToAyah, 2, 2);
+            this.tlpnl_ToAyaAndSurrah.Controls.Add(this.panel8, 0, 1);
+            this.tlpnl_ToAyaAndSurrah.Controls.Add(this.panel9, 2, 1);
+            this.tlpnl_ToAyaAndSurrah.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpnl_ToAyaAndSurrah.Location = new System.Drawing.Point(0, 152);
+            this.tlpnl_ToAyaAndSurrah.Name = "tlpnl_ToAyaAndSurrah";
+            this.tlpnl_ToAyaAndSurrah.RowCount = 3;
+            this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.62295F));
+            this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.37705F));
+            this.tlpnl_ToAyaAndSurrah.Size = new System.Drawing.Size(885, 69);
+            this.tlpnl_ToAyaAndSurrah.TabIndex = 3;
             // 
             // cmb_ToSurrah
             // 
@@ -785,25 +786,25 @@
             this.pb_ToAya.TabIndex = 47;
             this.pb_ToAya.TabStop = false;
             // 
-            // tableLayoutPanel7
+            // tlpnl_FromAyaAndSurrah
             // 
-            this.tableLayoutPanel7.ColumnCount = 4;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
-            this.tableLayoutPanel7.Controls.Add(this.cmb_FromSurrah, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.cmb_FromAya, 2, 1);
-            this.tableLayoutPanel7.Controls.Add(this.panel6, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel7, 2, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 92);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.33333F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.66667F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(885, 60);
-            this.tableLayoutPanel7.TabIndex = 2;
+            this.tlpnl_FromAyaAndSurrah.ColumnCount = 4;
+            this.tlpnl_FromAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
+            this.tlpnl_FromAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tlpnl_FromAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
+            this.tlpnl_FromAyaAndSurrah.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
+            this.tlpnl_FromAyaAndSurrah.Controls.Add(this.cmb_FromSurrah, 0, 1);
+            this.tlpnl_FromAyaAndSurrah.Controls.Add(this.cmb_FromAya, 2, 1);
+            this.tlpnl_FromAyaAndSurrah.Controls.Add(this.panel6, 0, 0);
+            this.tlpnl_FromAyaAndSurrah.Controls.Add(this.panel7, 2, 0);
+            this.tlpnl_FromAyaAndSurrah.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpnl_FromAyaAndSurrah.Location = new System.Drawing.Point(0, 92);
+            this.tlpnl_FromAyaAndSurrah.Name = "tlpnl_FromAyaAndSurrah";
+            this.tlpnl_FromAyaAndSurrah.RowCount = 2;
+            this.tlpnl_FromAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.33333F));
+            this.tlpnl_FromAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.66667F));
+            this.tlpnl_FromAyaAndSurrah.Size = new System.Drawing.Size(885, 60);
+            this.tlpnl_FromAyaAndSurrah.TabIndex = 2;
             // 
             // cmb_FromSurrah
             // 
@@ -912,22 +913,22 @@
             this.pb_FromAya.TabIndex = 47;
             this.pb_FromAya.TabStop = false;
             // 
-            // tableLayoutPanel6
+            // tlpnl_EvaluationType
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.66666F));
-            this.tableLayoutPanel6.Controls.Add(this.panel2, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label7, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 42);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 3;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(885, 50);
-            this.tableLayoutPanel6.TabIndex = 1;
+            this.tlpnl_EvaluationType.ColumnCount = 2;
+            this.tlpnl_EvaluationType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
+            this.tlpnl_EvaluationType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.66666F));
+            this.tlpnl_EvaluationType.Controls.Add(this.panel2, 1, 1);
+            this.tlpnl_EvaluationType.Controls.Add(this.label7, 0, 1);
+            this.tlpnl_EvaluationType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpnl_EvaluationType.Location = new System.Drawing.Point(0, 42);
+            this.tlpnl_EvaluationType.Name = "tlpnl_EvaluationType";
+            this.tlpnl_EvaluationType.RowCount = 3;
+            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
+            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
+            this.tlpnl_EvaluationType.Size = new System.Drawing.Size(885, 50);
+            this.tlpnl_EvaluationType.TabIndex = 1;
             // 
             // panel2
             // 
@@ -1039,9 +1040,10 @@
             // 
             // dtp_DateOfEvaluation
             // 
-            this.dtp_DateOfEvaluation.Location = new System.Drawing.Point(184, 3);
+            this.dtp_DateOfEvaluation.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtp_DateOfEvaluation.Location = new System.Drawing.Point(118, 3);
             this.dtp_DateOfEvaluation.Name = "dtp_DateOfEvaluation";
-            this.dtp_DateOfEvaluation.Size = new System.Drawing.Size(174, 34);
+            this.dtp_DateOfEvaluation.Size = new System.Drawing.Size(240, 34);
             this.dtp_DateOfEvaluation.TabIndex = 40;
             // 
             // panel10
@@ -1152,10 +1154,10 @@
             this.pnlTLTop.ResumeLayout(false);
             this.pnlTLTop.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.tlpnl_Circles.ResumeLayout(false);
+            this.tlpnl_Circles.PerformLayout();
+            this.tlpnl_Students.ResumeLayout(false);
+            this.tlpnl_Students.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -1177,22 +1179,22 @@
             this.pnl_Good.ResumeLayout(false);
             this.pnl_Good.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tlpnl_ToAyaAndSurrah.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ToAya)).EndInit();
-            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tlpnl_FromAyaAndSurrah.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_FromAya)).EndInit();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
+            this.tlpnl_EvaluationType.ResumeLayout(false);
+            this.tlpnl_EvaluationType.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -1207,13 +1209,13 @@
 
         private System.Windows.Forms.TableLayoutPanel pnlTLTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_Circles;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmb_Circles;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_Students;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmb_Students;
         private System.Windows.Forms.Panel panel1;
@@ -1221,16 +1223,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_EvaluationType;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton rd_Ayah;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton rd_Suraah;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_FromAyaAndSurrah;
         private System.Windows.Forms.ComboBox cmb_FromSurrah;
         private System.Windows.Forms.ComboBox cmb_FromAya;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_ToAyaAndSurrah;
         private System.Windows.Forms.ComboBox cmb_ToSurrah;
         private System.Windows.Forms.ComboBox cmb_ToAyah;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
