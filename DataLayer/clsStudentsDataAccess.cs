@@ -254,6 +254,30 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DataTable SelectAllStudentsMiniData(int CircleID)
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudentsMiniData", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        result.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                }
+            }
+            return result;
+        }
         static public DataTable SelectAllStudentsByTeacherID(int TeacherID)
         {
             DataTable result = new DataTable();

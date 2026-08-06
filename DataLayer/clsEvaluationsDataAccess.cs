@@ -245,8 +245,8 @@ namespace DataAccessLayer
                             evaluation.ToAyahID = Convert.ToInt16(cmd.Parameters["@ToAyahID"].Value);
                             evaluation.IsEvaluationTaken = Convert.ToBoolean(cmd.Parameters["@IsEvaluationTaken"].Value);
                             evaluation.EvalDate = Convert.ToDateTime(cmd.Parameters["@EvalDate"].Value);
-                            evaluation.EvalType = Convert.ToByte(cmd.Parameters["@EvalType"].Value);
-                            evaluation.Rate = Convert.ToByte(cmd.Parameters["@Rate"].Value);
+                            evaluation.EvalType = (clsEntityEvaluation.enEvaluationType)Convert.ToByte(cmd.Parameters["@EvalType"].Value);
+                            evaluation.Rate =(clsEntityEvaluation.enRate)Convert.ToByte(cmd.Parameters["@Rate"].Value);
                             evaluation.Notes = Convert.ToString(cmd.Parameters["@Notes"].Value);
                         }
                     }

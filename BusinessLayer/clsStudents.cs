@@ -132,6 +132,14 @@ namespace BusinessLayer
 
             return new DataTable();
         }
+        static public DataTable SelectAllStudentsMiniData(int CircleID)
+        {
+            if(clsCurrentUser.CurrentUser.UserRole == (int) clsEntityUser.enUserRole.Admin 
+                ||clsCircles.GetSupervisorByCircleID(CircleID) == clsCurrentUser.CurrentUser.UserID)
+                return clsStudentsDataAccess.SelectAllStudentsMiniData(CircleID);
+
+            return new DataTable();
+        }
         static public short GetNewStudentsStatusLastMonth()
         {
             return clsStudentsDataAccess.GetNewStudentsStatusLastMonth();

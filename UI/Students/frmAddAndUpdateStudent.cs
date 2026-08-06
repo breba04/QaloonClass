@@ -133,7 +133,6 @@ namespace UI.Students
         {
             this.HeaderTitle = _Mode == enMode.Add ? "إضافة طالب" : "تعديل بيانات الطالب";
         }
-
         private void frmAddAndUpdateStudent_Load(object sender, EventArgs e)
         {
             _InitializeForm();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,7 +121,7 @@ namespace UI.GlobalClasses
 
 
 
-       public enum enTypeOfFilter
+        public enum enTypeOfFilter
         { 
            Int ,
            String,
@@ -218,6 +219,13 @@ namespace UI.GlobalClasses
             }
 
             return sb.ToString();
+        }
+        public static string GetHejryDate(string format)
+        {
+
+            CultureInfo arSA = new CultureInfo("ar-SA");
+            arSA.DateTimeFormat.Calendar = new HijriCalendar();
+            return DateTime.Today.ToString(format, arSA);
         }
     }
 

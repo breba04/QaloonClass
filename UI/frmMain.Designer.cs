@@ -76,7 +76,6 @@
             // 
             // lbl_Title
             // 
-            this.lbl_Title.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lbl_Title.Size = new System.Drawing.Size(525, 30);
             // 
             // pnl_Header
@@ -87,7 +86,7 @@
             this.pnl_Header.Controls.Add(this.pnl_SectionUserInfo);
             this.pnl_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Header.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Header.Location = new System.Drawing.Point(0, 54);
+            this.pnl_Header.Location = new System.Drawing.Point(0, 0);
             this.pnl_Header.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Header.Name = "pnl_Header";
             this.pnl_Header.Size = new System.Drawing.Size(1371, 88);
@@ -112,7 +111,7 @@
             this.label1.Location = new System.Drawing.Point(63, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 25);
+            this.label1.Size = new System.Drawing.Size(257, 32);
             this.label1.TabIndex = 17;
             this.label1.Text = "مركز تحفيظ القرآن الكريم";
             // 
@@ -190,10 +189,10 @@
             this.pnl_Side.Controls.Add(this.button1);
             this.pnl_Side.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl_Side.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Side.Location = new System.Drawing.Point(1371, 54);
+            this.pnl_Side.Location = new System.Drawing.Point(1371, 0);
             this.pnl_Side.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Side.Name = "pnl_Side";
-            this.pnl_Side.Size = new System.Drawing.Size(335, 820);
+            this.pnl_Side.Size = new System.Drawing.Size(335, 874);
             this.pnl_Side.TabIndex = 28;
             // 
             // panel3
@@ -201,7 +200,7 @@
             this.panel3.Controls.Add(this.btn_LogOut);
             this.panel3.Controls.Add(this.btn_AddNewStudent);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 562);
+            this.panel3.Location = new System.Drawing.Point(0, 616);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(335, 258);
             this.panel3.TabIndex = 29;
@@ -514,7 +513,7 @@
             this.label2.Location = new System.Drawing.Point(765, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 21);
+            this.label2.Size = new System.Drawing.Size(216, 28);
             this.label2.TabIndex = 17;
             this.label2.Text = "مركز تحفيظ القرآن الكريم";
             // 
@@ -544,14 +543,15 @@
             // 
             this.pnl_Content.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.pnl_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Content.Location = new System.Drawing.Point(0, 142);
+            this.pnl_Content.Location = new System.Drawing.Point(0, 88);
             this.pnl_Content.Name = "pnl_Content";
-            this.pnl_Content.Size = new System.Drawing.Size(1371, 732);
+            this.pnl_Content.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pnl_Content.Size = new System.Drawing.Size(1371, 786);
             this.pnl_Content.TabIndex = 29;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(1706, 874);

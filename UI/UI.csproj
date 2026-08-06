@@ -75,6 +75,12 @@
     <Compile Include="Circles\UserControls\US_CirclesManagment.Designer.cs">
       <DependentUpon>US_CirclesManagment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Evaluations\UC_AddEvaluation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Evaluations\UC_AddEvaluation.Designer.cs">
+      <DependentUpon>UC_AddEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Circles\UserControls\US_CirclesManagment.resx">
       <DependentUpon>US_CirclesManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evaluations\UC_AddEvaluation.resx">
+      <DependentUpon>UC_AddEvaluation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -732,6 +741,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon_Sora1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon %288%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

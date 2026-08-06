@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Attendance.UserControls;
+using UI.Evaluations;
 using UI.GlobalClasses;
 using UI.Students;
 using UI.Students.StudentControls;
@@ -57,7 +58,7 @@ namespace UI
 
         private void btn_MemorizationCircle_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Memorization Circle");
+            ShowControl(new UC_AddEvaluation());
         }
 
         private void btn_Presence_Click(object sender, EventArgs e)

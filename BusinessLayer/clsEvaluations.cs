@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using EntityLayer;
+using static EntityLayer.clsEntityEvaluation;
 
 namespace BusinessLayer
 {
@@ -13,17 +14,16 @@ namespace BusinessLayer
     {
         enum enMode { Add, Update }
         public enum enGrade { NotRecordedYet=0, Poor =1, Good , VeryGood, Excellent }
-        public enum enEvaluationType { Joza =1, Surrah , VeryGood, Random }
         enMode _Mode;
         clsEntityEvaluation EntityEvaluation ;
         public int EvaluationID { get => EntityEvaluation.EvaluationID; }  
         public int StudentID { get => EntityEvaluation.StudentID; set => EntityEvaluation.StudentID = value; } 
         public short FromAyahID { get => EntityEvaluation.FromAyahID; set => EntityEvaluation.FromAyahID = value; } 
         public short ToAyahID { get => EntityEvaluation.ToAyahID; set => EntityEvaluation.ToAyahID = value; } 
-        public byte EvalType { get => EntityEvaluation.EvalType; set => EntityEvaluation.EvalType = value; }
+        public enEvaluationType EvalType { get => EntityEvaluation.EvalType; set => EntityEvaluation.EvalType = value; }
         public DateTime EvalDate { get => EntityEvaluation.EvalDate; set => EntityEvaluation.EvalDate = value; }
         public bool IsEvaluationTaken { get => EntityEvaluation.IsEvaluationTaken; set => EntityEvaluation.IsEvaluationTaken = value; }
-        public byte? Rate { get => EntityEvaluation.Rate; set => EntityEvaluation.Rate = value; }
+        public enRate? Rate { get => EntityEvaluation.Rate; set => EntityEvaluation.Rate = value; }
         public string Notes { get => EntityEvaluation.Notes; set => EntityEvaluation.Notes = value; }
         public clsEvaluations()
         {
