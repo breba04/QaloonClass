@@ -21,6 +21,12 @@ namespace UI.UserControls
         public UC_Dashboard()
         {
             InitializeComponent();
+            clsAppEvents.StudentAdded += AppEvents_StudentAdded;
+
+        }
+        private void AppEvents_StudentAdded(object sender, EventArgs e)
+        {
+            RefreshDashboard();
         }
         int _GetTotalNumberStudent()
         {
@@ -169,9 +175,6 @@ namespace UI.UserControls
         }
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
-            _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
-            _ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
-            _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
             RefreshDashboard();
         }
         private void btn_Next_Click(object sender, EventArgs e)
@@ -194,7 +197,11 @@ namespace UI.UserControls
         }
         public void RefreshDashboard()
         {
-            if(!_IsDashboardInitialized)
+            _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
+            _ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
+            _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
+
+            if (!_IsDashboardInitialized)
             {
               _allData = clsCircles.GetAllCircleView(_currentPage, _RecordsInPage);
               _currentPage = 1;

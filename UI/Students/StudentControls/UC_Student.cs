@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using Microsoft.Win32;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -18,8 +19,12 @@ namespace UI.Students.StudentControls
         public UC_Student()
         {
             InitializeComponent();
+            clsAppEvents.StudentAdded += AppEvents_StudentAdded;
         }
-    
+        private void AppEvents_StudentAdded(object sender, EventArgs e)
+        {
+            _RefreshStudentList(); 
+        }
         private void _DisplayTotalStudentsCount()
         {
             lbl_TotalStudent.Text = _allData?.Rows?.Count.ToString() ?? "0";
