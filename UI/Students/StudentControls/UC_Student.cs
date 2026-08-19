@@ -82,6 +82,8 @@ namespace UI.Students.StudentControls
 
 
             txt_Research.Clear();
+            dtp_FormDate.Value = DateTime.Now;
+            dtp_ToDate.Value = DateTime.Now;
             _FilterResult();
         }
         private void _SetFilterControlsVisibility(bool searchVisible, bool activeVisible, bool dateFromVisible, bool dateToVisible)
