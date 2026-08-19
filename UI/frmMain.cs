@@ -24,6 +24,7 @@ namespace UI
         public frmMain()
         {
             InitializeComponent();
+            this.MinimumSize = new Size(1700, 1000);
         }
         void LoadMainData()
         {
@@ -87,7 +88,7 @@ namespace UI
             }
 
         }
- 
+    
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
             clsCurrentUser.LogOut();
