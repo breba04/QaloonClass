@@ -9,15 +9,39 @@ namespace UI.GlobalClasses
 {
     public class clsImageManager
     {
-        public enum enImageFolder { Student =1 ,Users =2}
-        static public string StudentsImageFolder = ConfigurationManager.AppSettings.Get("Student_Image");
-        static public string UsersImageFolder = ConfigurationManager.AppSettings.Get("Users_Image");
+        public enum enImageFolder { Student = 1 ,Users = 2}
+        static public string StudentsImageFolder { 
+            get
+            {
+                string path = Properties.Settings.Default.StudentsImageFolder;
+                if (!string.IsNullOrEmpty(path)) return path;
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), clsGlobal.CenterName, "Students_Image");
+                Properties.Settings.Default.StudentsImageFolder = path;
+                Properties.Settings.Default.Save();
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                return path;
+            }
+                }
+        static public string UsersImageFolder
+        {
+            get
+            {
+                string path = Properties.Settings.Default.UsersImageFolder;
+                if (!string.IsNullOrEmpty(path)) return path;
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), clsGlobal.CenterName, "Users_Image");
+                Properties.Settings.Default.StudentsImageFolder = path;
+                Properties.Settings.Default.Save();
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                return path;
+            }
+        }
         static public string GetImagePath(string ImageName,enImageFolder type)
         {
             string ImageFolder = (type == enImageFolder.Student ? StudentsImageFolder : UsersImageFolder);
             return (string.IsNullOrEmpty(ImageFolder)||string.IsNullOrEmpty(ImageName) ? null : Path.Combine(ImageFolder, ImageName));
         }
-
         static public bool ReplaceImage(string SourceFile, string OldImageName,out string NewImageName,out string ErroeMessage ,enImageFolder type = enImageFolder.Student)
         {
             NewImageName = ErroeMessage = null;

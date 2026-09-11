@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(US_AttendanceMangement));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -48,21 +49,21 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.lbTakenAttendanceToday = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_SetAllAttendance = new System.Windows.Forms.Button();
             this.cmb_Circles = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dtp_DateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txt_SearchByName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txt_SearchByName = new System.Windows.Forms.TextBox();
             this.pnlTLTop = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btn_SetAllAttendance = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,7 +98,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.18919F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.81081F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel5.Controls.Add(this.label6, 1, 2);
             this.tableLayoutPanel5.Controls.Add(this.label4, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Right;
@@ -119,7 +120,7 @@
             this.label6.Location = new System.Drawing.Point(64, 44);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(247, 47);
+            this.label6.Size = new System.Drawing.Size(246, 47);
             this.label6.TabIndex = 11;
             this.label6.Text = "إدارة حضور الطلاب لحلقة ابن القيم لهذا اليوم";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -133,7 +134,7 @@
             this.label4.Location = new System.Drawing.Point(64, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(247, 36);
+            this.label4.Size = new System.Drawing.Size(246, 36);
             this.label4.TabIndex = 9;
             this.label4.Text = "قائمة الطلاب";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -151,6 +152,14 @@
             // 
             this.dgvAttandenceList.AllowUserToAddRows = false;
             this.dgvAttandenceList.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAttandenceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAttandenceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttandenceList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentID,
@@ -167,8 +176,8 @@
             this.dgvAttandenceList.Name = "dgvAttandenceList";
             this.dgvAttandenceList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dgvAttandenceList.RowHeadersWidth = 51;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
-            this.dgvAttandenceList.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.dgvAttandenceList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAttandenceList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
             this.dgvAttandenceList.RowTemplate.Height = 26;
             this.dgvAttandenceList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -264,7 +273,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62915F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37085F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 289F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
             this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.lbTakenAttendanceToday, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -276,6 +285,32 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1303, 68);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(197)))), ((int)(((byte)(108)))));
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(197)))), ((int)(((byte)(108)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.ImageIndex = 1;
+            this.btnSave.ImageList = this.imageList1;
+            this.btnSave.Location = new System.Drawing.Point(14, 13);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnSave.Size = new System.Drawing.Size(314, 42);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "حفظ التغييرات";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // lbTakenAttendanceToday
             // 
             this.lbTakenAttendanceToday.AutoSize = true;
@@ -283,10 +318,10 @@
             this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1007, 10);
+            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1006, 10);
             this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
-            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(282, 48);
+            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(283, 48);
             this.lbTakenAttendanceToday.TabIndex = 17;
             this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
             this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -309,19 +344,19 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(278, 125);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label1.Location = new System.Drawing.Point(36, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(238, 35);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "سجل الحضور والغياب";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.2F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
+            this.label2.Location = new System.Drawing.Point(9, 105);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(265, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "إدارة حضور الطلاب لحلقة ابن القيم لهذا اليوم";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label5
             // 
@@ -337,19 +372,19 @@
             this.label5.Text = " اليومي";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.2F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label2.Location = new System.Drawing.Point(9, 105);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(265, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "إدارة حضور الطلاب لحلقة ابن القيم لهذا اليوم";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.label1.Location = new System.Drawing.Point(36, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(238, 35);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "سجل الحضور والغياب";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tableLayoutPanel3
             // 
@@ -366,6 +401,32 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(273, 125);
             this.tableLayoutPanel3.TabIndex = 8;
+            // 
+            // btn_SetAllAttendance
+            // 
+            this.btn_SetAllAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
+            this.btn_SetAllAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_SetAllAttendance.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_SetAllAttendance.FlatAppearance.BorderSize = 0;
+            this.btn_SetAllAttendance.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_SetAllAttendance.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_SetAllAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SetAllAttendance.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btn_SetAllAttendance.ForeColor = System.Drawing.Color.White;
+            this.btn_SetAllAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_SetAllAttendance.ImageIndex = 0;
+            this.btn_SetAllAttendance.ImageList = this.imageList1;
+            this.btn_SetAllAttendance.Location = new System.Drawing.Point(27, 78);
+            this.btn_SetAllAttendance.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_SetAllAttendance.Name = "btn_SetAllAttendance";
+            this.btn_SetAllAttendance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_SetAllAttendance.Size = new System.Drawing.Size(242, 44);
+            this.btn_SetAllAttendance.TabIndex = 15;
+            this.btn_SetAllAttendance.Text = "تحديد الكل حاضر";
+            this.btn_SetAllAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_SetAllAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_SetAllAttendance.UseVisualStyleBackColor = false;
+            this.btn_SetAllAttendance.Click += new System.EventHandler(this.btn_SetAllAttendance_Click);
             // 
             // cmb_Circles
             // 
@@ -427,6 +488,20 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(389, 125);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.label3.Location = new System.Drawing.Point(45, 37);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 39);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "بحث باسم الطالب";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // txt_SearchByName
             // 
             this.txt_SearchByName.BackColor = System.Drawing.Color.White;
@@ -441,20 +516,6 @@
             this.txt_SearchByName.TabIndex = 2;
             this.txt_SearchByName.Tag = "اسم الأول";
             this.txt_SearchByName.TextChanged += new System.EventHandler(this.txt_SearchByName_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label3.Location = new System.Drawing.Point(45, 37);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 39);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "بحث باسم الطالب";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlTLTop
             // 
@@ -477,58 +538,6 @@
             this.pnlTLTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.02198F));
             this.pnlTLTop.Size = new System.Drawing.Size(1303, 182);
             this.pnlTLTop.TabIndex = 0;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(197)))), ((int)(((byte)(108)))));
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(197)))), ((int)(((byte)(108)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.ImageIndex = 1;
-            this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(14, 13);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnSave.Size = new System.Drawing.Size(314, 42);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "حفظ التغييرات";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btn_SetAllAttendance
-            // 
-            this.btn_SetAllAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
-            this.btn_SetAllAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_SetAllAttendance.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_SetAllAttendance.FlatAppearance.BorderSize = 0;
-            this.btn_SetAllAttendance.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_SetAllAttendance.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_SetAllAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SetAllAttendance.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_SetAllAttendance.ForeColor = System.Drawing.Color.White;
-            this.btn_SetAllAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_SetAllAttendance.ImageIndex = 0;
-            this.btn_SetAllAttendance.ImageList = this.imageList1;
-            this.btn_SetAllAttendance.Location = new System.Drawing.Point(27, 78);
-            this.btn_SetAllAttendance.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_SetAllAttendance.Name = "btn_SetAllAttendance";
-            this.btn_SetAllAttendance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_SetAllAttendance.Size = new System.Drawing.Size(242, 44);
-            this.btn_SetAllAttendance.TabIndex = 15;
-            this.btn_SetAllAttendance.Text = "تحديد الكل حاضر";
-            this.btn_SetAllAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_SetAllAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_SetAllAttendance.UseVisualStyleBackColor = false;
-            this.btn_SetAllAttendance.Click += new System.EventHandler(this.btn_SetAllAttendance_Click);
             // 
             // US_AttendanceMangement
             // 

@@ -42,13 +42,19 @@
             this.cmb_Students = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.txt_Notes = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btn_Cancel = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.pnl_Weak = new System.Windows.Forms.TableLayoutPanel();
@@ -91,12 +97,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtp_DateOfEvaluation = new System.Windows.Forms.DateTimePicker();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.panel13 = new System.Windows.Forms.Panel();
             this.pnlTLTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tlpnl_Circles.SuspendLayout();
@@ -106,6 +106,7 @@
             this.tableLayoutPanel14.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.panel10.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.pnl_Weak.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -129,7 +130,6 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTLTop
@@ -196,7 +196,7 @@
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1273, 74);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
@@ -329,16 +329,6 @@
             this.panel1.Size = new System.Drawing.Size(885, 632);
             this.panel1.TabIndex = 0;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Ic_Upload.png");
-            this.imageList1.Images.SetKeyName(1, "close2.png");
-            this.imageList1.Images.SetKeyName(2, "Ic_Save.png");
-            this.imageList1.Images.SetKeyName(3, "Ic_cleaning.png");
-            this.imageList1.Images.SetKeyName(4, "Ic_Close.png");
-            // 
             // tableLayoutPanel14
             // 
             this.tableLayoutPanel14.ColumnCount = 2;
@@ -411,6 +401,106 @@
             this.txt_Notes.Name = "txt_Notes";
             this.txt_Notes.Size = new System.Drawing.Size(611, 123);
             this.txt_Notes.TabIndex = 1;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.panel13);
+            this.panel10.Controls.Add(this.btn_Save);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.btn_Cancel);
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(3, 43);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(262, 123);
+            this.panel10.TabIndex = 2;
+            // 
+            // panel13
+            // 
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 114);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(262, 10);
+            this.panel13.TabIndex = 28;
+            // 
+            // btn_Save
+            // 
+            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
+            this.btn_Save.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Save.FlatAppearance.BorderSize = 0;
+            this.btn_Save.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Save.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Save.ForeColor = System.Drawing.Color.White;
+            this.btn_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Save.ImageIndex = 2;
+            this.btn_Save.ImageList = this.imageList1;
+            this.btn_Save.Location = new System.Drawing.Point(0, 67);
+            this.btn_Save.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_Save.Size = new System.Drawing.Size(262, 47);
+            this.btn_Save.TabIndex = 27;
+            this.btn_Save.Text = "حفظ التقييم";
+            this.btn_Save.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Ic_Upload.png");
+            this.imageList1.Images.SetKeyName(1, "close2.png");
+            this.imageList1.Images.SetKeyName(2, "Ic_Save.png");
+            this.imageList1.Images.SetKeyName(3, "Ic_cleaning.png");
+            this.imageList1.Images.SetKeyName(4, "Ic_Close.png");
+            // 
+            // panel12
+            // 
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 57);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(262, 10);
+            this.panel12.TabIndex = 26;
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_Cancel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Cancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Cancel.ImageIndex = 4;
+            this.btn_Cancel.ImageList = this.imageList1;
+            this.btn_Cancel.Location = new System.Drawing.Point(0, 10);
+            this.btn_Cancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_Cancel.Size = new System.Drawing.Size(262, 47);
+            this.btn_Cancel.TabIndex = 25;
+            this.btn_Cancel.Text = "إزالة التقييم";
+            this.btn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(262, 10);
+            this.panel11.TabIndex = 23;
             // 
             // tableLayoutPanel9
             // 
@@ -815,7 +905,7 @@
             this.cmb_FromSurrah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_FromSurrah.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_FromSurrah.FormattingEnabled = true;
-            this.cmb_FromSurrah.Location = new System.Drawing.Point(602, 28);
+            this.cmb_FromSurrah.Location = new System.Drawing.Point(602, 27);
             this.cmb_FromSurrah.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_FromSurrah.Name = "cmb_FromSurrah";
             this.cmb_FromSurrah.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -833,7 +923,7 @@
             this.cmb_FromAya.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_FromAya.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_FromAya.FormattingEnabled = true;
-            this.cmb_FromAya.Location = new System.Drawing.Point(269, 28);
+            this.cmb_FromAya.Location = new System.Drawing.Point(269, 27);
             this.cmb_FromAya.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_FromAya.Name = "cmb_FromAya";
             this.cmb_FromAya.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -848,7 +938,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(767, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(115, 20);
+            this.panel6.Size = new System.Drawing.Size(115, 19);
             this.panel6.TabIndex = 21;
             // 
             // label8
@@ -857,7 +947,7 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label8.Location = new System.Drawing.Point(0, -3);
+            this.label8.Location = new System.Drawing.Point(0, -4);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 23);
@@ -873,7 +963,7 @@
             this.pictureBox10.Location = new System.Drawing.Point(83, 0);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(32, 20);
+            this.pictureBox10.Size = new System.Drawing.Size(32, 19);
             this.pictureBox10.TabIndex = 47;
             this.pictureBox10.TabStop = false;
             // 
@@ -884,7 +974,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel7.Location = new System.Drawing.Point(453, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(96, 20);
+            this.panel7.Size = new System.Drawing.Size(96, 19);
             this.panel7.TabIndex = 22;
             // 
             // lbFromAya
@@ -893,7 +983,7 @@
             this.lbFromAya.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbFromAya.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbFromAya.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.lbFromAya.Location = new System.Drawing.Point(0, -3);
+            this.lbFromAya.Location = new System.Drawing.Point(0, -4);
             this.lbFromAya.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFromAya.Name = "lbFromAya";
             this.lbFromAya.Size = new System.Drawing.Size(64, 23);
@@ -909,7 +999,7 @@
             this.pb_FromAya.Location = new System.Drawing.Point(64, 0);
             this.pb_FromAya.Margin = new System.Windows.Forms.Padding(4);
             this.pb_FromAya.Name = "pb_FromAya";
-            this.pb_FromAya.Size = new System.Drawing.Size(32, 20);
+            this.pb_FromAya.Size = new System.Drawing.Size(32, 19);
             this.pb_FromAya.TabIndex = 47;
             this.pb_FromAya.TabStop = false;
             // 
@@ -1046,96 +1136,6 @@
             this.dtp_DateOfEvaluation.Size = new System.Drawing.Size(240, 34);
             this.dtp_DateOfEvaluation.TabIndex = 40;
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.panel13);
-            this.panel10.Controls.Add(this.btn_Save);
-            this.panel10.Controls.Add(this.panel12);
-            this.panel10.Controls.Add(this.btn_Cancel);
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 43);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(262, 123);
-            this.panel10.TabIndex = 2;
-            // 
-            // panel11
-            // 
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(262, 10);
-            this.panel11.TabIndex = 23;
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Cancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.btn_Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.btn_Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Cancel.ImageIndex = 4;
-            this.btn_Cancel.ImageList = this.imageList1;
-            this.btn_Cancel.Location = new System.Drawing.Point(0, 10);
-            this.btn_Cancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Cancel.Size = new System.Drawing.Size(262, 47);
-            this.btn_Cancel.TabIndex = 25;
-            this.btn_Cancel.Text = "إزالة التقييم";
-            this.btn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Cancel.UseVisualStyleBackColor = false;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // panel12
-            // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 57);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(262, 10);
-            this.panel12.TabIndex = 26;
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
-            this.btn_Save.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Save.FlatAppearance.BorderSize = 0;
-            this.btn_Save.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_Save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Save.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Save.ForeColor = System.Drawing.Color.White;
-            this.btn_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Save.ImageIndex = 2;
-            this.btn_Save.ImageList = this.imageList1;
-            this.btn_Save.Location = new System.Drawing.Point(0, 67);
-            this.btn_Save.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Save.Size = new System.Drawing.Size(262, 47);
-            this.btn_Save.TabIndex = 27;
-            this.btn_Save.Text = "حفظ التقييم";
-            this.btn_Save.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Save.UseVisualStyleBackColor = false;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
-            // 
-            // panel13
-            // 
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 114);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(262, 10);
-            this.panel13.TabIndex = 28;
-            // 
             // UC_AddEvaluation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -1165,6 +1165,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.panel10.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.pnl_Weak.ResumeLayout(false);
@@ -1200,7 +1201,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

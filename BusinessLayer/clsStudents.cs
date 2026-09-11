@@ -47,11 +47,11 @@ namespace BusinessLayer
             EntityStudent.StudentID = clsStudentsDataAccess.AddStudent(EntityStudent);
             if(EntityStudent.StudentID != -1)
             {
-                var Log = new clsEntityActivityLog()
-                { ActionType = "إضافة طالب", EntityType = "طالب", EntityID = EntityStudent.StudentID
-                , UserID = clsCurrentUser.CurrentUser.UserID };
+                //var Log = new clsEntityActivityLog()
+                //{ ActionType = "إضافة طالب", EntityType = "طالب", EntityID = EntityStudent.StudentID
+                //, UserID = clsCurrentUser.CurrentUser.UserID };
 
-                clsEventManager.OnActivityAdded(this, Log);
+                //clsEventManager.OnActivityAdded(this, Log);
                 _Mode = enMode.Update;
                 return true;
             }

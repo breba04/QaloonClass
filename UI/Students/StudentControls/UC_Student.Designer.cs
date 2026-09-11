@@ -70,11 +70,11 @@
             this.pnl_SectionٍListStudents = new System.Windows.Forms.Panel();
             this.dgv_ListStudents = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.pnl_SectionMainTitle = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbl_SubTitle = new System.Windows.Forms.Label();
             this.pnl_SectionGreeting = new System.Windows.Forms.Panel();
+            this.pnl_SectionMainTitle = new System.Windows.Forms.Panel();
+            this.lbl_SubTitle = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.pnl_SectionTotalStudent.SuspendLayout();
             this.pnl_SectionFilter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,8 +86,8 @@
             this.pnl_SectionListreports.SuspendLayout();
             this.pnl_SectionٍListStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ListStudents)).BeginInit();
-            this.pnl_SectionMainTitle.SuspendLayout();
             this.pnl_SectionGreeting.SuspendLayout();
+            this.pnl_SectionMainTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_TotalStudent
@@ -548,14 +548,18 @@
             this.panel2.Size = new System.Drawing.Size(2396, 143);
             this.panel2.TabIndex = 43;
             // 
-            // panel6
+            // pnl_SectionGreeting
             // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(2353, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(43, 117);
-            this.panel6.TabIndex = 41;
+            this.pnl_SectionGreeting.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_SectionGreeting.Controls.Add(this.pnl_SectionMainTitle);
+            this.pnl_SectionGreeting.Controls.Add(this.panel6);
+            this.pnl_SectionGreeting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_SectionGreeting.Location = new System.Drawing.Point(0, 0);
+            this.pnl_SectionGreeting.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.pnl_SectionGreeting.Name = "pnl_SectionGreeting";
+            this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnl_SectionGreeting.Size = new System.Drawing.Size(2396, 117);
+            this.pnl_SectionGreeting.TabIndex = 40;
             // 
             // pnl_SectionMainTitle
             // 
@@ -568,20 +572,6 @@
             this.pnl_SectionMainTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionMainTitle.Size = new System.Drawing.Size(1204, 117);
             this.pnl_SectionMainTitle.TabIndex = 40;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label5.Location = new System.Drawing.Point(823, 0);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(381, 59);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "إدارة سجلات الطلاب";
             // 
             // lbl_SubTitle
             // 
@@ -599,18 +589,28 @@
             this.lbl_SubTitle.Text = "قائمة شاملة لطلاب مركز نور ومتابعة مستوياتهم الأكاديمية";
             this.lbl_SubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pnl_SectionGreeting
+            // label5
             // 
-            this.pnl_SectionGreeting.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_SectionGreeting.Controls.Add(this.pnl_SectionMainTitle);
-            this.pnl_SectionGreeting.Controls.Add(this.panel6);
-            this.pnl_SectionGreeting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_SectionGreeting.Location = new System.Drawing.Point(0, 0);
-            this.pnl_SectionGreeting.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.pnl_SectionGreeting.Name = "pnl_SectionGreeting";
-            this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnl_SectionGreeting.Size = new System.Drawing.Size(2396, 117);
-            this.pnl_SectionGreeting.TabIndex = 40;
+            this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.label5.Location = new System.Drawing.Point(823, 0);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(381, 59);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "إدارة سجلات الطلاب";
+            // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(2353, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(43, 117);
+            this.panel6.TabIndex = 41;
             // 
             // UC_Student
             // 
@@ -637,9 +637,9 @@
             this.pnl_SectionListreports.ResumeLayout(false);
             this.pnl_SectionٍListStudents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ListStudents)).EndInit();
+            this.pnl_SectionGreeting.ResumeLayout(false);
             this.pnl_SectionMainTitle.ResumeLayout(false);
             this.pnl_SectionMainTitle.PerformLayout();
-            this.pnl_SectionGreeting.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
