@@ -173,6 +173,29 @@ namespace DataAccessLayer
             }
             return result;
         }
+        static public DateTime GetFirstAttendanceRegistrationDate()
+        {
+            DateTime result = DateTime.MinValue;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetFirstAttendanceRegistrationDate", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        object obj = cmd.ExecuteScalar();
+                        if (obj != null && DateTime.TryParse(obj.ToString(),out result)) { }
+                    }
+                    catch (Exception )
+                    {
+                    }
+                }
+            }
+            return result;
+        }
         static public bool IsAttendanceExist(int attendanceID)
         {
             bool result = default(Boolean);

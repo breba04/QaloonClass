@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using UI.Attendance.UserControls;
 using UI.Evaluations;
 using UI.GlobalClasses;
+using UI.Reports.UserControl;
 using UI.Students;
 using UI.Students.StudentControls;
 using UI.UserControls;
@@ -24,6 +25,7 @@ namespace UI
         public frmMain()
         {
             InitializeComponent();
+            this.MinimumSize = new Size(1700, 1000);
         }
         void LoadMainData()
         {
@@ -68,7 +70,9 @@ namespace UI
 
         private void btn_Reports_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Reports");
+            //MessageBox.Show("Reports");
+            ShowControl(new UC_Reports());
+
         }
 
         private void btn_Settings_Click(object sender, EventArgs e)
@@ -87,7 +91,7 @@ namespace UI
             }
 
         }
- 
+    
         private void btn_LogOut_Click(object sender, EventArgs e)
         {
             clsCurrentUser.LogOut();

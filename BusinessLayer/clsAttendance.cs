@@ -126,5 +126,10 @@ namespace BusinessLayer
         {
             return clsAttendanceDataAccess.IsAllCirclesAttendanceExistsToday();
         }
+
+        static public DateTime GetFirstAttendanceRegistrationDate()
+        {
+            return clsAttendanceDataAccess.GetFirstAttendanceRegistrationDate();
+        }
     }
 }
