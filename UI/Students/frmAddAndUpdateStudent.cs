@@ -1,21 +1,22 @@
 ﻿using BusinessLayer;
 using EntityLayer;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.GlobalClasses;
-using System.IO;
 namespace UI.Students
 {
     public partial class frmAddAndUpdateStudent : BaseForm
     {
-        
+     
         enum enMode { Add = 1, Update = 2 }
         private DataTable _dtCircles ;
         private DataTable _dtSurrahs;
@@ -429,13 +430,14 @@ namespace UI.Students
                 return;
             }
             clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل" : "تعديل")} الطالب بنجاح", "نجاح");
+            clsAppEvents.OnStudentAdded();
             _StudentID = _Student.StudentID;
              txt_SeatingID.Text = _Student.SeatsNumber;
             _Mode = enMode.Update;
             _AyaID = _StudentProgress.AyahID;
             _UpdateTitle();
             _UpdateSelectedCircleCapacityAfterSavingStudent();
-
+            
         }
         private void _UpdateSelectedCircleCapacityAfterSavingStudent()
         {

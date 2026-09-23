@@ -71,9 +71,9 @@
             this.dgv_ListStudents = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnl_SectionGreeting = new System.Windows.Forms.Panel();
-            this.pnl_SectionMainTitle = new System.Windows.Forms.Panel();
-            this.lbl_SubTitle = new System.Windows.Forms.Label();
+            this.pnl_SectionMainTitle = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
+            this.lbl_SubTitle = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pnl_SectionTotalStudent.SuspendLayout();
             this.pnl_SectionFilter.SuspendLayout();
@@ -118,6 +118,7 @@
             this.pnl_SectionTotalStudent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionTotalStudent.Size = new System.Drawing.Size(302, 155);
             this.pnl_SectionTotalStudent.TabIndex = 43;
+            this.pnl_SectionTotalStudent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionTotalStudent_Paint);
             // 
             // label2
             // 
@@ -134,6 +135,7 @@
             this.label2.TabIndex = 44;
             this.label2.Text = ":إجمالي";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cmb_IsActive
             // 
@@ -143,7 +145,7 @@
             this.cmb_IsActive.Items.AddRange(new object[] {
             "نشط",
             "متوقف"});
-            this.cmb_IsActive.Location = new System.Drawing.Point(662, 33);
+            this.cmb_IsActive.Location = new System.Drawing.Point(744, 31);
             this.cmb_IsActive.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_IsActive.Name = "cmb_IsActive";
             this.cmb_IsActive.Size = new System.Drawing.Size(142, 36);
@@ -153,10 +155,10 @@
             // txt_Research
             // 
             this.txt_Research.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Research.Location = new System.Drawing.Point(358, 30);
+            this.txt_Research.Location = new System.Drawing.Point(583, 28);
             this.txt_Research.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Research.Name = "txt_Research";
-            this.txt_Research.Size = new System.Drawing.Size(445, 39);
+            this.txt_Research.Size = new System.Drawing.Size(303, 39);
             this.txt_Research.TabIndex = 42;
             this.txt_Research.TextChanged += new System.EventHandler(this.txt_Research_TextChanged);
             this.txt_Research.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Research_KeyPress);
@@ -164,29 +166,31 @@
             // lbl_To
             // 
             this.lbl_To.AutoSize = true;
-            this.lbl_To.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_To.Location = new System.Drawing.Point(472, 27);
+            this.lbl_To.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_To.Location = new System.Drawing.Point(828, 70);
             this.lbl_To.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_To.Name = "lbl_To";
-            this.lbl_To.Size = new System.Drawing.Size(56, 37);
+            this.lbl_To.Size = new System.Drawing.Size(47, 31);
             this.lbl_To.TabIndex = 43;
             this.lbl_To.Text = "إلى";
+            this.lbl_To.Click += new System.EventHandler(this.lbl_To_Click);
             // 
             // lbl_From
             // 
             this.lbl_From.AutoSize = true;
-            this.lbl_From.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_From.Location = new System.Drawing.Point(757, 28);
+            this.lbl_From.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_From.Location = new System.Drawing.Point(827, 30);
             this.lbl_From.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_From.Name = "lbl_From";
-            this.lbl_From.Size = new System.Drawing.Size(58, 37);
+            this.lbl_From.Size = new System.Drawing.Size(48, 31);
             this.lbl_From.TabIndex = 42;
             this.lbl_From.Text = " من";
+            this.lbl_From.Click += new System.EventHandler(this.lbl_From_Click);
             // 
             // dtp_ToDate
             // 
             this.dtp_ToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.dtp_ToDate.Location = new System.Drawing.Point(255, 33);
+            this.dtp_ToDate.Location = new System.Drawing.Point(622, 73);
             this.dtp_ToDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_ToDate.Name = "dtp_ToDate";
             this.dtp_ToDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -197,7 +201,7 @@
             // dtp_FormDate
             // 
             this.dtp_FormDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.dtp_FormDate.Location = new System.Drawing.Point(539, 33);
+            this.dtp_FormDate.Location = new System.Drawing.Point(622, 31);
             this.dtp_FormDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_FormDate.Name = "dtp_FormDate";
             this.dtp_FormDate.Size = new System.Drawing.Size(198, 34);
@@ -209,7 +213,7 @@
             this.cmb_AllFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_AllFilter.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cmb_AllFilter.FormattingEnabled = true;
-            this.cmb_AllFilter.Location = new System.Drawing.Point(838, 33);
+            this.cmb_AllFilter.Location = new System.Drawing.Point(894, 31);
             this.cmb_AllFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_AllFilter.Name = "cmb_AllFilter";
             this.cmb_AllFilter.Size = new System.Drawing.Size(219, 36);
@@ -222,14 +226,15 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
-            this.label1.Location = new System.Drawing.Point(1049, 25);
+            this.label1.Location = new System.Drawing.Point(1106, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(159, 46);
+            this.label1.Size = new System.Drawing.Size(102, 46);
             this.label1.TabIndex = 31;
             this.label1.Text = ":تصفية حسب";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnl_SectionFilter
             // 
@@ -248,6 +253,7 @@
             this.pnl_SectionFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionFilter.Size = new System.Drawing.Size(1217, 155);
             this.pnl_SectionFilter.TabIndex = 42;
+            this.pnl_SectionFilter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionFilter_Paint);
             // 
             // panel1
             // 
@@ -263,6 +269,7 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(2396, 155);
             this.panel1.TabIndex = 41;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel4
             // 
@@ -272,6 +279,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(28, 155);
             this.panel4.TabIndex = 1;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // panel5
             // 
@@ -285,6 +293,7 @@
             this.panel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel5.Size = new System.Drawing.Size(302, 155);
             this.panel5.TabIndex = 46;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // lbl_StudentsOfDisplayed
             // 
@@ -317,6 +326,7 @@
             this.label4.TabIndex = 44;
             this.label4.Text = ":المعروض";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // panel3
             // 
@@ -326,6 +336,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(30, 155);
             this.panel3.TabIndex = 2;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // lbl_PageNumbering
             // 
@@ -353,6 +364,7 @@
             this.pnl_SectionPageNumbering.Name = "pnl_SectionPageNumbering";
             this.pnl_SectionPageNumbering.Size = new System.Drawing.Size(282, 76);
             this.pnl_SectionPageNumbering.TabIndex = 41;
+            this.pnl_SectionPageNumbering.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionPageNumbering_Paint);
             // 
             // btn_Previous
             // 
@@ -402,6 +414,7 @@
             this.pnl_SectionButton.Name = "pnl_SectionButton";
             this.pnl_SectionButton.Size = new System.Drawing.Size(282, 76);
             this.pnl_SectionButton.TabIndex = 40;
+            this.pnl_SectionButton.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionButton_Paint);
             // 
             // pnl_SectionBottomBar
             // 
@@ -413,6 +426,7 @@
             this.pnl_SectionBottomBar.Name = "pnl_SectionBottomBar";
             this.pnl_SectionBottomBar.Size = new System.Drawing.Size(2396, 76);
             this.pnl_SectionBottomBar.TabIndex = 39;
+            this.pnl_SectionBottomBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionBottomBar_Paint);
             // 
             // cms_StudentActions
             // 
@@ -430,6 +444,7 @@
             this.cms_StudentActions.Name = "contextMenuStrip1";
             this.cms_StudentActions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cms_StudentActions.Size = new System.Drawing.Size(190, 166);
+            this.cms_StudentActions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_StudentActions_Opening);
             // 
             // StudentDetailsToolStripMenuItem
             // 
@@ -442,6 +457,7 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // AddStudent_ToolStripMenuItem
             // 
@@ -461,6 +477,7 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // StudentSuspendedToolStripMenuItem
             // 
@@ -480,6 +497,7 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // UpdateStudentProgress_ToolStripMenuItem
             // 
@@ -487,6 +505,14 @@
             this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.UpdateStudentProgress_ToolStripMenuItem.Text = "تعديل تقدم طالب";
             this.UpdateStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentProgress_ToolStripMenuItem_Click);
+            // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // pnl_SectionListreports
             // 
@@ -502,6 +528,7 @@
             this.pnl_SectionListreports.Name = "pnl_SectionListreports";
             this.pnl_SectionListreports.Size = new System.Drawing.Size(2396, 1247);
             this.pnl_SectionListreports.TabIndex = 43;
+            this.pnl_SectionListreports.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionListreports_Paint);
             // 
             // pnl_SectionٍListStudents
             // 
@@ -512,6 +539,7 @@
             this.pnl_SectionٍListStudents.Name = "pnl_SectionٍListStudents";
             this.pnl_SectionٍListStudents.Size = new System.Drawing.Size(2396, 756);
             this.pnl_SectionٍListStudents.TabIndex = 42;
+            this.pnl_SectionٍListStudents.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionٍListStudents_Paint);
             // 
             // dgv_ListStudents
             // 
@@ -538,6 +566,7 @@
             this.dgv_ListStudents.RowTemplate.Height = 26;
             this.dgv_ListStudents.Size = new System.Drawing.Size(2396, 756);
             this.dgv_ListStudents.TabIndex = 39;
+            this.dgv_ListStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ListStudents_CellContentClick);
             // 
             // panel2
             // 
@@ -547,6 +576,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(2396, 143);
             this.panel2.TabIndex = 43;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // pnl_SectionGreeting
             // 
@@ -557,37 +587,26 @@
             this.pnl_SectionGreeting.Location = new System.Drawing.Point(0, 0);
             this.pnl_SectionGreeting.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pnl_SectionGreeting.Name = "pnl_SectionGreeting";
-            this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pnl_SectionGreeting.Size = new System.Drawing.Size(2396, 117);
             this.pnl_SectionGreeting.TabIndex = 40;
+            this.pnl_SectionGreeting.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionGreeting_Paint);
             // 
             // pnl_SectionMainTitle
             // 
-            this.pnl_SectionMainTitle.Controls.Add(this.lbl_SubTitle);
-            this.pnl_SectionMainTitle.Controls.Add(this.label5);
+            this.pnl_SectionMainTitle.ColumnCount = 1;
+            this.pnl_SectionMainTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnl_SectionMainTitle.Controls.Add(this.label5, 0, 0);
+            this.pnl_SectionMainTitle.Controls.Add(this.lbl_SubTitle, 0, 1);
             this.pnl_SectionMainTitle.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_SectionMainTitle.Location = new System.Drawing.Point(1149, 0);
-            this.pnl_SectionMainTitle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.pnl_SectionMainTitle.Location = new System.Drawing.Point(1500, 0);
             this.pnl_SectionMainTitle.Name = "pnl_SectionMainTitle";
-            this.pnl_SectionMainTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnl_SectionMainTitle.Size = new System.Drawing.Size(1204, 117);
-            this.pnl_SectionMainTitle.TabIndex = 40;
-            // 
-            // lbl_SubTitle
-            // 
-            this.lbl_SubTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbl_SubTitle.AutoSize = true;
-            this.lbl_SubTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_SubTitle.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.lbl_SubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
-            this.lbl_SubTitle.Location = new System.Drawing.Point(518, 75);
-            this.lbl_SubTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_SubTitle.Name = "lbl_SubTitle";
-            this.lbl_SubTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_SubTitle.Size = new System.Drawing.Size(737, 41);
-            this.lbl_SubTitle.TabIndex = 31;
-            this.lbl_SubTitle.Text = "قائمة شاملة لطلاب مركز نور ومتابعة مستوياتهم الأكاديمية";
-            this.lbl_SubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pnl_SectionMainTitle.RowCount = 2;
+            this.pnl_SectionMainTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnl_SectionMainTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnl_SectionMainTitle.Size = new System.Drawing.Size(853, 117);
+            this.pnl_SectionMainTitle.TabIndex = 0;
+            this.pnl_SectionMainTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionMainTitle_Paint);
             // 
             // label5
             // 
@@ -596,12 +615,30 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Right;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.label5.Location = new System.Drawing.Point(823, 0);
+            this.label5.Location = new System.Drawing.Point(468, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(381, 59);
+            this.label5.Size = new System.Drawing.Size(381, 58);
             this.label5.TabIndex = 29;
             this.label5.Text = "إدارة سجلات الطلاب";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // lbl_SubTitle
+            // 
+            this.lbl_SubTitle.AutoSize = true;
+            this.lbl_SubTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_SubTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_SubTitle.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.lbl_SubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
+            this.lbl_SubTitle.Location = new System.Drawing.Point(4, 58);
+            this.lbl_SubTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_SubTitle.Name = "lbl_SubTitle";
+            this.lbl_SubTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_SubTitle.Size = new System.Drawing.Size(845, 41);
+            this.lbl_SubTitle.TabIndex = 31;
+            this.lbl_SubTitle.Text = "قائمة شاملة لطلاب مركز نور ومتابعة مستوياتهم الأكاديمية";
+            this.lbl_SubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_SubTitle.Click += new System.EventHandler(this.lbl_SubTitle_Click);
             // 
             // panel6
             // 
@@ -611,6 +648,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(43, 117);
             this.panel6.TabIndex = 41;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // UC_Student
             // 
@@ -687,9 +725,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel pnl_SectionGreeting;
-        private System.Windows.Forms.Panel pnl_SectionMainTitle;
-        private System.Windows.Forms.Label lbl_SubTitle;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TableLayoutPanel pnl_SectionMainTitle;
+        private System.Windows.Forms.Label lbl_SubTitle;
     }
 }

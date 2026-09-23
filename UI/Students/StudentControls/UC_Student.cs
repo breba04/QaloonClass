@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using Microsoft.Win32;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -18,8 +19,12 @@ namespace UI.Students.StudentControls
         public UC_Student()
         {
             InitializeComponent();
+            clsAppEvents.StudentAdded += AppEvents_StudentAdded;
         }
-
+        private void AppEvents_StudentAdded(object sender, EventArgs e)
+        {
+            _RefreshStudentList(); 
+        }
         private void _DisplayTotalStudentsCount()
         {
             lbl_TotalStudent.Text = _allData?.Rows?.Count.ToString() ?? "0";
@@ -77,6 +82,8 @@ namespace UI.Students.StudentControls
 
 
             txt_Research.Clear();
+            dtp_FormDate.Value = DateTime.Now;
+            dtp_ToDate.Value = DateTime.Now;
             _FilterResult();
         }
         private void _SetFilterControlsVisibility(bool searchVisible, bool activeVisible, bool dateFromVisible, bool dateToVisible)
@@ -204,16 +211,17 @@ namespace UI.Students.StudentControls
         {
             if (dgv_ListStudents.Columns.Count > 0)
             {
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["StudentID"], "رقم الطالب", 110);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["SeatsNumber"], "رقم الجلوس", 200);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["FullName"], "اسم الطالب الكامل", 280);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["BirthDate"], "تاريخ الميلاد", 130);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["Address"], "العنوان", 180);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["ParentPhone"], "هاتف ولي الأمر", 150);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["StudentID"], "رقم الطالب", 100);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["SeatsNumber"], "رقم الجلوس", 120);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["FullName"], "اسم الطالب الكامل", 240);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["BirthDate"], "تاريخ الميلاد", 110);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["Address"], "العنوان", 160);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["ParentPhone"], "هاتف ولي الأمر", 140);
                 clsUtil.ConfigureColumn(dgv_ListStudents.Columns["JoinDate"], "تاريخ الانضمام", 130);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleID"], "رقم الحلقة", 100);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleName"], "اسم الحلقة", 200);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["IsActive"], "الحالة", 100);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleID"], "رقم الحلقة", 0);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleName"], "اسم الحلقة", 150);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["IsActive"], "الحالة", 130);
+                dgv_ListStudents.Columns["CircleID"].Visible = false;
             }
         }
         private void _FormatDataGridView()
@@ -310,6 +318,151 @@ namespace UI.Students.StudentControls
         private void UpdateStudentProgress_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Update Student Progress");
+        }
+
+        private void lbl_SubTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionFilter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lbl_To_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_From_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionPageNumbering_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionButton_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionBottomBar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cms_StudentActions_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionListreports_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionٍListStudents_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgv_ListStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionGreeting_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionMainTitle_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_SectionTotalStudent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
