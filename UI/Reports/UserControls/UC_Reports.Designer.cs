@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Reports));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_AttendanceReports = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -437,7 +437,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.47192F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.872761F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.96595F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 7, 0);
@@ -598,14 +598,14 @@
             this.tableLayoutPanel5.Controls.Add(this.pb_Card4, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.lb_BottomTitleCard4, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(42, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(43, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(341, 172);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(340, 172);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // lb_TopTitleCard4
@@ -614,7 +614,7 @@
             this.lb_TopTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard4.Location = new System.Drawing.Point(94, 11);
+            this.lb_TopTitleCard4.Location = new System.Drawing.Point(93, 11);
             this.lb_TopTitleCard4.Name = "lb_TopTitleCard4";
             this.lb_TopTitleCard4.Size = new System.Drawing.Size(234, 49);
             this.lb_TopTitleCard4.TabIndex = 19;
@@ -626,7 +626,7 @@
             this.lb_CenterTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(94, 60);
+            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(93, 60);
             this.lb_CenterTitleCard4.Name = "lb_CenterTitleCard4";
             this.lb_CenterTitleCard4.Size = new System.Drawing.Size(234, 49);
             this.lb_CenterTitleCard4.TabIndex = 20;
@@ -639,7 +639,7 @@
             this.pb_Card4.Image = global::UI.Properties.Resources.Warninng;
             this.pb_Card4.Location = new System.Drawing.Point(13, 63);
             this.pb_Card4.Name = "pb_Card4";
-            this.pb_Card4.Size = new System.Drawing.Size(75, 43);
+            this.pb_Card4.Size = new System.Drawing.Size(74, 43);
             this.pb_Card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card4.TabIndex = 22;
             this.pb_Card4.TabStop = false;
@@ -649,7 +649,7 @@
             this.lb_BottomTitleCard4.AutoSize = true;
             this.lb_BottomTitleCard4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(131, 109);
+            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(130, 109);
             this.lb_BottomTitleCard4.Name = "lb_BottomTitleCard4";
             this.lb_BottomTitleCard4.Size = new System.Drawing.Size(197, 23);
             this.lb_BottomTitleCard4.TabIndex = 21;
@@ -875,14 +875,14 @@
             this.dgv_ReportData.AllowUserToAddRows = false;
             this.dgv_ReportData.AllowUserToDeleteRows = false;
             this.dgv_ReportData.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_ReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_ReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_ReportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ReportData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_ReportData.Location = new System.Drawing.Point(34, 2);

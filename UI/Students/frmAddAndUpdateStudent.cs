@@ -89,20 +89,20 @@ namespace UI.Students
         private void _HandleLoadError(string message)
         {
             clsGlobal.ShowErrorMessgae(message, "خطأ في معرف الطالب");
-            ClearAll();
         }
         private void _LoadUpdateMode()
         {
             if (!_LoadStudentFromDB(out string ErrorMessage))
             {
                 _HandleLoadError(ErrorMessage);
+                ClearAll();
                 return;
             }
 
             if (!_LoadStudentProgressFromDB(out ErrorMessage))
             {
                 _HandleLoadError(ErrorMessage);
-                return;
+                //return;
             }
 
             _LoadStudentData();
@@ -322,8 +322,11 @@ namespace UI.Students
         }
         private void _LoadStudentProgressData()
         {
-            cmb_Surahs.SelectedValue = _StudentProgress.SurrahID;
-            cmb_Aya.SelectedValue = _StudentProgress.AyahID;
+            if (_StudentProgress != null)
+            {
+                cmb_Surahs.SelectedValue = _StudentProgress.SurrahID;
+                cmb_Aya.SelectedValue = _StudentProgress.AyahID;
+            }
         }
         private void _CircleValdation()
         {

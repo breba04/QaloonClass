@@ -345,6 +345,8 @@ namespace UI.Evaluations
         {
             _HandleAyaText(rd_Ayah.Checked);
             _HandleDisplayMemberToSurrahComboBox();
+            cmb_FromSurrah_SelectedIndexChanged(null, null);
+            cmb_ToSurrah_SelectedIndexChanged(null, null);
         }
         private void cmb_ToSurrah_SelectedIndexChanged(object sender, EventArgs e)
         {
