@@ -169,7 +169,8 @@ namespace UI.Attendance.UserControls
         void LoadAttendanceTodayDataFromDB()
         {
             _dtAttendanceListToday = clsAttendance.SelectAllAttendancesToday((int)cmb_Circles.SelectedValue);
-            _dtAttendanceListToday.Columns["Status"].ReadOnly = false;
+            if (_dtAttendanceListToday.Columns.Count > 0) 
+                _dtAttendanceListToday.Columns["Status"].ReadOnly = false;
         }
         void FillAttendanceObject(DataGridViewRow row)
         {

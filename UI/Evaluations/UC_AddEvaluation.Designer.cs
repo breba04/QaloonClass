@@ -47,7 +47,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.txt_Notes = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.btn_Save = new System.Windows.Forms.Button();
@@ -55,6 +54,8 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_Notes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.pnl_Weak = new System.Windows.Forms.TableLayoutPanel();
@@ -107,6 +108,7 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel10.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.pnl_Weak.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -143,7 +145,7 @@
             this.pnlTLTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTLTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
             this.pnlTLTop.Location = new System.Drawing.Point(23, 0);
-            this.pnlTLTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTLTop.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTLTop.Name = "pnlTLTop";
             this.pnlTLTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnlTLTop.RowCount = 2;
@@ -189,7 +191,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tlpnl_Students, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 86);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.tableLayoutPanel1.RowCount = 1;
@@ -206,8 +208,9 @@
             this.tlpnl_Circles.Controls.Add(this.cmb_Circles, 0, 1);
             this.tlpnl_Circles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpnl_Circles.Location = new System.Drawing.Point(751, 2);
-            this.tlpnl_Circles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpnl_Circles.Margin = new System.Windows.Forms.Padding(2);
             this.tlpnl_Circles.Name = "tlpnl_Circles";
+            this.tlpnl_Circles.Padding = new System.Windows.Forms.Padding(5);
             this.tlpnl_Circles.RowCount = 2;
             this.tlpnl_Circles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
             this.tlpnl_Circles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
@@ -220,10 +223,10 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label3.Location = new System.Drawing.Point(5, 0);
+            this.label3.Location = new System.Drawing.Point(10, 5);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(571, 33);
+            this.label3.Size = new System.Drawing.Size(561, 29);
             this.label3.TabIndex = 12;
             this.label3.Text = "اختر الحلقة";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -237,8 +240,8 @@
             this.cmb_Circles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_Circles.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_Circles.FormattingEnabled = true;
-            this.cmb_Circles.Location = new System.Drawing.Point(178, 35);
-            this.cmb_Circles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_Circles.Location = new System.Drawing.Point(173, 36);
+            this.cmb_Circles.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_Circles.Name = "cmb_Circles";
             this.cmb_Circles.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmb_Circles.Size = new System.Drawing.Size(401, 36);
@@ -255,8 +258,9 @@
             this.tlpnl_Students.Controls.Add(this.cmb_Students, 0, 1);
             this.tlpnl_Students.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpnl_Students.Location = new System.Drawing.Point(183, 2);
-            this.tlpnl_Students.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpnl_Students.Margin = new System.Windows.Forms.Padding(2);
             this.tlpnl_Students.Name = "tlpnl_Students";
+            this.tlpnl_Students.Padding = new System.Windows.Forms.Padding(5);
             this.tlpnl_Students.RowCount = 2;
             this.tlpnl_Students.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
             this.tlpnl_Students.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
@@ -269,10 +273,10 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label4.Location = new System.Drawing.Point(5, 0);
+            this.label4.Location = new System.Drawing.Point(10, 5);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(554, 33);
+            this.label4.Size = new System.Drawing.Size(544, 29);
             this.label4.TabIndex = 12;
             this.label4.Text = "اختر الطالب";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -286,8 +290,8 @@
             this.cmb_Students.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_Students.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_Students.FormattingEnabled = true;
-            this.cmb_Students.Location = new System.Drawing.Point(148, 35);
-            this.cmb_Students.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_Students.Location = new System.Drawing.Point(143, 36);
+            this.cmb_Students.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_Students.Name = "cmb_Students";
             this.cmb_Students.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmb_Students.Size = new System.Drawing.Size(414, 36);
@@ -296,18 +300,22 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnCount = 7;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Controls.Add(this.pnl_Content, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(23, 168);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.91635F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.08365F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.00133F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.99867F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1485, 753);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
@@ -322,31 +330,32 @@
             this.pnl_Content.Controls.Add(this.tlpnl_EvaluationType);
             this.pnl_Content.Controls.Add(this.tableLayoutPanel4);
             this.pnl_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Content.Location = new System.Drawing.Point(228, 3);
+            this.pnl_Content.Location = new System.Drawing.Point(296, 3);
             this.pnl_Content.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Content.MinimumSize = new System.Drawing.Size(490, 620);
             this.pnl_Content.Name = "pnl_Content";
-            this.pnl_Content.Size = new System.Drawing.Size(1031, 701);
+            this.pnl_Content.Padding = new System.Windows.Forms.Padding(5);
+            this.pnl_Content.Size = new System.Drawing.Size(975, 620);
             this.pnl_Content.TabIndex = 0;
             // 
             // tableLayoutPanel14
             // 
             this.tableLayoutPanel14.ColumnCount = 2;
-            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.50343F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.49657F));
             this.tableLayoutPanel14.Controls.Add(this.panel4, 0, 1);
-            this.tableLayoutPanel14.Controls.Add(this.txt_Notes, 0, 2);
             this.tableLayoutPanel14.Controls.Add(this.panel10, 1, 2);
+            this.tableLayoutPanel14.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 354);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(5, 386);
             this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.tableLayoutPanel14.RowCount = 3;
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.514706F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.17647F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.30882F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(1031, 188);
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.16168F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.83833F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(965, 167);
             this.tableLayoutPanel14.TabIndex = 5;
             // 
             // panel4
@@ -355,10 +364,10 @@
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.pictureBox6);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(350, 13);
+            this.panel4.Location = new System.Drawing.Point(329, 8);
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(672, 24);
+            this.panel4.Size = new System.Drawing.Size(627, 25);
             this.panel4.TabIndex = 0;
             // 
             // label15
@@ -367,7 +376,7 @@
             this.label15.Dock = System.Windows.Forms.DockStyle.Right;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label15.Location = new System.Drawing.Point(349, 0);
+            this.label15.Location = new System.Drawing.Point(304, 0);
             this.label15.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(273, 28);
@@ -378,35 +387,23 @@
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(622, 0);
+            this.panel5.Location = new System.Drawing.Point(577, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(12, 24);
+            this.panel5.Size = new System.Drawing.Size(12, 25);
             this.panel5.TabIndex = 20;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox6.Image = global::UI.Properties.Resources.Notes;
-            this.pictureBox6.Location = new System.Drawing.Point(634, 0);
+            this.pictureBox6.Location = new System.Drawing.Point(589, 0);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(38, 24);
+            this.pictureBox6.Size = new System.Drawing.Size(38, 25);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 19;
             this.pictureBox6.TabStop = false;
-            // 
-            // txt_Notes
-            // 
-            this.txt_Notes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(200)))), ((int)(((byte)(194)))));
-            this.txt_Notes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_Notes.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txt_Notes.Location = new System.Drawing.Point(350, 43);
-            this.txt_Notes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_Notes.Multiline = true;
-            this.txt_Notes.Name = "txt_Notes";
-            this.txt_Notes.Size = new System.Drawing.Size(672, 142);
-            this.txt_Notes.TabIndex = 1;
             // 
             // panel10
             // 
@@ -416,19 +413,19 @@
             this.panel10.Controls.Add(this.btn_Cancel);
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(9, 43);
+            this.panel10.Location = new System.Drawing.Point(9, 39);
             this.panel10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(333, 142);
+            this.panel10.Size = new System.Drawing.Size(312, 125);
             this.panel10.TabIndex = 2;
             // 
             // panel13
             // 
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 126);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 112);
             this.panel13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(333, 11);
+            this.panel13.Size = new System.Drawing.Size(312, 13);
             this.panel13.TabIndex = 28;
             // 
             // btn_Save
@@ -445,11 +442,11 @@
             this.btn_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Save.ImageIndex = 2;
             this.btn_Save.ImageList = this.imageList1;
-            this.btn_Save.Location = new System.Drawing.Point(0, 74);
+            this.btn_Save.Location = new System.Drawing.Point(0, 67);
             this.btn_Save.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Save.Size = new System.Drawing.Size(333, 52);
+            this.btn_Save.Size = new System.Drawing.Size(312, 45);
             this.btn_Save.TabIndex = 27;
             this.btn_Save.Text = "حفظ التقييم";
             this.btn_Save.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -470,10 +467,10 @@
             // panel12
             // 
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 63);
+            this.panel12.Location = new System.Drawing.Point(0, 56);
             this.panel12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(333, 11);
+            this.panel12.Size = new System.Drawing.Size(312, 11);
             this.panel12.TabIndex = 26;
             // 
             // btn_Cancel
@@ -495,7 +492,7 @@
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Cancel.Size = new System.Drawing.Size(333, 52);
+            this.btn_Cancel.Size = new System.Drawing.Size(312, 45);
             this.btn_Cancel.TabIndex = 25;
             this.btn_Cancel.Text = "إزالة التقييم";
             this.btn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -509,8 +506,30 @@
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(333, 11);
+            this.panel11.Size = new System.Drawing.Size(312, 11);
             this.panel11.TabIndex = 23;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txt_Notes);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(328, 39);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.panel1.Size = new System.Drawing.Size(629, 125);
+            this.panel1.TabIndex = 3;
+            // 
+            // txt_Notes
+            // 
+            this.txt_Notes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(190)))));
+            this.txt_Notes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_Notes.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txt_Notes.Location = new System.Drawing.Point(0, 6);
+            this.txt_Notes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Notes.Multiline = true;
+            this.txt_Notes.Name = "txt_Notes";
+            this.txt_Notes.Size = new System.Drawing.Size(629, 113);
+            this.txt_Notes.TabIndex = 5;
             // 
             // tableLayoutPanel9
             // 
@@ -530,14 +549,14 @@
             this.tableLayoutPanel9.Controls.Add(this.pnl_VeryGood, 3, 2);
             this.tableLayoutPanel9.Controls.Add(this.pnl_Good, 5, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 220);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(5, 231);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.123711F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.07216F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.28866F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(1031, 134);
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.64516F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.48387F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(965, 155);
             this.tableLayoutPanel9.TabIndex = 4;
             // 
             // label9
@@ -546,10 +565,10 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label9.Location = new System.Drawing.Point(782, 5);
+            this.label9.Location = new System.Drawing.Point(732, 6);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(234, 25);
+            this.label9.Size = new System.Drawing.Size(219, 31);
             this.label9.TabIndex = 16;
             this.label9.Text = "المستوى المحقق ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -565,13 +584,13 @@
             this.pnl_Weak.Controls.Add(this.pictureBox5, 1, 0);
             this.pnl_Weak.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_Weak.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Weak.Location = new System.Drawing.Point(19, 33);
+            this.pnl_Weak.Location = new System.Drawing.Point(17, 40);
             this.pnl_Weak.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Weak.Name = "pnl_Weak";
             this.pnl_Weak.RowCount = 2;
             this.pnl_Weak.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.17647F));
             this.pnl_Weak.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.82353F));
-            this.pnl_Weak.Size = new System.Drawing.Size(236, 98);
+            this.pnl_Weak.Size = new System.Drawing.Size(221, 112);
             this.pnl_Weak.TabIndex = 20;
             this.pnl_Weak.Tag = "1";
             this.pnl_Weak.Click += new System.EventHandler(this.pnl_VeryGood_Click);
@@ -584,10 +603,10 @@
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label14.Location = new System.Drawing.Point(41, 64);
+            this.label14.Location = new System.Drawing.Point(39, 74);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(155, 34);
+            this.label14.Size = new System.Drawing.Size(144, 38);
             this.label14.TabIndex = 17;
             this.label14.Text = "ضعيف";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -598,10 +617,10 @@
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox5.Image = global::UI.Properties.Resources.Warninng;
-            this.pictureBox5.Location = new System.Drawing.Point(40, 3);
+            this.pictureBox5.Location = new System.Drawing.Point(38, 3);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(157, 58);
+            this.pictureBox5.Size = new System.Drawing.Size(146, 68);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 18;
             this.pictureBox5.TabStop = false;
@@ -609,7 +628,7 @@
             // 
             // pnl_Exlant
             // 
-            this.pnl_Exlant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(197)))), ((int)(((byte)(235)))), ((int)(((byte)(213)))));
+            this.pnl_Exlant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(190)))));
             this.pnl_Exlant.ColumnCount = 3;
             this.pnl_Exlant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.pnl_Exlant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
@@ -618,13 +637,13 @@
             this.pnl_Exlant.Controls.Add(this.pictureBox1, 1, 0);
             this.pnl_Exlant.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_Exlant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Exlant.Location = new System.Drawing.Point(781, 33);
+            this.pnl_Exlant.Location = new System.Drawing.Point(731, 40);
             this.pnl_Exlant.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Exlant.Name = "pnl_Exlant";
             this.pnl_Exlant.RowCount = 2;
             this.pnl_Exlant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.17647F));
             this.pnl_Exlant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.82353F));
-            this.pnl_Exlant.Size = new System.Drawing.Size(236, 98);
+            this.pnl_Exlant.Size = new System.Drawing.Size(221, 112);
             this.pnl_Exlant.TabIndex = 17;
             this.pnl_Exlant.Tag = "4";
             this.pnl_Exlant.Click += new System.EventHandler(this.pnl_VeryGood_Click);
@@ -637,10 +656,10 @@
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label11.Location = new System.Drawing.Point(41, 64);
+            this.label11.Location = new System.Drawing.Point(39, 74);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(155, 34);
+            this.label11.Size = new System.Drawing.Size(144, 38);
             this.label11.TabIndex = 17;
             this.label11.Text = "ممتاز";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -651,10 +670,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(40, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(38, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(157, 58);
+            this.pictureBox1.Size = new System.Drawing.Size(146, 68);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
@@ -671,13 +690,13 @@
             this.pnl_VeryGood.Controls.Add(this.pictureBox3, 1, 0);
             this.pnl_VeryGood.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_VeryGood.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_VeryGood.Location = new System.Drawing.Point(527, 33);
+            this.pnl_VeryGood.Location = new System.Drawing.Point(493, 40);
             this.pnl_VeryGood.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_VeryGood.Name = "pnl_VeryGood";
             this.pnl_VeryGood.RowCount = 2;
             this.pnl_VeryGood.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.17647F));
             this.pnl_VeryGood.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.82353F));
-            this.pnl_VeryGood.Size = new System.Drawing.Size(236, 98);
+            this.pnl_VeryGood.Size = new System.Drawing.Size(221, 112);
             this.pnl_VeryGood.TabIndex = 18;
             this.pnl_VeryGood.Tag = "3";
             this.pnl_VeryGood.Click += new System.EventHandler(this.pnl_VeryGood_Click);
@@ -690,10 +709,10 @@
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label12.Location = new System.Drawing.Point(41, 64);
+            this.label12.Location = new System.Drawing.Point(39, 74);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 34);
+            this.label12.Size = new System.Drawing.Size(144, 38);
             this.label12.TabIndex = 17;
             this.label12.Text = "جيد جداً";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -705,10 +724,10 @@
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(40, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(38, 3);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(157, 58);
+            this.pictureBox3.Size = new System.Drawing.Size(146, 68);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 18;
             this.pictureBox3.TabStop = false;
@@ -725,13 +744,13 @@
             this.pnl_Good.Controls.Add(this.pictureBox4, 1, 0);
             this.pnl_Good.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnl_Good.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Good.Location = new System.Drawing.Point(273, 33);
+            this.pnl_Good.Location = new System.Drawing.Point(255, 40);
             this.pnl_Good.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Good.Name = "pnl_Good";
             this.pnl_Good.RowCount = 2;
             this.pnl_Good.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.17647F));
             this.pnl_Good.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.82353F));
-            this.pnl_Good.Size = new System.Drawing.Size(236, 98);
+            this.pnl_Good.Size = new System.Drawing.Size(221, 112);
             this.pnl_Good.TabIndex = 19;
             this.pnl_Good.Tag = "2";
             this.pnl_Good.Click += new System.EventHandler(this.pnl_VeryGood_Click);
@@ -744,10 +763,10 @@
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label13.Location = new System.Drawing.Point(41, 64);
+            this.label13.Location = new System.Drawing.Point(39, 74);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(155, 34);
+            this.label13.Size = new System.Drawing.Size(144, 38);
             this.label13.TabIndex = 17;
             this.label13.Text = "جيد";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -758,10 +777,10 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Image = global::UI.Properties.Resources.Smile;
-            this.pictureBox4.Location = new System.Drawing.Point(40, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(38, 3);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(157, 58);
+            this.pictureBox4.Size = new System.Drawing.Size(146, 68);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 18;
             this.pictureBox4.TabStop = false;
@@ -779,14 +798,14 @@
             this.tlpnl_ToAyaAndSurrah.Controls.Add(this.panel8, 0, 1);
             this.tlpnl_ToAyaAndSurrah.Controls.Add(this.panel9, 2, 1);
             this.tlpnl_ToAyaAndSurrah.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpnl_ToAyaAndSurrah.Location = new System.Drawing.Point(0, 154);
+            this.tlpnl_ToAyaAndSurrah.Location = new System.Drawing.Point(5, 165);
             this.tlpnl_ToAyaAndSurrah.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tlpnl_ToAyaAndSurrah.Name = "tlpnl_ToAyaAndSurrah";
             this.tlpnl_ToAyaAndSurrah.RowCount = 3;
             this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.122449F));
             this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.89796F));
             this.tlpnl_ToAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.97959F));
-            this.tlpnl_ToAyaAndSurrah.Size = new System.Drawing.Size(1031, 66);
+            this.tlpnl_ToAyaAndSurrah.Size = new System.Drawing.Size(965, 66);
             this.tlpnl_ToAyaAndSurrah.TabIndex = 3;
             // 
             // cmb_ToSurrah
@@ -798,11 +817,11 @@
             this.cmb_ToSurrah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_ToSurrah.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_ToSurrah.FormattingEnabled = true;
-            this.cmb_ToSurrah.Location = new System.Drawing.Point(776, 35);
-            this.cmb_ToSurrah.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_ToSurrah.Location = new System.Drawing.Point(727, 35);
+            this.cmb_ToSurrah.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ToSurrah.Name = "cmb_ToSurrah";
             this.cmb_ToSurrah.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmb_ToSurrah.Size = new System.Drawing.Size(253, 36);
+            this.cmb_ToSurrah.Size = new System.Drawing.Size(236, 36);
             this.cmb_ToSurrah.TabIndex = 19;
             this.cmb_ToSurrah.ValueMember = "MushafQaloonID";
             this.cmb_ToSurrah.SelectedIndexChanged += new System.EventHandler(this.cmb_ToSurrah_SelectedIndexChanged);
@@ -816,11 +835,11 @@
             this.cmb_ToAyah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_ToAyah.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_ToAyah.FormattingEnabled = true;
-            this.cmb_ToAyah.Location = new System.Drawing.Point(517, 35);
-            this.cmb_ToAyah.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_ToAyah.Location = new System.Drawing.Point(484, 35);
+            this.cmb_ToAyah.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ToAyah.Name = "cmb_ToAyah";
             this.cmb_ToAyah.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmb_ToAyah.Size = new System.Drawing.Size(221, 36);
+            this.cmb_ToAyah.Size = new System.Drawing.Size(207, 36);
             this.cmb_ToAyah.TabIndex = 20;
             this.cmb_ToAyah.ValueMember = "MushafQaloonID";
             // 
@@ -829,7 +848,7 @@
             this.panel8.Controls.Add(this.label10);
             this.panel8.Controls.Add(this.pictureBox8);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(887, 7);
+            this.panel8.Location = new System.Drawing.Point(821, 7);
             this.panel8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(140, 23);
@@ -866,7 +885,7 @@
             this.panel9.Controls.Add(this.lbToAya);
             this.panel9.Controls.Add(this.pb_ToAya);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(619, 7);
+            this.panel9.Location = new System.Drawing.Point(572, 7);
             this.panel9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(117, 23);
@@ -910,14 +929,14 @@
             this.tlpnl_FromAyaAndSurrah.Controls.Add(this.panel6, 0, 1);
             this.tlpnl_FromAyaAndSurrah.Controls.Add(this.panel7, 2, 1);
             this.tlpnl_FromAyaAndSurrah.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpnl_FromAyaAndSurrah.Location = new System.Drawing.Point(0, 88);
+            this.tlpnl_FromAyaAndSurrah.Location = new System.Drawing.Point(5, 99);
             this.tlpnl_FromAyaAndSurrah.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tlpnl_FromAyaAndSurrah.Name = "tlpnl_FromAyaAndSurrah";
             this.tlpnl_FromAyaAndSurrah.RowCount = 3;
             this.tlpnl_FromAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.61157F));
             this.tlpnl_FromAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.79167F));
             this.tlpnl_FromAyaAndSurrah.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.95833F));
-            this.tlpnl_FromAyaAndSurrah.Size = new System.Drawing.Size(1031, 66);
+            this.tlpnl_FromAyaAndSurrah.Size = new System.Drawing.Size(965, 66);
             this.tlpnl_FromAyaAndSurrah.TabIndex = 2;
             // 
             // cmb_FromSurrah
@@ -929,11 +948,11 @@
             this.cmb_FromSurrah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_FromSurrah.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_FromSurrah.FormattingEnabled = true;
-            this.cmb_FromSurrah.Location = new System.Drawing.Point(776, 35);
-            this.cmb_FromSurrah.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_FromSurrah.Location = new System.Drawing.Point(727, 35);
+            this.cmb_FromSurrah.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_FromSurrah.Name = "cmb_FromSurrah";
             this.cmb_FromSurrah.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmb_FromSurrah.Size = new System.Drawing.Size(253, 36);
+            this.cmb_FromSurrah.Size = new System.Drawing.Size(236, 36);
             this.cmb_FromSurrah.TabIndex = 19;
             this.cmb_FromSurrah.ValueMember = "MushafQaloonID";
             this.cmb_FromSurrah.SelectedIndexChanged += new System.EventHandler(this.cmb_FromSurrah_SelectedIndexChanged);
@@ -947,11 +966,11 @@
             this.cmb_FromAya.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmb_FromAya.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_FromAya.FormattingEnabled = true;
-            this.cmb_FromAya.Location = new System.Drawing.Point(517, 35);
-            this.cmb_FromAya.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_FromAya.Location = new System.Drawing.Point(485, 35);
+            this.cmb_FromAya.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_FromAya.Name = "cmb_FromAya";
             this.cmb_FromAya.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmb_FromAya.Size = new System.Drawing.Size(222, 36);
+            this.cmb_FromAya.Size = new System.Drawing.Size(207, 36);
             this.cmb_FromAya.TabIndex = 20;
             this.cmb_FromAya.ValueMember = "MushafQaloonID";
             // 
@@ -960,7 +979,7 @@
             this.panel6.Controls.Add(this.label8);
             this.panel6.Controls.Add(this.pictureBox10);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(892, 7);
+            this.panel6.Location = new System.Drawing.Point(826, 7);
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(135, 23);
@@ -997,7 +1016,7 @@
             this.panel7.Controls.Add(this.lbFromAya);
             this.panel7.Controls.Add(this.pb_FromAya);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(625, 7);
+            this.panel7.Location = new System.Drawing.Point(578, 7);
             this.panel7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(112, 23);
@@ -1037,14 +1056,14 @@
             this.tlpnl_EvaluationType.Controls.Add(this.panel2, 1, 1);
             this.tlpnl_EvaluationType.Controls.Add(this.label7, 0, 1);
             this.tlpnl_EvaluationType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpnl_EvaluationType.Location = new System.Drawing.Point(0, 42);
+            this.tlpnl_EvaluationType.Location = new System.Drawing.Point(5, 40);
             this.tlpnl_EvaluationType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tlpnl_EvaluationType.Name = "tlpnl_EvaluationType";
             this.tlpnl_EvaluationType.RowCount = 3;
             this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.54546F));
-            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.45455F));
-            this.tlpnl_EvaluationType.Size = new System.Drawing.Size(1031, 46);
+            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.15385F));
+            this.tlpnl_EvaluationType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.84615F));
+            this.tlpnl_EvaluationType.Size = new System.Drawing.Size(965, 59);
             this.tlpnl_EvaluationType.TabIndex = 1;
             // 
             // panel2
@@ -1053,10 +1072,10 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.rd_Suraah);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(478, 3);
+            this.panel2.Location = new System.Drawing.Point(412, 3);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(411, 30);
+            this.panel2.Size = new System.Drawing.Size(411, 33);
             this.panel2.TabIndex = 2;
             // 
             // rd_Ayah
@@ -1068,7 +1087,7 @@
             this.rd_Ayah.Location = new System.Drawing.Point(85, 0);
             this.rd_Ayah.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rd_Ayah.Name = "rd_Ayah";
-            this.rd_Ayah.Size = new System.Drawing.Size(129, 30);
+            this.rd_Ayah.Size = new System.Drawing.Size(129, 33);
             this.rd_Ayah.TabIndex = 2;
             this.rd_Ayah.TabStop = true;
             this.rd_Ayah.Text = "من أية إلى أية";
@@ -1082,7 +1101,7 @@
             this.panel3.Location = new System.Drawing.Point(214, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(30, 30);
+            this.panel3.Size = new System.Drawing.Size(30, 33);
             this.panel3.TabIndex = 1;
             // 
             // rd_Suraah
@@ -1094,7 +1113,7 @@
             this.rd_Suraah.Location = new System.Drawing.Point(244, 0);
             this.rd_Suraah.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rd_Suraah.Name = "rd_Suraah";
-            this.rd_Suraah.Size = new System.Drawing.Size(167, 30);
+            this.rd_Suraah.Size = new System.Drawing.Size(167, 33);
             this.rd_Suraah.TabIndex = 0;
             this.rd_Suraah.TabStop = true;
             this.rd_Suraah.Text = "من سورة إلى سورة";
@@ -1107,7 +1126,7 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label7.Location = new System.Drawing.Point(898, 8);
+            this.label7.Location = new System.Drawing.Point(832, 11);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 28);
@@ -1117,21 +1136,22 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.559322F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.711864F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.38983F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.33898F));
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.064516F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.41935F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.09678F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.41935F));
             this.tableLayoutPanel4.Controls.Add(this.pictureBox2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label5, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.dtp_DateOfEvaluation, 3, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(5, 5);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1031, 42);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(965, 35);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // pictureBox2
@@ -1139,10 +1159,11 @@
             this.pictureBox2.BackgroundImage = global::UI.Properties.Resources.Icon_Person;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox2.Location = new System.Drawing.Point(1000, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(923, 4);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(26, 28);
+            this.pictureBox2.Size = new System.Drawing.Size(37, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 39;
             this.pictureBox2.TabStop = false;
             // 
@@ -1152,22 +1173,21 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(67)))));
-            this.label5.Location = new System.Drawing.Point(921, 0);
+            this.label5.Location = new System.Drawing.Point(820, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 42);
+            this.label5.Size = new System.Drawing.Size(93, 36);
             this.label5.TabIndex = 13;
             this.label5.Text = "التقييم";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dtp_DateOfEvaluation
             // 
-            this.dtp_DateOfEvaluation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dtp_DateOfEvaluation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_DateOfEvaluation.Location = new System.Drawing.Point(335, 3);
+            this.dtp_DateOfEvaluation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtp_DateOfEvaluation.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dtp_DateOfEvaluation.Location = new System.Drawing.Point(264, 3);
             this.dtp_DateOfEvaluation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtp_DateOfEvaluation.Name = "dtp_DateOfEvaluation";
-            this.dtp_DateOfEvaluation.Size = new System.Drawing.Size(182, 34);
+            this.dtp_DateOfEvaluation.Size = new System.Drawing.Size(182, 30);
             this.dtp_DateOfEvaluation.TabIndex = 40;
             // 
             // UC_AddEvaluation
@@ -1197,11 +1217,12 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.pnl_Content.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
-            this.tableLayoutPanel14.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel10.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.pnl_Weak.ResumeLayout(false);
@@ -1265,14 +1286,24 @@
         private System.Windows.Forms.RadioButton rd_Ayah;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton rd_Suraah;
-        private System.Windows.Forms.TableLayoutPanel tlpnl_FromAyaAndSurrah;
-        private System.Windows.Forms.ComboBox cmb_FromSurrah;
-        private System.Windows.Forms.ComboBox cmb_FromAya;
-        private System.Windows.Forms.TableLayoutPanel tlpnl_ToAyaAndSurrah;
-        private System.Windows.Forms.ComboBox cmb_ToSurrah;
-        private System.Windows.Forms.ComboBox cmb_ToAyah;
+        private System.Windows.Forms.DateTimePicker dtp_DateOfEvaluation;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TableLayoutPanel pnl_Weak;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TableLayoutPanel pnl_Exlant;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1282,33 +1313,24 @@
         private System.Windows.Forms.TableLayoutPanel pnl_Good;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.TableLayoutPanel pnl_Weak;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.TextBox txt_Notes;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_ToAyaAndSurrah;
+        private System.Windows.Forms.ComboBox cmb_ToSurrah;
+        private System.Windows.Forms.ComboBox cmb_ToAyah;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label lbToAya;
         private System.Windows.Forms.PictureBox pb_ToAya;
+        private System.Windows.Forms.TableLayoutPanel tlpnl_FromAyaAndSurrah;
+        private System.Windows.Forms.ComboBox cmb_FromSurrah;
+        private System.Windows.Forms.ComboBox cmb_FromAya;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label lbFromAya;
         private System.Windows.Forms.PictureBox pb_FromAya;
-        private System.Windows.Forms.DateTimePicker dtp_DateOfEvaluation;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Button btn_Save;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.TextBox txt_Notes;
     }
 }

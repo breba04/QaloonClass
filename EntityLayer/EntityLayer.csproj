@@ -45,6 +45,7 @@
     <Compile Include="clsEntityActivityLog.cs" />
     <Compile Include="clsEntityclsLoginDetails.cs" />
     <Compile Include="clsEntityEvaluation.cs" />
+    <Compile Include="clsEntityEvaluationReports.cs" />
     <Compile Include="clsEntityPerson.cs" />
     <Compile Include="clsEntityAttandanceReports.cs" />
     <Compile Include="clsEntitySettings.cs" />

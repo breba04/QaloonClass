@@ -31,6 +31,7 @@ namespace UI.Evaluations
         private clsStudents _Student;
         private bool _IsEvaluationTaken;
         private int _EvaluationID;
+        private Color SelectedRateBackground;
         public UC_AddEvaluation(enMode Mode, int EvaluationID = -1)
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace UI.Evaluations
                 {enRate.Good,ColorTranslator.FromHtml("#40E1E5C6") },
                 {enRate.Weak,ColorTranslator.FromHtml("#40FFDAD6") },
             };
+            SelectedRateBackground = ColorTranslator.FromHtml("#e4e4cc");
             _Rate = null;
             _Evaluation = new clsEvaluations();
             _Student = new clsStudents();
@@ -54,13 +56,13 @@ namespace UI.Evaluations
         }
         void _ChangeBackColorPanels(Panel panel)
         {
-            Color color = ColorTranslator.FromHtml("#80062A1C");
+            //Color color = ColorTranslator.FromHtml("#80062A1C");
             pnl_Exlant.BackColor = _ListOfColor[enRate.Exllant];
             pnl_VeryGood.BackColor = _ListOfColor[enRate.VeryGood];
             pnl_Good.BackColor = _ListOfColor[enRate.Good];
             pnl_Weak.BackColor = _ListOfColor[enRate.Weak];
             if(panel != null)
-                panel.BackColor = color;
+                panel.BackColor = SelectedRateBackground;
         }
         void _HandleDisplayMemberToSurrahComboBox()
         {
@@ -97,6 +99,8 @@ namespace UI.Evaluations
             if (_dtCircles != null && _dtCircles.Rows.Count > 0)
             {
                 cmb_Circles.DataSource = _dtCircles;
+                cmb_Circles.DisplayMember = "CircleName";
+                cmb_Circles.ValueMember = "CircleID";
             }
         }
         private void _FillStudentsInComoboBox()
