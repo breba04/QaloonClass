@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class clsReports
+    public class clsAttendanceReports
     {
         static public DayOfWeek[] WeekEndDayes = { DayOfWeek.Tuesday, DayOfWeek.Friday };
-        public enum enReportType { AllStudent = 1, OneStudent };
+        //public enum enReportType { AllStudent = 1, OneStudent };
 
         //يجب تعديل هذا المتغير وجلبه من الاعدادات او من قاعدة البيانات
         private sbyte NumberOfAllowedAbsentDays = 2;
@@ -20,7 +20,7 @@ namespace BusinessLayer
         public List<clsEntityAttandanceReports.clsStudentAttendanceDetail> StudentAttendanceDetail { get; private set; }
         private clsEntityAttandanceReports.clsCalculatedAttendance CalculatedAttendance { get; set; }
         short _TotalPage;
-        public clsReports()
+        public clsAttendanceReports()
         {
             CircleAttendanceDetail = new List<clsEntityAttandanceReports.clsCircleAttendanceDetail>();
             StudentAttendanceDetail = new List<clsEntityAttandanceReports.clsStudentAttendanceDetail>();
@@ -65,11 +65,11 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="CircleID"> -1=> All Circles</param>
         /// <returns> Count of Total Pages</returns>
-        public short GenarateAttandanceReport(int ID, DateTime DateFrom, DateTime DateTo, short PageNO, byte RecordsInPage , enReportType type)
+        public short GenarateAttandanceReport(int ID, DateTime DateFrom, DateTime DateTo, short PageNO, byte RecordsInPage , clsEntityReports.enReportType type)
         {
             short totalPages = 0;
             bool HasData;
-            if (type == enReportType.AllStudent)
+            if (type ==clsEntityReports.enReportType.AllStudent)
             {
                 var AttandanceReport = clsReportsDataAccess.GetCircleAttandanceReport(ID, DateFrom, DateTo, PageNO, RecordsInPage, ref totalPages, true);
                 this.CalculatedAttendance = AttandanceReport.CalculatedAttendance;
@@ -107,7 +107,7 @@ namespace BusinessLayer
 
             AttendancePercentage = TotalRecords > 0 ? ((double)TotalPresentDays / TotalRecords) * 100 : 0.0;
 
-            if (type == enReportType.AllStudent)
+            if (type == clsEntityReports.enReportType.AllStudent)
             {
                 SetStatusForEveryRow();
             }

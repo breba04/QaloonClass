@@ -10,9 +10,10 @@ namespace EntityLayer
     {
         public class clsCircleAttendanceDetail
         {
-            public string FullName { get; set; } = string.Empty;
-            public string CircleName { get; set; } = string.Empty;
-            public string TeacherName { get; set; } = string.Empty;
+            clsEntityReports _EntityReports = new clsEntityReports();
+            public string FullName { get => _EntityReports.FullName; set => _EntityReports.FullName = value; }
+            public string CircleName { get => _EntityReports.CircleName; set => _EntityReports.CircleName = value; }
+            public string TeacherName { get => _EntityReports.TeacherName; set => _EntityReports.TeacherName = value; }
             public short TotalPresent { get; set; } = 0;
             public short TotalAbsent { get; set; } = 0;
             public short TotalExcusedAbsent { get; set; } = 0;

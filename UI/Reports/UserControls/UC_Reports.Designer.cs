@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Reports));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_AttendanceReports = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btn_StudentsReports = new System.Windows.Forms.Button();
-            this.btn_GlobelReports = new System.Windows.Forms.Button();
+            this.btn_ComprehensiveStudentsReports = new System.Windows.Forms.Button();
+            this.btn_EvaluationReports = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -110,8 +110,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.30234F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.09298F));
             this.tableLayoutPanel1.Controls.Add(this.btn_AttendanceReports, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btn_StudentsReports, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btn_GlobelReports, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btn_ComprehensiveStudentsReports, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btn_EvaluationReports, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -159,58 +159,58 @@
             this.imageList1.Images.SetKeyName(4, "Ic_Close.png");
             this.imageList1.Images.SetKeyName(5, "log-out.png");
             // 
-            // btn_StudentsReports
+            // btn_ComprehensiveStudentsReports
             // 
-            this.btn_StudentsReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
-            this.btn_StudentsReports.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_StudentsReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_StudentsReports.FlatAppearance.BorderSize = 0;
-            this.btn_StudentsReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_StudentsReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_StudentsReports.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_StudentsReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btn_StudentsReports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_StudentsReports.ImageIndex = 2;
-            this.btn_StudentsReports.ImageList = this.imageList1;
-            this.btn_StudentsReports.Location = new System.Drawing.Point(1217, 27);
-            this.btn_StudentsReports.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_StudentsReports.Name = "btn_StudentsReports";
-            this.btn_StudentsReports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_StudentsReports.Size = new System.Drawing.Size(263, 57);
-            this.btn_StudentsReports.TabIndex = 17;
-            this.btn_StudentsReports.TabStop = false;
-            this.btn_StudentsReports.Text = "تقرير أداء شامل للطلاب";
-            this.btn_StudentsReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_StudentsReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_StudentsReports.UseVisualStyleBackColor = false;
-            this.btn_StudentsReports.Click += new System.EventHandler(this.buttons_Click);
+            this.btn_ComprehensiveStudentsReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
+            this.btn_ComprehensiveStudentsReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_ComprehensiveStudentsReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_ComprehensiveStudentsReports.FlatAppearance.BorderSize = 0;
+            this.btn_ComprehensiveStudentsReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_ComprehensiveStudentsReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_ComprehensiveStudentsReports.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ComprehensiveStudentsReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.btn_ComprehensiveStudentsReports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_ComprehensiveStudentsReports.ImageIndex = 2;
+            this.btn_ComprehensiveStudentsReports.ImageList = this.imageList1;
+            this.btn_ComprehensiveStudentsReports.Location = new System.Drawing.Point(1217, 27);
+            this.btn_ComprehensiveStudentsReports.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_ComprehensiveStudentsReports.Name = "btn_ComprehensiveStudentsReports";
+            this.btn_ComprehensiveStudentsReports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_ComprehensiveStudentsReports.Size = new System.Drawing.Size(263, 57);
+            this.btn_ComprehensiveStudentsReports.TabIndex = 17;
+            this.btn_ComprehensiveStudentsReports.TabStop = false;
+            this.btn_ComprehensiveStudentsReports.Text = "تقرير أداء شامل للطلاب";
+            this.btn_ComprehensiveStudentsReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_ComprehensiveStudentsReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ComprehensiveStudentsReports.UseVisualStyleBackColor = false;
+            this.btn_ComprehensiveStudentsReports.Click += new System.EventHandler(this.buttons_Click);
             // 
-            // btn_GlobelReports
+            // btn_EvaluationReports
             // 
-            this.btn_GlobelReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
-            this.btn_GlobelReports.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_GlobelReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_GlobelReports.FlatAppearance.BorderSize = 0;
-            this.btn_GlobelReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_GlobelReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
-            this.btn_GlobelReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_GlobelReports.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GlobelReports.ForeColor = System.Drawing.Color.White;
-            this.btn_GlobelReports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_GlobelReports.ImageIndex = 2;
-            this.btn_GlobelReports.ImageList = this.imageList1;
-            this.btn_GlobelReports.Location = new System.Drawing.Point(675, 27);
-            this.btn_GlobelReports.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btn_GlobelReports.Name = "btn_GlobelReports";
-            this.btn_GlobelReports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_GlobelReports.Size = new System.Drawing.Size(263, 57);
-            this.btn_GlobelReports.TabIndex = 18;
-            this.btn_GlobelReports.TabStop = false;
-            this.btn_GlobelReports.Text = "تقرير إنجاز الحلقات";
-            this.btn_GlobelReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_GlobelReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_GlobelReports.UseVisualStyleBackColor = false;
-            this.btn_GlobelReports.Click += new System.EventHandler(this.buttons_Click);
+            this.btn_EvaluationReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(64)))), ((int)(((byte)(43)))));
+            this.btn_EvaluationReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_EvaluationReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_EvaluationReports.FlatAppearance.BorderSize = 0;
+            this.btn_EvaluationReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_EvaluationReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_EvaluationReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_EvaluationReports.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EvaluationReports.ForeColor = System.Drawing.Color.White;
+            this.btn_EvaluationReports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_EvaluationReports.ImageIndex = 2;
+            this.btn_EvaluationReports.ImageList = this.imageList1;
+            this.btn_EvaluationReports.Location = new System.Drawing.Point(675, 27);
+            this.btn_EvaluationReports.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_EvaluationReports.Name = "btn_EvaluationReports";
+            this.btn_EvaluationReports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_EvaluationReports.Size = new System.Drawing.Size(263, 57);
+            this.btn_EvaluationReports.TabIndex = 18;
+            this.btn_EvaluationReports.TabStop = false;
+            this.btn_EvaluationReports.Text = "تقرير الاختبارات الدورية";
+            this.btn_EvaluationReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_EvaluationReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_EvaluationReports.UseVisualStyleBackColor = false;
+            this.btn_EvaluationReports.Click += new System.EventHandler(this.buttons_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -437,7 +437,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.47192F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.872761F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.96595F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 7, 0);
@@ -462,14 +462,14 @@
             this.tableLayoutPanel4.Controls.Add(this.lb_BottomTitleCard1, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.pb_Card1, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(1148, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1152, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(333, 172);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(329, 172);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // lb_TopTitleCard1
@@ -478,9 +478,9 @@
             this.lb_TopTitleCard1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard1.Location = new System.Drawing.Point(92, 11);
+            this.lb_TopTitleCard1.Location = new System.Drawing.Point(91, 11);
             this.lb_TopTitleCard1.Name = "lb_TopTitleCard1";
-            this.lb_TopTitleCard1.Size = new System.Drawing.Size(228, 49);
+            this.lb_TopTitleCard1.Size = new System.Drawing.Size(225, 49);
             this.lb_TopTitleCard1.TabIndex = 19;
             this.lb_TopTitleCard1.Text = "إجمالي الطلاب";
             // 
@@ -490,9 +490,9 @@
             this.lb_CenterTitleCard1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard1.Location = new System.Drawing.Point(92, 60);
+            this.lb_CenterTitleCard1.Location = new System.Drawing.Point(91, 60);
             this.lb_CenterTitleCard1.Name = "lb_CenterTitleCard1";
-            this.lb_CenterTitleCard1.Size = new System.Drawing.Size(228, 49);
+            this.lb_CenterTitleCard1.Size = new System.Drawing.Size(225, 49);
             this.lb_CenterTitleCard1.TabIndex = 20;
             this.lb_CenterTitleCard1.Text = "0";
             this.lb_CenterTitleCard1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -502,7 +502,7 @@
             this.lb_BottomTitleCard1.AutoSize = true;
             this.lb_BottomTitleCard1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard1.Location = new System.Drawing.Point(231, 109);
+            this.lb_BottomTitleCard1.Location = new System.Drawing.Point(227, 109);
             this.lb_BottomTitleCard1.Name = "lb_BottomTitleCard1";
             this.lb_BottomTitleCard1.Size = new System.Drawing.Size(89, 23);
             this.lb_BottomTitleCard1.TabIndex = 21;
@@ -514,7 +514,7 @@
             this.pb_Card1.Image = global::UI.Properties.Resources.Warninng;
             this.pb_Card1.Location = new System.Drawing.Point(13, 63);
             this.pb_Card1.Name = "pb_Card1";
-            this.pb_Card1.Size = new System.Drawing.Size(73, 43);
+            this.pb_Card1.Size = new System.Drawing.Size(72, 43);
             this.pb_Card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card1.TabIndex = 23;
             this.pb_Card1.TabStop = false;
@@ -530,14 +530,14 @@
             this.tableLayoutPanel6.Controls.Add(this.lb_BottomTitleCard2, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.pb_Card2, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(782, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(791, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(333, 172);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(329, 172);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // lb_TopTitleCard2
@@ -546,9 +546,9 @@
             this.lb_TopTitleCard2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard2.Location = new System.Drawing.Point(92, 11);
+            this.lb_TopTitleCard2.Location = new System.Drawing.Point(91, 11);
             this.lb_TopTitleCard2.Name = "lb_TopTitleCard2";
-            this.lb_TopTitleCard2.Size = new System.Drawing.Size(228, 49);
+            this.lb_TopTitleCard2.Size = new System.Drawing.Size(225, 49);
             this.lb_TopTitleCard2.TabIndex = 19;
             this.lb_TopTitleCard2.Text = "أيام الحضور";
             // 
@@ -558,9 +558,9 @@
             this.lb_CenterTitleCard2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard2.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard2.Location = new System.Drawing.Point(92, 60);
+            this.lb_CenterTitleCard2.Location = new System.Drawing.Point(91, 60);
             this.lb_CenterTitleCard2.Name = "lb_CenterTitleCard2";
-            this.lb_CenterTitleCard2.Size = new System.Drawing.Size(228, 49);
+            this.lb_CenterTitleCard2.Size = new System.Drawing.Size(225, 49);
             this.lb_CenterTitleCard2.TabIndex = 20;
             this.lb_CenterTitleCard2.Text = "0";
             this.lb_CenterTitleCard2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -570,7 +570,7 @@
             this.lb_BottomTitleCard2.AutoSize = true;
             this.lb_BottomTitleCard2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard2.Location = new System.Drawing.Point(159, 109);
+            this.lb_BottomTitleCard2.Location = new System.Drawing.Point(155, 109);
             this.lb_BottomTitleCard2.Name = "lb_BottomTitleCard2";
             this.lb_BottomTitleCard2.Size = new System.Drawing.Size(161, 23);
             this.lb_BottomTitleCard2.TabIndex = 21;
@@ -582,7 +582,7 @@
             this.pb_Card2.Image = global::UI.Properties.Resources.Warninng;
             this.pb_Card2.Location = new System.Drawing.Point(13, 63);
             this.pb_Card2.Name = "pb_Card2";
-            this.pb_Card2.Size = new System.Drawing.Size(73, 43);
+            this.pb_Card2.Size = new System.Drawing.Size(72, 43);
             this.pb_Card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card2.TabIndex = 23;
             this.pb_Card2.TabStop = false;
@@ -598,14 +598,14 @@
             this.tableLayoutPanel5.Controls.Add(this.pb_Card4, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.lb_BottomTitleCard4, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(43, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(62, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(340, 172);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(336, 172);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // lb_TopTitleCard4
@@ -614,9 +614,9 @@
             this.lb_TopTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard4.Location = new System.Drawing.Point(93, 11);
+            this.lb_TopTitleCard4.Location = new System.Drawing.Point(92, 11);
             this.lb_TopTitleCard4.Name = "lb_TopTitleCard4";
-            this.lb_TopTitleCard4.Size = new System.Drawing.Size(234, 49);
+            this.lb_TopTitleCard4.Size = new System.Drawing.Size(231, 49);
             this.lb_TopTitleCard4.TabIndex = 19;
             this.lb_TopTitleCard4.Text = "نسبة الحضور";
             // 
@@ -626,9 +626,9 @@
             this.lb_CenterTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(93, 60);
+            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(92, 60);
             this.lb_CenterTitleCard4.Name = "lb_CenterTitleCard4";
-            this.lb_CenterTitleCard4.Size = new System.Drawing.Size(234, 49);
+            this.lb_CenterTitleCard4.Size = new System.Drawing.Size(231, 49);
             this.lb_CenterTitleCard4.TabIndex = 20;
             this.lb_CenterTitleCard4.Text = "0.00%";
             this.lb_CenterTitleCard4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -639,7 +639,7 @@
             this.pb_Card4.Image = global::UI.Properties.Resources.Warninng;
             this.pb_Card4.Location = new System.Drawing.Point(13, 63);
             this.pb_Card4.Name = "pb_Card4";
-            this.pb_Card4.Size = new System.Drawing.Size(74, 43);
+            this.pb_Card4.Size = new System.Drawing.Size(73, 43);
             this.pb_Card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card4.TabIndex = 22;
             this.pb_Card4.TabStop = false;
@@ -649,7 +649,7 @@
             this.lb_BottomTitleCard4.AutoSize = true;
             this.lb_BottomTitleCard4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(130, 109);
+            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(126, 109);
             this.lb_BottomTitleCard4.Name = "lb_BottomTitleCard4";
             this.lb_BottomTitleCard4.Size = new System.Drawing.Size(197, 23);
             this.lb_BottomTitleCard4.TabIndex = 21;
@@ -666,14 +666,14 @@
             this.tableLayoutPanel7.Controls.Add(this.lb_BottomTitleCard3, 0, 2);
             this.tableLayoutPanel7.Controls.Add(this.pb_Card3, 1, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(416, 3);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(430, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel7.RowCount = 3;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(333, 172);
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(329, 172);
             this.tableLayoutPanel7.TabIndex = 4;
             // 
             // lb_TopTitleCard3
@@ -682,9 +682,9 @@
             this.lb_TopTitleCard3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard3.Location = new System.Drawing.Point(92, 11);
+            this.lb_TopTitleCard3.Location = new System.Drawing.Point(91, 11);
             this.lb_TopTitleCard3.Name = "lb_TopTitleCard3";
-            this.lb_TopTitleCard3.Size = new System.Drawing.Size(228, 49);
+            this.lb_TopTitleCard3.Size = new System.Drawing.Size(225, 50);
             this.lb_TopTitleCard3.TabIndex = 19;
             this.lb_TopTitleCard3.Text = "أيام الغياب";
             // 
@@ -694,9 +694,9 @@
             this.lb_CenterTitleCard3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard3.Location = new System.Drawing.Point(92, 60);
+            this.lb_CenterTitleCard3.Location = new System.Drawing.Point(91, 61);
             this.lb_CenterTitleCard3.Name = "lb_CenterTitleCard3";
-            this.lb_CenterTitleCard3.Size = new System.Drawing.Size(228, 49);
+            this.lb_CenterTitleCard3.Size = new System.Drawing.Size(225, 49);
             this.lb_CenterTitleCard3.TabIndex = 20;
             this.lb_CenterTitleCard3.Text = "0";
             this.lb_CenterTitleCard3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -706,7 +706,7 @@
             this.lb_BottomTitleCard3.AutoSize = true;
             this.lb_BottomTitleCard3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard3.Location = new System.Drawing.Point(172, 109);
+            this.lb_BottomTitleCard3.Location = new System.Drawing.Point(168, 110);
             this.lb_BottomTitleCard3.Name = "lb_BottomTitleCard3";
             this.lb_BottomTitleCard3.Size = new System.Drawing.Size(148, 23);
             this.lb_BottomTitleCard3.TabIndex = 21;
@@ -716,9 +716,9 @@
             // 
             this.pb_Card3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pb_Card3.Image = global::UI.Properties.Resources.Warninng;
-            this.pb_Card3.Location = new System.Drawing.Point(13, 63);
+            this.pb_Card3.Location = new System.Drawing.Point(13, 64);
             this.pb_Card3.Name = "pb_Card3";
-            this.pb_Card3.Size = new System.Drawing.Size(73, 43);
+            this.pb_Card3.Size = new System.Drawing.Size(72, 43);
             this.pb_Card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card3.TabIndex = 23;
             this.pb_Card3.TabStop = false;
@@ -875,14 +875,14 @@
             this.dgv_ReportData.AllowUserToAddRows = false;
             this.dgv_ReportData.AllowUserToDeleteRows = false;
             this.dgv_ReportData.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 7.8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_ReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_ReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ReportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ReportData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_ReportData.Location = new System.Drawing.Point(34, 2);
@@ -943,8 +943,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btn_AttendanceReports;
-        private System.Windows.Forms.Button btn_StudentsReports;
-        private System.Windows.Forms.Button btn_GlobelReports;
+        private System.Windows.Forms.Button btn_ComprehensiveStudentsReports;
+        private System.Windows.Forms.Button btn_EvaluationReports;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmb_ReportType;

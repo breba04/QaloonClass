@@ -11,7 +11,20 @@ namespace DataAccessLayer
     public class clsEvaluationsDataAccess
     {
 
-
+        static public clsEntityEvaluation.enRate GetRateFromText(string text)
+        {
+            switch(text)
+            {
+                case "ضعيف":
+                    return clsEntityEvaluation.enRate.Weak;
+                case "جيد":
+                    return clsEntityEvaluation.enRate.Good;
+                case "جيد جدا":
+                    return clsEntityEvaluation.enRate.VeryGood;
+                default:
+                    return clsEntityEvaluation.enRate.Exllant;
+            }
+        }
         static public int AddEvaluation(clsEntityEvaluation EntityEvaluation)
         {
             int result = -1;

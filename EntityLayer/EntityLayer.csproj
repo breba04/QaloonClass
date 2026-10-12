@@ -44,10 +44,12 @@
     <Compile Include="clsCurrentUser.cs" />
     <Compile Include="clsEntityActivityLog.cs" />
     <Compile Include="clsEntityclsLoginDetails.cs" />
+    <Compile Include="clsEntityComprehensiveReports.cs" />
     <Compile Include="clsEntityEvaluation.cs" />
     <Compile Include="clsEntityEvaluationReports.cs" />
     <Compile Include="clsEntityPerson.cs" />
     <Compile Include="clsEntityAttandanceReports.cs" />
+    <Compile Include="clsEntityReports.cs" />
     <Compile Include="clsEntitySettings.cs" />
     <Compile Include="clsEntityStudentProgress.cs" />
     <Compile Include="clsEntityWaitlist.cs" />

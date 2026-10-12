@@ -13,7 +13,7 @@ namespace BusinessLayer
     public class clsEvaluations
     {
         enum enMode { Add, Update }
-        public enum enGrade { NotRecordedYet=0, Poor =1, Good , VeryGood, Excellent }
+        //public enum enGrade { NotRecordedYet=0, Poor =1, Good , VeryGood, Excellent }
         enMode _Mode;
         clsEntityEvaluation EntityEvaluation ;
         public int EvaluationID { get => EntityEvaluation.EvaluationID; }  
@@ -37,6 +37,27 @@ namespace BusinessLayer
             _Mode = enMode.Update;
         }
 
+        static public enRate? GetRateFromText(string text)
+        {
+            var ListRate = new List<string>() { "ممتاز","جيد جدا","جيد","ضعيف"};
+            if (!ListRate.Contains(text))
+                return null;
+            return clsEvaluationsDataAccess.GetRateFromText(text);
+        }
+        static public string GetRateText(enRate Rate)
+        {
+            switch (Rate)
+            {
+                case clsEntityEvaluation.enRate.Weak:
+                    return "ضعيف";
+                case clsEntityEvaluation.enRate.Good:
+                    return "جيد";
+                case clsEntityEvaluation.enRate.VeryGood:
+                    return "جيد جدا";
+                default:
+                    return "ممتاز";
+            }
+        }
         private bool AddEvaluation()
         {
             EntityEvaluation.EvaluationID = clsEvaluationsDataAccess.AddEvaluation(EntityEvaluation);
