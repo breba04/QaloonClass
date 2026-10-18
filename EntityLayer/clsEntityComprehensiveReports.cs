@@ -49,22 +49,19 @@ namespace EntityLayer
 
         public class clsStudentComprehensiveDetail
         {
-            public string CurrentProgress { get; set; } = "غير معرف";
-
-            public decimal AttendancePercentage { get; set; } = 0.00m;
-
-            public string LastEvaluation { get; set; } = "لا يوجد اختبار";
+            public DateTime UpdateDate { get; set; } = DateTime.MinValue;
+            public string SurraName { get; set; } = string.Empty;
+            public string AyaText { get; set; } = string.Empty;
+            public string TeacherName { get; set; } = string.Empty;
         }
 
         public class clsCalculatedStudentComprehensive
         {
-            public int EvaluationCount { get; set; } = 0;
-
-            public string LastEvaluation { get; set; } = "لا يوجد اختبار";
-
-            public string EvaluationAvrage { get; set; } = "لا توجد اختبارات";
-
             public decimal AttendancePercentage { get; set; } = 0.00m;
+            public int EvaluationCount { get; set; } = 0;
+            public string EvaluationAvrage { get; set; } = "لا توجد اختبارات";
+            public short AyahProgrees { get; set; } = 0;
+
         }
     }
 }

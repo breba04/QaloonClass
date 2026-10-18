@@ -214,16 +214,15 @@ namespace UI.Reports.UserControl
                         lb_TopTitleCard2.Text = "عدد الاختبارات";
                         lb_BottomTitleCard2.Text = "خلال الشهر المحدد";
 
-                        lb_TopTitleCard3.Text = "آخر تقييم";
-                        lb_BottomTitleCard3.Text = "آخر اختبار للطالب";
+                        lb_TopTitleCard3.Text = "متوسط الاختبارات";
+                        lb_BottomTitleCard3.Text = "خلال الشهر المحدد";
 
-                        lb_TopTitleCard4.Text = "متوسط التقييم";
-                        lb_BottomTitleCard4.Text = "خلال الشهر المحدد";
+                        lb_TopTitleCard4.Text = "معدل التقدم";
+                        lb_BottomTitleCard4.Text = "أية خلال الشهر المحدد";
                     }
 
                     break;
 
-                    break;
             }
         }
         private void _FillAttendanceReportCards()
@@ -273,7 +272,6 @@ namespace UI.Reports.UserControl
                     _EvaluationReports.StudentCalculatedEvaluation.BestRate.ToString();
             }
         }
-
         private void _FillCircleComprehensiveReportCards()
         {
             if (_ComprehensiveReports?.CalculatedCircleComprehensive == null)
@@ -293,7 +291,6 @@ namespace UI.Reports.UserControl
             lb_CenterTitleCard4.Text =
                 calculated.EvaluationAvrage;
         }
-
         private void _FillStudentComprehensiveReportCards()
         {
             if (_ComprehensiveReports?.CalculatedStudentComprehensive == null)
@@ -305,10 +302,10 @@ namespace UI.Reports.UserControl
                 $"{calculated.AttendancePercentage:F2}%";
 
             lb_CenterTitleCard2.Text =
-                calculated.EvaluationCount.ToString();
+                calculated.AyahProgrees.ToString();
 
             lb_CenterTitleCard3.Text =
-                calculated.LastEvaluation;
+                calculated.EvaluationCount.ToString();
 
             lb_CenterTitleCard4.Text =
                 calculated.EvaluationAvrage;
@@ -339,7 +336,6 @@ namespace UI.Reports.UserControl
                 }
             }
         }
-
         private void _FormatDataGridViewColumnComprehensiveReport()
         {
             if (dgv_ReportData.Columns.Count == 0)
@@ -371,13 +367,16 @@ namespace UI.Reports.UserControl
             else
             {
                 clsUtil.ConfigureColumn(
-                    dgv_ReportData.Columns["CurrentProgress"], "المحفوظ الحالي", 150);
+                    dgv_ReportData.Columns["UpdateDate"], "تاريخ التحديث", 150);
 
                 clsUtil.ConfigureColumn(
-                    dgv_ReportData.Columns["AttendancePercentage"], "نسبة الحضور", 110);
+                    dgv_ReportData.Columns["SurraName"], "السورة الحالية", 110);
 
                 clsUtil.ConfigureColumn(
-                    dgv_ReportData.Columns["LastEvaluation"], "آخر تقييم", 150);
+                    dgv_ReportData.Columns["AyaText"], "الأية", 150);
+
+                clsUtil.ConfigureColumn(
+                    dgv_ReportData.Columns["TeacherName"], "اسم المعلم", 150);
             }
         }
         private void _FormatDataGridViewColumnEvaluationReport()
@@ -417,6 +416,24 @@ namespace UI.Reports.UserControl
             clsUtil.InitializeGridViewStyle(dgv_ReportData);
             _FormatDataGridViewColumn();
         }
+        private void _HandleDatePickersFormat()
+        {
+            if(_CurrentReportBtn == btn_ComprehensiveStudentsReports)
+            {
+                dtp_DateTo.Visible = lb_DateTo.Visible = false;
+                dtp_DateFrom.Format = DateTimePickerFormat.Custom;
+                dtp_DateFrom.CustomFormat = "yyyy-MMMM";
+                lb_DateFrom.Text = "الشهر";
+            }
+            else
+            {
+                dtp_DateTo.Visible = lb_DateTo.Visible = true;
+                dtp_DateFrom.Format = DateTimePickerFormat.Custom;
+                dtp_DateFrom.CustomFormat = "yyyy-MM-dd";
+                lb_DateFrom.Text = "من تاريخ";
+            }
+
+        }
         private void InitializeGridView()
         {
             var Today = DateTime.Today;
@@ -431,6 +448,12 @@ namespace UI.Reports.UserControl
             _FillCirclesInComoboBox();
             cmb_ReportType.SelectedIndex = 0;
             _IsLodding = false;
+
+
+            dtp_DateTo.Format = DateTimePickerFormat.Custom;
+            dtp_DateTo.CustomFormat = "yyyy-MM-dd";
+            
+            _HandleDatePickersFormat();
         }
         void _ChangeBtnsColor(Button btn)
         {
@@ -482,7 +505,6 @@ namespace UI.Reports.UserControl
                 _FillStudentEvaluationReportCards();
             }
         }
-
         void _LoadComprehensiveReports()
         {
             int ID = _CurrentReportType == clsEntityReports.enReportType.AllStudent
@@ -539,6 +561,7 @@ namespace UI.Reports.UserControl
             {
                 if (btn == _CurrentReportBtn) return;
                 _ChangeBtnsColor(btn);
+                _HandleDatePickersFormat();
                 if(!HasDataInReport)
                     _HandleReportCardsText(btn.Name);
             }
@@ -553,6 +576,9 @@ namespace UI.Reports.UserControl
             _CurrentPage = 1;
             _HandleReportCardsText(_CurrentReportBtn.Name);
             _RefreshReportList();
+            btn_Next.Enabled = _CurrentPage < _TotalPages;
+            btn_Previous.Enabled = _CurrentPage > 1;
+
         }
         private void btn_Next_Click(object sender, EventArgs e)
         {

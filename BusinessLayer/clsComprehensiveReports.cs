@@ -55,7 +55,7 @@ namespace BusinessLayer
         /// <param name="Type">AllStudent or OneStudent</param>
         /// <returns>Total number of pages</returns>
         public short GenerateComprehensiveReport(
-            int CircleID,
+            int ID,
             byte Month,
             short Year,
             short PageNO,
@@ -69,7 +69,7 @@ namespace BusinessLayer
             {
                 var ComprehensiveReport =
                     clsReportsDataAccess.GetCircleComprehensive(
-                        CircleID,
+                        ID,
                         Month,
                         Year,
                         PageNO,
@@ -88,23 +88,23 @@ namespace BusinessLayer
             }
             else
             {
-                //var ComprehensiveReport =
-                //    clsReportsDataAccess.GetStudentComprehensive(
-                //        CircleID,
-                //        Month,
-                //        Year,
-                //        PageNO,
-                //        RecordsInPage,
-                //        ref TotalPage,
-                //        true);
+                var ComprehensiveReport =
+                    clsReportsDataAccess.GetStudentComprehensive(
+                        ID,
+                        Month,
+                        Year,
+                        PageNO,
+                        RecordsInPage,
+                        ref TotalPage,
+                        true);
 
-                //StudentComprehensiveDetail =
-                //    ComprehensiveReport.ComprehensiveDetail;
+                StudentComprehensiveDetail =
+                    ComprehensiveReport.ComprehensiveDetail;
 
-                //CalculatedStudentComprehensive =
-                //    ComprehensiveReport.CalculatedComprehensive;
+                CalculatedStudentComprehensive =
+                    ComprehensiveReport.CalculatedComprehensive;
 
-               HasData = StudentComprehensiveDetail != null
+                HasData = StudentComprehensiveDetail != null
                     && StudentComprehensiveDetail.Count > 0;
             }
 

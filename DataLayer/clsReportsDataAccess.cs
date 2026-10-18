@@ -449,7 +449,6 @@ namespace DataLayer
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            // قراءة تفاصيل التقرير
                             while (reader.Read())
                             {
                                 lst.Add(
@@ -527,5 +526,112 @@ namespace DataLayer
 
             return (lst, calculatedComprehensive);
         }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CircleID">-1 => all Circles</param>
+        /// <param name="PageNO">number of page</param>
+        /// <param name="RecordsInPage">record in every page</param>
+        static public (List<clsEntityComprehensiveReports.clsStudentComprehensiveDetail> ComprehensiveDetail, clsEntityComprehensiveReports.clsCalculatedStudentComprehensive CalculatedComprehensive)
+        GetStudentComprehensive(
+            int StudentID,
+            byte Month,
+            short Year,
+            short PageNO,
+            byte RecordsInPage,
+            ref short TotalPage,
+            bool ReturnMainData)
+        {
+            var lst = new List<clsEntityComprehensiveReports.clsStudentComprehensiveDetail>();
+            var calculated = new clsEntityComprehensiveReports.clsCalculatedStudentComprehensive();
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_Report_StudentComprehensive", conn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StudentID", StudentID);
+                        cmd.Parameters.AddWithValue("@Month", Month);
+                        cmd.Parameters.AddWithValue("@Year", Year);
+                        cmd.Parameters.AddWithValue("@PageNO", PageNO);
+                        cmd.Parameters.AddWithValue("@RecordsInPage", RecordsInPage);
+                        cmd.Parameters.AddWithValue("@ReturnMainData", ReturnMainData);
+                        
+                        cmd.Parameters.Add("@TotalPage", SqlDbType.SmallInt)
+                           .Direction = ParameterDirection.Output;
+
+                        conn.Open();
+
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lst.Add(new clsEntityComprehensiveReports.clsStudentComprehensiveDetail()
+                                {
+                                    UpdateDate = reader["UpdateDate"] != DBNull.Value
+                                        ? Convert.ToDateTime(reader["UpdateDate"])
+                                        : DateTime.MinValue,
+                                    TeacherName = reader["TeacherName"] != DBNull.Value
+                                        ? Convert.ToString(reader["TeacherName"])
+                                        : string.Empty,
+                                    AyaText = reader["AyaText"] != DBNull.Value
+                                        ? Convert.ToString(reader["AyaText"])
+                                        : string.Empty,
+                                    SurraName = reader["SurraName"] != DBNull.Value
+                                        ? Convert.ToString(reader["SurraName"])
+                                        : string.Empty,
+
+                                });
+                            }
+
+                            if (reader.NextResult())
+                            {
+                                if (reader.Read())
+                                {
+                                    calculated.AttendancePercentage =
+                                        reader["AttendancePercentage"] != DBNull.Value
+                                            ? Convert.ToDecimal(reader["AttendancePercentage"])
+                                            : 0;
+
+                                    calculated.EvaluationCount =
+                                        reader["EvaluationCount"] != DBNull.Value
+                                            ? Convert.ToInt32(reader["EvaluationCount"])
+                                            : 0;
+
+                                    calculated.AyahProgrees =
+                                        reader["AyahProgrees"] != DBNull.Value
+                                            ? Convert.ToInt16(reader["EvaluationCount"])
+                                            : (short)0;
+
+                                    calculated.EvaluationAvrage =
+                                        reader["EvaluationAvrage"] != DBNull.Value
+                                            ? reader["EvaluationAvrage"].ToString()
+                                            : string.Empty;
+                                }
+                            }
+                        }
+                        object obj = cmd.Parameters["@TotalPage"].Value;
+                        if (obj != null && short.TryParse(obj.ToString(), out TotalPage)) { }
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+            return (lst, calculated);
+        }
+
+
+
     }
 }
