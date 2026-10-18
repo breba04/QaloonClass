@@ -400,7 +400,7 @@ namespace UI.Students
             if (_AyaID == Convert.ToInt16(cmb_Aya.SelectedValue))
                     return true;
 
-            if (_StudentProgress.Save())
+            if (_StudentProgress.AddProgress())
                 return true;
 
             ErrorMessage = "لم يتم تسجيل الطالب";

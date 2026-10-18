@@ -32,7 +32,7 @@ namespace BusinessLayer
             _Mode = enMode.Update;
         }
 
-        private bool AddProgress()
+        public bool AddProgress()
         {
             EntityProgress.ProgressID = clsStudentProgressDataAccess.AddProgress(EntityProgress);
             return EntityProgress.ProgressID != default(int);
@@ -46,13 +46,15 @@ namespace BusinessLayer
         public bool Save()
         {
 
-            clsStudentProgress LastProgress = clsStudentProgress.GetLastStudentProgress(StudentID);
-            if(LastProgress != null &&  AyahID < LastProgress.AyahID )
-            {
-                throw new Exception("لا يمكن الرجوع للخلف");
-            }
-            bool result = _Mode == enMode.Add? AddProgress()
-                : UpdateProgress();
+            //clsStudentProgress LastProgress = clsStudentProgress.GetLastStudentProgress(StudentID);
+            //if(LastProgress != null &&  AyahID < LastProgress.AyahID )
+            //{
+            //    throw new Exception("لا يمكن الرجوع للخلف");
+            //}
+            //bool result = _Mode == enMode.Add? AddProgress()
+            //    : UpdateProgress();
+
+            bool result = AddProgress();
 
             if(!result)return false;
             

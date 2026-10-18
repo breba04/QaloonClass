@@ -50,7 +50,7 @@ namespace DataAccessLayer
                 using (SqlCommand cmd = new SqlCommand("SP_UpdateStudentProgress", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ProgressID", EntityProgress.ProgressID);
+                    cmd.Parameters.AddWithValue("@StudentProgressID", EntityProgress.ProgressID);
                     cmd.Parameters.AddWithValue("@StudentID", EntityProgress.StudentID);
                     cmd.Parameters.AddWithValue("@AyahID", EntityProgress.AyahID);
                     cmd.Parameters.AddWithValue("@UpdateDate", EntityProgress.UpdateDate);
