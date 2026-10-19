@@ -348,7 +348,7 @@
             this.btn_MemorizationCircle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_MemorizationCircle.Size = new System.Drawing.Size(176, 55);
             this.btn_MemorizationCircle.TabIndex = 3;
-            this.btn_MemorizationCircle.Text = "حلقات التحفيظ";
+            this.btn_MemorizationCircle.Text = "الإختبارات";
             this.btn_MemorizationCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_MemorizationCircle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_MemorizationCircle.UseVisualStyleBackColor = false;

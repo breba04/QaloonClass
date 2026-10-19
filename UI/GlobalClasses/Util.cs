@@ -144,7 +144,7 @@ namespace UI.GlobalClasses
                 case enTypeOfFilter.String : 
                     if ( !string.IsNullOrWhiteSpace(value1 as string))
                     {
-                        filterExpression = $"{ColumnFilterBy} LIKE '{value1}%'";
+                        filterExpression = $"{ColumnFilterBy} LIKE '%{value1}%'";
                     }
                  
                     break;

@@ -10,12 +10,10 @@ namespace UI.Students.StudentControls
     public partial class UC_Student : UserControl
     {
         enum enFilterMode { None, StudentID, FullName, Address, ParentPhone, JoinDate, CircleName, IsActive }
-
         private enFilterMode _FilterMode;
         private clsUtil.stPagingInfo _PagingInfo;
         private DataTable _allData;
         private DataView _ListStudents;
-
         public UC_Student()
         {
             InitializeComponent();
@@ -55,8 +53,7 @@ namespace UI.Students.StudentControls
         private void _InitializeIsActiveComboBox()
         {
             clsUtil.LoadItemsInComboBox(cmb_IsActive, "كل", "نشط", "متوقف") ;
-        }
-        
+        } 
         private void _UpdateFilterState()
         {
             _FilterMode = (enFilterMode)cmb_AllFilter.SelectedIndex;
@@ -107,54 +104,101 @@ namespace UI.Students.StudentControls
             dgv_ListStudents.DataSource = _ListStudents;
             _FormatDataGridView();
         }
+        //private void _FilterResult()
+        //{
+        //    if (_ListStudents == null) return;
+            
+        //    string filterExpression = "";
+        //    string filterValue = clsUtil.EscapeRowFilterValue(txt_Research.Text.Trim()); 
+        //    bool hasText = txt_Research.Visible && !string.IsNullOrWhiteSpace(txt_Research.Text);
+        //    _PagingInfo.currentPage = 1;
+
+        //    switch (_FilterMode)
+        //    {
+        //        case enFilterMode.StudentID:
+        //            if (hasText)
+        //            {
+        //                filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.Int, filterValue);
+        //            }
+        //            break;
+
+        //        case enFilterMode.FullName:
+        //        case enFilterMode.CircleName:
+        //        case enFilterMode.Address:
+        //        case enFilterMode.ParentPhone:
+        //            if (hasText)
+        //            {
+        //                filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.String, filterValue);
+
+        //            }
+        //            break;
+
+        //        case enFilterMode.JoinDate:
+
+        //            filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.DateTime, dtp_FormDate.Value, dtp_ToDate.Value);
+        //            break;
+
+        //        case enFilterMode.IsActive:
+        //            if (cmb_IsActive.Visible && cmb_IsActive.Text != "كل")
+        //            {
+        //                filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.Bool, filterValue);
+
+        //            }
+        //            break;
+
+        //        case enFilterMode.None:
+        //        default:
+        //            filterExpression = "";
+        //            break;
+        //    }
+
+        //    _ListStudents.RowFilter = filterExpression;
+
+        //    _DisplayCurrentPage();
+        //}
         private void _FilterResult()
         {
             if (_ListStudents == null) return;
-            
-            string filterExpression = "";
-            string filterValue = clsUtil.EscapeRowFilterValue(txt_Research.Text.Trim()); 
             bool hasText = txt_Research.Visible && !string.IsNullOrWhiteSpace(txt_Research.Text);
             _PagingInfo.currentPage = 1;
+            if(!hasText && _FilterMode != enFilterMode.JoinDate && _FilterMode != enFilterMode.IsActive 
+                || (cmb_IsActive.Visible && cmb_IsActive.Text == "كل"))
+            {
+                _ListStudents.RowFilter = string.Empty;
+                _DisplayCurrentPage();
+                return;
+            }
+            object filterValue = clsUtil.EscapeRowFilterValue(txt_Research.Text.Trim()); 
+            object value2 = null; 
+            clsUtil.enTypeOfFilter typeOfFilter = clsUtil.enTypeOfFilter.Int;
 
             switch (_FilterMode)
             {
                 case enFilterMode.StudentID:
-                    if (hasText)
-                    {
-                        filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.Int, filterValue);
-                    }
+                    typeOfFilter = clsUtil.enTypeOfFilter.Int;
                     break;
-
                 case enFilterMode.FullName:
                 case enFilterMode.CircleName:
                 case enFilterMode.Address:
                 case enFilterMode.ParentPhone:
-                    if (hasText)
-                    {
-                        filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.String, filterValue);
-
-                    }
+                    typeOfFilter = clsUtil.enTypeOfFilter.String;
                     break;
-
                 case enFilterMode.JoinDate:
-
-                    filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.DateTime, dtp_FormDate.Value, dtp_ToDate.Value);
+                    typeOfFilter = clsUtil.enTypeOfFilter.DateTime;
+                    filterValue =  dtp_FormDate.Value;
+                    value2 =  dtp_ToDate.Value;
                     break;
-
                 case enFilterMode.IsActive:
-                    if (cmb_IsActive.Visible && cmb_IsActive.Text != "كل")
-                    {
-                        filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), clsUtil.enTypeOfFilter.Bool, filterValue);
-
-                    }
+                    typeOfFilter = clsUtil.enTypeOfFilter.Bool;
+                    filterValue = cmb_IsActive.SelectedItem;
                     break;
 
                 case enFilterMode.None:
                 default:
-                    filterExpression = "";
-                    break;
+                    return;
             }
 
+            string filterExpression = clsUtil.GetFilterExpression(_FilterMode.ToString(), typeOfFilter, filterValue, value2);
             _ListStudents.RowFilter = filterExpression;
 
             _DisplayCurrentPage();
@@ -268,7 +312,6 @@ namespace UI.Students.StudentControls
         {
             txt_Research.Clear();
         }
-
         private void AddStudent_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
              frmAddAndUpdateStudent frmAddAndUpdateStudent = new frmAddAndUpdateStudent();
@@ -277,9 +320,6 @@ namespace UI.Students.StudentControls
             _DisplayCurrentPage();
             _ClearTextSearch();
         }
-
-
-
         private void UpdateStudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgv_ListStudents.Rows.Count > 0 && dgv_ListStudents.CurrentRow != null)
@@ -299,170 +339,35 @@ namespace UI.Students.StudentControls
 
             }
         }
-
         private void StudentDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
              MessageBox.Show("Student Details");
         }
-
         private void StudentSuspendedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Student Suspended");
         }
-
         private void ActivateStudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Activate Student");
         }
-
         private void UpdateStudentProgress_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Update Student Progress");
         }
-
-        private void lbl_SubTitle_Click(object sender, EventArgs e)
+        private void EditStudentProgress_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (dgv_ListStudents.Rows.Count > 0 && dgv_ListStudents.CurrentRow != null)
+            {
+                int StudentID = Convert.ToInt32(dgv_ListStudents.CurrentRow.Cells["StudentID"].Value);
 
-        }
+                frmAddAndUpdateStudent frmAddAndUpdateStudent = new frmAddAndUpdateStudent(StudentID,frmAddAndUpdateStudent.enMode.UpdateProgress);
+                frmAddAndUpdateStudent.ShowDialog();
+                _RefreshStudentList();
+                _DisplayCurrentPage();
+                _ClearTextSearch();
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionFilter_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbl_To_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_From_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionPageNumbering_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionButton_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionBottomBar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void cms_StudentActions_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-
-        }
-
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionListreports_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionٍListStudents_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dgv_ListStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionGreeting_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionMainTitle_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_SectionTotalStudent_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
+            }
         }
     }
 }

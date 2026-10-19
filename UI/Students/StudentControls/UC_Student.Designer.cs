@@ -75,6 +75,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_SubTitle = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.EditStudentProgress_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_SectionTotalStudent.SuspendLayout();
             this.pnl_SectionFilter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -118,7 +119,6 @@
             this.pnl_SectionTotalStudent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionTotalStudent.Size = new System.Drawing.Size(302, 155);
             this.pnl_SectionTotalStudent.TabIndex = 43;
-            this.pnl_SectionTotalStudent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionTotalStudent_Paint);
             // 
             // label2
             // 
@@ -135,7 +135,6 @@
             this.label2.TabIndex = 44;
             this.label2.Text = ":إجمالي";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cmb_IsActive
             // 
@@ -173,7 +172,6 @@
             this.lbl_To.Size = new System.Drawing.Size(47, 31);
             this.lbl_To.TabIndex = 43;
             this.lbl_To.Text = "إلى";
-            this.lbl_To.Click += new System.EventHandler(this.lbl_To_Click);
             // 
             // lbl_From
             // 
@@ -185,7 +183,6 @@
             this.lbl_From.Size = new System.Drawing.Size(48, 31);
             this.lbl_From.TabIndex = 42;
             this.lbl_From.Text = " من";
-            this.lbl_From.Click += new System.EventHandler(this.lbl_From_Click);
             // 
             // dtp_ToDate
             // 
@@ -234,7 +231,6 @@
             this.label1.TabIndex = 31;
             this.label1.Text = ":تصفية حسب";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnl_SectionFilter
             // 
@@ -253,7 +249,6 @@
             this.pnl_SectionFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pnl_SectionFilter.Size = new System.Drawing.Size(1217, 155);
             this.pnl_SectionFilter.TabIndex = 42;
-            this.pnl_SectionFilter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionFilter_Paint);
             // 
             // panel1
             // 
@@ -269,7 +264,6 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(2396, 155);
             this.panel1.TabIndex = 41;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel4
             // 
@@ -279,7 +273,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(28, 155);
             this.panel4.TabIndex = 1;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // panel5
             // 
@@ -293,7 +286,6 @@
             this.panel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel5.Size = new System.Drawing.Size(302, 155);
             this.panel5.TabIndex = 46;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // lbl_StudentsOfDisplayed
             // 
@@ -326,7 +318,6 @@
             this.label4.TabIndex = 44;
             this.label4.Text = ":المعروض";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // panel3
             // 
@@ -336,7 +327,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(30, 155);
             this.panel3.TabIndex = 2;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // lbl_PageNumbering
             // 
@@ -364,7 +354,6 @@
             this.pnl_SectionPageNumbering.Name = "pnl_SectionPageNumbering";
             this.pnl_SectionPageNumbering.Size = new System.Drawing.Size(282, 76);
             this.pnl_SectionPageNumbering.TabIndex = 41;
-            this.pnl_SectionPageNumbering.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionPageNumbering_Paint);
             // 
             // btn_Previous
             // 
@@ -414,7 +403,6 @@
             this.pnl_SectionButton.Name = "pnl_SectionButton";
             this.pnl_SectionButton.Size = new System.Drawing.Size(282, 76);
             this.pnl_SectionButton.TabIndex = 40;
-            this.pnl_SectionButton.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionButton_Paint);
             // 
             // pnl_SectionBottomBar
             // 
@@ -426,7 +414,6 @@
             this.pnl_SectionBottomBar.Name = "pnl_SectionBottomBar";
             this.pnl_SectionBottomBar.Size = new System.Drawing.Size(2396, 76);
             this.pnl_SectionBottomBar.TabIndex = 39;
-            this.pnl_SectionBottomBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionBottomBar_Paint);
             // 
             // cms_StudentActions
             // 
@@ -434,8 +421,9 @@
             this.cms_StudentActions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StudentDetailsToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.AddStudent_ToolStripMenuItem,
             this.UpdateStudentToolStripMenuItem,
+            this.AddStudent_ToolStripMenuItem,
+            this.EditStudentProgress_ToolStripMenuItem,
             this.toolStripMenuItem3,
             this.StudentSuspendedToolStripMenuItem,
             this.ActivateStudentToolStripMenuItem,
@@ -443,76 +431,70 @@
             this.UpdateStudentProgress_ToolStripMenuItem});
             this.cms_StudentActions.Name = "contextMenuStrip1";
             this.cms_StudentActions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cms_StudentActions.Size = new System.Drawing.Size(190, 166);
-            this.cms_StudentActions.Opening += new System.ComponentModel.CancelEventHandler(this.cms_StudentActions_Opening);
+            this.cms_StudentActions.Size = new System.Drawing.Size(211, 218);
             // 
             // StudentDetailsToolStripMenuItem
             // 
             this.StudentDetailsToolStripMenuItem.Name = "StudentDetailsToolStripMenuItem";
-            this.StudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.StudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.StudentDetailsToolStripMenuItem.Text = "تفاصيل الطالب";
             this.StudentDetailsToolStripMenuItem.Click += new System.EventHandler(this.StudentDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(186, 6);
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
             // 
             // AddStudent_ToolStripMenuItem
             // 
             this.AddStudent_ToolStripMenuItem.Name = "AddStudent_ToolStripMenuItem";
-            this.AddStudent_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.AddStudent_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.AddStudent_ToolStripMenuItem.Text = "إضافة طالب";
             this.AddStudent_ToolStripMenuItem.Click += new System.EventHandler(this.AddStudent_ToolStripMenuItem_Click);
             // 
             // UpdateStudentToolStripMenuItem
             // 
             this.UpdateStudentToolStripMenuItem.Name = "UpdateStudentToolStripMenuItem";
-            this.UpdateStudentToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.UpdateStudentToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.UpdateStudentToolStripMenuItem.Text = "تعديل طالب";
             this.UpdateStudentToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(186, 6);
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(207, 6);
             // 
             // StudentSuspendedToolStripMenuItem
             // 
             this.StudentSuspendedToolStripMenuItem.Name = "StudentSuspendedToolStripMenuItem";
-            this.StudentSuspendedToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.StudentSuspendedToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.StudentSuspendedToolStripMenuItem.Text = "إيقاف طالب";
             this.StudentSuspendedToolStripMenuItem.Click += new System.EventHandler(this.StudentSuspendedToolStripMenuItem_Click);
             // 
             // ActivateStudentToolStripMenuItem
             // 
             this.ActivateStudentToolStripMenuItem.Name = "ActivateStudentToolStripMenuItem";
-            this.ActivateStudentToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.ActivateStudentToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.ActivateStudentToolStripMenuItem.Text = "تفعيل طالب";
             this.ActivateStudentToolStripMenuItem.Click += new System.EventHandler(this.ActivateStudentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
             // 
             // UpdateStudentProgress_ToolStripMenuItem
             // 
             this.UpdateStudentProgress_ToolStripMenuItem.Name = "UpdateStudentProgress_ToolStripMenuItem";
-            this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.UpdateStudentProgress_ToolStripMenuItem.Text = "تعديل تقدم طالب";
             this.UpdateStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentProgress_ToolStripMenuItem_Click);
             // 
             // backgroundWorker2
             // 
-            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // pnl_SectionListreports
             // 
@@ -528,7 +510,6 @@
             this.pnl_SectionListreports.Name = "pnl_SectionListreports";
             this.pnl_SectionListreports.Size = new System.Drawing.Size(2396, 1247);
             this.pnl_SectionListreports.TabIndex = 43;
-            this.pnl_SectionListreports.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionListreports_Paint);
             // 
             // pnl_SectionٍListStudents
             // 
@@ -539,7 +520,6 @@
             this.pnl_SectionٍListStudents.Name = "pnl_SectionٍListStudents";
             this.pnl_SectionٍListStudents.Size = new System.Drawing.Size(2396, 756);
             this.pnl_SectionٍListStudents.TabIndex = 42;
-            this.pnl_SectionٍListStudents.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionٍListStudents_Paint);
             // 
             // dgv_ListStudents
             // 
@@ -566,7 +546,6 @@
             this.dgv_ListStudents.RowTemplate.Height = 26;
             this.dgv_ListStudents.Size = new System.Drawing.Size(2396, 756);
             this.dgv_ListStudents.TabIndex = 39;
-            this.dgv_ListStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ListStudents_CellContentClick);
             // 
             // panel2
             // 
@@ -576,7 +555,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(2396, 143);
             this.panel2.TabIndex = 43;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // pnl_SectionGreeting
             // 
@@ -590,7 +568,6 @@
             this.pnl_SectionGreeting.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pnl_SectionGreeting.Size = new System.Drawing.Size(2396, 117);
             this.pnl_SectionGreeting.TabIndex = 40;
-            this.pnl_SectionGreeting.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionGreeting_Paint);
             // 
             // pnl_SectionMainTitle
             // 
@@ -606,7 +583,6 @@
             this.pnl_SectionMainTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnl_SectionMainTitle.Size = new System.Drawing.Size(853, 117);
             this.pnl_SectionMainTitle.TabIndex = 0;
-            this.pnl_SectionMainTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_SectionMainTitle_Paint);
             // 
             // label5
             // 
@@ -621,7 +597,6 @@
             this.label5.Size = new System.Drawing.Size(381, 58);
             this.label5.TabIndex = 29;
             this.label5.Text = "إدارة سجلات الطلاب";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // lbl_SubTitle
             // 
@@ -638,7 +613,6 @@
             this.lbl_SubTitle.TabIndex = 31;
             this.lbl_SubTitle.Text = "قائمة شاملة لطلاب مركز نور ومتابعة مستوياتهم الأكاديمية";
             this.lbl_SubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl_SubTitle.Click += new System.EventHandler(this.lbl_SubTitle_Click);
             // 
             // panel6
             // 
@@ -648,7 +622,13 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(43, 117);
             this.panel6.TabIndex = 41;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            // 
+            // EditStudentProgress_ToolStripMenuItem
+            // 
+            this.EditStudentProgress_ToolStripMenuItem.Name = "EditStudentProgress_ToolStripMenuItem";
+            this.EditStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.EditStudentProgress_ToolStripMenuItem.Text = "تعديل التقدم";
+            this.EditStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.EditStudentProgress_ToolStripMenuItem_Click);
             // 
             // UC_Student
             // 
@@ -729,5 +709,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TableLayoutPanel pnl_SectionMainTitle;
         private System.Windows.Forms.Label lbl_SubTitle;
+        private System.Windows.Forms.ToolStripMenuItem EditStudentProgress_ToolStripMenuItem;
     }
 }

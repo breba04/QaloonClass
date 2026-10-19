@@ -16,8 +16,8 @@ namespace UI.Students
 {
     public partial class frmAddAndUpdateStudent : BaseForm
     {
-     
-        enum enMode { Add = 1, Update = 2 }
+
+        public enum enMode { Add = 1, Update = 2,UpdateProgress }
         private DataTable _dtCircles ;
         private DataTable _dtSurrahs;
         private DataTable _dtAyatFromSurrah;
@@ -34,11 +34,11 @@ namespace UI.Students
             InitializeComponent();
             _InitializeDefautValue();
         }
-        public frmAddAndUpdateStudent(int StudentID)
+        public frmAddAndUpdateStudent(int StudentID,enMode Mode = enMode.Update)
         {
             InitializeComponent();
             _StudentID = StudentID;
-            _Mode = enMode.Update;
+            _Mode = Mode;
         }
         private bool _LoadStudentFromDB(out string ErrorMessage)
         {
@@ -108,6 +108,13 @@ namespace UI.Students
             _LoadStudentData();
             _LoadStudentProgressData();
         }
+        private void _LockControlsForUpdateProgressMode()
+        {
+            gb_PersonalData.Enabled = false;
+            gb_ContactInformation.Enabled = false;
+            gb_StudentPhoto.Enabled = false;
+            cmb_Circles.Enabled = false;
+        }
         private void _InitializeDefautValue()
         {
             _Student = new clsStudents();
@@ -144,6 +151,10 @@ namespace UI.Students
             else
             {
                 _LoadUpdateMode();
+            }
+            if(_Mode == enMode.UpdateProgress)
+            {
+                _LockControlsForUpdateProgressMode();
             }
         }
 
