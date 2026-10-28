@@ -253,18 +253,10 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", circleID);
-
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToBoolean(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "IsCircleExist", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToBoolean(obj);
                 }
             }
             return result;

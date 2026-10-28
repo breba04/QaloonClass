@@ -313,18 +313,26 @@ namespace UI.Evaluations
                 _InitializeAddMode();
             else
             {
-                _Evaluation = clsEvaluations.FindEvaluation(_EvaluationID);
-                if(_Evaluation == null)
+                try
                 {
-                    MessageBox.Show($"لم يتم العثور على الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    _InitializeAddMode();
-                    return;
+                    _Evaluation = clsEvaluations.FindEvaluation(_EvaluationID);
+                    if (_Evaluation == null)
+                    {
+                        MessageBox.Show($"لم يتم العثور على الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _InitializeAddMode();
+                        return;
+                    }
+                    _Student = clsStudents.Find(_Evaluation.StudentID);
+                    if (_Student == null)
+                    {
+                        MessageBox.Show($"لم يتم العثور على الطالب صاحب الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _InitializeAddMode();
+                        return;
+                    }
                 }
-                _Student = clsStudents.Find(_Evaluation.StudentID);
-                if(_Student == null)
+                catch(InvalidOperationException ex)
                 {
-                    MessageBox.Show($"لم يتم العثور على الطالب صاحب الاختبار رقم {_Evaluation.EvaluationID} يرجى اعادة المحاولة", "الاختبار", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    _InitializeAddMode();
+                    clsGlobal.ShowErrorMessgae(ex.Message, "خطأ في البيانات");
                     return;
                 }
                 _InitializeUpdateOrTakeReultMode();

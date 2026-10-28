@@ -3,6 +3,7 @@ using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +19,21 @@ namespace BusinessLayer
         }
         static public clsUsers GetLastLoginUser()
         {
-            clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails();
-            if (clsLoginDetailsDataAccess.FindLoginDetailsByID(loginDetails))
+            try
             {
-                if (loginDetails.IsRemember)
+
+                clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails();
+                if (clsLoginDetailsDataAccess.FindLoginDetailsByID(loginDetails))
                 {
-                    return clsUsers.Find(loginDetails.UserID);
+                    if (loginDetails.IsRemember)
+                    {
+                        return clsUsers.Find(loginDetails.UserID);
+                    }
                 }
+            }
+            catch (SqlException ex)
+            {
+
             }
             return null;
         }

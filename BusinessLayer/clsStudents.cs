@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,6 @@ namespace BusinessLayer
         public string SeatsNumber { get => EntityStudent.SeatsNumber; set => EntityStudent.SeatsNumber = value; }
         public DateTime JoinDate { get => EntityStudent.JoinDate; set => EntityStudent.JoinDate = value; } 
         public clsEntityPerson PersonInfo { get => EntityStudent.PersonInfo; set => EntityStudent.PersonInfo = value; }
-        public int PersonID { get => EntityStudent.PersonInfo.PersonID; set => EntityStudent.PersonInfo.PersonID = value; } 
         public DateTime BirthDate { get => EntityStudent.PersonInfo.BirthDate; set => EntityStudent.PersonInfo.BirthDate = value; } 
         public string FirstName { get => EntityStudent.PersonInfo.FirstName; set => EntityStudent.PersonInfo.FirstName = value; } 
         public string SecodName { get => EntityStudent.PersonInfo.SecodName; set => EntityStudent.PersonInfo.SecodName = value; } 
@@ -57,7 +57,7 @@ namespace BusinessLayer
             }
             return false;
         }
-        public bool UpdateStudent()
+        private bool UpdateStudent()
         {
             if(clsStudentsDataAccess.UpdateStudent(EntityStudent))
             {
@@ -74,35 +74,123 @@ namespace BusinessLayer
                 return true;
             }
             return false;
-        }      
+        }
+        private void _ValidateBusinessRules()
+        {
+            if (string.IsNullOrWhiteSpace(FirstName) ||
+                string.IsNullOrWhiteSpace(SecodName) ||
+                string.IsNullOrWhiteSpace(LastName))
+            {
+                throw new InvalidOperationException(
+                    "يرجى إدخال الاسم الأول والثاني واسم العائلة.");
+            }
+
+            if (CircleID <= 0 || !clsCircles.IsCircleExist(CircleID))
+            {
+                throw new InvalidOperationException(
+                    "الحلقة المحددة غير موجودة.");
+            }
+
+            if (_Mode == enMode.Update && !IsStudentExist(StudentID))
+            {
+                throw new InvalidOperationException(
+                    "الطالب المراد تعديله غير موجود.");
+            }
+        }
         public bool Save()
         {
-            if (_Mode == enMode.Add)
+            _ValidateBusinessRules();
+            try
             {
-                return AddStudent();
+                switch (_Mode)
+                {
+                    case enMode.Add:
+                        return AddStudent();
+
+                    case enMode.Update:
+                        return UpdateStudent();
+                    default:
+                        throw new InvalidOperationException("وضع غير صالح.");
+                }
             }
-            else if (_Mode == enMode.Update)
+            catch (SqlException ex)
             {
-                return UpdateStudent();
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    string.Join(".", nameof(clsUsers), nameof(Save)),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception("Invalid mode");
+                string ErrorMessage = "حدث خطأ أثناء حفظ الطالب.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    string.Join(".", nameof(clsUsers), nameof(Save)),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
         static public clsStudents Find(int studentId)
         {
-            clsEntityStudent EntityStudent = new clsEntityStudent();
-            EntityStudent.StudentID = studentId;
-
-            if (clsStudentsDataAccess.FindStudentByID(EntityStudent))
+            try
             {
-                clsEntityCircle entityCircle = new clsEntityCircle() { CircleID = EntityStudent.CircleID };
-                EntityStudent.CircleInfo = clsCircles.FindEntityCircleByID(entityCircle.CircleID);
-                return new clsStudents(EntityStudent);
+
+                clsEntityStudent EntityStudent = new clsEntityStudent();
+                EntityStudent.StudentID = studentId;
+
+                if (clsStudentsDataAccess.FindStudentByID(EntityStudent))
+                {
+                    clsEntityCircle entityCircle = new clsEntityCircle() { CircleID = EntityStudent.CircleID };
+                    EntityStudent.CircleInfo = clsCircles.FindEntityCircleByID(entityCircle.CircleID);
+                    return new clsStudents(EntityStudent);
+                }
+
+                return null;
             }
-                
-            return null;
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    string.Join(".",nameof(clsUsers),nameof(Find)),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء استرجاع بيانات الطالب.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    string.Join(".", nameof(clsUsers), nameof(Find)),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
         public bool DeleteStudent()
         {

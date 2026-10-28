@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(US_AttendanceMangement));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvAttandenceList = new System.Windows.Forms.DataGridView();
             this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,9 +81,8 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel5);
-            this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(26, 167);
+            this.panel1.Location = new System.Drawing.Point(26, 145);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1462, 69);
             this.panel1.TabIndex = 1;
@@ -135,21 +134,14 @@
             this.label4.Text = "قائمة الطلاب";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // panel4
-            // 
-            this.panel4.Location = new System.Drawing.Point(258, 6);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 6);
-            this.panel4.Size = new System.Drawing.Size(173, 65);
-            this.panel4.TabIndex = 19;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvAttandenceList);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(26, 236);
+            this.panel2.Location = new System.Drawing.Point(26, 214);
+            this.panel2.MinimumSize = new System.Drawing.Size(0, 400);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1462, 327);
+            this.panel2.Size = new System.Drawing.Size(1462, 450);
             this.panel2.TabIndex = 2;
             // 
             // dgvAttandenceList
@@ -157,6 +149,15 @@
             this.dgvAttandenceList.AllowUserToAddRows = false;
             this.dgvAttandenceList.AllowUserToDeleteRows = false;
             this.dgvAttandenceList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
+            this.dgvAttandenceList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAttandenceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvAttandenceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttandenceList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentID,
@@ -174,12 +175,12 @@
             this.dgvAttandenceList.ReadOnly = true;
             this.dgvAttandenceList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dgvAttandenceList.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
-            this.dgvAttandenceList.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.dgvAttandenceList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvAttandenceList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
             this.dgvAttandenceList.RowTemplate.Height = 26;
             this.dgvAttandenceList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvAttandenceList.Size = new System.Drawing.Size(1462, 327);
+            this.dgvAttandenceList.Size = new System.Drawing.Size(1462, 450);
             this.dgvAttandenceList.TabIndex = 1;
             this.dgvAttandenceList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAttandenceList_CellClick);
             this.dgvAttandenceList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAttandenceList_CellMouseClick);
@@ -265,9 +266,9 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
             this.panel3.Controls.Add(this.tableLayoutPanel6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(26, 636);
+            this.panel3.Location = new System.Drawing.Point(26, 652);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1462, 80);
+            this.panel3.Size = new System.Drawing.Size(1462, 64);
             this.panel3.TabIndex = 3;
             // 
             // tableLayoutPanel6
@@ -276,16 +277,16 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62915F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37085F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 294F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
             this.tableLayoutPanel6.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.lbTakenAttendanceToday, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(8, 11, 8, 11);
+            this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.41177F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(1462, 80);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1462, 64);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // btnSave
@@ -301,11 +302,11 @@
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.ImageIndex = 1;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(12, 14);
+            this.btnSave.Location = new System.Drawing.Point(12, 8);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnSave.Size = new System.Drawing.Size(457, 52);
+            this.btnSave.Size = new System.Drawing.Size(456, 48);
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "حفظ التغييرات";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -320,10 +321,10 @@
             this.lbTakenAttendanceToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTakenAttendanceToday.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lbTakenAttendanceToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1163, 11);
+            this.lbTakenAttendanceToday.Location = new System.Drawing.Point(1162, 5);
             this.lbTakenAttendanceToday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTakenAttendanceToday.Name = "lbTakenAttendanceToday";
-            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(287, 58);
+            this.lbTakenAttendanceToday.Size = new System.Drawing.Size(288, 54);
             this.lbTakenAttendanceToday.TabIndex = 17;
             this.lbTakenAttendanceToday.Text = "لم يتم تسجيل حضور الطلبة اليوم";
             this.lbTakenAttendanceToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -444,7 +445,7 @@
             this.pnlTLTop.Controls.Add(this.label3, 3, 0);
             this.pnlTLTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTLTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.pnlTLTop.Location = new System.Drawing.Point(26, 32);
+            this.pnlTLTop.Location = new System.Drawing.Point(26, 10);
             this.pnlTLTop.Name = "pnlTLTop";
             this.pnlTLTop.Padding = new System.Windows.Forms.Padding(10);
             this.pnlTLTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -511,7 +512,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "US_AttendanceMangement";
-            this.Padding = new System.Windows.Forms.Padding(26, 32, 26, 5);
+            this.Padding = new System.Windows.Forms.Padding(26, 10, 26, 5);
             this.Size = new System.Drawing.Size(1514, 721);
             this.Load += new System.EventHandler(this.US_AttendanceMangement_Load);
             this.panel1.ResumeLayout(false);
@@ -559,7 +560,6 @@
         private System.Windows.Forms.TextBox txt_SearchByName;
         private System.Windows.Forms.TableLayoutPanel pnlTLTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
     }

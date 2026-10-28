@@ -250,22 +250,26 @@ namespace UI.Students.StudentControls
             _RefreshStudentList();
             _DisplayTotalStudentsCount();
             _DisplayCurrentPage();
+
+            // تأجيل عرض الصفحة الأولى حتى تنتهي الشاشة من رسم نفسها بالكامل
+            this.BeginInvoke(new Action(() => _DisplayCurrentPage()));
         }
-        private void _FormatDataGridViewColumn()
+            private void _FormatDataGridViewColumn()
         {
             if (dgv_ListStudents.Columns.Count > 0)
             {
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["StudentID"], "رقم الطالب", 100);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["SeatsNumber"], "رقم الجلوس", 120);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["FullName"], "اسم الطالب الكامل", 240);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["BirthDate"], "تاريخ الميلاد", 110);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["Address"], "العنوان", 160);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["ParentPhone"], "هاتف ولي الأمر", 140);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["JoinDate"], "تاريخ الانضمام", 130);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleID"], "رقم الحلقة", 0);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleName"], "اسم الحلقة", 150);
-                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["IsActive"], "الحالة", 130);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["StudentID"], "رقم الطالب", 90);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["SeatsNumber"], "رقم الجلوس", 100);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["FullName"], "اسم الطالب الكامل", 180);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["BirthDate"], "تاريخ الميلاد", 100);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["Address"], "العنوان", 110);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["ParentPhone"], "هاتف ولي الأمر", 120);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["JoinDate"], "تاريخ الانضمام", 110);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["CircleName"], "اسم الحلقة", 140);
+                clsUtil.ConfigureColumn(dgv_ListStudents.Columns["IsActive"], "الحالة", 70);
                 dgv_ListStudents.Columns["CircleID"].Visible = false;
+
+                dgv_ListStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
         private void _FormatDataGridView()

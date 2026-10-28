@@ -155,26 +155,20 @@ namespace DataAccessLayer
                     SqlParameter ReturnValue = new SqlParameter();
                     ReturnValue.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(ReturnValue);
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        int Result = Convert.ToInt32(ReturnValue.Value);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    int Result = Convert.ToInt32(ReturnValue.Value);
 
-                        if (Result == 1)
-                        {
-                            IsFound = true;
-                            LoginDetailsData.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
-                            LoginDetailsData.LoginDate = Convert.ToDateTime(cmd.Parameters["@LoginDate"].Value);
-                            LoginDetailsData.IsRemember = Convert.ToBoolean(cmd.Parameters["@IsRemember"].Value);
-                            LoginDetailsData.Notes = cmd.Parameters["@Notes"].Value.ToString();
-                        }
-
-                    }
-                    catch (Exception Ex)
+                    if (Result == 1)
                     {
-                        clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, " Login(clsEntityUser user)", DateTime.Now, null);
+                        IsFound = true;
+                        LoginDetailsData.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
+                        LoginDetailsData.LoginDate = Convert.ToDateTime(cmd.Parameters["@LoginDate"].Value);
+                        LoginDetailsData.IsRemember = Convert.ToBoolean(cmd.Parameters["@IsRemember"].Value);
+                        LoginDetailsData.Notes = cmd.Parameters["@Notes"].Value.ToString();
                     }
+
+                    
                 }
                 return IsFound;
             }

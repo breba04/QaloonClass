@@ -30,7 +30,6 @@ namespace BusinessLayer
             EntityCircle = new clsEntityCircle();
             _Mode = enMode.Add;
         }
-
         private clsCircles(clsEntityCircle EntityCircle)
         {
             this.EntityCircle = EntityCircle;
@@ -131,6 +130,10 @@ namespace BusinessLayer
         static public int GetSupervisorByCircleID(int CircleID)
         {
             return clsCirclesDataAccess.GetSupervisorByCircleID(CircleID);
+        }
+        static public bool IsCircleExist(int CircleID)
+        {
+            return clsCirclesDataAccess.IsCircleExist(CircleID);
         }
         static public clsCircles FindCircleByID(int CircleID)
         {

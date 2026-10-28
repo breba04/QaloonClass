@@ -51,6 +51,7 @@
     <Compile Include="clsMushafQaloon.cs" />
     <Compile Include="clsAttendanceReports.cs" />
     <Compile Include="clsSettings.cs" />
+    <Compile Include="clsUtilBusiness.cs" />
     <Compile Include="clsWaitlist.cs" />
     <Compile Include="clsStudents.cs" />
     <Compile Include="clsStudentProgress.cs" />

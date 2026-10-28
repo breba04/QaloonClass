@@ -42,14 +42,22 @@ namespace UI.Students
         }
         private bool _LoadStudentFromDB(out string ErrorMessage)
         {
-            ErrorMessage = null;
-            _Student = clsStudents.Find(_StudentID);
-            if (_Student == null)
+            try
             {
-                ErrorMessage = $"لم يتم العثور على طالب بالمعرف {_StudentID}";
+                ErrorMessage = null;
+                _Student = clsStudents.Find(_StudentID);
+                if (_Student == null)
+                {
+                    ErrorMessage = $"لم يتم العثور على طالب بالمعرف {_StudentID}";
+                    return false;
+                }
+                return true;
+            }
+            catch (InvalidOperationException ex)
+            {
+                ErrorMessage = ex.Message;
                 return false;
             }
-            return true;
         }
         private bool _LoadStudentProgressFromDB(out string ErrorMessage)
         {
@@ -391,16 +399,32 @@ namespace UI.Students
             _UpdateSelectedCircleCapacityLabel();
             _CircleValdation();
         }
+
         private bool _SaveStudent(out string ErrorMessage)
         {
-            _SetStudentData();
-            if (!_Student.Save())
+            try
             {
-                ErrorMessage = "لم يتم تسجيل الطالب";
+                _SetStudentData();
+
+                if (!_Student.Save())
+                {
+                    ErrorMessage = "لم يتم حفظ بيانات الطالب.";
+                    return false;
+                }
+
+                ErrorMessage = string.Empty;
+                return true;
+            }
+            catch (InvalidOperationException ex)
+            {
+                ErrorMessage = ex.Message;
                 return false;
             }
-            ErrorMessage = string.Empty;
-            return true;
+            catch (Exception)
+            {
+                ErrorMessage = "حدث خطأ غير متوقع أثناء حفظ بيانات الطالب.";
+                return false;
+            }
         }
         private bool _SaveStudentProgress(out string ErrorMessage)
         {
@@ -414,16 +438,18 @@ namespace UI.Students
             if (_StudentProgress.AddProgress())
                 return true;
 
-            ErrorMessage = "لم يتم تسجيل الطالب";
-            return true;
+            ErrorMessage = "لم يتم تسجيل تقدم الطالب";
+            return false;
         }
+
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return;
+            if (!ValidateChildren())
+                return;
 
             if (!_IsCircleValid())
             {
-                clsGlobal.ShowErrorMessgae("!لا يمكن الحفظ، الحلقة المختارة ممتلئة حالياً", "خطأ في السعة");
+                clsGlobal.ShowErrorMessgae("!لا يمكن الحفظ، الحلقة المختارة ممتلئة حالياً","خطأ في السعة");
                 return;
             }
 
@@ -432,27 +458,32 @@ namespace UI.Students
                 clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الصورة");
                 return;
             }
+
             if (!_SaveStudent(out ErrorMessage))
             {
-
                 clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ الطالب");
                 return;
             }
-            if (!_SaveStudentProgress(out ErrorMessage))
-            {
-                clsGlobal.ShowErrorMessgae(ErrorMessage, "خطأ في حفظ تقدم الطالب");
-                return;
-            }
-            clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل" : "تعديل")} الطالب بنجاح", "نجاح");
-            clsAppEvents.OnStudentAdded();
+
+            bool IsProgressSaved = _SaveStudentProgress(out ErrorMessage);
+
             _StudentID = _Student.StudentID;
-             txt_SeatingID.Text = _Student.SeatsNumber;
+            txt_SeatingID.Text = _Student.SeatsNumber;
             _Mode = enMode.Update;
-            _AyaID = _StudentProgress.AyahID;
             _UpdateTitle();
             _UpdateSelectedCircleCapacityAfterSavingStudent();
-            
+            clsAppEvents.OnStudentAdded();
+            if (IsProgressSaved)
+            {
+                clsGlobal.ShowSeccesMessgae($"تم {(_Mode == enMode.Add ? "تسجيل" : "تعديل")} الطالب بنجاح","نجاح");
+                _AyaID = _StudentProgress.AyahID;
+            }
+            else
+            {
+                clsGlobal.ShowErrorMessgae("تم حفظ بيانات الطالب، لكن تعذر حفظ تقدمه الأولي.\n" +ErrorMessage,"تم الحفظ جزئياً");
+            }
         }
+
         private void _UpdateSelectedCircleCapacityAfterSavingStudent()
         {
             int currentSelectedCircleID = Convert.ToInt32(cmb_Circles.SelectedValue);

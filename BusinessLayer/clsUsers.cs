@@ -10,24 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using EntityLayer;
+using System.Data.SqlClient;
 namespace BusinessLayer
 {
     public class clsUsers
     {
-        static string KeyPath = @"HKEY_CURRENT_USER\SOFTWARE\ABDULBASITAndIbrahim\TahfezCenter_System";
-        static  void _StoreUserNameAndPassWordInRegistry(string UserName, string Password)
-        {
-            try
-            {
-                Registry.SetValue(KeyPath, "UserName", UserName);
-                Registry.SetValue(KeyPath, "Password", Password);
-            }
-            catch (Exception ex)
-            {
-                clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.Business,
-                    "StoreUserNameAndPassWordInRegistry", DateTime.Now);
-            }
-        }
+        
         enum enMode { Add, Update }
         enMode _Mode;
         public clsEntityUser UserData ;
@@ -76,17 +64,46 @@ namespace BusinessLayer
         }
         public bool Save()
         {
-            if (_Mode == enMode.Add)
+            try
             {
-                return AddUsers();
+                switch (_Mode)
+                {
+                    case enMode.Add:
+                        return AddUsers();
+
+                    case enMode.Update:
+                        return UpdateUsers();
+                    default:
+                        throw new InvalidOperationException("وضع غير صالح.");
+                }
             }
-            else if (_Mode == enMode.Update)
+            catch (SqlException ex)
             {
-                return UpdateUsers();
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser.UserID,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(Save));
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception("Invalid mode");
+                string ErrorMessage = "حدث خطأ أثناء حفظ بيانات المستخدم.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(LoadLastLogin),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
         public bool DeleteUsers()
@@ -103,54 +120,155 @@ namespace BusinessLayer
         }
         static public bool IsUsersExist(int UserID)
         {
-            return clsUsersDataAccess.IsUsersExist(UserID);
+            try
+            {
+                return clsUsersDataAccess.IsUsersExist(UserID);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(IsUsersExist),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء استرجاع بيانات آخر تسجيل دخول.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(IsUsersExist),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
         static public bool Login(string userName,string password,bool isRemember)
         {
-            clsCurrentUser.CurrentUser  = new clsEntityUser() {UserName = userName ,Password = password};
-            if (clsUsersDataAccess.Login(clsCurrentUser.CurrentUser))
+            try
             {
-                clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails()
+                clsCurrentUser.CurrentUser = new clsEntityUser() { UserName = userName, Password = password };
+                if (clsUsersDataAccess.Login(clsCurrentUser.CurrentUser))
                 {
-                    UserID = clsCurrentUser.CurrentUser.UserID,
-                    LoginDate = DateTime.Now,
-                    IsRemember = isRemember,
-                };
-                clsLoginDetails.AddLoginDetails(loginDetails);
+                    clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails()
+                    {
+                        UserID = clsCurrentUser.CurrentUser.UserID,
+                        LoginDate = DateTime.Now,
+                        IsRemember = isRemember,
+                    };
+                    clsLoginDetails.AddLoginDetails(loginDetails);
 
-                if (isRemember)
-                {
-                    _StoreUserNameAndPassWordInRegistry(userName,password);
+                    if (isRemember)
+                    {
+                        clsUtilBusiness.StoreUserNameAndPassWordInRegistry(userName, password);
+                    }
+
+                    return true;
                 }
-
-                return true;
+                else
+                {
+                    clsCurrentUser.CurrentUser = null;
+                    return false;
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                clsCurrentUser.CurrentUser = null;
-                return false;
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(Login),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء استرجاع بيانات آخر تسجيل دخول.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(Login),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
         static public void LoadLastLogin()
         {
-            clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails();
-            if (clsLoginDetailsDataAccess.FindLoginDetailsByID(loginDetails))
+            try
             {
-                if (loginDetails.IsRemember)
+                clsEntityclsLoginDetails loginDetails = new clsEntityclsLoginDetails();
+
+                if (!clsLoginDetailsDataAccess.FindLoginDetailsByID(loginDetails))
+                    return;
+
+                if (!loginDetails.IsRemember)
+                    return;
+
+                clsUsers user = clsUsers.Find(loginDetails.UserID);
+
+                if (user == null)
+                    return;
+
+                clsCurrentUser.CurrentUser = new clsEntityUser()
                 {
-                    clsUsers user =  clsUsers.Find(loginDetails.UserID);
-                    if(user != null)
-                    {
-                        clsCurrentUser.CurrentUser = new clsEntityUser()
-                        {
-                            UserID = user.UserID,
-                            PersonInfo = user.PersonInfo,
-                            UserName = user.UserName,
-                            Password = user.Password,
-                            UserRole = user.UserRole
-                        }; 
-                    }
-                }
+                    UserID = user.UserID,
+                    PersonInfo = user.PersonInfo,
+                    UserName = user.UserName,
+                    Password = user.Password,
+                    UserRole = user.UserRole
+                };
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(LoadLastLogin),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء استرجاع بيانات آخر تسجيل دخول.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(LoadLastLogin),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
         static public clsUsers Find(int UserID)

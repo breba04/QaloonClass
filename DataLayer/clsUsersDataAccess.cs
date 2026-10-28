@@ -34,17 +34,11 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@Address", (object)EntityUser.PersonInfo.Address ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@ImagePath", (object)EntityUser.PersonInfo.ImagePath ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@IsActive", EntityUser.PersonInfo.IsActive);
-                try
-                {
-                    conn.Open();
-                    object obj = cmd.ExecuteScalar();
-                    if (obj != null)
-                        result = Convert.ToInt32(obj);
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddUsers", DateTime.Now, null);
-                }
+                
+                conn.Open();
+                object obj = cmd.ExecuteScalar();
+                if (obj != null)
+                    result = Convert.ToInt32(obj);
             }
             return result;
         }
@@ -70,15 +64,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@Address", (object)EntityUser.PersonInfo.Address ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@IsActive", EntityUser.PersonInfo.IsActive);
                 cmd.Parameters.AddWithValue("@ImagePath", (object)EntityUser.PersonInfo.ImagePath ?? DBNull.Value);
-                try
-                {
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateUsers", DateTime.Now, null);
-                }
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
             }
             return result > 0;
         }
@@ -208,19 +195,12 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserID", userid);
 
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToBoolean(obj);
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToBoolean(obj);
 
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
-                    }
+                    
                 }
             }
             return result;
@@ -254,39 +234,33 @@ namespace DataAccessLayer
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add(ReturnValue);
 
-                try
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                int Result = Convert.ToInt32(ReturnValue.Value);
+
+                if (Result == 1)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    IsLogin = true;
 
-                    int Result = Convert.ToInt32(ReturnValue.Value);
+                    user.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
+                    user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
 
-                    if (Result == 1)
-                    {
-                        IsLogin = true;
-
-                        user.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
-                        user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
-
-                        user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
-                        user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
-                        user.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
-                        user.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
-                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
-                        user.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
+                    user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
+                    user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
+                    user.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
+                    user.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
+                    user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                    user.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
                         
-                        if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
-                            user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
-                        if (cmd.Parameters["@Address"].Value != DBNull.Value)
-                            user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
-                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
-                            user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
-                    }
+                    if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
+                        user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
+                    if (cmd.Parameters["@Address"].Value != DBNull.Value)
+                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                    if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                        user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
                 }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "Login", DateTime.Now, null);
-                }
+                
             }
 
             return IsLogin;
@@ -319,41 +293,33 @@ namespace DataAccessLayer
                 SqlParameter ReturnValue = new SqlParameter();
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add(ReturnValue);
+                conn.Open();
+                cmd.ExecuteNonQuery();
 
-                try
+                int Result = Convert.ToInt32(ReturnValue.Value);
+
+                if (Result == 1)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    IsFound = true;
 
-                    int Result = Convert.ToInt32(ReturnValue.Value);
+                    user.UserName = cmd.Parameters["@UserName"].Value.ToString();
+                    user.Password = cmd.Parameters["@Password"].Value.ToString();
+                    user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
+                    user.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
-                    if (Result == 1)
-                    {
-                        IsFound = true;
+                    user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
+                    user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
+                    user.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
+                    user.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
+                    user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                    user.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
 
-                        user.UserName = cmd.Parameters["@UserName"].Value.ToString();
-                        user.Password = cmd.Parameters["@Password"].Value.ToString();
-                        user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
-                        user.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
-
-                        user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
-                        user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
-                        user.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
-                        user.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
-                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
-                        user.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
-
-                        if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
-                            user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
-                        if (cmd.Parameters["@Address"].Value != DBNull.Value)
-                            user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();;
-                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
-                            user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindByUserID", DateTime.Now, null);
+                    if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
+                        user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
+                    if (cmd.Parameters["@Address"].Value != DBNull.Value)
+                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();;
+                    if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                        user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
                 }
             }
 

@@ -40,41 +40,53 @@ namespace UI.Login
                 return;
             }
 
-
-            if (_IsUserLoginSuccessful())
+            try
             {
-                if (_IsUserActive())
+                if (_IsUserLoginSuccessful())
                 {
-                    //clsCurrentUser.Login( ckb_RememberMe.Checked);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    if (_IsUserActive())
+                    {
+                        //clsCurrentUser.Login( ckb_RememberMe.Checked);
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your account is not active, please contact the administrator",
+                            "Account Inactive",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Your account is not active, please contact the administrator",
-                        "Account Inactive",
+                    MessageBox.Show("Invalid username or password, please try again",
+                        "Login Failed",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                        MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Invalid username or password, please try again",
-                    "Login Failed",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                clsGlobal.ShowErrorMessgae(ex.Message, "Login Error");
             }
         }
         private void _RetrieveRememberedData()
         {
-            //clsCurrentUser.CurrentUser = clsLoginDetails.GetLastLoginUser();
-
-            clsUsers.LoadLastLogin();
-            if (clsCurrentUser.CurrentUser != null)
+            try
             {
-                txt_UserName.Text = clsCurrentUser.CurrentUser.UserName;
-                txt_PassWord.Text = clsCurrentUser.CurrentUser.Password;
-                ckb_RememberMe.Checked = true;
+                clsUsers.LoadLastLogin();
+
+                if (clsCurrentUser.CurrentUser != null)
+                {
+                    txt_UserName.Text = clsCurrentUser.CurrentUser.UserName;
+                    txt_PassWord.Text = clsCurrentUser.CurrentUser.Password;
+                    ckb_RememberMe.Checked = true;
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                clsGlobal.ShowErrorMessgae(ex.Message, "خطأ في استرجاع بيانات تسجيل الدخول");
             }
         }
         private void frmLogin_Load(object sender, EventArgs e)

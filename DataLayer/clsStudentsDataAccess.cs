@@ -34,21 +34,16 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add("@StudentID", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@SeatsNumber", SqlDbType.NVarChar,10).Direction = ParameterDirection.Output;
-                try
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                var obj = cmd.Parameters["@ReturnValue"];
+                if (obj != null && (int)obj.Value == 1)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    var obj = cmd.Parameters["@ReturnValue"];
-                    if (obj != null && (int)obj.Value == 1)
-                    {
-                        result =Convert.ToInt32(cmd.Parameters["@StudentID"].Value);
-                        entity.SeatsNumber =cmd.Parameters["@SeatsNumber"].Value.ToString();
-                    }
+                    result =Convert.ToInt32(cmd.Parameters["@StudentID"].Value);
+                    entity.SeatsNumber =cmd.Parameters["@SeatsNumber"].Value.ToString();
                 }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddStudent", DateTime.Now, null);
-                }
+                
             }
             return result;
         }
@@ -76,16 +71,9 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@JoinDate", entity.JoinDate);
                 cmd.Parameters.AddWithValue("@CircleID", entity.CircleID);
 
-
-                try
-                {
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateStudent", DateTime.Now, null);
-                }
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+                
             }
             return result > 0;
         }
@@ -99,18 +87,11 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StudentID", StudentID);
                     cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        if (cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"]
-                            .Value.ToString(), out rowsAffected)) { }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteStudent", DateTime.Now, null);
-                    }
 
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    if (cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"]
+                        .Value.ToString(), out rowsAffected)) { }
                 }
 
             }
@@ -127,17 +108,11 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@StudentID", studentId);
 
-                try
-                {
-                    conn.Open();
-                    object obj = cmd.ExecuteScalar();
-                    if (obj != null)
-                        result = Convert.ToBoolean(obj);
-                }
-                catch (Exception ex)
-                {
-                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                }
+                conn.Open();
+                object obj = cmd.ExecuteScalar();
+                if (obj != null)
+                    result = Convert.ToBoolean(obj);
+                
             }
             return result;
         }
@@ -167,40 +142,33 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@SeatsNumber", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-                try
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                object obj = cmd.Parameters["@ReturnValue"].Value;
+
+                if (obj != null && int.TryParse(obj.ToString(),out int ReturnValue) && ReturnValue == 1)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    object obj = cmd.Parameters["@ReturnValue"].Value;
+                    student.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
+                    student.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
 
-                    if (obj != null && int.TryParse(obj.ToString(),out int ReturnValue) && ReturnValue == 1)
-                    {
-                        student.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
-                        student.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
+                    student.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
+                    student.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
+                    student.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
 
-                        student.PersonInfo.LastName = cmd.Parameters["@LastName"].Value.ToString();
-                        student.PersonInfo.BirthDate = Convert.ToDateTime(cmd.Parameters["@BirthDate"].Value);
-                        student.PersonInfo.IsActive = Convert.ToBoolean(cmd.Parameters["@IsActive"].Value);
+                    student.ParentPhone = cmd.Parameters["@ParentPhone"].Value.ToString();
+                    student.SeatsNumber = cmd.Parameters["@SeatsNumber"].Value.ToString();
+                    student.JoinDate = Convert.ToDateTime(cmd.Parameters["@JoinDate"].Value);
+                    student.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
-                        student.ParentPhone = cmd.Parameters["@ParentPhone"].Value.ToString();
-                        student.SeatsNumber = cmd.Parameters["@SeatsNumber"].Value.ToString();
-                        student.JoinDate = Convert.ToDateTime(cmd.Parameters["@JoinDate"].Value);
-                        student.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
-
-                        if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
-                            student.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString(); 
-                        if (cmd.Parameters["@Address"].Value != DBNull.Value)
-                            student.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
-                        if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
-                            student.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
+                    if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
+                        student.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString(); 
+                    if (cmd.Parameters["@Address"].Value != DBNull.Value)
+                        student.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
+                    if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
+                        student.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
 
 
-                        result = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindStudentByID", DateTime.Now, null);
+                    result = true;
                 }
             }
 
@@ -214,18 +182,10 @@ namespace DataAccessLayer
             using (SqlCommand cmd = new SqlCommand("SP_SelectAllStudents", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                try
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        result.Load(reader);
-                    }
-                }
-                catch (Exception ex)
-                {
-                                            clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    result.Load(reader);
                 }
             }
             return result;
@@ -239,17 +199,10 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CircleID", CircleID);
-                try
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        result.Load(reader);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
+                    result.Load(reader);
                 }
             }
             return result;
@@ -263,18 +216,12 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CircleID", CircleID);
-                try
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        result.Load(reader);
-                    }
+                    result.Load(reader);
                 }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                }
+                
             }
             return result;
         }
@@ -311,17 +258,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToInt16(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewStudentsStatsLastMonth", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToInt16(obj);
+                    
                 }
             }
             return result;
@@ -337,20 +278,14 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@StudentID", StudentID);
                     cmd.Parameters.AddWithValue("@IsActive", IsActive);
                     cmd.Parameters.Add("@Return",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-                    try
+                    
+                    conn.Open();
+                    object obj = cmd.Parameters["@Return"].Value;
+                    if (obj != null && int.TryParse(obj.ToString(),out int result))
                     {
-                        conn.Open();
-                        object obj = cmd.Parameters["@Return"].Value;
-                        if (obj != null && int.TryParse(obj.ToString(),out int result))
-                        {
-                            isChange = result == 1;
-                        }
+                        isChange = result == 1;
+                    }
 
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "ChangeStudentStatus", DateTime.Now, null);
-                    }
                 }
             }
             return isChange;
@@ -368,17 +303,12 @@ namespace DataAccessLayer
                     cmd.Parameters.Add("@CountAbsent",SqlDbType.Int).Direction = ParameterDirection.Output;
                     SqlParameter parameter = new SqlParameter();
                     parameter.Direction = ParameterDirection.Output;
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        if (cmd.Parameters["@CountAbsent"].Value != null)
-                            result = Convert.ToInt16(cmd.Parameters["@CountAbsent"].Value);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
-                    }
+                       
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    if (cmd.Parameters["@CountAbsent"].Value != null)
+                        result = Convert.ToInt16(cmd.Parameters["@CountAbsent"].Value);
+                    
                 }
             }
             return result;
@@ -391,16 +321,11 @@ namespace DataAccessLayer
                 using (SqlCommand cmd = new SqlCommand("SP_GetTotalActiceStudents", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null && int.TryParse(obj.ToString(), out result)) { }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetTotalStudentAbsent", DateTime.Now, null);
-                    }
+
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null && int.TryParse(obj.ToString(), out result)) { }
+                    
                 }
             }
             return result;

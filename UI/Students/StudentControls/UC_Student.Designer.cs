@@ -29,25 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl_TotalStudent = new System.Windows.Forms.Label();
             this.pnl_SectionTotalStudent = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmb_IsActive = new System.Windows.Forms.ComboBox();
-            this.txt_Research = new System.Windows.Forms.TextBox();
-            this.lbl_To = new System.Windows.Forms.Label();
-            this.lbl_From = new System.Windows.Forms.Label();
-            this.dtp_ToDate = new System.Windows.Forms.DateTimePicker();
-            this.dtp_FormDate = new System.Windows.Forms.DateTimePicker();
             this.cmb_AllFilter = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnl_SectionFilter = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lbl_StudentsOfDisplayed = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_PageNumbering = new System.Windows.Forms.Label();
             this.pnl_SectionPageNumbering = new System.Windows.Forms.Panel();
             this.btn_Previous = new System.Windows.Forms.Button();
@@ -57,8 +48,9 @@
             this.cms_StudentActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.StudentDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.AddStudent_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UpdateStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddStudent_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditStudentProgress_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.StudentSuspendedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActivateStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,9 +67,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_SubTitle = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.EditStudentProgress_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_From = new System.Windows.Forms.Label();
+            this.cmb_IsActive = new System.Windows.Forms.ComboBox();
+            this.dtp_FormDate = new System.Windows.Forms.DateTimePicker();
+            this.txt_Research = new System.Windows.Forms.TextBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lbl_To = new System.Windows.Forms.Label();
+            this.dtp_ToDate = new System.Windows.Forms.DateTimePicker();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.pnl_SectionTotalStudent.SuspendLayout();
-            this.pnl_SectionFilter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.pnl_SectionPageNumbering.SuspendLayout();
@@ -89,20 +89,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ListStudents)).BeginInit();
             this.pnl_SectionGreeting.SuspendLayout();
             this.pnl_SectionMainTitle.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_TotalStudent
             // 
-            this.lbl_TotalStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbl_TotalStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.lbl_TotalStudent.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_TotalStudent.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalStudent.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_TotalStudent.Font = new System.Drawing.Font("Segoe UI", 22.25F, System.Drawing.FontStyle.Bold);
             this.lbl_TotalStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
-            this.lbl_TotalStudent.Location = new System.Drawing.Point(7, 70);
+            this.lbl_TotalStudent.Location = new System.Drawing.Point(491, 0);
             this.lbl_TotalStudent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_TotalStudent.Name = "lbl_TotalStudent";
             this.lbl_TotalStudent.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_TotalStudent.Size = new System.Drawing.Size(178, 60);
+            this.lbl_TotalStudent.Size = new System.Drawing.Size(178, 122);
             this.lbl_TotalStudent.TabIndex = 45;
             this.lbl_TotalStudent.Text = "34";
             this.lbl_TotalStudent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -112,151 +116,61 @@
             this.pnl_SectionTotalStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.pnl_SectionTotalStudent.Controls.Add(this.lbl_TotalStudent);
             this.pnl_SectionTotalStudent.Controls.Add(this.label2);
-            this.pnl_SectionTotalStudent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl_SectionTotalStudent.Location = new System.Drawing.Point(360, 0);
+            this.pnl_SectionTotalStudent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_SectionTotalStudent.Location = new System.Drawing.Point(905, 19);
             this.pnl_SectionTotalStudent.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_SectionTotalStudent.Name = "pnl_SectionTotalStudent";
             this.pnl_SectionTotalStudent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnl_SectionTotalStudent.Size = new System.Drawing.Size(302, 155);
+            this.pnl_SectionTotalStudent.Size = new System.Drawing.Size(783, 122);
             this.pnl_SectionTotalStudent.TabIndex = 43;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 18.25F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(176, 21);
+            this.label2.Location = new System.Drawing.Point(669, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(126, 46);
+            this.label2.Size = new System.Drawing.Size(114, 42);
             this.label2.TabIndex = 44;
             this.label2.Text = ":إجمالي";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cmb_IsActive
-            // 
-            this.cmb_IsActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_IsActive.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cmb_IsActive.FormattingEnabled = true;
-            this.cmb_IsActive.Items.AddRange(new object[] {
-            "نشط",
-            "متوقف"});
-            this.cmb_IsActive.Location = new System.Drawing.Point(744, 31);
-            this.cmb_IsActive.Margin = new System.Windows.Forms.Padding(4);
-            this.cmb_IsActive.Name = "cmb_IsActive";
-            this.cmb_IsActive.Size = new System.Drawing.Size(142, 36);
-            this.cmb_IsActive.TabIndex = 44;
-            this.cmb_IsActive.SelectedIndexChanged += new System.EventHandler(this.cmb_IsActive_SelectedIndexChanged);
-            // 
-            // txt_Research
-            // 
-            this.txt_Research.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Research.Location = new System.Drawing.Point(583, 28);
-            this.txt_Research.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_Research.Name = "txt_Research";
-            this.txt_Research.Size = new System.Drawing.Size(303, 39);
-            this.txt_Research.TabIndex = 42;
-            this.txt_Research.TextChanged += new System.EventHandler(this.txt_Research_TextChanged);
-            this.txt_Research.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Research_KeyPress);
-            // 
-            // lbl_To
-            // 
-            this.lbl_To.AutoSize = true;
-            this.lbl_To.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_To.Location = new System.Drawing.Point(828, 70);
-            this.lbl_To.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_To.Name = "lbl_To";
-            this.lbl_To.Size = new System.Drawing.Size(47, 31);
-            this.lbl_To.TabIndex = 43;
-            this.lbl_To.Text = "إلى";
-            // 
-            // lbl_From
-            // 
-            this.lbl_From.AutoSize = true;
-            this.lbl_From.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_From.Location = new System.Drawing.Point(827, 30);
-            this.lbl_From.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_From.Name = "lbl_From";
-            this.lbl_From.Size = new System.Drawing.Size(48, 31);
-            this.lbl_From.TabIndex = 42;
-            this.lbl_From.Text = " من";
-            // 
-            // dtp_ToDate
-            // 
-            this.dtp_ToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.dtp_ToDate.Location = new System.Drawing.Point(622, 73);
-            this.dtp_ToDate.Margin = new System.Windows.Forms.Padding(4);
-            this.dtp_ToDate.Name = "dtp_ToDate";
-            this.dtp_ToDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dtp_ToDate.Size = new System.Drawing.Size(198, 34);
-            this.dtp_ToDate.TabIndex = 34;
-            this.dtp_ToDate.ValueChanged += new System.EventHandler(this.dtp_ToDate_ValueChanged);
-            // 
-            // dtp_FormDate
-            // 
-            this.dtp_FormDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.dtp_FormDate.Location = new System.Drawing.Point(622, 31);
-            this.dtp_FormDate.Margin = new System.Windows.Forms.Padding(4);
-            this.dtp_FormDate.Name = "dtp_FormDate";
-            this.dtp_FormDate.Size = new System.Drawing.Size(198, 34);
-            this.dtp_FormDate.TabIndex = 33;
-            this.dtp_FormDate.ValueChanged += new System.EventHandler(this.dtp_FormDate_ValueChanged);
-            // 
             // cmb_AllFilter
             // 
+            this.cmb_AllFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmb_AllFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_AllFilter.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cmb_AllFilter.FormattingEnabled = true;
-            this.cmb_AllFilter.Location = new System.Drawing.Point(894, 31);
+            this.cmb_AllFilter.Location = new System.Drawing.Point(1962, 19);
             this.cmb_AllFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_AllFilter.Name = "cmb_AllFilter";
-            this.cmb_AllFilter.Size = new System.Drawing.Size(219, 36);
+            this.cmb_AllFilter.Size = new System.Drawing.Size(218, 36);
             this.cmb_AllFilter.TabIndex = 32;
             this.cmb_AllFilter.SelectedIndexChanged += new System.EventHandler(this.cmb_AllFilter_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(113)))), ((int)(((byte)(122)))));
-            this.label1.Location = new System.Drawing.Point(1106, 25);
+            this.label1.Location = new System.Drawing.Point(2188, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(102, 46);
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(162, 130);
             this.label1.TabIndex = 31;
-            this.label1.Text = ":تصفية حسب";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // pnl_SectionFilter
-            // 
-            this.pnl_SectionFilter.Controls.Add(this.txt_Research);
-            this.pnl_SectionFilter.Controls.Add(this.cmb_IsActive);
-            this.pnl_SectionFilter.Controls.Add(this.lbl_To);
-            this.pnl_SectionFilter.Controls.Add(this.lbl_From);
-            this.pnl_SectionFilter.Controls.Add(this.dtp_ToDate);
-            this.pnl_SectionFilter.Controls.Add(this.dtp_FormDate);
-            this.pnl_SectionFilter.Controls.Add(this.cmb_AllFilter);
-            this.pnl_SectionFilter.Controls.Add(this.label1);
-            this.pnl_SectionFilter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_SectionFilter.Location = new System.Drawing.Point(1179, 0);
-            this.pnl_SectionFilter.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.pnl_SectionFilter.Name = "pnl_SectionFilter";
-            this.pnl_SectionFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnl_SectionFilter.Size = new System.Drawing.Size(1217, 155);
-            this.pnl_SectionFilter.TabIndex = 42;
+            this.label1.Text = "تصفية حسب :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pnl_SectionTotalStudent);
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.pnl_SectionFilter);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 117);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -265,68 +179,50 @@
             this.panel1.Size = new System.Drawing.Size(2396, 155);
             this.panel1.TabIndex = 41;
             // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(332, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(28, 155);
-            this.panel4.TabIndex = 1;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.panel5.Controls.Add(this.lbl_StudentsOfDisplayed);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(30, 0);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(114, 19);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel5.Size = new System.Drawing.Size(302, 155);
+            this.panel5.Size = new System.Drawing.Size(783, 122);
             this.panel5.TabIndex = 46;
             // 
             // lbl_StudentsOfDisplayed
             // 
-            this.lbl_StudentsOfDisplayed.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbl_StudentsOfDisplayed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.lbl_StudentsOfDisplayed.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_StudentsOfDisplayed.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_StudentsOfDisplayed.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_StudentsOfDisplayed.Font = new System.Drawing.Font("Segoe UI", 22.25F, System.Drawing.FontStyle.Bold);
             this.lbl_StudentsOfDisplayed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(214)))), ((int)(((byte)(91)))));
-            this.lbl_StudentsOfDisplayed.Location = new System.Drawing.Point(4, 70);
+            this.lbl_StudentsOfDisplayed.Location = new System.Drawing.Point(458, 0);
             this.lbl_StudentsOfDisplayed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_StudentsOfDisplayed.Name = "lbl_StudentsOfDisplayed";
             this.lbl_StudentsOfDisplayed.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_StudentsOfDisplayed.Size = new System.Drawing.Size(178, 60);
+            this.lbl_StudentsOfDisplayed.Size = new System.Drawing.Size(178, 122);
             this.lbl_StudentsOfDisplayed.TabIndex = 46;
             this.lbl_StudentsOfDisplayed.Text = "34";
             this.lbl_StudentsOfDisplayed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18.25F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(142, 21);
+            this.label4.Location = new System.Drawing.Point(636, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label4.Size = new System.Drawing.Size(162, 46);
+            this.label4.Size = new System.Drawing.Size(147, 42);
             this.label4.TabIndex = 44;
             this.label4.Text = ":المعروض";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(30, 155);
-            this.panel3.TabIndex = 2;
             // 
             // lbl_PageNumbering
             // 
@@ -431,70 +327,71 @@
             this.UpdateStudentProgress_ToolStripMenuItem});
             this.cms_StudentActions.Name = "contextMenuStrip1";
             this.cms_StudentActions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cms_StudentActions.Size = new System.Drawing.Size(211, 218);
+            this.cms_StudentActions.Size = new System.Drawing.Size(190, 190);
             // 
             // StudentDetailsToolStripMenuItem
             // 
             this.StudentDetailsToolStripMenuItem.Name = "StudentDetailsToolStripMenuItem";
-            this.StudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.StudentDetailsToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.StudentDetailsToolStripMenuItem.Text = "تفاصيل الطالب";
             this.StudentDetailsToolStripMenuItem.Click += new System.EventHandler(this.StudentDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
-            // 
-            // AddStudent_ToolStripMenuItem
-            // 
-            this.AddStudent_ToolStripMenuItem.Name = "AddStudent_ToolStripMenuItem";
-            this.AddStudent_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.AddStudent_ToolStripMenuItem.Text = "إضافة طالب";
-            this.AddStudent_ToolStripMenuItem.Click += new System.EventHandler(this.AddStudent_ToolStripMenuItem_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(186, 6);
             // 
             // UpdateStudentToolStripMenuItem
             // 
             this.UpdateStudentToolStripMenuItem.Name = "UpdateStudentToolStripMenuItem";
-            this.UpdateStudentToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.UpdateStudentToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.UpdateStudentToolStripMenuItem.Text = "تعديل طالب";
             this.UpdateStudentToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentToolStripMenuItem_Click);
+            // 
+            // AddStudent_ToolStripMenuItem
+            // 
+            this.AddStudent_ToolStripMenuItem.Name = "AddStudent_ToolStripMenuItem";
+            this.AddStudent_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.AddStudent_ToolStripMenuItem.Text = "إضافة طالب";
+            this.AddStudent_ToolStripMenuItem.Click += new System.EventHandler(this.AddStudent_ToolStripMenuItem_Click);
+            // 
+            // EditStudentProgress_ToolStripMenuItem
+            // 
+            this.EditStudentProgress_ToolStripMenuItem.Name = "EditStudentProgress_ToolStripMenuItem";
+            this.EditStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.EditStudentProgress_ToolStripMenuItem.Text = "تعديل التقدم";
+            this.EditStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.EditStudentProgress_ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(186, 6);
             // 
             // StudentSuspendedToolStripMenuItem
             // 
             this.StudentSuspendedToolStripMenuItem.Name = "StudentSuspendedToolStripMenuItem";
-            this.StudentSuspendedToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.StudentSuspendedToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.StudentSuspendedToolStripMenuItem.Text = "إيقاف طالب";
             this.StudentSuspendedToolStripMenuItem.Click += new System.EventHandler(this.StudentSuspendedToolStripMenuItem_Click);
             // 
             // ActivateStudentToolStripMenuItem
             // 
             this.ActivateStudentToolStripMenuItem.Name = "ActivateStudentToolStripMenuItem";
-            this.ActivateStudentToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.ActivateStudentToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.ActivateStudentToolStripMenuItem.Text = "تفعيل طالب";
             this.ActivateStudentToolStripMenuItem.Click += new System.EventHandler(this.ActivateStudentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
             // 
             // UpdateStudentProgress_ToolStripMenuItem
             // 
             this.UpdateStudentProgress_ToolStripMenuItem.Name = "UpdateStudentProgress_ToolStripMenuItem";
-            this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.UpdateStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.UpdateStudentProgress_ToolStripMenuItem.Text = "تعديل تقدم طالب";
             this.UpdateStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.UpdateStudentProgress_ToolStripMenuItem_Click);
-            // 
-            // backgroundWorker2
-            // 
-            // 
-            // backgroundWorker1
-            // 
             // 
             // pnl_SectionListreports
             // 
@@ -526,14 +423,14 @@
             this.dgv_ListStudents.AllowUserToAddRows = false;
             this.dgv_ListStudents.AllowUserToDeleteRows = false;
             this.dgv_ListStudents.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_ListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_ListStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ListStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ListStudents.ContextMenuStrip = this.cms_StudentActions;
             this.dgv_ListStudents.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -623,12 +520,138 @@
             this.panel6.Size = new System.Drawing.Size(43, 117);
             this.panel6.TabIndex = 41;
             // 
-            // EditStudentProgress_ToolStripMenuItem
+            // tableLayoutPanel1
             // 
-            this.EditStudentProgress_ToolStripMenuItem.Name = "EditStudentProgress_ToolStripMenuItem";
-            this.EditStudentProgress_ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.EditStudentProgress_ToolStripMenuItem.Text = "تعديل التقدم";
-            this.EditStudentProgress_ToolStripMenuItem.Click += new System.EventHandler(this.EditStudentProgress_ToolStripMenuItem_Click);
+            this.tableLayoutPanel1.ColumnCount = 8;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 226F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.689912F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.53851F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.53851F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.23306F));
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pnl_SectionTotalStudent, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cmb_AllFilter, 2, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.33334F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666667F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(2396, 155);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.txt_Research);
+            this.panel3.Controls.Add(this.dtp_FormDate);
+            this.panel3.Controls.Add(this.cmb_IsActive);
+            this.panel3.Controls.Add(this.lbl_From);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(214, 59);
+            this.panel3.TabIndex = 45;
+            // 
+            // lbl_From
+            // 
+            this.lbl_From.AutoSize = true;
+            this.lbl_From.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_From.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_From.Location = new System.Drawing.Point(166, 0);
+            this.lbl_From.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_From.Name = "lbl_From";
+            this.lbl_From.Size = new System.Drawing.Size(48, 31);
+            this.lbl_From.TabIndex = 42;
+            this.lbl_From.Text = " من";
+            // 
+            // cmb_IsActive
+            // 
+            this.cmb_IsActive.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cmb_IsActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_IsActive.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cmb_IsActive.FormattingEnabled = true;
+            this.cmb_IsActive.Items.AddRange(new object[] {
+            "نشط",
+            "متوقف"});
+            this.cmb_IsActive.Location = new System.Drawing.Point(24, 0);
+            this.cmb_IsActive.Margin = new System.Windows.Forms.Padding(4);
+            this.cmb_IsActive.Name = "cmb_IsActive";
+            this.cmb_IsActive.Size = new System.Drawing.Size(142, 36);
+            this.cmb_IsActive.TabIndex = 44;
+            this.cmb_IsActive.SelectedIndexChanged += new System.EventHandler(this.cmb_IsActive_SelectedIndexChanged);
+            // 
+            // dtp_FormDate
+            // 
+            this.dtp_FormDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dtp_FormDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtp_FormDate.Location = new System.Drawing.Point(-139, 0);
+            this.dtp_FormDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dtp_FormDate.Name = "dtp_FormDate";
+            this.dtp_FormDate.Size = new System.Drawing.Size(163, 27);
+            this.dtp_FormDate.TabIndex = 43;
+            this.dtp_FormDate.ValueChanged += new System.EventHandler(this.dtp_FormDate_ValueChanged);
+            // 
+            // txt_Research
+            // 
+            this.txt_Research.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txt_Research.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Research.Location = new System.Drawing.Point(-442, 0);
+            this.txt_Research.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_Research.Name = "txt_Research";
+            this.txt_Research.Size = new System.Drawing.Size(303, 39);
+            this.txt_Research.TabIndex = 42;
+            this.txt_Research.TextChanged += new System.EventHandler(this.txt_Research_TextChanged);
+            this.txt_Research.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Research_KeyPress);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.dtp_ToDate);
+            this.panel7.Controls.Add(this.lbl_To);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 59);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(214, 65);
+            this.panel7.TabIndex = 46;
+            // 
+            // lbl_To
+            // 
+            this.lbl_To.AutoSize = true;
+            this.lbl_To.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_To.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_To.Location = new System.Drawing.Point(167, 0);
+            this.lbl_To.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_To.Name = "lbl_To";
+            this.lbl_To.Size = new System.Drawing.Size(47, 31);
+            this.lbl_To.TabIndex = 45;
+            this.lbl_To.Text = "إلى";
+            // 
+            // dtp_ToDate
+            // 
+            this.dtp_ToDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dtp_ToDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_ToDate.Location = new System.Drawing.Point(4, 0);
+            this.dtp_ToDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dtp_ToDate.Name = "dtp_ToDate";
+            this.dtp_ToDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dtp_ToDate.Size = new System.Drawing.Size(163, 27);
+            this.dtp_ToDate.TabIndex = 46;
+            this.dtp_ToDate.ValueChanged += new System.EventHandler(this.dtp_ToDate_ValueChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(1741, 18);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(214, 124);
+            this.panel4.TabIndex = 44;
             // 
             // UC_Student
             // 
@@ -642,8 +665,6 @@
             this.Load += new System.EventHandler(this.UC_Student_Load);
             this.pnl_SectionTotalStudent.ResumeLayout(false);
             this.pnl_SectionTotalStudent.PerformLayout();
-            this.pnl_SectionFilter.ResumeLayout(false);
-            this.pnl_SectionFilter.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -658,6 +679,12 @@
             this.pnl_SectionGreeting.ResumeLayout(false);
             this.pnl_SectionMainTitle.ResumeLayout(false);
             this.pnl_SectionMainTitle.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -667,15 +694,8 @@
         private System.Windows.Forms.Label lbl_TotalStudent;
         private System.Windows.Forms.Panel pnl_SectionTotalStudent;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmb_IsActive;
-        private System.Windows.Forms.TextBox txt_Research;
-        private System.Windows.Forms.Label lbl_To;
-        private System.Windows.Forms.Label lbl_From;
-        private System.Windows.Forms.DateTimePicker dtp_ToDate;
-        private System.Windows.Forms.DateTimePicker dtp_FormDate;
         private System.Windows.Forms.ComboBox cmb_AllFilter;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel pnl_SectionFilter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl_PageNumbering;
         private System.Windows.Forms.Panel pnl_SectionPageNumbering;
@@ -697,12 +717,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem UpdateStudentProgress_ToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolStripMenuItem ActivateStudentToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbl_StudentsOfDisplayed;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel pnl_SectionGreeting;
         private System.Windows.Forms.Label label5;
@@ -710,5 +728,15 @@
         private System.Windows.Forms.TableLayoutPanel pnl_SectionMainTitle;
         private System.Windows.Forms.Label lbl_SubTitle;
         private System.Windows.Forms.ToolStripMenuItem EditStudentProgress_ToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.DateTimePicker dtp_ToDate;
+        private System.Windows.Forms.Label lbl_To;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txt_Research;
+        private System.Windows.Forms.DateTimePicker dtp_FormDate;
+        private System.Windows.Forms.ComboBox cmb_IsActive;
+        private System.Windows.Forms.Label lbl_From;
     }
 }

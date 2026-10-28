@@ -555,6 +555,7 @@
             this.Controls.Add(this.pnl_Header);
             this.Controls.Add(this.pnl_Side);
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.RightToLeftLayout = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
