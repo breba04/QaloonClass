@@ -438,7 +438,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.47192F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.872761F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.96595F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 7, 0);
@@ -463,14 +463,14 @@
             this.tableLayoutPanel4.Controls.Add(this.lb_BottomTitleCard1, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.pb_Card1, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(1155, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1156, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(326, 141);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(325, 141);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // lb_TopTitleCard1
@@ -481,7 +481,7 @@
             this.lb_TopTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
             this.lb_TopTitleCard1.Location = new System.Drawing.Point(90, 11);
             this.lb_TopTitleCard1.Name = "lb_TopTitleCard1";
-            this.lb_TopTitleCard1.Size = new System.Drawing.Size(223, 39);
+            this.lb_TopTitleCard1.Size = new System.Drawing.Size(222, 39);
             this.lb_TopTitleCard1.TabIndex = 19;
             this.lb_TopTitleCard1.Text = "إجمالي الطلاب";
             // 
@@ -493,7 +493,7 @@
             this.lb_CenterTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.lb_CenterTitleCard1.Location = new System.Drawing.Point(90, 50);
             this.lb_CenterTitleCard1.Name = "lb_CenterTitleCard1";
-            this.lb_CenterTitleCard1.Size = new System.Drawing.Size(223, 39);
+            this.lb_CenterTitleCard1.Size = new System.Drawing.Size(222, 39);
             this.lb_CenterTitleCard1.TabIndex = 20;
             this.lb_CenterTitleCard1.Text = "0";
             this.lb_CenterTitleCard1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -503,7 +503,7 @@
             this.lb_BottomTitleCard1.AutoSize = true;
             this.lb_BottomTitleCard1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard1.Location = new System.Drawing.Point(224, 89);
+            this.lb_BottomTitleCard1.Location = new System.Drawing.Point(223, 89);
             this.lb_BottomTitleCard1.Name = "lb_BottomTitleCard1";
             this.lb_BottomTitleCard1.Size = new System.Drawing.Size(89, 23);
             this.lb_BottomTitleCard1.TabIndex = 21;
@@ -531,14 +531,14 @@
             this.tableLayoutPanel6.Controls.Add(this.lb_BottomTitleCard2, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.pb_Card2, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(797, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(799, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(326, 141);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(325, 141);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // lb_TopTitleCard2
@@ -549,7 +549,7 @@
             this.lb_TopTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
             this.lb_TopTitleCard2.Location = new System.Drawing.Point(90, 11);
             this.lb_TopTitleCard2.Name = "lb_TopTitleCard2";
-            this.lb_TopTitleCard2.Size = new System.Drawing.Size(223, 39);
+            this.lb_TopTitleCard2.Size = new System.Drawing.Size(222, 39);
             this.lb_TopTitleCard2.TabIndex = 19;
             this.lb_TopTitleCard2.Text = "أيام الحضور";
             // 
@@ -561,7 +561,7 @@
             this.lb_CenterTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.lb_CenterTitleCard2.Location = new System.Drawing.Point(90, 50);
             this.lb_CenterTitleCard2.Name = "lb_CenterTitleCard2";
-            this.lb_CenterTitleCard2.Size = new System.Drawing.Size(223, 39);
+            this.lb_CenterTitleCard2.Size = new System.Drawing.Size(222, 39);
             this.lb_CenterTitleCard2.TabIndex = 20;
             this.lb_CenterTitleCard2.Text = "0";
             this.lb_CenterTitleCard2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -571,7 +571,7 @@
             this.lb_BottomTitleCard2.AutoSize = true;
             this.lb_BottomTitleCard2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard2.Location = new System.Drawing.Point(152, 89);
+            this.lb_BottomTitleCard2.Location = new System.Drawing.Point(151, 89);
             this.lb_BottomTitleCard2.Name = "lb_BottomTitleCard2";
             this.lb_BottomTitleCard2.Size = new System.Drawing.Size(161, 23);
             this.lb_BottomTitleCard2.TabIndex = 21;
@@ -599,14 +599,14 @@
             this.tableLayoutPanel5.Controls.Add(this.pb_Card4, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.lb_BottomTitleCard4, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(74, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(78, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(333, 141);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(332, 141);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // lb_TopTitleCard4
@@ -615,7 +615,7 @@
             this.lb_TopTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_TopTitleCard4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lb_TopTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
-            this.lb_TopTitleCard4.Location = new System.Drawing.Point(92, 11);
+            this.lb_TopTitleCard4.Location = new System.Drawing.Point(91, 11);
             this.lb_TopTitleCard4.Name = "lb_TopTitleCard4";
             this.lb_TopTitleCard4.Size = new System.Drawing.Size(228, 39);
             this.lb_TopTitleCard4.TabIndex = 19;
@@ -627,7 +627,7 @@
             this.lb_CenterTitleCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_CenterTitleCard4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lb_CenterTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(92, 50);
+            this.lb_CenterTitleCard4.Location = new System.Drawing.Point(91, 50);
             this.lb_CenterTitleCard4.Name = "lb_CenterTitleCard4";
             this.lb_CenterTitleCard4.Size = new System.Drawing.Size(228, 39);
             this.lb_CenterTitleCard4.TabIndex = 20;
@@ -640,7 +640,7 @@
             this.pb_Card4.Image = global::UI.Properties.Resources.Warninng;
             this.pb_Card4.Location = new System.Drawing.Point(13, 53);
             this.pb_Card4.Name = "pb_Card4";
-            this.pb_Card4.Size = new System.Drawing.Size(73, 33);
+            this.pb_Card4.Size = new System.Drawing.Size(72, 33);
             this.pb_Card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pb_Card4.TabIndex = 22;
             this.pb_Card4.TabStop = false;
@@ -650,7 +650,7 @@
             this.lb_BottomTitleCard4.AutoSize = true;
             this.lb_BottomTitleCard4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(123, 89);
+            this.lb_BottomTitleCard4.Location = new System.Drawing.Point(122, 89);
             this.lb_BottomTitleCard4.Name = "lb_BottomTitleCard4";
             this.lb_BottomTitleCard4.Size = new System.Drawing.Size(197, 23);
             this.lb_BottomTitleCard4.TabIndex = 21;
@@ -667,14 +667,14 @@
             this.tableLayoutPanel7.Controls.Add(this.lb_BottomTitleCard3, 0, 2);
             this.tableLayoutPanel7.Controls.Add(this.pb_Card3, 1, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(439, 3);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(442, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tableLayoutPanel7.RowCount = 3;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(326, 141);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(325, 141);
             this.tableLayoutPanel7.TabIndex = 4;
             // 
             // lb_TopTitleCard3
@@ -685,7 +685,7 @@
             this.lb_TopTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(73)))), ((int)(((byte)(93)))));
             this.lb_TopTitleCard3.Location = new System.Drawing.Point(90, 11);
             this.lb_TopTitleCard3.Name = "lb_TopTitleCard3";
-            this.lb_TopTitleCard3.Size = new System.Drawing.Size(223, 35);
+            this.lb_TopTitleCard3.Size = new System.Drawing.Size(222, 35);
             this.lb_TopTitleCard3.TabIndex = 19;
             this.lb_TopTitleCard3.Text = "أيام الغياب";
             // 
@@ -697,7 +697,7 @@
             this.lb_CenterTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
             this.lb_CenterTitleCard3.Location = new System.Drawing.Point(90, 46);
             this.lb_CenterTitleCard3.Name = "lb_CenterTitleCard3";
-            this.lb_CenterTitleCard3.Size = new System.Drawing.Size(223, 49);
+            this.lb_CenterTitleCard3.Size = new System.Drawing.Size(222, 49);
             this.lb_CenterTitleCard3.TabIndex = 20;
             this.lb_CenterTitleCard3.Text = "0";
             this.lb_CenterTitleCard3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -707,7 +707,7 @@
             this.lb_BottomTitleCard3.AutoSize = true;
             this.lb_BottomTitleCard3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lb_BottomTitleCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lb_BottomTitleCard3.Location = new System.Drawing.Point(165, 95);
+            this.lb_BottomTitleCard3.Location = new System.Drawing.Point(164, 95);
             this.lb_BottomTitleCard3.Name = "lb_BottomTitleCard3";
             this.lb_BottomTitleCard3.Size = new System.Drawing.Size(148, 23);
             this.lb_BottomTitleCard3.TabIndex = 21;

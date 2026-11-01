@@ -9,7 +9,7 @@ namespace UI.GlobalClasses
 {
     public class clsImageManager
     {
-        public enum enImageFolder { Student = 1 ,Users = 2}
+        public enum enImageFolder { Student = 1 ,User = 2}
         static public string StudentsImageFolder { 
             get
             {

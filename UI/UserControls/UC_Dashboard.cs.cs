@@ -8,16 +8,27 @@ using System.Linq;
 using System.Windows.Forms;
 using UI.GlobalClasses;
 using EntityLayer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using UI.Users;
+using UI.Circles;
 
 namespace UI.UserControls
 {
     public partial class UC_Dashboard : UserControl
     {
+        enum enDashboardView
+        {
+            Circles,
+            Users
+        }
+        enDashboardView DashboardView;
+        private DataTable _dtUsers;
+        private DataTable _dtCircles;
         private DataTable _allData;
-        private byte _pageSize = 8;
+        private byte _pageSize = 7;
         private byte _currentPage = 1;
         private int _totalPages = 1;
-
+        private Button SelectedButton { get => btn_Users.BackColor == ColorTranslator.FromHtml(ColorNeutral) ? btn_Users : btn_Circles; }
         private readonly string ColorSuccess = "#002819";
         private readonly string ColorWarning = "#d35400";
         private readonly string ColorDanger = "#BA1A1A";
@@ -27,15 +38,45 @@ namespace UI.UserControls
         public UC_Dashboard()
         {
             InitializeComponent();
+            DashboardView = enDashboardView.Circles;
             clsAppEvents.StudentAdded += AppEvents_StudentAdded;
-
+            clsUsers.UserAddedOrUpdated += Event_UserAddedOrUpdated;
             // UserControl إلغاء الاشتراك تلقائياً عند تدمير الـ 
             // لمنع تسريب الذاكرة
 
             this.Disposed += (sender, e) =>
             {
                 clsAppEvents.StudentAdded -= AppEvents_StudentAdded;
+                clsUsers.UserAddedOrUpdated -= Event_UserAddedOrUpdated;
             };
+        }
+        private void _HandelCirclesAndUsersButtonsColor(Button button)
+        {
+            btn_Users.BackColor = ColorTranslator.FromHtml(ColorSuccess);
+            btn_Circles.BackColor = ColorTranslator.FromHtml(ColorSuccess);
+            
+            btn_Users.ForeColor = Color.White;
+            btn_Circles.ForeColor = Color.White;
+
+            button.BackColor = ColorTranslator.FromHtml(ColorNeutral);
+            button.ForeColor = Color.Black;
+        }
+        private void _HandelCirclesAndUsersDashboardView(Button button)
+        {
+            DashboardView = button == btn_Circles ? enDashboardView.Circles : enDashboardView.Users;
+            dgv_Listreports.ContextMenuStrip = DashboardView == enDashboardView.Circles ? cMinu_Circles : cMinu_Users;
+        }
+        private void _InitializeDashpord()
+        {
+            DashboardView = enDashboardView.Circles;
+            _HandelCirclesAndUsersButtonsColor(btn_Circles);
+            _HandelCirclesAndUsersDashboardView(btn_Circles);
+            lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
+        }
+        private void _LoadDataFromDB()
+        {
+            _dtCircles = clsCircles.SelectAllCircles();
+            _dtUsers = clsUsers.SelectAllTeachers();
         }
 
         [Description("Event handler triggered when a new student is added, forcing the dashboard to refresh.")]
@@ -45,13 +86,45 @@ namespace UI.UserControls
         }
 
         [Description("Calculates the total number of students accurately from the complete dataset using LINQ.")]
-        private int _GetTotalNumberStudent()
-        {
-            if (_allData == null || _allData.Rows.Count == 0) return 0;
+        //private int _GetTotalNumberStudent()
+        //{
+        //    if (_dtCircles == null || _dtCircles.Rows.Count == 0) return 0;
 
-            return _allData.AsEnumerable()
-                           .Where(row => row["Total Students"] != DBNull.Value)
-                           .Sum(row => Convert.ToInt32(row["Total Students"]));
+        //    return _dtCircles.AsEnumerable()
+        //                   .Where(row => row["CurrentStudentNumbers"] != DBNull.Value)
+        //                   .Sum(row => Convert.ToInt32(row["CurrentStudentNumbers"]));
+        //}
+        private int _GetTotalNumberTeachers()
+        {
+            if (_dtUsers == null || _dtUsers.Rows.Count == 0) return 0;
+
+            return _dtUsers.AsEnumerable().Count();
+        }
+        private int _GetTotalNumberSeats()
+        {
+            if (_dtCircles == null || _dtCircles.Rows.Count == 0) return 0;
+            try
+            {
+                return _dtCircles.AsEnumerable().Where(row => row["MaxCapacity"] != null).Sum(row => Convert.ToInt32( row["MaxCapacity"]));
+            }
+            catch(Exception)
+            {
+                return 0;
+            }
+        }
+        private int _GetAvailableNumberSeats()
+        {
+            if (_dtCircles == null || _dtCircles.Rows.Count == 0) return 0;
+            try
+            {
+                int AvailableSeats = _GetTotalNumberSeats() - _dtCircles.AsEnumerable().
+                    Where(row => row["CurrentStudentNumbers"] != null).Sum(row => Convert.ToInt32(row["CurrentStudentNumbers"]));
+                return AvailableSeats;
+            }
+            catch(Exception)
+            {
+                return 0;
+            }
         }
 
         [Description("Loads main dashboard text elements, user welcome message, and general statistical counters.")]
@@ -59,7 +132,7 @@ namespace UI.UserControls
         {
             lbl_Welcome.Text = $"السلام عليكم، يا شيخ {clsCurrentUser.CurrentUser.FirstName}";
             lbl_TotalCircles.Text = _allData?.Rows.Count.ToString() ?? "0";
-            lbl_TotalStudents.Text = _GetTotalNumberStudent().ToString();
+            lbl_TotalTeachers.Text = _GetTotalNumberTeachers().ToString()?? "0";
         }
 
         [Description("Calculates total pages based on record count and updates the pagination numbering label.")]
@@ -115,9 +188,22 @@ namespace UI.UserControls
 
             if (dgv_Listreports.Columns.Contains("CircleID"))
             {
-                clsUtil.ConfigureColumn(dgv_Listreports.Columns["CircleID"], "معرف الحلقة", 200);
-                clsUtil.ConfigureColumn(dgv_Listreports.Columns["CircleName"], "اسم الحلقة", 500);
-                clsUtil.ConfigureColumn(dgv_Listreports.Columns["Total Students"], "إجمالي الطلاب", 200);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["CircleID"], "معرف الحلقة", 70);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["CircleName"], "اسم الحلقة", 100);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["Timeing"], "التوقيت", 100);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["TeacherName"], "المعلم", 100);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["CurrentStudentNumbers"], "عدد الطلبة الحاليين", 100);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["MaxCapacity"], "عدد المقاعد", 100);
+
+                dgv_Listreports.Columns["TeacherID"].Visible = false;
+
+            }
+            else if (dgv_Listreports.Columns.Contains("UserID"))
+            {
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["UserID"], "معرف المعلم", 70);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["UserName"], "اسم المستخدم", 100);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["TeacherName"], "الاسم الكامل", 200);
+                clsUtil.ConfigureColumn(dgv_Listreports.Columns["UserRoleName"], "الوظيفة", 100);
             }
         }
 
@@ -145,15 +231,13 @@ namespace UI.UserControls
             ptb_TotalCircles_TrendingIcon.Image = icon;
         }
 
-
-
         [Description("Applies the visual style, colors, messages, and icons directly to the absence alert UI elements.")]
         private void _UpdateAbsenceStatusUI(string message, string color, Bitmap icon)
         {
-            lbl_TotalAbsence.ForeColor = ColorTranslator.FromHtml(color);
-            lbl_AbsenceAlerts.ForeColor = ColorTranslator.FromHtml(color);
-            lbl_Status.ForeColor = ColorTranslator.FromHtml(color);
-            lbl_Status.Text = message;
+            lbl_AvailableSeats.ForeColor = ColorTranslator.FromHtml(color);
+            lb_Card4Title.ForeColor = ColorTranslator.FromHtml(color);
+            lbl_TotalNumberOfSeats.ForeColor = ColorTranslator.FromHtml(color);
+            lbl_TotalNumberOfSeats.Text = message;
             ptb_StatusIcon.Image = icon;
             pnl_AbsenceAlerts.BackColor = Color.FromArgb(50, ColorTranslator.FromHtml(color));
         }
@@ -163,7 +247,7 @@ namespace UI.UserControls
         private void _ApplyAbsenceStatusStyle(int absenceCount)
         {
             int safeAbsenceCount = Math.Max(0, absenceCount);
-            lbl_TotalAbsence.Text = safeAbsenceCount.ToString();
+            lbl_AvailableSeats.Text = safeAbsenceCount.ToString();
 
 
 
@@ -180,11 +264,23 @@ namespace UI.UserControls
                 _UpdateAbsenceStatusUI("يتطلب تدخل المشرف فوراً", ColorDanger, Properties.Resources.ic_alert_urgent);
             }
         }
+        private void _ApplyAvailableSeatsStyle(int TotalSeatsCount,int AvailableSeatsCount)
+        {
+            if (TotalSeatsCount >= AvailableSeatsCount)
+            {
+                _UpdateAbsenceStatusUI("الوضع مستقر حالياً", ColorSuccess, Properties.Resources.ic_info);
+            }
+            else 
+            {
+                _UpdateAbsenceStatusUI("يتطلب تدخل المشرف فوراً", ColorDanger, Properties.Resources.ic_alert_urgent);
+            }
+        }
 
         [Description("Handles the user control load event to trigger the initial dashboard refresh.")]
         private void UC_Dashboard_Load(object sender, EventArgs e)
         {
-            lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
+            _InitializeDashpord();
+            _LoadDataFromDB();
             RefreshDashboard();
         }
 
@@ -211,13 +307,63 @@ namespace UI.UserControls
         [Description("The main core method responsible for fetching data, updating statistics, and refreshing the entire dashboard UI.")]
         public void RefreshDashboard()
         {
-            _allData = clsCircles.GetAllCircleView(_currentPage, _pageSize);
+            _allData = DashboardView == enDashboardView.Circles ? _dtCircles
+                : _dtUsers;
 
             _ApplyStudentsStyle(clsStudents.GetNewStudentsStatusLastMonth());
-            _ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
+            //_ApplyAbsenceStatusStyle(clsStudents.GetTotalStudentAbsentLastMonth());
+
+            //lbl_TotalNumberOfSeats.Text = $"من :{_GetTotalNumberSeats()}";
+
+            int AvailableSeatsCount = _GetAvailableNumberSeats();
+            lbl_AvailableSeats.Text = AvailableSeatsCount.ToString();
+            _ApplyAvailableSeatsStyle(_GetTotalNumberSeats(),AvailableSeatsCount);
             _ApplyCirclesStyle(clsCircles.GetNewCirclesStatsLastMonth());
+
+
             _LoadPage();
             _LoadMainData();
+
+        }
+        private void btn_Circles_Click(object sender, EventArgs e)
+        {
+            _HandelCirclesAndUsersButtonsColor(sender as Button);
+            _HandelCirclesAndUsersDashboardView(sender as Button);
+            RefreshDashboard();
+        }
+        private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddAndUpdateUser frm = new frmAddAndUpdateUser();
+            frm.ShowDialog();
+            RefreshDashboard();
+        }
+        private void UpdateUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(dgv_Listreports.CurrentRow.Cells["UserID"].Value.ToString(), out int selectedUserID))
+            {
+                frmAddAndUpdateUser frm = new frmAddAndUpdateUser(selectedUserID);
+                frm.ShowDialog();
+                RefreshDashboard();
+            }
+        }
+        private void dgv_Listreports_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgv_Listreports.ClearSelection();
+                dgv_Listreports.Rows[e.RowIndex].Selected = true;
+                dgv_Listreports.CurrentCell = dgv_Listreports.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
+        }
+        private void Event_UserAddedOrUpdated()
+        {
+            _LoadDataFromDB();
+            RefreshDashboard();
+        }
+        private void AddCircleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateCircle frm = new frmAddUpdateCircle();
+            frm.ShowDialog();
         }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Dashboard));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_SectionStats = new System.Windows.Forms.Panel();
             this.pnl_TotalCircles = new System.Windows.Forms.Panel();
@@ -38,13 +40,13 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pnl_AbsenceAlerts = new System.Windows.Forms.Panel();
             this.ptb_StatusIcon = new System.Windows.Forms.PictureBox();
-            this.lbl_Status = new System.Windows.Forms.Label();
-            this.lbl_TotalAbsence = new System.Windows.Forms.Label();
-            this.lbl_AbsenceAlerts = new System.Windows.Forms.Label();
+            this.lbl_TotalNumberOfSeats = new System.Windows.Forms.Label();
+            this.lbl_AvailableSeats = new System.Windows.Forms.Label();
+            this.lb_Card4Title = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_TotalStudents = new System.Windows.Forms.Panel();
             this.ptb_TotalStudents_TrendingIcon = new System.Windows.Forms.PictureBox();
-            this.lbl_TotalStudents = new System.Windows.Forms.Label();
+            this.lbl_TotalTeachers = new System.Windows.Forms.Label();
             this.lbl_NumberOfStudentLastMonth = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -55,6 +57,11 @@
             this.lbl_SubTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnl_SectionSubTitale = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btn_Circles = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btn_Users = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,13 +69,27 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.pnl_SectionListreports = new System.Windows.Forms.Panel();
+            this.dgv_Listreports = new System.Windows.Forms.DataGridView();
             this.pnl_SectionBottomBar = new System.Windows.Forms.Panel();
             this.pnl_SectionPageNumbering = new System.Windows.Forms.Panel();
             this.lbl_PageNumbering = new System.Windows.Forms.Label();
             this.pnl_SectionButton = new System.Windows.Forms.Panel();
             this.btn_Previous = new System.Windows.Forms.Button();
             this.btn_Next = new System.Windows.Forms.Button();
-            this.dgv_Listreports = new System.Windows.Forms.DataGridView();
+            this.cMinu_Circles = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.UpdateCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.cMinu_Users = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.UserDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UpdateUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ActiveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnActiveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.pnl_SectionStats.SuspendLayout();
             this.pnl_TotalCircles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_TotalCircles_TrendingIcon)).BeginInit();
@@ -83,12 +104,16 @@
             this.pnl_SectionGreeting.SuspendLayout();
             this.pnl_SectionMainTitle.SuspendLayout();
             this.pnl_SectionSubTitale.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnl_SectionListreports.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).BeginInit();
             this.pnl_SectionBottomBar.SuspendLayout();
             this.pnl_SectionPageNumbering.SuspendLayout();
             this.pnl_SectionButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).BeginInit();
+            this.cMinu_Circles.SuspendLayout();
+            this.cMinu_Users.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_SectionStats
@@ -189,9 +214,9 @@
             // 
             this.pnl_AbsenceAlerts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
             this.pnl_AbsenceAlerts.Controls.Add(this.ptb_StatusIcon);
-            this.pnl_AbsenceAlerts.Controls.Add(this.lbl_Status);
-            this.pnl_AbsenceAlerts.Controls.Add(this.lbl_TotalAbsence);
-            this.pnl_AbsenceAlerts.Controls.Add(this.lbl_AbsenceAlerts);
+            this.pnl_AbsenceAlerts.Controls.Add(this.lbl_TotalNumberOfSeats);
+            this.pnl_AbsenceAlerts.Controls.Add(this.lbl_AvailableSeats);
+            this.pnl_AbsenceAlerts.Controls.Add(this.lb_Card4Title);
             this.pnl_AbsenceAlerts.Controls.Add(this.pictureBox1);
             this.pnl_AbsenceAlerts.Location = new System.Drawing.Point(96, 30);
             this.pnl_AbsenceAlerts.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -211,52 +236,52 @@
             this.ptb_StatusIcon.TabIndex = 40;
             this.ptb_StatusIcon.TabStop = false;
             // 
-            // lbl_Status
+            // lbl_TotalNumberOfSeats
             // 
-            this.lbl_Status.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_Status.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_Status.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbl_Status.Location = new System.Drawing.Point(4, 114);
-            this.lbl_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_Status.Size = new System.Drawing.Size(241, 31);
-            this.lbl_Status.TabIndex = 39;
-            this.lbl_Status.Text = "تتطلب تدخل المشرف فوراً";
-            this.lbl_Status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_TotalNumberOfSeats.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_TotalNumberOfSeats.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_TotalNumberOfSeats.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalNumberOfSeats.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lbl_TotalNumberOfSeats.Location = new System.Drawing.Point(4, 114);
+            this.lbl_TotalNumberOfSeats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_TotalNumberOfSeats.Name = "lbl_TotalNumberOfSeats";
+            this.lbl_TotalNumberOfSeats.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_TotalNumberOfSeats.Size = new System.Drawing.Size(241, 31);
+            this.lbl_TotalNumberOfSeats.TabIndex = 39;
+            this.lbl_TotalNumberOfSeats.Text = "تتطلب تدخل المشرف فوراً";
+            this.lbl_TotalNumberOfSeats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lbl_TotalAbsence
+            // lbl_AvailableSeats
             // 
-            this.lbl_TotalAbsence.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbl_TotalAbsence.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_TotalAbsence.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_TotalAbsence.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TotalAbsence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbl_TotalAbsence.Location = new System.Drawing.Point(102, 60);
-            this.lbl_TotalAbsence.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_TotalAbsence.Name = "lbl_TotalAbsence";
-            this.lbl_TotalAbsence.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_TotalAbsence.Size = new System.Drawing.Size(178, 39);
-            this.lbl_TotalAbsence.TabIndex = 33;
-            this.lbl_TotalAbsence.Tag = "TotalCircles";
-            this.lbl_TotalAbsence.Text = "41";
-            this.lbl_TotalAbsence.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_AvailableSeats.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_AvailableSeats.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_AvailableSeats.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_AvailableSeats.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AvailableSeats.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lbl_AvailableSeats.Location = new System.Drawing.Point(102, 60);
+            this.lbl_AvailableSeats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_AvailableSeats.Name = "lbl_AvailableSeats";
+            this.lbl_AvailableSeats.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_AvailableSeats.Size = new System.Drawing.Size(178, 39);
+            this.lbl_AvailableSeats.TabIndex = 33;
+            this.lbl_AvailableSeats.Tag = "TotalCircles";
+            this.lbl_AvailableSeats.Text = "41";
+            this.lbl_AvailableSeats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl_AbsenceAlerts
+            // lb_Card4Title
             // 
-            this.lbl_AbsenceAlerts.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_AbsenceAlerts.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_AbsenceAlerts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_AbsenceAlerts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.lbl_AbsenceAlerts.Location = new System.Drawing.Point(103, 14);
-            this.lbl_AbsenceAlerts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_AbsenceAlerts.Name = "lbl_AbsenceAlerts";
-            this.lbl_AbsenceAlerts.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_AbsenceAlerts.Size = new System.Drawing.Size(178, 31);
-            this.lbl_AbsenceAlerts.TabIndex = 32;
-            this.lbl_AbsenceAlerts.Text = "تنبيهات الغياب";
-            this.lbl_AbsenceAlerts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Card4Title.BackColor = System.Drawing.Color.Transparent;
+            this.lb_Card4Title.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lb_Card4Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Card4Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.lb_Card4Title.Location = new System.Drawing.Point(103, 14);
+            this.lb_Card4Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_Card4Title.Name = "lb_Card4Title";
+            this.lb_Card4Title.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lb_Card4Title.Size = new System.Drawing.Size(178, 31);
+            this.lb_Card4Title.TabIndex = 32;
+            this.lb_Card4Title.Text = "عدد المقاعد المتاحة";
+            this.lb_Card4Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -275,7 +300,7 @@
             this.pnl_TotalStudents.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnl_TotalStudents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(204)))));
             this.pnl_TotalStudents.Controls.Add(this.ptb_TotalStudents_TrendingIcon);
-            this.pnl_TotalStudents.Controls.Add(this.lbl_TotalStudents);
+            this.pnl_TotalStudents.Controls.Add(this.lbl_TotalTeachers);
             this.pnl_TotalStudents.Controls.Add(this.lbl_NumberOfStudentLastMonth);
             this.pnl_TotalStudents.Controls.Add(this.label8);
             this.pnl_TotalStudents.Controls.Add(this.pictureBox2);
@@ -296,20 +321,20 @@
             this.ptb_TotalStudents_TrendingIcon.TabIndex = 42;
             this.ptb_TotalStudents_TrendingIcon.TabStop = false;
             // 
-            // lbl_TotalStudents
+            // lbl_TotalTeachers
             // 
-            this.lbl_TotalStudents.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbl_TotalStudents.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lbl_TotalStudents.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TotalStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
-            this.lbl_TotalStudents.Location = new System.Drawing.Point(102, 60);
-            this.lbl_TotalStudents.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_TotalStudents.Name = "lbl_TotalStudents";
-            this.lbl_TotalStudents.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbl_TotalStudents.Size = new System.Drawing.Size(178, 39);
-            this.lbl_TotalStudents.TabIndex = 33;
-            this.lbl_TotalStudents.Text = "955454";
-            this.lbl_TotalStudents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_TotalTeachers.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_TotalTeachers.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lbl_TotalTeachers.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalTeachers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.lbl_TotalTeachers.Location = new System.Drawing.Point(102, 60);
+            this.lbl_TotalTeachers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_TotalTeachers.Name = "lbl_TotalTeachers";
+            this.lbl_TotalTeachers.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_TotalTeachers.Size = new System.Drawing.Size(178, 39);
+            this.lbl_TotalTeachers.TabIndex = 33;
+            this.lbl_TotalTeachers.Text = "955454";
+            this.lbl_TotalTeachers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_NumberOfStudentLastMonth
             // 
@@ -338,7 +363,7 @@
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label8.Size = new System.Drawing.Size(178, 31);
             this.label8.TabIndex = 32;
-            this.label8.Text = "إجمالي الطلاب";
+            this.label8.Text = "إجمالي المعلمين";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox2
@@ -432,6 +457,7 @@
             // pnl_SectionSubTitale
             // 
             this.pnl_SectionSubTitale.BackColor = System.Drawing.Color.Beige;
+            this.pnl_SectionSubTitale.Controls.Add(this.tableLayoutPanel2);
             this.pnl_SectionSubTitale.Controls.Add(this.tableLayoutPanel1);
             this.pnl_SectionSubTitale.Controls.Add(this.panel2);
             this.pnl_SectionSubTitale.Dock = System.Windows.Forms.DockStyle.Top;
@@ -440,6 +466,87 @@
             this.pnl_SectionSubTitale.Name = "pnl_SectionSubTitale";
             this.pnl_SectionSubTitale.Size = new System.Drawing.Size(1572, 126);
             this.pnl_SectionSubTitale.TabIndex = 37;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.21908F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.78092F));
+            this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(337, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.83505F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.16495F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(566, 126);
+            this.tableLayoutPanel2.TabIndex = 37;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.panel3.Controls.Add(this.btn_Circles);
+            this.panel3.Controls.Add(this.btn_Users);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(208, 30);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(5);
+            this.panel3.Size = new System.Drawing.Size(355, 64);
+            this.panel3.TabIndex = 0;
+            // 
+            // btn_Circles
+            // 
+            this.btn_Circles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(25)))));
+            this.btn_Circles.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Circles.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Circles.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Circles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Circles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Circles.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Circles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(202)))));
+            this.btn_Circles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Circles.ImageKey = "MemorizationCircle.png";
+            this.btn_Circles.ImageList = this.imageList1;
+            this.btn_Circles.Location = new System.Drawing.Point(186, 5);
+            this.btn_Circles.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btn_Circles.Name = "btn_Circles";
+            this.btn_Circles.Size = new System.Drawing.Size(164, 54);
+            this.btn_Circles.TabIndex = 4;
+            this.btn_Circles.Text = "الحلقات";
+            this.btn_Circles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_Circles.UseVisualStyleBackColor = false;
+            this.btn_Circles.Click += new System.EventHandler(this.btn_Circles_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Icon_LastName.png");
+            this.imageList1.Images.SetKeyName(1, "MemorizationCircle.png");
+            // 
+            // btn_Users
+            // 
+            this.btn_Users.BackColor = System.Drawing.Color.Gray;
+            this.btn_Users.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_Users.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Users.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Users.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(63)))));
+            this.btn_Users.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Users.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Users.ForeColor = System.Drawing.Color.Black;
+            this.btn_Users.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Users.ImageIndex = 0;
+            this.btn_Users.ImageList = this.imageList1;
+            this.btn_Users.Location = new System.Drawing.Point(5, 5);
+            this.btn_Users.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btn_Users.Name = "btn_Users";
+            this.btn_Users.Size = new System.Drawing.Size(164, 54);
+            this.btn_Users.TabIndex = 3;
+            this.btn_Users.Text = "المستخدمون";
+            this.btn_Users.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_Users.UseVisualStyleBackColor = false;
+            this.btn_Users.Click += new System.EventHandler(this.btn_Circles_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -505,6 +612,32 @@
             this.pnl_SectionListreports.Name = "pnl_SectionListreports";
             this.pnl_SectionListreports.Size = new System.Drawing.Size(1572, 814);
             this.pnl_SectionListreports.TabIndex = 38;
+            // 
+            // dgv_Listreports
+            // 
+            this.dgv_Listreports.AllowUserToAddRows = false;
+            this.dgv_Listreports.AllowUserToDeleteRows = false;
+            this.dgv_Listreports.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_Listreports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Listreports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Listreports.Location = new System.Drawing.Point(0, 0);
+            this.dgv_Listreports.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.dgv_Listreports.Name = "dgv_Listreports";
+            this.dgv_Listreports.ReadOnly = true;
+            this.dgv_Listreports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dgv_Listreports.RowHeadersWidth = 51;
+            this.dgv_Listreports.RowTemplate.Height = 26;
+            this.dgv_Listreports.Size = new System.Drawing.Size(1572, 738);
+            this.dgv_Listreports.TabIndex = 38;
+            this.dgv_Listreports.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_Listreports_CellMouseClick);
             // 
             // pnl_SectionBottomBar
             // 
@@ -593,30 +726,103 @@
             this.btn_Next.UseVisualStyleBackColor = false;
             this.btn_Next.Click += new System.EventHandler(this.btn_Next_Click);
             // 
-            // dgv_Listreports
+            // cMinu_Circles
             // 
-            this.dgv_Listreports.AllowUserToAddRows = false;
-            this.dgv_Listreports.AllowUserToDeleteRows = false;
-            this.dgv_Listreports.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Listreports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_Listreports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Listreports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Listreports.Location = new System.Drawing.Point(0, 0);
-            this.dgv_Listreports.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.dgv_Listreports.Name = "dgv_Listreports";
-            this.dgv_Listreports.ReadOnly = true;
-            this.dgv_Listreports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dgv_Listreports.RowHeadersWidth = 51;
-            this.dgv_Listreports.RowTemplate.Height = 26;
-            this.dgv_Listreports.Size = new System.Drawing.Size(1572, 738);
-            this.dgv_Listreports.TabIndex = 38;
+            this.cMinu_Circles.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cMinu_Circles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.UpdateCircleToolStripMenuItem,
+            this.AddCircleToolStripMenuItem,
+            this.toolStripMenuItem3});
+            this.cMinu_Circles.Name = "contextMenuStrip1";
+            this.cMinu_Circles.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cMinu_Circles.Size = new System.Drawing.Size(211, 92);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            // 
+            // UpdateCircleToolStripMenuItem
+            // 
+            this.UpdateCircleToolStripMenuItem.Name = "UpdateCircleToolStripMenuItem";
+            this.UpdateCircleToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.UpdateCircleToolStripMenuItem.Text = "تعديل الحلقة";
+            // 
+            // AddCircleToolStripMenuItem
+            // 
+            this.AddCircleToolStripMenuItem.Name = "AddCircleToolStripMenuItem";
+            this.AddCircleToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.AddCircleToolStripMenuItem.Text = "إضافة حلقة";
+            this.AddCircleToolStripMenuItem.Click += new System.EventHandler(this.AddCircleToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(207, 6);
+            // 
+            // cMinu_Users
+            // 
+            this.cMinu_Users.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cMinu_Users.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserDetailsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.AddUserToolStripMenuItem,
+            this.UpdateUserToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.ActiveUserToolStripMenuItem,
+            this.UnActiveUserToolStripMenuItem,
+            this.toolStripSeparator3});
+            this.cMinu_Users.Name = "contextMenuStrip1";
+            this.cMinu_Users.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cMinu_Users.Size = new System.Drawing.Size(192, 142);
+            // 
+            // UserDetailsToolStripMenuItem
+            // 
+            this.UserDetailsToolStripMenuItem.Name = "UserDetailsToolStripMenuItem";
+            this.UserDetailsToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.UserDetailsToolStripMenuItem.Text = "تفاصيل المستخدم";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
+            // 
+            // AddUserToolStripMenuItem
+            // 
+            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.AddUserToolStripMenuItem.Text = "إضافة مستخدم";
+            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
+            // 
+            // UpdateUserToolStripMenuItem
+            // 
+            this.UpdateUserToolStripMenuItem.Name = "UpdateUserToolStripMenuItem";
+            this.UpdateUserToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.UpdateUserToolStripMenuItem.Text = "تعديل المستخدم";
+            this.UpdateUserToolStripMenuItem.Click += new System.EventHandler(this.UpdateUserToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
+            // 
+            // ActiveUserToolStripMenuItem
+            // 
+            this.ActiveUserToolStripMenuItem.Name = "ActiveUserToolStripMenuItem";
+            this.ActiveUserToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.ActiveUserToolStripMenuItem.Text = "تفعيل المستخدم";
+            // 
+            // UnActiveUserToolStripMenuItem
+            // 
+            this.UnActiveUserToolStripMenuItem.Name = "UnActiveUserToolStripMenuItem";
+            this.UnActiveUserToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.UnActiveUserToolStripMenuItem.Text = "الغاء تفعيل";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(188, 6);
             // 
             // UC_Dashboard
             // 
@@ -645,14 +851,18 @@
             this.pnl_SectionMainTitle.ResumeLayout(false);
             this.pnl_SectionMainTitle.PerformLayout();
             this.pnl_SectionSubTitale.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.pnl_SectionListreports.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).EndInit();
             this.pnl_SectionBottomBar.ResumeLayout(false);
             this.pnl_SectionPageNumbering.ResumeLayout(false);
             this.pnl_SectionPageNumbering.PerformLayout();
             this.pnl_SectionButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Listreports)).EndInit();
+            this.cMinu_Circles.ResumeLayout(false);
+            this.cMinu_Users.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -667,14 +877,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnl_TotalStudents;
-        private System.Windows.Forms.Label lbl_TotalStudents;
+        private System.Windows.Forms.Label lbl_TotalTeachers;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel pnl_AbsenceAlerts;
         private System.Windows.Forms.PictureBox ptb_StatusIcon;
-        private System.Windows.Forms.Label lbl_Status;
-        private System.Windows.Forms.Label lbl_TotalAbsence;
-        private System.Windows.Forms.Label lbl_AbsenceAlerts;
+        private System.Windows.Forms.Label lbl_TotalNumberOfSeats;
+        private System.Windows.Forms.Label lbl_AvailableSeats;
+        private System.Windows.Forms.Label lb_Card4Title;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel pnl_TotalCircles;
         private System.Windows.Forms.Label lbl_TotalCircles;
@@ -698,5 +908,24 @@
         private System.Windows.Forms.TableLayoutPanel pnl_SectionMainTitle;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btn_Users;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btn_Circles;
+        private System.Windows.Forms.ContextMenuStrip cMinu_Circles;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem UpdateCircleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddCircleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ContextMenuStrip cMinu_Users;
+        private System.Windows.Forms.ToolStripMenuItem UserDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem UpdateUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem ActiveUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem UnActiveUserToolStripMenuItem;
     }
 }
