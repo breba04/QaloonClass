@@ -72,7 +72,7 @@ namespace UI.Evaluations
         }
         private void _LoadCirclesData()
         {
-            _dtCircles = clsCircles.SelectAllCircles();
+            _dtCircles = clsCircles.SelectAllCirclesMiniData();
         }
         private void _LoadStudentData()
         {
