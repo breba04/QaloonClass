@@ -524,7 +524,6 @@
             this.txt_Address.Size = new System.Drawing.Size(262, 42);
             this.txt_Address.TabIndex = 8;
             this.txt_Address.Tag = "العنوان";
-            this.txt_Address.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label14
             // 

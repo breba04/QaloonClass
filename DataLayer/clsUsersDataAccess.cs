@@ -244,7 +244,7 @@ namespace DataAccessLayer
                     IsLogin = true;
 
                     user.UserID = Convert.ToInt32(cmd.Parameters["@UserID"].Value);
-                    user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
+                    user.UserRole = (clsEntityUser.enUserRole) Convert.ToByte(cmd.Parameters["@UserRole"].Value);
 
                     user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                     user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
@@ -304,8 +304,8 @@ namespace DataAccessLayer
 
                     user.UserName = cmd.Parameters["@UserName"].Value.ToString();
                     user.Password = cmd.Parameters["@Password"].Value.ToString();
-                    user.UserRole = Convert.ToInt32(cmd.Parameters["@UserRole"].Value);
-                    user.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
+                    user.UserRole = (clsEntityUser.enUserRole)Convert.ToByte(cmd.Parameters["@UserRole"].Value);
+                    //user.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
                     user.PersonInfo.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                     user.PersonInfo.SecodName = cmd.Parameters["@SecondName"].Value.ToString();
@@ -317,7 +317,7 @@ namespace DataAccessLayer
                     if (cmd.Parameters["@ThirdName"].Value != DBNull.Value)
                         user.PersonInfo.ThirdName = cmd.Parameters["@ThirdName"].Value.ToString();
                     if (cmd.Parameters["@Address"].Value != DBNull.Value)
-                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();;
+                        user.PersonInfo.Address = cmd.Parameters["@Address"].Value.ToString();
                     if (cmd.Parameters["@ImagePath"].Value != DBNull.Value)
                         user.PersonInfo.ImagePath = cmd.Parameters["@ImagePath"].Value.ToString();
                 }
@@ -325,6 +325,24 @@ namespace DataAccessLayer
 
             return IsFound;
         }
+        static public bool ReferralUsertToCircle(int UserID, int CircleID)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP__ReferralUsertToCircle", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CircleID", CircleID);
+                    cmd.Parameters.AddWithValue("@TeacherID", UserID);
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result > 0;
+        }
+
     }
-    }
+}
 

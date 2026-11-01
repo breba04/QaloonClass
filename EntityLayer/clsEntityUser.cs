@@ -22,16 +22,12 @@ namespace EntityLayer
         public string FullName { get => PersonInfo.FullName;  } 
         public string Address { get  => PersonInfo.Address; set => PersonInfo.Address = value; } 
         public bool IsActive { get   => PersonInfo.IsActive; set => PersonInfo.IsActive = value; } 
-        public int UserRole { get; set; } = -1;
-        public int CircleID { get; set; } = -1;
-        public clsEntityCircle CircleInfo { get; set; } = new clsEntityCircle();
-        public bool HasCircle { get   => CircleInfo !=null && CircleID != -1; } 
-        public string CircleName { get => CircleInfo.CircleName;}
-        public byte CircleMaxCapacity { get => CircleInfo.MaxCapacity; }
-        public byte CurrentStudentNumbersInCircle { get => CircleInfo.CurrentStudentNumbers; }
-        public bool CannAddedToCircle { get => CircleInfo.CannAdded; }
+        public enUserRole UserRole { get; set; } = enUserRole.Teacher;
+        public List<clsEntityCircle> CircleInfo { get; set; } = new List<clsEntityCircle>();
+        public bool HasCircle { get => CircleInfo != null && CircleInfo.Count > 0; } 
+        public string CirclesName { get => string.Join(",", CircleInfo.Select(e => e.CircleName)); }
         public enUserRole UserRoleText { get => (enUserRole)UserRole; }
-        public bool IsAdmin { get => UserRole == (byte)enUserRole.Admin; }
+        public bool IsAdmin { get => UserRole == enUserRole.Admin; }
         
     }
 }

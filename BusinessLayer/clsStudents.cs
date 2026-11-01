@@ -218,7 +218,7 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllStudents(int CircleID)
         {
-            if(clsCurrentUser.CurrentUser.UserRole == (int) clsEntityUser.enUserRole.Admin 
+            if(clsCurrentUser.CurrentUser.UserRole == clsEntityUser.enUserRole.Admin 
                 ||clsCircles.GetSupervisorByCircleID(CircleID) == clsCurrentUser.CurrentUser.UserID)
                 return clsStudentsDataAccess.SelectAllStudents(CircleID);
 
@@ -226,7 +226,7 @@ namespace BusinessLayer
         }
         static public DataTable SelectAllStudentsMiniData(int CircleID)
         {
-            if(clsCurrentUser.CurrentUser.UserRole == (int) clsEntityUser.enUserRole.Admin 
+            if(clsCurrentUser.CurrentUser.UserRole ==  clsEntityUser.enUserRole.Admin 
                 ||clsCircles.GetSupervisorByCircleID(CircleID) == clsCurrentUser.CurrentUser.UserID)
                 return clsStudentsDataAccess.SelectAllStudentsMiniData(CircleID);
 

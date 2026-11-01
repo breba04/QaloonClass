@@ -11,13 +11,23 @@ using System.Threading.Tasks;
 using DataAccessLayer;
 using EntityLayer;
 using System.Data.SqlClient;
+using static EntityLayer.clsEntityUser;
 namespace BusinessLayer
 {
     public class clsUsers
     {
-        
-        enum enMode { Add, Update }
+        static public event Action UserAddedOrUpdated;
+        private void OnUserAddedOrUpdated()
+        {
+            UserAddedOrUpdated?.Invoke();
+        }
+        public enum enMode { Add, Update }
         enMode _Mode;
+        static public readonly List<KeyValuePair<string, clsEntityUser.enUserRole >>_UsersRole = new List<KeyValuePair<string, clsEntityUser.enUserRole>>()
+        {
+            new KeyValuePair<string, clsEntityUser.enUserRole>(  "مدير" ,clsEntityUser.enUserRole.Admin),
+            new KeyValuePair<string, clsEntityUser.enUserRole>(  "معلم",clsEntityUser.enUserRole.Teacher )
+        };
         public clsEntityUser UserData ;
         public int UserID { get => UserData.UserID; } 
         public string UserName { get => UserData.UserName; set => UserData.UserName = value; }
@@ -32,16 +42,11 @@ namespace BusinessLayer
         public string FullName { get => PersonInfo.FullName; }
         public string Address { get => PersonInfo.Address; set => PersonInfo.Address = value;     }
         public bool IsActive { get => PersonInfo.IsActive; set => PersonInfo.IsActive = value; }
-        public int UserRole { get => UserData.UserRole; set => UserData.UserRole = value; }
-        public int CircleID { get => UserData.CircleID; set => UserData.CircleID = value; }
+        public enUserRole UserRole { get => UserData.UserRole; set => UserData.UserRole = value; }
         public string ImagePath { get => UserData.PersonInfo.ImagePath; set => UserData.PersonInfo.ImagePath = value; }
-
-        public clsEntityCircle CircleInfo { get => UserData.CircleInfo; set => UserData.CircleInfo = value; }
+        public List<clsEntityCircle> CircleInfo { get => UserData.CircleInfo; set => UserData.CircleInfo = value; }
         public bool HasCircle { get => UserData.HasCircle; }
-        public string CircleName { get => UserData.CircleName; }
-        public byte MaxCapacity { get => UserData.CircleMaxCapacity; }
-        public byte CurrentStudentNumbersInCircle { get => UserData.CurrentStudentNumbersInCircle; }
-        public bool CannAddedToCircle { get => UserData.CannAddedToCircle; }
+        public string CirclesName { get => UserData.CirclesName; }
         public clsUsers()
         {
             this.UserData = new clsEntityUser();
@@ -50,13 +55,18 @@ namespace BusinessLayer
         private clsUsers(clsEntityUser EntityUser)
         {
             this.UserData = EntityUser;
-            this.CircleInfo = clsCircles.FindEntityCircleByID(CircleID);
+            this.CircleInfo = GetCirclesOfUser(UserID);
             _Mode = enMode.Update;
         }
         private bool AddUsers()
         {
             UserData.UserID = clsUsersDataAccess.AddUsers(UserData);
-            return UserData.UserID != default(int);
+            if(UserData.UserID > 0)
+            {
+                _Mode = enMode.Update;
+                return true;
+            }
+            return false;
         }
         public bool UpdateUsers()
         {
@@ -64,18 +74,25 @@ namespace BusinessLayer
         }
         public bool Save()
         {
+            bool _IsSeccs = false;
             try
             {
                 switch (_Mode)
                 {
                     case enMode.Add:
-                        return AddUsers();
-
+                        _IsSeccs = AddUsers();
+                        break;
                     case enMode.Update:
-                        return UpdateUsers();
+                        _IsSeccs = UpdateUsers();
+                        break;
                     default:
                         throw new InvalidOperationException("وضع غير صالح.");
                 }
+                if (_IsSeccs)
+                {
+                    OnUserAddedOrUpdated();
+                }
+                return _IsSeccs;
             }
             catch (SqlException ex)
             {
@@ -271,6 +288,44 @@ namespace BusinessLayer
                 throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
+        public bool ReferralUsertToCircle(int CircleID)
+        {
+            try
+            {
+                return clsUsersDataAccess.ReferralUsertToCircle(UserID, CircleID);
+
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(LoadLastLogin),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء محاولة تنسيب المستخدم إلى الحلقة.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(LoadLastLogin),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+        }
         static public clsUsers Find(int UserID)
         {
             clsEntityUser EntityUser = new clsEntityUser() { UserID = UserID };
@@ -281,6 +336,43 @@ namespace BusinessLayer
             else
             {
                 return null;
+            }
+        }
+        static public List<clsEntityCircle> GetCirclesOfUser(int TeacherID)
+        {
+            try
+            {
+                return clsCirclesDataAccess.GetCirclesOfUser(TeacherID);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetCirclesOfUser),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء محاولة إيجاد الحلقات الخاصة بالمستخدم.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetCirclesOfUser),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
             }
         }
     }

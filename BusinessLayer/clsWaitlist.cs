@@ -80,13 +80,13 @@ namespace BusinessLayer
         }
         static public int TransferFromWaitlistToStudent(int waitlistId, int CircleID, string ImagePath)
         {
-            clsEntityCircle CircleInfo = clsCurrentUser.CurrentUser.HasCircle ? clsCurrentUser.CurrentUser.CircleInfo
-                : clsCircles.FindEntityCircleByID(CircleID);
+            clsEntityCircle CircleInfo = clsCurrentUser.CurrentUser.HasCircle ? clsCurrentUser.CurrentUser.CircleInfo.Find(c => c.CircleID == CircleID)
+                : clsCurrentUser.CurrentUser.IsAdmin ? clsCircles.FindEntityCircleByID(CircleID) : null;
 
             bool CanTransfer = false;
             if (CircleInfo != null && CircleInfo.CircleID != -1)
             {
-                CanTransfer = clsCurrentUser.CurrentUser.IsAdmin || CircleInfo.CannAdded;
+                CanTransfer = CircleInfo.CannAdded;
             }
 
             if (CanTransfer)
