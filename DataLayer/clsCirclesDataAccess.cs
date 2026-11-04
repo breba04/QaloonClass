@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,8 +10,6 @@ namespace DataAccessLayer
 {
     public class clsCirclesDataAccess
     {
-
-
         static public int AddCircle(clsEntityCircle EntityCircle)
         {
             int result = -1;
@@ -30,18 +29,10 @@ namespace DataAccessLayer
                     
                     cmd.Parameters.AddWithValue("@PrayerID", EntityCircle.PrayerID.HasValue? 
                         (object)EntityCircle.PrayerID :DBNull.Value);
-
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToInt32(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddCircle", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToInt32(obj);
                 }
             }
             return result;
@@ -67,16 +58,8 @@ namespace DataAccessLayer
 
                     cmd.Parameters.AddWithValue("@PrayerID", EntityCircle.PrayerID.HasValue ?
                         (object)EntityCircle.PrayerID : DBNull.Value);
-
-                    try
-                    {
-                        conn.Open();
-                        result = cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "UpdateCircle", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
                 }
             }
             return result > 0;
@@ -91,16 +74,9 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", circleID);
-
-                    try
-                    {
-                        conn.Open();
-                        result = cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
+                    
                 }
             }
             return result > 0;
@@ -115,17 +91,10 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
+                        result.Load(reader);
                     }
                 }
             }
@@ -141,17 +110,10 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectAllCircles", DateTime.Now, null);
+                        result.Load(reader);
                     }
                 }
             }
@@ -167,18 +129,10 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", circleID);
-
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "SelectCircleBy", DateTime.Now, null);
+                        result.Load(reader);
                     }
                 }
             }
@@ -196,48 +150,40 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@CircleID", Circle.CircleID);
 
                 cmd.Parameters.Add("@CircleName", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@TeacherID", SqlDbType.NVarChar, 50).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@MaxCapacity", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@TeacherID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@MaxCapacity", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@ScheduleType", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@StartTime", SqlDbType.Time).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@PrayerID", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@CurrentStudentNumbers", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@StartTime", SqlDbType.Time).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@CurrentStudentNumbers", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
 
                 SqlParameter ReturnValue = new SqlParameter();
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add(ReturnValue);
+                conn.Open();
+                cmd.ExecuteNonQuery();
 
-                try
+                int Result = Convert.ToInt32(ReturnValue.Value);
+
+                if (Result == 1)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    IsFound = true;
 
-                    int Result = Convert.ToInt32(ReturnValue.Value);
+                    Circle.CircleName = cmd.Parameters["@CircleName"].Value.ToString();
+                    Circle.TeacherID = Convert.ToInt32(cmd.Parameters["@TeacherID"].Value);
+                    Circle.MaxCapacity = Convert.ToByte(cmd.Parameters["@MaxCapacity"].Value);
+                    Circle.CurrentStudentNumbers = Convert.ToByte(cmd.Parameters["@CurrentStudentNumbers"].Value);
+                    Circle.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
 
-                    if (Result == 1)
-                    {
-                        IsFound = true;
+                    Circle.ScheduleType = (clsEntityCircle.enScheduleType)Convert.ToByte(cmd.Parameters["@ScheduleType"].Value);
 
-                        Circle.CircleName = cmd.Parameters["@CircleName"].Value.ToString();
-                        Circle.TeacherID = Convert.ToInt32(cmd.Parameters["@TeacherID"].Value);
-                        Circle.MaxCapacity = Convert.ToByte(cmd.Parameters["@MaxCapacity"].Value);
-                        Circle.CurrentStudentNumbers = Convert.ToByte(cmd.Parameters["@CurrentStudentNumbers"].Value);
-                        Circle.CircleID = Convert.ToInt32(cmd.Parameters["@CircleID"].Value);
-
-                        Circle.ScheduleType = (clsEntityCircle.enScheduleType)Convert.ToByte(cmd.Parameters["@ScheduleType"].Value);
-
-                        Circle.PrayerID = cmd.Parameters["@PrayerID"].Value != DBNull.Value?
-                            Convert.ToByte(cmd.Parameters["@PrayerID"].Value)
-                            : (byte?)null;
-
-                        Circle.StartTime = cmd.Parameters["@StartTime"].Value != DBNull.Value?
-                            Convert.ToDateTime(cmd.Parameters["@StartTime"].Value)
-                            : (DateTime?)null;
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser==null?-1: clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FundCircleByID", DateTime.Now, null);
+                    Circle.PrayerID = cmd.Parameters["@PrayerID"].Value != DBNull.Value?
+                        Convert.ToByte(cmd.Parameters["@PrayerID"].Value)
+                        : (byte?)null;
+                    object StartTimeValue = cmd.Parameters["@StartTime"].Value;
+                    Circle.StartTime = StartTimeValue != DBNull.Value
+                        ? DateTime.Today.Add((TimeSpan)StartTimeValue)
+                        : (DateTime?)null;
                 }
             }
 
@@ -253,10 +199,13 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", circleID);
+                    cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                     conn.Open();
-                    object obj = cmd.ExecuteScalar();
-                    if (obj != null)
-                        result = Convert.ToBoolean(obj);
+                    cmd.ExecuteNonQuery();
+                    object obj = cmd.Parameters["@ReturnValue"].Value;
+
+                    if (obj != null && int.TryParse(obj.ToString(), out int ReturnValue) && ReturnValue == 1)
+                    { result = true; }
                 }
             }
             return result;
@@ -274,18 +223,11 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@CountSeats", @CountSeats);
                     cmd.Parameters.Add("@ReturnValue",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 
-                    try
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    if(cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"].Value.ToString(), out int returnValue))
                     {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        if(cmd.Parameters["@ReturnValue"].Value != null && int.TryParse(cmd.Parameters["@ReturnValue"].Value.ToString(), out int returnValue))
-                        {
-                            result = Convert.ToBoolean(returnValue);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "AddingSeatsInCircle", DateTime.Now, null);
+                        result = Convert.ToBoolean(returnValue);
                     }
                 }
             }
@@ -302,17 +244,10 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@PageNo", PageNo);
                     cmd.Parameters.AddWithValue("@RecordsInPage", RecordInPage);
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllCircleView", DateTime.Now, null);
+                        result.Load(reader);
                     }
                 }
             }
@@ -327,17 +262,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@RecordsInPage", RecordInPage);
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToByte(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToByte(obj);
+                    
                 }
             }
             return result;
@@ -350,18 +279,11 @@ namespace DataAccessLayer
                 using (SqlCommand cmd = new SqlCommand("SP_GetNewCirclesStatsLastMonth", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToInt16(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNewCirclesStatsLastMonth", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToInt16(obj);
+                    
                 }
             }
             return result;
@@ -375,17 +297,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", CircleID);
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            result = Convert.ToByte(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetRemainingSeatsInClass", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        result = Convert.ToByte(obj);
+                    
                 }
             }
             return result;
@@ -399,17 +315,12 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CircleID", CircleID);
-                    try
-                    {
-                        conn.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if (obj != null)
-                            TeacherID = Convert.ToInt32(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetSupervisorByCircleID", DateTime.Now, null);
-                    }
+
+                    conn.Open();
+                    object obj = cmd.ExecuteScalar();
+                    if (obj != null)
+                        TeacherID = Convert.ToInt32(obj);
+                    
                 }
             }
             return TeacherID;
@@ -423,17 +334,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
-                    try
+                    
+                    conn.Open();
+                    using (SqlDataReader Reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader Reader = cmd.ExecuteReader())
-                        {
-                            Circles.Load(Reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        clsErrorLogger.AddLogToDB(ex.Message,clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetllEpisodesTeacher", DateTime.Now, null);
+                        Circles.Load(Reader);
                     }
                 }
             }
@@ -448,19 +353,37 @@ namespace DataAccessLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@NumberOfAvailableSeats", SqlDbType.TinyInt).Direction = ParameterDirection.Output;
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    NumberOfAvailableSeats = Convert.ToByte(cmd.Parameters["@NumberOfAvailableSeats"].Value);
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetNumberOfAvailableSeats", DateTime.Now, null);
-                }
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                NumberOfAvailableSeats = Convert.ToByte(cmd.Parameters["@NumberOfAvailableSeats"].Value);
+                
             }
             return NumberOfAvailableSeats;
         }
-
+        static public List<clsEntityCircle> GetCirclesOfUser(int TeacherID)
+        {
+            var Lst = new List<clsEntityCircle>();
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetCirclesOfUser", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Lst.Add(new clsEntityCircle()
+                            {
+                                CircleID = Convert.ToInt32(reader["CircleID"]),
+                                CircleName = reader["CircleName"].ToString(),
+                            });
+                        }
+                    }
+                }
+            }
+            return Lst;
+        }
     }
 }

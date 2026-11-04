@@ -42,7 +42,7 @@ namespace UI.GlobalClasses
                 dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dgv.ColumnHeadersHeight = 50;
 
-                dgv.GridColor = Color.LightGray;
+                //dgv.GridColor = Color.LightGray;
             }
        
         }

@@ -12,7 +12,6 @@ namespace DataAccessLayer
 {
     public class clsUsersDataAccess
     {
-
         static public int AddUsers(clsEntityUser EntityUser)
         {
             int result = default(Int32);
@@ -132,6 +131,35 @@ namespace DataAccessLayer
             using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("SP_SelectAllTeachers", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            result.Load(reader);
+                        }
+
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        //ErrorHandler
+                    }
+                }
+            }
+            return result;
+        }
+        static public DataTable SelectAllTeachersMiniData
+        ()
+        {
+            DataTable result = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(clsConnectionString.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SelectAllTeachersMiniData", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 

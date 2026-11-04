@@ -8,6 +8,14 @@ namespace EntityLayer
             Prayer = 1,//بعد صلاة معينة
             FixedTime = 2
         }
+        public enum enPrayer : byte
+        {
+            Fajr = 1,
+            Dhuhr = 2,
+            Asr = 3,
+            Maghrib = 4,
+            Isha = 5
+        }
         public int CircleID { get; set; } = -1;
         public string CircleName { get; set; } = string.Empty;
         public int TeacherID { get; set; } = -1;

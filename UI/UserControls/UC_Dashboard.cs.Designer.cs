@@ -748,6 +748,7 @@
             this.UpdateCircleToolStripMenuItem.Name = "UpdateCircleToolStripMenuItem";
             this.UpdateCircleToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.UpdateCircleToolStripMenuItem.Text = "تعديل الحلقة";
+            this.UpdateCircleToolStripMenuItem.Click += new System.EventHandler(this.UpdateCircleToolStripMenuItem_Click);
             // 
             // AddCircleToolStripMenuItem
             // 

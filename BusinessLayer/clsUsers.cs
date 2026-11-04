@@ -135,6 +135,10 @@ namespace BusinessLayer
         {
             return clsUsersDataAccess.SelectAllTeachers();
         }
+        static public DataTable SelectAllTeachersMiniData()
+        {
+            return clsUsersDataAccess.SelectAllTeachersMiniData();
+        }
         static public bool IsUsersExist(int UserID)
         {
             try

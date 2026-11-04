@@ -41,6 +41,7 @@ namespace UI.UserControls
             DashboardView = enDashboardView.Circles;
             clsAppEvents.StudentAdded += AppEvents_StudentAdded;
             clsUsers.UserAddedOrUpdated += Event_UserAddedOrUpdated;
+            clsCircles.OnCircleAddedOrUpdated += Event_CircleAddedOrUpdated;
             // UserControl إلغاء الاشتراك تلقائياً عند تدمير الـ 
             // لمنع تسريب الذاكرة
 
@@ -48,6 +49,7 @@ namespace UI.UserControls
             {
                 clsAppEvents.StudentAdded -= AppEvents_StudentAdded;
                 clsUsers.UserAddedOrUpdated -= Event_UserAddedOrUpdated;
+                clsCircles.OnCircleAddedOrUpdated -= Event_CircleAddedOrUpdated;
             };
         }
         private void _HandelCirclesAndUsersButtonsColor(Button button)
@@ -73,10 +75,18 @@ namespace UI.UserControls
             _HandelCirclesAndUsersDashboardView(btn_Circles);
             lbl_SubTitle.Text = $".مرحباً بك في لوحة تحكم {clsGlobal.CenterName}. إليك نظرة شاملة على تقدم الطلاب وحلقات الذكر لهذا اليوم المبارك";
         }
-        private void _LoadDataFromDB()
+        private void _LoadsUserDataFromDB()
+        {
+            _dtUsers = clsUsers.SelectAllTeachers();
+        }
+        private void _LoadsCircleDataFromDB()
         {
             _dtCircles = clsCircles.SelectAllCircles();
-            _dtUsers = clsUsers.SelectAllTeachers();
+        }
+        private void _LoadDataFromDB()
+        {
+            _LoadsCircleDataFromDB();
+            _LoadsUserDataFromDB();
         }
 
         [Description("Event handler triggered when a new student is added, forcing the dashboard to refresh.")]
@@ -357,13 +367,27 @@ namespace UI.UserControls
         }
         private void Event_UserAddedOrUpdated()
         {
-            _LoadDataFromDB();
+            _LoadsUserDataFromDB();
+            RefreshDashboard();
+        }
+        private void Event_CircleAddedOrUpdated(int CircleID)
+        {
+            _LoadsCircleDataFromDB();
             RefreshDashboard();
         }
         private void AddCircleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddUpdateCircle frm = new frmAddUpdateCircle();
             frm.ShowDialog();
+        }
+
+        private void UpdateCircleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(dgv_Listreports.CurrentRow.Cells["CircleID"].Value.ToString(), out int selectedCircleID))
+            {
+                frmAddUpdateCircle frm = new frmAddUpdateCircle(selectedCircleID);
+                frm.ShowDialog();
+            }
         }
     }
 }
