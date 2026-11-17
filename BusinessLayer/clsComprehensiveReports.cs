@@ -2,6 +2,7 @@
 using EntityLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using DataLayer;
 
 namespace BusinessLayer
@@ -62,73 +63,110 @@ namespace BusinessLayer
             byte RecordsInPage,
             clsEntityReports.enReportType Type)
         {
-            short TotalPage = 0;
-            bool HasData = false;
-
-            if (Type == clsEntityReports.enReportType.AllStudent)
+            try
             {
-                var ComprehensiveReport =
-                    clsReportsDataAccess.GetCircleComprehensive(
-                        ID,
-                        Month,
-                        Year,
-                        PageNO,
-                        RecordsInPage,
-                        ref TotalPage,
-                        true);
+                short TotalPage = 0;
+                bool HasData = false;
 
-                CircleComprehensiveDetail =
-                    ComprehensiveReport.ComprehensiveDetail;
+                if (Type == clsEntityReports.enReportType.AllStudent)
+                {
+                    var ComprehensiveReport =
+                        clsReportsDataAccess.GetCircleComprehensive(
+                            ID,
+                            Month,
+                            Year,
+                            PageNO,
+                            RecordsInPage,
+                            ref TotalPage,
+                            true);
 
-                CalculatedCircleComprehensive =
-                    ComprehensiveReport.CalculatedComprehensive;
+                    CircleComprehensiveDetail =
+                        ComprehensiveReport.ComprehensiveDetail;
 
-                HasData = CircleComprehensiveDetail != null
-                    && CircleComprehensiveDetail.Count > 0;
-            }
-            else
-            {
-                var ComprehensiveReport =
-                    clsReportsDataAccess.GetStudentComprehensive(
-                        ID,
-                        Month,
-                        Year,
-                        PageNO,
-                        RecordsInPage,
-                        ref TotalPage,
-                        true);
+                    CalculatedCircleComprehensive =
+                        ComprehensiveReport.CalculatedComprehensive;
 
-                StudentComprehensiveDetail =
-                    ComprehensiveReport.ComprehensiveDetail;
+                    HasData = CircleComprehensiveDetail != null
+                        && CircleComprehensiveDetail.Count > 0;
+                }
+                else
+                {
+                    var ComprehensiveReport =
+                        clsReportsDataAccess.GetStudentComprehensive(
+                            ID,
+                            Month,
+                            Year,
+                            PageNO,
+                            RecordsInPage,
+                            ref TotalPage,
+                            true);
 
-                CalculatedStudentComprehensive =
-                    ComprehensiveReport.CalculatedComprehensive;
+                    StudentComprehensiveDetail =
+                        ComprehensiveReport.ComprehensiveDetail;
 
-                HasData = StudentComprehensiveDetail != null
-                    && StudentComprehensiveDetail.Count > 0;
-            }
+                    CalculatedStudentComprehensive =
+                        ComprehensiveReport.CalculatedComprehensive;
 
-            if (!HasData)
-            {
-                CircleComprehensiveDetail =
-                    new List<clsEntityComprehensiveReports.clsCircleComprehensiveDetail>();
+                    HasData = StudentComprehensiveDetail != null
+                        && StudentComprehensiveDetail.Count > 0;
+                }
 
-                StudentComprehensiveDetail =
-                    new List<clsEntityComprehensiveReports.clsStudentComprehensiveDetail>();
+                if (!HasData)
+                {
+                    CircleComprehensiveDetail =
+                        new List<clsEntityComprehensiveReports.clsCircleComprehensiveDetail>();
 
-                CalculatedCircleComprehensive =
-                    new clsEntityComprehensiveReports.clsCalculatedCircleComprehensive();
+                    StudentComprehensiveDetail =
+                        new List<clsEntityComprehensiveReports.clsStudentComprehensiveDetail>();
 
-                CalculatedStudentComprehensive =
-                    new clsEntityComprehensiveReports.clsCalculatedStudentComprehensive();
+                    CalculatedCircleComprehensive =
+                        new clsEntityComprehensiveReports.clsCalculatedCircleComprehensive();
 
-                _TotalPage = 0;
+                    CalculatedStudentComprehensive =
+                        new clsEntityComprehensiveReports.clsCalculatedStudentComprehensive();
+
+                    _TotalPage = 0;
+                    return _TotalPage;
+                }
+
+                _TotalPage = TotalPage;
+
                 return _TotalPage;
             }
+            catch (SqlException ex)
+            {
+                string ErrorMessage =
+                    clsUtilBusiness.GetExceptionMassege(ex);
 
-            _TotalPage = TotalPage;
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GenerateComprehensiveReport),
+                    DateTime.Now);
 
-            return _TotalPage;
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage =
+                    "حدث خطأ أثناء إنشاء التقرير الشامل.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GenerateComprehensiveReport),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
+            }
         }
     }
 }

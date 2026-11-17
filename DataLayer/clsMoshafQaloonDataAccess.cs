@@ -23,18 +23,11 @@ namespace DataLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                try
-                {
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         result.Load(reader);
                     }
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllSurrah", DateTime.Now, null);
-                }
             }
             return result;
         }
@@ -47,18 +40,11 @@ namespace DataLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                try
-                {
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         result.Load(reader);
                     }
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAlljazza", DateTime.Now, null);
-                }
             }
             return result;
         }
@@ -72,18 +58,12 @@ namespace DataLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SurraID", SurrahNo);
                 cmd.Parameters.AddWithValue("@NumberOfLetters", NumberOfLetters);
-                try
-                {
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         result.Load(reader);
                     }
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
-                }
+                
             }
             return result;
         }
@@ -96,17 +76,11 @@ namespace DataLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
-                try
-                {
                     conn.Open();
                     object obj = cmd.ExecuteScalar();
                     if (obj != null)
                         result = obj.ToString();
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
-                }
+                
             }
             return result;
         }
@@ -119,17 +93,10 @@ namespace DataLayer
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
-                try
-                {
                     conn.Open();
                     object obj = cmd.ExecuteScalar();
                     if (obj != null)
                         result = obj.ToString();
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
-                }
             }
             return result;
         }
@@ -143,17 +110,11 @@ namespace DataLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MushafQaloonID", AyaID);
                 cmd.Parameters.AddWithValue("@NumberOfLetters", NumberOfLetters);
-                try
-                {
+                
                     conn.Open();
                     object obj = cmd.ExecuteScalar();
                     if (obj != null)
                         result = obj.ToString();
-                }
-                catch (Exception ex)
-                {
-                    clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "GetAllAyatFromSurrah", DateTime.Now, null);
-                }
             }
             return result;
         }

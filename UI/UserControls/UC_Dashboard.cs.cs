@@ -349,7 +349,7 @@ namespace UI.UserControls
         }
         private void UpdateUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(dgv_Listreports.CurrentRow.Cells["UserID"].Value.ToString(), out int selectedUserID))
+            if (int.TryParse(dgv_Listreports.CurrentRow.Cells["TeacherID"].Value.ToString(), out int selectedUserID))
             {
                 frmAddAndUpdateUser frm = new frmAddAndUpdateUser(selectedUserID);
                 frm.ShowDialog();

@@ -264,7 +264,7 @@ namespace UI.Users
         //}
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            if (!_TextBoxsIsValid)
+            if (!ValidateChildren() && !_TextBoxsIsValid)
                 return;
             if (!_HandleImage(out string ErrorMessage))
             {

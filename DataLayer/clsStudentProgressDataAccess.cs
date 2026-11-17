@@ -25,17 +25,11 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@UpdateDate", EntityProgress.UpdateDate);
                     cmd.Parameters.AddWithValue("@TeacherID", EntityProgress.TeacherID);
 
-                    try
-                    {
                         conn.Open();
                         object obj = cmd.ExecuteScalar();
                         if (obj != null)
                             result = Convert.ToInt32(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
+                    
                 }
             }
             return result;
@@ -56,15 +50,8 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@UpdateDate", EntityProgress.UpdateDate);
                     cmd.Parameters.AddWithValue("@TeacherID", EntityProgress.TeacherID);
 
-                    try
-                    {
-                        conn.Open();
-                        result = cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
                 }
             }
             return result > 0;
@@ -81,15 +68,8 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ProgressID", progressID);
 
-                    try
-                    {
-                        conn.Open();
-                        result = cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
                 }
             }
             return result > 0;
@@ -105,18 +85,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
-                    {
                         conn.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             result.Load(reader);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
                 }
             }
             return result;
@@ -133,18 +106,11 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ProgressID", progressID);
 
-                    try
-                    {
                         conn.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             result.Load(reader);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
                 }
             }
             return result;
@@ -161,17 +127,11 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ProgressID", progressID);
 
-                    try
-                    {
                         conn.Open();
                         object obj = cmd.ExecuteScalar();
                         if (obj != null)
                             result = Convert.ToBoolean(obj);
-                    }
-                    catch (Exception ex)
-                    {
-                                                clsErrorLogger.AddLogToDB(ex.Message, -1, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "DeleteCircle", DateTime.Now, null);
-                    }
+                    
                 }
             }
             return result;
@@ -196,8 +156,6 @@ namespace DataAccessLayer
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add(ReturnValue);
 
-                try
-                {
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
@@ -212,11 +170,6 @@ namespace DataAccessLayer
                         progress.AyahID = Convert.ToInt16(cmd.Parameters["@AyahID"].Value);
                         progress.UpdateDate = Convert.ToDateTime(cmd.Parameters["@UpdateDate"].Value);
                     }
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindProgressByStudentID", DateTime.Now, null);
-                }
             }
 
             return IsFound;
@@ -241,8 +194,6 @@ namespace DataAccessLayer
                 ReturnValue.Direction = ParameterDirection.ReturnValue;
                 cmd.Parameters.Add(ReturnValue);
 
-                try
-                {
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
@@ -257,11 +208,6 @@ namespace DataAccessLayer
                         progress.AyahID = Convert.ToInt16(cmd.Parameters["@AyahID"].Value);
                         progress.UpdateDate = Convert.ToDateTime(cmd.Parameters["@UpdateDate"].Value);
                     }
-                }
-                catch (Exception Ex)
-                {
-                    clsErrorLogger.AddLogToDB(Ex.Message, clsCurrentUser.CurrentUser.UserID, clsErrorLogger.enLogType.Error, clsErrorLogger.enLogLevel.DataLayer, "FindProgressByStudentID", DateTime.Now, null);
-                }
             }
 
             return IsFound;

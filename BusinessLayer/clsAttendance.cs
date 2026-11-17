@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,17 +81,55 @@ namespace BusinessLayer
         }
         public bool Save()
         {
-            if (_Mode == enMode.Add)
+            bool IsSuccess = false;
+
+            try
             {
-                return AddAttendance();
+                switch (_Mode)
+                {
+                    case enMode.Add:
+                        return AddAttendance();
+
+                    case enMode.Update:
+                        return UpdateAttendance(EntityAttendance);
+                    default:
+                        throw new InvalidOperationException(
+                            "وضع غير صالح.");
+                }
             }
-            else if (_Mode == enMode.Update)
+            catch (SqlException ex)
             {
-                return UpdateAttendance(EntityAttendance);
+                string ErrorMessage =
+                    clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(Save),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception("Invalid mode");
+                string ErrorMessage =
+                    "حدث خطأ أثناء حفظ بيانات الحضور.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(Save),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
             }
         }
 

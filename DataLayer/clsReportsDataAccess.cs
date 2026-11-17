@@ -28,8 +28,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_CircleAttendance", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@CircleID", CircleID);
                         cmd.Parameters.AddWithValue("@DateFrom", DateFrom);
@@ -69,11 +67,6 @@ namespace DataLayer
                         if (obj != null && short.TryParse(obj.ToString(), out TotalPage)) { }
                         
 
-                    }
-                    catch (Exception)
-                    {
-                        
-                    }
                 }
             }
            return (lst,calculatedAttendance);
@@ -99,8 +92,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_StudentAttendance", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StudentID", StudentID);
                         cmd.Parameters.AddWithValue("@DateFrom", DateFrom);
@@ -134,15 +125,6 @@ namespace DataLayer
                                 }
                             }
                         }
-                        object obj = cmd.Parameters["@TotalPage"].Value;
-                        if (obj != null && short.TryParse(obj.ToString(), out TotalPage)) { }
-                        
-
-                    }
-                    catch (Exception)
-                    {
-                        
-                    }
                 }
             }
            return (lst,calculatedAttendance);
@@ -166,8 +148,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_StudentEvaluation", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StudentID", StudentID);
                         cmd.Parameters.AddWithValue("@DateFrom", DateFrom);
@@ -255,11 +235,7 @@ namespace DataLayer
                         if (obj != null && short.TryParse(obj.ToString(), out TotalPage)) { }
                         
 
-                    }
-                    catch (Exception)
-                    {
-                        
-                    }
+                    
                 }
             }
            return (lst, calculatedEvaluation);
@@ -296,8 +272,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_CircleEvaluation", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@CircleID", CircleID);
@@ -388,12 +362,7 @@ namespace DataLayer
 
                         if (obj != null && obj != DBNull.Value)
                             short.TryParse(obj.ToString(), out TotalPage);
-                    }
-                    catch (Exception)
-                    {
-                        // يُفضّل تسجيل الخطأ بدل تجاهله بصمت.
-                        throw;
-                    }
+                    
                 }
             }
 
@@ -431,8 +400,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_CircleComprehensive", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("@CircleID", CircleID);
@@ -517,11 +484,6 @@ namespace DataLayer
                         if (obj != null && obj != DBNull.Value)
                             short.TryParse(obj.ToString(), out TotalPage);
                     }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
             }
 
             return (lst, calculatedComprehensive);
@@ -553,8 +515,6 @@ namespace DataLayer
             {
                 using (SqlCommand cmd = new SqlCommand("SP_Report_StudentComprehensive", conn))
                 {
-                    try
-                    {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StudentID", StudentID);
                         cmd.Parameters.AddWithValue("@Month", Month);
@@ -621,11 +581,6 @@ namespace DataLayer
                         if (obj != null && short.TryParse(obj.ToString(), out TotalPage)) { }
 
 
-                    }
-                    catch (Exception)
-                    {
-
-                    }
                 }
             }
             return (lst, calculated);

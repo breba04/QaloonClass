@@ -80,16 +80,10 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserID", userid);
 
-                    try
-                    {
-                        conn.Open();
-                        result = cmd.ExecuteNonQuery();
+                    conn.Open();
+                    result = cmd.ExecuteNonQuery();
 
-                    }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
-                    }
+                    
                 }
             }
             return result > 0;
@@ -105,19 +99,10 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
+                        result.Load(reader);
                     }
                 }
             }
@@ -134,20 +119,11 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
-                    {
                         conn.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             result.Load(reader);
                         }
-
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
-                    }
                 }
             }
             return result;
@@ -163,20 +139,12 @@ namespace DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    try
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            result.Load(reader);
-                        }
-
-
+                        result.Load(reader);
                     }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
-                    }
+
                 }
             }
             return result;
@@ -193,20 +161,11 @@ namespace DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserID", userid);
 
-                    try
-                    {
                         conn.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             result.Load(reader);
                         }
-
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        //ErrorHandler
-                    }
                 }
             }
             return result;

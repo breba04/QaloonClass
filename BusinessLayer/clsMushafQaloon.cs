@@ -1,4 +1,5 @@
-﻿using EntityLayer;
+﻿
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,27 +15,230 @@ namespace BusinessLayer
     {
         static public DataTable GetAllSurrah()
         {
-            return clsMoshafQaloonDataAccess.GetAllSurrah();
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetAllSurrah();
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAllSurrah),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب قائمة السور.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAllSurrah),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
+
         static public DataTable GetAlljazza()
         {
-            return clsMoshafQaloonDataAccess.GetAlljazza();
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetAlljazza();
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAlljazza),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب قائمة الأجزاء.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAlljazza),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
-        static public DataTable GetAllAyatFromSurrah(byte SurrahNo,byte NumberOfLetters)
+
+        static public DataTable GetAllAyatFromSurrah(byte SurrahNo, byte NumberOfLetters)
         {
-            return clsMoshafQaloonDataAccess.GetAllAyatFromSurrah(SurrahNo, NumberOfLetters);
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetAllAyatFromSurrah(SurrahNo, NumberOfLetters);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAllAyatFromSurrah),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب آيات السورة.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAllAyatFromSurrah),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
+
         static public string GetSurrahNameByAyaID(short AyaID)
         {
-            return clsMoshafQaloonDataAccess.GetSurrahNameByAyaID(AyaID);
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetSurrahNameByAyaID(AyaID);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetSurrahNameByAyaID),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب اسم السورة.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetSurrahNameByAyaID),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
+
         static public string GetSurrahNameByFirstAyaID(short AyaID)
         {
-            return clsMoshafQaloonDataAccess.GetSurrahNameByFirstAyaID(AyaID);
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetSurrahNameByFirstAyaID(AyaID);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetSurrahNameByFirstAyaID),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب اسم السورة.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetSurrahNameByFirstAyaID),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
+
         static public string GetAyaText(short AyaID, byte NumberOfLetters)
         {
-            return clsMoshafQaloonDataAccess.GetAyaText(AyaID,NumberOfLetters);
+            try
+            {
+                return clsMoshafQaloonDataAccess.GetAyaText(AyaID, NumberOfLetters);
+            }
+            catch (SqlException ex)
+            {
+                string ErrorMessage = clsUtilBusiness.GetExceptionMassege(ex);
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAyaText),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = "حدث خطأ أثناء جلب نص الآية.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GetAyaText),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(ErrorMessage, ex);
+            }
         }
     }
 }

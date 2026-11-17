@@ -1,9 +1,11 @@
-﻿using EntityLayer;
+﻿
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataLayer;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace BusinessLayer
 {
@@ -14,17 +16,21 @@ namespace BusinessLayer
             get;
             private set;
         }
+
         public clsEntityEvaluationReports.clsCalculatedEvaluation CalculatedEvaluation
         {
             get;
             private set;
         }
+
         public clsEntityEvaluationReports.clsCalculatedStudentEvaluation StudentCalculatedEvaluation
         {
             get;
             private set;
         }
+
         short _TotalPage;
+
         public clsEvaluationReports()
         {
             EvaluationDetail =
@@ -56,57 +62,98 @@ namespace BusinessLayer
             clsEntityReports.enReportType Type,
             byte NumberOfLetters)
         {
-            short TotalPage = 0;
-            bool HasData = false;
-            if (Type == clsEntityReports.enReportType.AllStudent)
-            {   
-
-                var EvaluationReport =
-                    clsReportsDataAccess.GetCircleEvaluation(
-                        CircleID,
-                        DateFrom,
-                        DateTo,
-                        PageNO,
-                        RecordsInPage,
-                        ref TotalPage,
-                        true,
-                        NumberOfLetters);
-
-                EvaluationDetail = EvaluationReport.EvaluationDetail;
-                CalculatedEvaluation = EvaluationReport.CalculatedEvaluation;
-                HasData = EvaluationDetail != null;
-            }
-            else
+            try
             {
-                var EvaluationReport =
-                    clsReportsDataAccess.GetStudentEvaluation(
-                        CircleID,
-                        DateFrom,
-                        DateTo,
-                        PageNO,
-                        RecordsInPage,
-                        ref TotalPage,
-                        true,
-                        NumberOfLetters);
+                short TotalPage = 0;
+                bool HasData = false;
 
-                EvaluationDetail = EvaluationReport.EvaluationDetail;
-                StudentCalculatedEvaluation = EvaluationReport.CalculatedEvaluation;
-                HasData = StudentCalculatedEvaluation != null ;
-            }
-            HasData = HasData && EvaluationDetail != null && EvaluationDetail.Count > 0;
-            if (!HasData)
-            {
-                EvaluationDetail =
-                    new List<clsEntityEvaluationReports.clsCircleEvaluationDetail>();
-                CalculatedEvaluation =
-                    new clsEntityEvaluationReports.clsCalculatedEvaluation();
-                _TotalPage = 0;
+                if (Type == clsEntityReports.enReportType.AllStudent)
+                {
+                    var EvaluationReport =
+                        clsReportsDataAccess.GetCircleEvaluation(
+                            CircleID,
+                            DateFrom,
+                            DateTo,
+                            PageNO,
+                            RecordsInPage,
+                            ref TotalPage,
+                            true,
+                            NumberOfLetters);
+
+                    EvaluationDetail = EvaluationReport.EvaluationDetail;
+                    CalculatedEvaluation = EvaluationReport.CalculatedEvaluation;
+                    HasData = EvaluationDetail != null;
+                }
+                else
+                {
+                    var EvaluationReport =
+                        clsReportsDataAccess.GetStudentEvaluation(
+                            CircleID,
+                            DateFrom,
+                            DateTo,
+                            PageNO,
+                            RecordsInPage,
+                            ref TotalPage,
+                            true,
+                            NumberOfLetters);
+
+                    EvaluationDetail = EvaluationReport.EvaluationDetail;
+                    StudentCalculatedEvaluation = EvaluationReport.CalculatedEvaluation;
+                    HasData = StudentCalculatedEvaluation != null;
+                }
+
+                HasData = HasData && EvaluationDetail != null && EvaluationDetail.Count > 0;
+
+                if (!HasData)
+                {
+                    EvaluationDetail =
+                        new List<clsEntityEvaluationReports.clsCircleEvaluationDetail>();
+
+                    CalculatedEvaluation =
+                        new clsEntityEvaluationReports.clsCalculatedEvaluation();
+
+                    _TotalPage = 0;
+                    return _TotalPage;
+                }
+
+                _TotalPage = TotalPage;
+
                 return _TotalPage;
             }
+            catch (SqlException ex)
+            {
+                string ErrorMessage =
+                    clsUtilBusiness.GetExceptionMassege(ex);
 
-            _TotalPage = TotalPage;
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GenerateEvaluationReport),
+                    DateTime.Now);
 
-            return _TotalPage;
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage =
+                    "حدث خطأ أثناء إنشاء تقرير التقييم.";
+
+                clsErrorLogger.AddExceptionLog(
+                    ex,
+                    ErrorMessage,
+                    clsCurrentUser.CurrentUser?.UserID ?? -1,
+                    clsErrorLogger.enLogType.Error,
+                    clsErrorLogger.enLogLevel.Business,
+                    nameof(GenerateEvaluationReport),
+                    DateTime.Now);
+
+                throw new InvalidOperationException(
+                    ErrorMessage, ex);
+            }
         }
     }
 }
